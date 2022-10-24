@@ -1,0 +1,1 @@
+Acá irían los slices, usando redux toolkit
