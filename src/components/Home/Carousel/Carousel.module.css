@@ -1,0 +1,8 @@
+.carousel {
+  background-color: #46497e;
+  height: 170px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
