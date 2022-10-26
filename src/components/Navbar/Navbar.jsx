@@ -49,7 +49,7 @@ export default function Navbar() {
       </div>
       <div className={s.links}>
         {/* <NavLink>Productos</NavLink> */}
-        <NavLink to={''} className={s.child}>Productos</NavLink>
+        <NavLink to={''} className={s.child}>Productoos</NavLink>
       </div>
     </nav>
   );
