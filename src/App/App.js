@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar/Navbar";
 import { Route } from "react-router-dom";
 import Home from "../components/Home/Home";
-// import CardDetail from "../components/CardDetail.jsx/CardDetail";
+import CardDetail from "../components/CardDetail.jsx/CardDetail";
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
         <Home />
       </Route>
       <Route path={'/product/id'}>
-        {/* <CardDetail /> */}
+        <CardDetail />
       </Route>
     </>
   );
