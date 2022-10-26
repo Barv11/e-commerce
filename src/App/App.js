@@ -1,8 +1,15 @@
+import Navbar from "../components/Navbar/Navbar";
+import { Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-    </div>
+    <>
+      <Navbar />
+      <Route exact path={"/"}>
+      </Route>
+      <Route path={'/product/id'}>
+      </Route>
+    </>
   );
 }
 
