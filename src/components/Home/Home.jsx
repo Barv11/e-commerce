@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main>
       <Carousel />
-      <h1><b>Productoos</b> Destacados</h1>
+      <h1><b>Productos</b> Destacados</h1>
       <Card />
       <Card />
     </main>
