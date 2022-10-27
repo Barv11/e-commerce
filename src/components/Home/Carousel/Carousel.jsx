@@ -1,11 +1,45 @@
-import React from 'react'
-import s from './Carousel.module.css'
+import Carousel from 'react-bootstrap/Carousel';
+import img1 from './Imagenes/imagen-carousel-1.jpg'
+import img2 from './Imagenes/imagen-carousel-2.jpg'
+import img3 from './Imagenes/imagen-carousel-3.jpg'
 
-export default function Carousel() {
+function CarouselHeader() {
   return (
-    <div className={s.carousel}>
-        <h1>[fotos]</h1>
-        <span>_ _ _ _</span>
-    </div>
-  )
+    <Carousel>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src={img1}
+          alt="First slide"
+        />
+        <Carousel.Caption>
+          
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src={img2}
+          alt="Second slide"
+        />
+
+        <Carousel.Caption>
+          
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src={img3}
+          alt="Third slide"
+        />
+
+        <Carousel.Caption>
+          
+        </Carousel.Caption>
+      </Carousel.Item>
+    </Carousel>
+  );
 }
+
+export default CarouselHeader;
