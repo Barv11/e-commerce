@@ -1,0 +1,27 @@
+.container-all-footer {
+  background-color: #69329c;
+  display: flex;
+  color: aliceblue;
+  justify-content: space-around;
+  padding-top: 20px;
+}
+.icono {
+  height: 20px;
+}
+.container-iconos {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.div-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0;
+  width: 300px;
+  align-items: center;
+}
+
+li {
+  list-style: none;
+}
