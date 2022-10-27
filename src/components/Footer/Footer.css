@@ -1,0 +1,9 @@
+.container-all-footer {
+  background-color: #69329c;
+  display: flex;
+  color: aliceblue;
+  justify-content: space-around;
+}
+.icono {
+  height: 20px;
+}

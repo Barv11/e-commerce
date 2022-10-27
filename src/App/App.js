@@ -1,17 +1,16 @@
-import Navbar from "../components/Navbar/Navbar";
 import { Route } from "react-router-dom";
-import Home from "../components/Home/Home";
-import CardDetail from "../components/CardDetail.jsx/CardDetail";
+import Home from "../Pages/Home/Home";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Usuario from "../Pages/Usuario/Usuario";
 
 function App() {
   return (
     <>
-      <Navbar />
-      <Route exact path={"/"}>
+      <Route path={"/"}>
         <Home />
       </Route>
-      <Route path={'/product/id'}>
-        <CardDetail />
+      <Route path={"/Usuario"}>
+        <Usuario />
       </Route>
     </>
   );

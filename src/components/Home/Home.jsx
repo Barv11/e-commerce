@@ -1,14 +1,14 @@
 import React from "react";
 import Card from "../Card/Card";
-import Carousel from "./Carousel/Carousel";
+import "./Home.css";
 
 export default function Home() {
   return (
-    <main>
-      <Carousel />
-      <h1><b>Productoos</b> Destacados</h1>
-      <Card />
-      <Card />
-    </main>
+    <div className="container-all-home">
+      <main>
+        <Card />
+        <Card />
+      </main>
+    </div>
   );
 }
