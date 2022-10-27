@@ -1,12 +1,10 @@
-import Navbar from "../components/Navbar/Navbar";
 import { Route } from "react-router-dom";
-import Home from "../components/Home/Home";
+import Home from "../page/home/Home";
 import CardDetail from "../components/CardDetail.jsx/CardDetail";
 
 function App() {
   return (
     <>
-      <Navbar />
       <Route exact path={"/"}>
         <Home />
       </Route>
