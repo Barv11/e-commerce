@@ -40,7 +40,7 @@ export default function ProductSlider(){
                 grabCursor={true}
                 modules={[FreeMode]}
                 className='mySwiper'
-                breakpooints={{
+                breakpoints={{
                   0: {
                     slidesPerView: 1,
                     spaceBetween: 10,
