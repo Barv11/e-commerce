@@ -29,7 +29,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { FreeMode } from 'swiper'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'swiper/swiper.min.css'
-import Card from './Card/Card'
+import Card from '../Card/Card'
 
 export default function ProductSlider(){
     

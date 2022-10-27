@@ -1,5 +1,6 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
+import ProductMenu from "../ProductMenu";
 import s from "./Navbar.module.css";
 
 export default function Navbar() {
@@ -49,7 +50,8 @@ export default function Navbar() {
       </div>
       <div className={s.links}>
         {/* <NavLink>Productos</NavLink> */}
-        <NavLink to={''} className={s.child}>Productos</NavLink>
+        {/* <NavLink to={''} className={s.child}>Productos</NavLink> */}
+        <ProductMenu />
       </div>
     </nav>
   );

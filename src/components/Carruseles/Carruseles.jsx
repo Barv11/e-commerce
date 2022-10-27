@@ -1,8 +1,8 @@
 import React from "react";
 import CarouselHeader from "./Carousel/Carousel"
-import ProductSlider from '../ProductSlider'
+import ProductSlider from './ProductSlider'
 
-export default function Home() {
+export default function Carruseles() {
   return (
     <main>
       <CarouselHeader />
