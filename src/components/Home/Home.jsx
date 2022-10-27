@@ -1,14 +1,15 @@
 import React from "react";
 import Card from "../Card/Card";
-import Carousel from "./Carousel/Carousel";
+import CarouselHeader from "./Carousel/Carousel"
+import CarouselProduct from '../CarouselProduct'
+import ProductSlider from '../ProductSlider'
 
 export default function Home() {
   return (
     <main>
-      <Carousel />
-      <h1><b>Productoos</b> Destacados</h1>
-      <Card />
-      <Card />
+      <CarouselHeader />
+      <h1><b>Productos</b> Destacados</h1>
+      <ProductSlider />
     </main>
   );
 }
