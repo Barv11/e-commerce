@@ -26,6 +26,7 @@ export default function ProductSlider() {
     ],
     cost: 46040,
   };
+  
   return (
     <div className="container py-4 px-4 justify-content-center">
       <Swiper
