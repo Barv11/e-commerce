@@ -1,4 +1,5 @@
 import React from "react";
+import MenuProducts from "../MenuProducts";
 import { NavLink } from "react-router-dom";
 import s from "./Navbar.module.css";
 
@@ -49,7 +50,9 @@ export default function Navbar() {
       </div>
       <div className={s.links}>
         {/* <NavLink>Productos</NavLink> */}
-        <NavLink to={''} className={s.child}>Productos</NavLink>
+        {/* <NavLink to={''} className={s.child}>Productos</NavLink> */}
+        <MenuProducts className={s.child} />
+        <NavLink to={''} className={s.child}>Crear Producto</NavLink>
       </div>
     </nav>
   );

@@ -3,7 +3,7 @@ import img1 from './Imagenes/imagen-carousel-1.jpg'
 import img2 from './Imagenes/imagen-carousel-2.jpg'
 import img3 from './Imagenes/imagen-carousel-3.jpg'
 
-function CarouselHeader() {
+function Carrusel() {
   return (
     <Carousel>
       <Carousel.Item>
@@ -42,4 +42,4 @@ function CarouselHeader() {
   );
 }
 
-export default CarouselHeader;
+export default Carrusel;
