@@ -1,4 +1,4 @@
-/* // Corrobora que el email sea valido
+// Corrobora que el email sea valido
 export function isValidEmail(str) {
   let regex = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");
 
@@ -39,4 +39,3 @@ export default function validate(input) {
   }
   return error;
 }
- */

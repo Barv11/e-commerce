@@ -1,4 +1,4 @@
-/*import React from "react";
+import React from "react";
 import { useEffect, useState } from "react";
 import jwtDecode from "jwt-decode";
 import s from "./loginGoogle.module.css";
@@ -18,7 +18,7 @@ export default function LoginGoogle() {
   };
 
   useEffect(() => {
-    /* global google 
+    /* global google */
     google.accounts.id.initialize({
       client_id:
         "991930929385-3ajl2kmv3f3oidcn5oivdvg4rn56htce.apps.googleusercontent.com",
@@ -36,4 +36,4 @@ export default function LoginGoogle() {
       <div id="signInDiv" className={s.signInDiv}></div>
     </div>
   );
-}*/
+}
