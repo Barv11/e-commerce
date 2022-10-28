@@ -17,7 +17,12 @@
 
 .logo {
   padding-left: 40px;
-  width: 75px;
+  width: 90px;
+}
+
+.mainTitle {
+  font-family: Heavitas;
+  margin-top: 8px;
 }
 
 .form {
@@ -119,4 +124,9 @@
 
 .form svg:hover {
   cursor: pointer;
+}
+
+@font-face {
+  font-family: 'Heavitas';
+  src: url('.././fonts/HEAVITAS.TTF');
 }

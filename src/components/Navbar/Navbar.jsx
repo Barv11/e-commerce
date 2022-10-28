@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchProductByName } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
+import pcLogo from '../../assets/pc-logo.png'
 
 export default function Navbar() {
   const [input, setInput] = useState("");
@@ -26,11 +27,12 @@ export default function Navbar() {
       <div className={s.container}>
         <Link to="/">
           <img
-            src="http://educainternet.es/documents/2711/download"
+            src={pcLogo}
             alt="logo"
             className={s.logo}
           />
         </Link>
+        <h1 className={s.mainTitle}>Game Tech</h1>
         <form className={s.form} onSubmit={(e) => e.preventDefault()}>
           <input
             value={input}
