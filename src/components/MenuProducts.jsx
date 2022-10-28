@@ -6,6 +6,7 @@ function MenuProducts() {
     <DropdownButton id="dropdown-item-button" title="Productos">
       <Dropdown.Item as="button">Motherboard</Dropdown.Item>
       <Dropdown.Item as="button">Procesador</Dropdown.Item>
+      <Dropdown.Item as="button">Ver todo</Dropdown.Item>
     </DropdownButton>
   );
 }
