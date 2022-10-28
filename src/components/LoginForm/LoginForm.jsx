@@ -1,8 +1,8 @@
-/* import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import s from "./Login.module.css";
 import validate from "./validator";
-import LoginGoogle from "../loginGoogle/loginGoogle";
+/* import LoginGoogle from "../loginGoogle/loginGoogle"; */
 import { userLogin, userLogout } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,7 @@ export default function Login() {
   const dispatch = useDispatch();
   const [loginError, setLoginError] = useState(false);
   const navigate = useNavigate();
-  const loginAccess = useSelector((state) => state.loginAccess);
+  /*   const loginAccess = useSelector((state) => state.loginAccess); */
   const [loading, setLoading] = useState(false);
 
   const toggleEye = () => {
@@ -46,7 +46,7 @@ export default function Login() {
 
   console.log(input);
 
-  const handleSubmit = (e) => {
+  /*   const handleSubmit = (e) => {
     e.preventDefault();
     if (!Object.keys(error).length && input.pass !== "") {
       dispatch(userLogin(input));
@@ -67,7 +67,7 @@ export default function Login() {
       dispatch(userLogout());
     }
   }, [loginAccess]);
-
+ */
   console.log(error);
 
   const handleInputChange = (e) => {
@@ -158,9 +158,7 @@ export default function Login() {
                 </div>
 
                 <div className={s.loginButton}>
-                  <button onClick={handleSubmit}>
-                    {loading ? <Loader /> : "Login Now"}
-                  </button>
+                  <button>{loading ? <Loader /> : "Login Now"}</button>
                 </div>
                 {loginError && (
                   <p className={s.loginError}>Email o Contraseña incorrectos</p>
@@ -168,7 +166,7 @@ export default function Login() {
               </form>
               <div className={s.googleBtn}>
                 <p id={s.googleOr}>Sign in With Google</p>
-                <LoginGoogle />
+                {/*      <LoginGoogle /> */}
               </div>
               <div className={s.loginSignup}>
                 <span className="text">
@@ -182,4 +180,3 @@ export default function Login() {
     </div>
   );
 }
- */
