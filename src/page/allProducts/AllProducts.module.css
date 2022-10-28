@@ -1,0 +1,18 @@
+.container {
+  height: 100%;
+  display: flex;
+}
+
+.sideBar {
+  border: 1px solid black;
+  width: 15vw;
+  margin: 10px;
+}
+
+.productsContainer {
+  border: 1px solid black;
+  margin: 10px;
+  width: 85vw;
+  display: flex;
+  flex-wrap: wrap;
+}
