@@ -1,19 +1,40 @@
 import {
+  GET_ALL_PRODUCTS,
+  TOGGLE_PRODUCT_TYPE,
+  SEARCH_PRODUCT_BY_NAME,
+  CLEAR_PRODUCTS,
   GET_CURRENT_USER,
   USER_LOGIN,
   USER_LOGOUT,
 } from "../actions/actionsTypes";
 
 const initialState = {
-  allproducts: [],
+  allProducts: [],
+  searchByNameProduct: [],
 };
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
-    case "GET_PRODUCTS":
+    case GET_ALL_PRODUCTS:
       return {
         ...state,
-        allproducts: action.payload,
+        allProducts: action.payload,
+      };
+    case TOGGLE_PRODUCT_TYPE:
+      return {
+        ...state,
+        allProducts: action.payload,
+      };
+    case SEARCH_PRODUCT_BY_NAME:
+      return {
+        ...state,
+        searchByNameProduct: action.payload,
+      };
+    case CLEAR_PRODUCTS:
+      return {
+        ...state,
+        allProducts: [],
+        searchByNameProduct: [],
       };
     case GET_CURRENT_USER:
       console.log(state);

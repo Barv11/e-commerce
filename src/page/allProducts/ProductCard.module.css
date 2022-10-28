@@ -1,0 +1,39 @@
+.container {
+  height: 310px;
+  width: 200px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.container img {
+  height: 100px;
+}
+
+.container #nombre {
+  font-size: 16px;
+}
+
+.container #precio {
+  font-size: 30px;
+}
+
+.container button {
+  background-color: blueviolet;
+  padding: 2px 15px;
+  border-radius: 10px;
+  color: white;
+  border: none;
+  border: 2px solid blueviolet;
+  transition: 0.3s;
+}
+
+.container button:hover {
+  background-color: rgb(115, 37, 187);
+  transition: 0.3s;
+}
