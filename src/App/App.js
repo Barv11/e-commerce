@@ -1,18 +1,12 @@
-import Navbar from "../components/Navbar/Navbar";
-import { Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import Login from "../components/LoginForm/LoginForm";
 import Home from "../page/home/Home";
-import CardDetail from "../components/CardDetail/CardDetail";
-
 function App() {
   return (
-    <>
-      <Route exact path={"/"}>
-        <Home />
-      </Route>
-      <Route path={"/product/id"}>
-        <CardDetail />
-      </Route>
-    </>
+    <Routes>
+      <Route exact path={"/"} element={<Home />} />
+      <Route exact path={"/login"} element={<Login />} />
+    </Routes>
   );
 }
 
