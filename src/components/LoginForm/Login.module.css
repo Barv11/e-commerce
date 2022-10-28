@@ -1,0 +1,208 @@
+/*.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: auto;
+  background-image: url("../../images/bgLoginAndRegister.jpg");
+  background-size: 100% 100%;
+  text-align: center;
+}
+
+.formMainContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginError{
+  color: red;
+}
+
+
+#googleOr {
+  color: rgb(64, 192, 190);
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.formContainer {
+  position: relative;
+  max-width: 430px;
+  width: 80vw;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+.formContainer .forms {
+  padding: 30px;
+}
+
+.title {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.Or {
+  color: rgb(64, 192, 190);
+  font-size: 19px;
+  position: absolute;
+  left: 200px;
+  top: 147px;
+  margin-top: 5px;
+}
+
+.line {
+  border: 2px solid rgba(91, 192, 190, 0.486);
+  margin-top: 60px;
+}
+
+#eye {
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+  margin-left: 300px;
+}
+
+.formContainer .forms .title {
+  position: relative;
+  font-size: 27px;
+  font-weight: 600;
+}
+
+.forms .title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 30px;
+  background-color: #5bc0beff;
+  border-radius: 25px;
+}
+
+.form .inputField {
+  position: relative;
+  height: 20px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.inputField input {
+  height: 100%;
+  margin-top: 10px;
+  width: 100%;
+  padding: 3px 35px;
+  padding-top: 28px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  border-bottom: 2px solid grey;
+  border-top: 2px solid transparent;
+  transition: 0.3s;
+  margin-top: 10px;
+}
+
+.inputField input:is(:focus, :valid) {
+  border-bottom-color: #5bc0beff;
+  transition: 0.3s;
+}
+
+.inputField i {
+  position: absolute;
+  left: 35px;
+  transform: translateY(39px);
+  font-size: 17px;
+  color: rgba(0, 0, 0, 0.85);
+  transition: 0.3s;
+}
+
+.inputField input:is(:focus, :valid) ~ i {
+  color: #5bc0beff;
+  transition: 0.3s;
+}
+
+.inputField i.showHidePw {
+  left: 370px;
+}
+
+.forms .checkboxText {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.checkboxText .checkboxContent {
+  display: flex;
+  align-items: center;
+}
+
+.checkboxContent input {
+  margin: 0 6px 0px 5px;
+  accent-color: #5bc0beff;
+}
+
+.error {
+  position: absolute;
+  color: rgba(255, 0, 0, 0.5);
+}
+
+.checkboxContent input:hover {
+  cursor: pointer;
+}
+
+.forms .text {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+}
+
+.forms a {
+  text-decoration: none;
+  color: #5bc0beff;
+}
+
+.forms a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  transition: 0.2s;
+}
+
+.loginButton {
+  display: flex;
+  justify-content: center;
+}
+
+.loginButton button {
+  width: 320vw;
+  height: 5vh;
+  margin: 15px;
+  border: none;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  border-radius: 10px;
+  transition: 0.2s;
+  background-color: #5bc0beff;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginButton button:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: 0.2s;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.loginButton button:active {
+  background-color: rgba(212, 212, 212, 0.4);
+}
+
+.loginSignup {
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+  margin-bottom: 5px;
+}
+*/
