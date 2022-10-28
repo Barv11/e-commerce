@@ -1,5 +1,5 @@
 import React from "react";
-import MenuProducts from "../MenuProducts";
+// import MenuProducts from "../MenuProducts";
 import { Link, NavLink } from "react-router-dom";
 import s from "./Navbar.module.css";
 import { useState } from "react";
@@ -76,8 +76,8 @@ export default function Navbar() {
       </div>
       <div className={s.links}>
         {/* <NavLink>Productos</NavLink> */}
-        {/* <NavLink to={''} className={s.child}>Productos</NavLink> */}
-        <MenuProducts className={s.child} />
+        <NavLink to={'/products'} className={s.child}>Productos</NavLink>
+        {/* <MenuProducts className={s.child} /> */}
         <NavLink to={""} className={s.child}>
           Crear Producto
         </NavLink>
