@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchProductByName } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
-import pcLogo from '../../assets/pc-logo.png'
+import pcLogo from "../../assets/pc-logo.png";
 
 export default function Navbar() {
   const [input, setInput] = useState("");
@@ -26,11 +26,7 @@ export default function Navbar() {
     <nav className={s.navbar}>
       <div className={s.container}>
         <Link to="/">
-          <img
-            src={pcLogo}
-            alt="logo"
-            className={s.logo}
-          />
+          <img src={pcLogo} alt="logo" className={s.logo} />
         </Link>
         <h1 className={s.mainTitle}>Game Tech</h1>
         <form className={s.form} onSubmit={(e) => e.preventDefault()}>
@@ -77,10 +73,23 @@ export default function Navbar() {
         </div>
       </div>
       <div className={s.links}>
-        {/* <NavLink>Productos</NavLink> */}
-        <NavLink to={'/products'} className={s.child}>Productos</NavLink>
-        {/* <MenuProducts className={s.child} /> */}
-        <NavLink to={""} className={s.child}>
+        <NavLink
+          end
+          to={"/"}
+          className={(navData) => (navData.isActive ? s.activeChild : s.child)}
+        >
+          Home
+        </NavLink>
+        <NavLink
+          to={"/products"}
+          className={(navData) => (navData.isActive ? s.activeChild : s.child)}
+        >
+          Productos
+        </NavLink>
+        <NavLink
+          to={"/create"}
+          className={(navData) => (navData.isActive ? s.activeChild : s.child)}
+        >
           Crear Producto
         </NavLink>
       </div>

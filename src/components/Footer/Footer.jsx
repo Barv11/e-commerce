@@ -11,8 +11,8 @@ export default function Footer() {
           <li>
             <h5>Contacto</h5>
           </li>
-          <li>wsp : +12312312313</li>
-          <li>email : sdadasdasdas@gmail.com</li>
+          <li>WhatsApp: +12312312313</li>
+          <li>Email: sdadasdasdas@gmail.com</li>
         </ul>
       </div>
       <div className="div-footer">

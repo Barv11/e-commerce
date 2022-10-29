@@ -6,6 +6,8 @@
   padding-top: 20px;
 }
 .icono {
+  cursor: pointer;
+  margin: 10px;
   height: 20px;
 }
 .container-iconos {
