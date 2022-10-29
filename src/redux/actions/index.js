@@ -2,11 +2,10 @@ import {
   GET_ALL_PRODUCTS,
   TOGGLE_PRODUCT_TYPE,
   SEARCH_PRODUCT_BY_NAME,
-  CLEAR_PRODUCTS
+  CLEAR_PRODUCTS,
 } from "./actionsTypes";
 import axios from "axios";
 import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "./actionsTypes";
-
 
 export const toggleProductType = (type) => async (dispatch) => {
   const productos = await axios.get("http://localhost:3001/productos");
@@ -21,13 +20,15 @@ export const getAllProductos = () => async (dispatch) => {
 
 export const searchProductByName = (name) => async (dispatch) => {
   const productos = await axios.get("http://localhost:3001/productos");
-  const productosbyName = productos.data.filter((p) => p.name.includes(name));
+  const productosbyName = productos.data.filter((p) =>
+    p.name.toLowerCase().includes(name.toLowerCase())
+  );
   dispatch({ type: SEARCH_PRODUCT_BY_NAME, payload: productosbyName });
 };
 
-export const clearProducts = () => dispatch => {
-  dispatch({ type: CLEAR_PRODUCTS })
-}
+export const clearProducts = () => (dispatch) => {
+  dispatch({ type: CLEAR_PRODUCTS });
+};
 
 export const getCurrentUser = (obj) => (dispatch) => {
   return dispatch({ type: GET_CURRENT_USER, payload: obj });
@@ -41,11 +42,11 @@ export const userLogout = () => (dispatch) => {
   dispatch({ type: USER_LOGOUT });
 };
 
-export function ordennames(payload){
-  return function(dispatch){
-     return dispatch({
+export function ordennames(payload) {
+  return function (dispatch) {
+    return dispatch({
       type: "ORDER_NAME",
-      payload
-     }) 
-  }
+      payload,
+    });
+  };
 }
