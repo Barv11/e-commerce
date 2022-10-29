@@ -6,7 +6,6 @@ import {
   ORDER_NAME,
   ORDER_PRECIO,
   SEARCH_PRODUCT_BY_ID,
-  CLEAR_PRODUCTS
 } from "./actionsTypes";
 import axios from "axios";
 import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "./actionsTypes";
