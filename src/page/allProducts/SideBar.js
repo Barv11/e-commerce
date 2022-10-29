@@ -11,13 +11,14 @@ import {cpu, motherboard, tarjeta, cooler, ram,
   fuente, hdd, ssd, monitor, mouse, keyboard, 
   gabinete, headphones} from '../../assets/icons'
 
-export default function SideBar() {
+export default function SideBar({setCurrentPage}) {
   const dispatch = useDispatch();
   
   const handleClick = (type) => {
     dispatch(clearProducts());
     dispatch(getAllProductos());
     dispatch(toggleProductType(type));
+    setCurrentPage(1)
   };
 
   // const OrderName = (event) =>{

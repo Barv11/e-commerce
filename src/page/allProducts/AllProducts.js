@@ -34,8 +34,6 @@ export default function Products() {
     let pagProducts = allProducts.slice(indicePrimero, indiceUltimo);
     
     
-    console.log(allProducts.length)
-    console.log(pagProducts.length)
     //Cambio de pagina
   function pagina(pageNumber){
     return setCurrentPage(pageNumber)
@@ -53,7 +51,7 @@ export default function Products() {
         <button value='AZ' onClick={(e) => OrderName(e)}>A - Z</button>
         <button value='ZA' onClick={(e) => OrderName(e)}>Z - A</button>
         </div>
-          <SideBar />
+          <SideBar setCurrentPage={setCurrentPage}/>
         </div>
         <div className={s.productsContainer}>
           {searchByNameProduct.length ? (
