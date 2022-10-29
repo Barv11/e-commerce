@@ -51,7 +51,7 @@ export default function Products() {
         <button value='AZ' onClick={(e) => OrderName(e)}>A - Z</button>
         <button value='ZA' onClick={(e) => OrderName(e)}>Z - A</button>
         </div>
-          <SideBar setCurrentPage={setCurrentPage}/>
+          <SideBar setCurrentPage={setCurrentPage} setOrden={setOrden} />
         </div>
         <div className={s.productsContainer}>
           {searchByNameProduct.length ? (

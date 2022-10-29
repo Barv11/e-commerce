@@ -11,7 +11,7 @@ import {cpu, motherboard, tarjeta, cooler, ram,
   fuente, hdd, ssd, monitor, mouse, keyboard, 
   gabinete, headphones} from '../../assets/icons'
 
-export default function SideBar({setCurrentPage}) {
+export default function SideBar({setCurrentPage, setOrden}) {
   const dispatch = useDispatch();
   
   const handleClick = (type) => {
@@ -19,7 +19,8 @@ export default function SideBar({setCurrentPage}) {
     dispatch(getAllProductos());
     dispatch(toggleProductType(type));
     setCurrentPage(1)
-  };
+    setOrden('')
+    };
 
   // const OrderName = (event) =>{
   //   event.preventDefault();
