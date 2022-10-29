@@ -1,5 +1,4 @@
 import React from "react";
-// import MenuProducts from "../MenuProducts";
 import { Link, NavLink } from "react-router-dom";
 import s from "./Navbar.module.css";
 import { useState } from "react";
@@ -7,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { searchProductByName } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
 import pcLogo from '../../assets/pc-logo.png'
+import userLogo from '../../assets/user-login-icon.png'
 
 export default function Navbar() {
   const [input, setInput] = useState("");
@@ -32,7 +32,9 @@ export default function Navbar() {
             className={s.logo}
           />
         </Link>
+        <Link style={{textDecoration: 'none'}} to="/">
         <h1 className={s.mainTitle}>Game Tech</h1>
+        </Link>
         <form className={s.form} onSubmit={(e) => e.preventDefault()}>
           <input
             value={input}
@@ -42,7 +44,7 @@ export default function Navbar() {
           />
           <svg
             onClick={() => handleSearch(input)}
-            className="w-6 h-6"
+            className="w-6 h-6" 
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -59,12 +61,16 @@ export default function Navbar() {
         </form>
         <div className={s.containerChild}>
           <div className={s.user}>
+          <Link to="/login">
             <img
-              src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+              src={userLogo}
               alt="usuario"
               className={s.userimg}
             />
-            <span>Usuario</span>
+            </Link>
+            <Link style={{textDecoration: 'none'}} to="/login">
+            <span className={s.usuarioTxt}>Usuario</span>
+            </Link>
           </div>
           <svg
             className="w-6 h-6"
@@ -77,9 +83,7 @@ export default function Navbar() {
         </div>
       </div>
       <div className={s.links}>
-        {/* <NavLink>Productos</NavLink> */}
         <NavLink to={'/products'} className={s.child}>Productos</NavLink>
-        {/* <MenuProducts className={s.child} /> */}
         <NavLink to={""} className={s.child}>
           Crear Producto
         </NavLink>

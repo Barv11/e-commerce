@@ -23,6 +23,7 @@
 .mainTitle {
   font-family: Heavitas;
   margin-top: 8px;
+  color: #ffffff
 }
 
 .form {
@@ -93,8 +94,7 @@
 }
 
 .userimg {
-  width: 55px;
-  height: 55px;
+  width: 50px;
   cursor: pointer;
 }
 
@@ -120,6 +120,10 @@
   color: #ffffff;
   margin-right: 16px;
   margin-left: 16px;
+}
+
+.usuarioTxt{
+  color: #ffffff
 }
 
 .form svg:hover {
