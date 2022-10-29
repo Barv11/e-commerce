@@ -15,7 +15,7 @@ export default function Card({component}) {
       />
       <h3 className={s.name}>{name}</h3>
       <p className={s.cost}>{`$${cost}`}</p>
-      <Link to={"/product/"+id} className={s.detail}>
+      <Link to={"/detail/"+id} className={s.detail}>
         <span>Ver más</span>
       </Link>
     </div>

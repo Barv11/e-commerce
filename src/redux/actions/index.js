@@ -4,7 +4,9 @@ import {
   SEARCH_PRODUCT_BY_NAME,
   CLEAR_PRODUCTS,
   ORDER_NAME,
-  ORDER_PRECIO
+  ORDER_PRECIO,
+  SEARCH_PRODUCT_BY_ID,
+  CLEAR_PRODUCTS
 } from "./actionsTypes";
 import axios from "axios";
 import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "./actionsTypes";
@@ -28,9 +30,15 @@ export const searchProductByName = (name) => async (dispatch) => {
   dispatch({ type: SEARCH_PRODUCT_BY_NAME, payload: productosbyName });
 };
 
-export const clearProducts = () => (dispatch) => {
-  dispatch({ type: CLEAR_PRODUCTS });
+export const searchProductById = (id) => async (dispatch) => {
+  const producto = await axios.get("http://localhost:3001/productos/"+id);
+  const productosbyId = producto.data
+  dispatch({ type: SEARCH_PRODUCT_BY_ID, payload: productosbyId });
 };
+
+export const clearProducts = () => dispatch => {
+  dispatch({ type: CLEAR_PRODUCTS })
+}
 
 export const getCurrentUser = (obj) => (dispatch) => {
   return dispatch({ type: GET_CURRENT_USER, payload: obj });
