@@ -1,0 +1,19 @@
+.globalContainer{
+    display: flex;
+}
+
+.filterSelect{
+    margin: 5px;
+}
+
+.filterSelect select{
+    background-color: #563E92;
+    color: white;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.filterSelect select:hover{
+    background-color: #7b7ad6;
+}
