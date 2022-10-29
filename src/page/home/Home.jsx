@@ -1,4 +1,4 @@
-import ProductSlider from "../../components/ProductSlider";
+import ProductSlider from "../../components/ProductSliderHome/ProductSlider";
 import Carrusel from "../../components/Carruseles/Carousel/Carousel";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer.jsx";
