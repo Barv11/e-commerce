@@ -6,7 +6,7 @@
 .typesContainer {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
 }
 
@@ -19,12 +19,12 @@
   /* background-color: blueviolet; */
   border: 2px solid blueviolet;
   color: white; 
-  transition: 0.3s;
+  transition: 0.2s;
 }
 
 .typesContainer button:hover {
-  background-color: rgb(115, 37, 187);
-  transition: 0.3s;
+  background-color: rgb(55, 13, 95);
+  transition: 0.2s;
 }
 .image{
   width: 45px;

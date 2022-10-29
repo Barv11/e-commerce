@@ -59,40 +59,25 @@ export default function ProductSlider() {
         }}
       >
         <SwiperSlide>
-          <Card component={
-            fuente
-          } />
+          <Card component={fuente}/>
         </SwiperSlide>
         <SwiperSlide>
-          <Card  component={
-            fuente
-          }/>
+          <Card component={fuente}/>
         </SwiperSlide>
         <SwiperSlide>
-          <Card component={
-            fuente
-          }/>
+          <Card component={fuente}/>
         </SwiperSlide>
         <SwiperSlide>
-          <Card component={
-            fuente
-          }/>
+          <Card component={fuente}/>
         </SwiperSlide>
         <SwiperSlide>
-          <Card component={
-            fuente
-          }/>
+          <Card component={fuente}/>
         </SwiperSlide>
         <SwiperSlide>
-          <Card component={
-            fuente
-          }/>
+          <Card component={fuente}/>
         </SwiperSlide>
         <SwiperSlide>
-          <Card component={
-            fuente
-          }/>
-
+          <Card component={fuente}/>
         </SwiperSlide>
       </Swiper>
     </div>
