@@ -10,13 +10,14 @@ import {cpu, motherboard, tarjeta, cooler, ram,
   fuente, hdd, ssd, monitor, mouse, keyboard, 
   gabinete, headphones} from '../../assets/icons'
 
-export default function SideBar() {
+export default function SideBar({setCurrentPage}) {
   const dispatch = useDispatch();
 
   const handleClick = (type) => {
     dispatch(clearProducts());
     dispatch(getAllProductos());
     dispatch(toggleProductType(type));
+    setCurrentPage(1)
   };
 
   return (
@@ -37,7 +38,7 @@ export default function SideBar() {
         <button onClick={() => handleClick("fuente")}>
         <img src={fuente} alt="cpu" className={s.image}/>
         </button>
-        <button onClick={() => handleClick("discos")}>
+        <button onClick={() => handleClick("disco")}>
         <img src={hdd} alt="cpu" className={s.image}/>
         </button>
         <button onClick={() => handleClick("cooler")}>
