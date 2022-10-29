@@ -1,20 +1,28 @@
-import React from "react";
+import React, {useState }from "react";
 import s from "./SideBar.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   clearProducts,
   getAllProductos,
   toggleProductType,
+  // ordennames
 } from "../../redux/actions";
 
 export default function SideBar() {
   const dispatch = useDispatch();
-
+  
   const handleClick = (type) => {
     dispatch(clearProducts());
     dispatch(getAllProductos());
     dispatch(toggleProductType(type));
   };
+
+  // const OrderName = (event) =>{
+  //   event.preventDefault();
+  //   dispatch(ordennames(event.target.value));
+  //   setCurrentPage(1);
+  //   setOrden(`Ordenado ${event.target.value}`)
+  // }
 
   return (
     <div className={s.container}>
@@ -26,7 +34,7 @@ export default function SideBar() {
           Tarjetas de Video
         </button>
         <button onClick={() => handleClick("fuente")}>Fuentes</button>
-        <button onClick={() => handleClick("discos")}>Discos Duros</button>
+        <button onClick={() => handleClick("disco")}>Discos Duros</button>
         <button onClick={() => handleClick("cooler")}>Coolers</button>
         <button onClick={() => handleClick("solido")}>Discos Solidos</button>
         <button onClick={() => handleClick("pantalla")}>Pantallas</button>
