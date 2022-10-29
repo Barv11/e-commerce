@@ -2,6 +2,9 @@ import {
   GET_ALL_PRODUCTS,
   TOGGLE_PRODUCT_TYPE,
   SEARCH_PRODUCT_BY_NAME,
+  CLEAR_PRODUCTS,
+  ORDER_NAME,
+  ORDER_PRECIO,
   SEARCH_PRODUCT_BY_ID,
   CLEAR_PRODUCTS
 } from "./actionsTypes";
@@ -52,7 +55,16 @@ export const userLogout = () => (dispatch) => {
 export function ordennames(payload) {
   return function (dispatch) {
     return dispatch({
-      type: "ORDER_NAME",
+      type: ORDER_NAME,
+      payload,
+    });
+  };
+}
+
+export function orderprecio(payload){
+  return function (dispatch) {
+    return dispatch({
+      type: ORDER_PRECIO,
       payload,
     });
   };
