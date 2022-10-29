@@ -103,7 +103,7 @@
 }
 
 .inputField input:is(:focus, :valid) {
-  border-bottom-color: #5bc0beff;
+  border-bottom-color: #69329c;
   transition: 0.3s;
 }
 
@@ -117,7 +117,7 @@
 }
 
 .inputField input:is(:focus, :valid) ~ i {
-  color: #5bc0beff;
+  color: #69329c;
   transition: 0.3s;
 }
 
