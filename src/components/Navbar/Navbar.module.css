@@ -93,9 +93,12 @@
 }
 
 .userimg {
-  width: 55px;
-  height: 55px;
+  width: 50px;
   cursor: pointer;
+}
+
+.userTxt{
+  color: #ffffff
 }
 
 .user span {
