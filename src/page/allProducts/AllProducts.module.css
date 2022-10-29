@@ -16,3 +16,13 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.containerPagination{
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.filtros{
+  margin: 15px;
+}
