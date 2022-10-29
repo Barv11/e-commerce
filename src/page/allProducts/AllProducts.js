@@ -17,7 +17,9 @@ export default function Products() {
   useEffect(() => {
     dispatch(clearProducts());
     dispatch(getAllProductos());
-  }, []);
+  }, [dispatch]);
+
+  console.log(allProducts)
 
   const OrderName = (event) =>{
     event.preventDefault();
@@ -59,6 +61,7 @@ export default function Products() {
               return (
                 <ProductCard
                   key={p.id}
+                  id={p.id}
                   name={p.name}
                   img={p.img[0]}
                   cost={p.cost}
@@ -70,6 +73,7 @@ export default function Products() {
               return (
                 <ProductCard
                   key={p.id}
+                  id={p.id}
                   name={p.name}
                   img={p.img[0]}
                   cost={p.cost}

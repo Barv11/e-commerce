@@ -13,7 +13,6 @@ import {cpu, motherboard, tarjeta, cooler, ram,
 
 export default function SideBar({setCurrentPage, setOrden}) {
   const dispatch = useDispatch();
-  
   const handleClick = (type) => {
     dispatch(clearProducts());
     dispatch(getAllProductos());

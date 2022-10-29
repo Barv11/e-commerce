@@ -2,6 +2,7 @@ import {
   GET_ALL_PRODUCTS,
   TOGGLE_PRODUCT_TYPE,
   SEARCH_PRODUCT_BY_NAME,
+  SEARCH_PRODUCT_BY_ID,
   CLEAR_PRODUCTS,
   GET_CURRENT_USER,
   USER_LOGIN,
@@ -12,6 +13,7 @@ import {
 const initialState = {
   allProducts: [],
   searchByNameProduct: [],
+  searchByIdProduct: {},
 };
 
 function rootReducer(state = initialState, action) {
@@ -31,11 +33,17 @@ function rootReducer(state = initialState, action) {
         ...state,
         searchByNameProduct: action.payload,
       };
+    case SEARCH_PRODUCT_BY_ID:
+      return {
+        ...state,
+        searchByIdProduct: action.payload,
+      };
     case CLEAR_PRODUCTS:
       return {
         ...state,
         allProducts: [],
         searchByNameProduct: [],
+        searchByIdProduct: {},
       };
     case GET_CURRENT_USER:
       console.log(state);
