@@ -3,6 +3,8 @@ import {
   TOGGLE_PRODUCT_TYPE,
   SEARCH_PRODUCT_BY_NAME,
   CLEAR_PRODUCTS,
+  ORDER_NAME,
+  ORDER_PRECIO
 } from "./actionsTypes";
 import axios from "axios";
 import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "./actionsTypes";
@@ -45,7 +47,16 @@ export const userLogout = () => (dispatch) => {
 export function ordennames(payload) {
   return function (dispatch) {
     return dispatch({
-      type: "ORDER_NAME",
+      type: ORDER_NAME,
+      payload,
+    });
+  };
+}
+
+export function orderprecio(payload){
+  return function (dispatch) {
+    return dispatch({
+      type: ORDER_PRECIO,
       payload,
     });
   };

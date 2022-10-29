@@ -4,7 +4,7 @@ import Footer from "../../components/Footer/Footer";
 import ProductCard from "./ProductCard";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { clearProducts, getAllProductos, ordennames } from "../../redux/actions";
+import { clearProducts, getAllProductos, ordennames, orderprecio } from "../../redux/actions";
 import SideBar from "./SideBar";
 import { Pagination, Filtros } from '../../components';
 
@@ -19,9 +19,17 @@ export default function Products() {
     dispatch(getAllProductos());
   }, []);
 
+  //ORDENAMIENTO
   const OrderName = (event) =>{
     event.preventDefault();
     dispatch(ordennames(event.target.value));
+    setCurrentPage(1);
+    setOrden(`Ordenado ${event.target.value}`)
+  }
+  //Ordenamiento Precio
+  const OrderPrecio = (event) =>{
+    event.preventDefault();
+    dispatch(orderprecio(event.target.value));
     setCurrentPage(1);
     setOrden(`Ordenado ${event.target.value}`)
   }
@@ -47,10 +55,17 @@ export default function Products() {
       </div>
       <div className={s.container}>
         <div className={s.sideBar}>
+
         <div className={s.AZbutton}>
         <button value='AZ' onClick={(e) => OrderName(e)}>A - Z</button>
         <button value='ZA' onClick={(e) => OrderName(e)}>Z - A</button>
         </div>
+
+        <div className={s.AZbutton}>
+        <button value='ascendente' onClick={(e)=>OrderPrecio(e)}>Ascendente</button>
+        <button value='descendente' onClick={(e)=>OrderPrecio(e)}>Descendente</button>
+        </div>
+
           <SideBar setCurrentPage={setCurrentPage} setOrden={setOrden} />
         </div>
         <div className={s.productsContainer}>
