@@ -4,13 +4,14 @@ import Footer from "../../components/Footer/Footer";
 import ProductCard from "./ProductCard";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { clearProducts, getAllProductos } from "../../redux/actions";
+import { clearProducts, getAllProductos, ordennames } from "../../redux/actions";
 import SideBar from "./SideBar";
 import { Pagination, Filtros } from '../../components';
 
 export default function Products() {
   const dispatch = useDispatch();
-  const allProducts = useSelector((state) => state.allProducts);
+  const allProducts = useSelector((state)=> state.allProducts)
+  const [orden, setOrden] = useState('')
   const searchByNameProduct = useSelector((state) => state.searchByNameProduct);
 
   useEffect(() => {
@@ -18,6 +19,12 @@ export default function Products() {
     dispatch(getAllProductos());
   }, []);
 
+  const OrderName = (event) =>{
+    event.preventDefault();
+    dispatch(ordennames(event.target.value));
+    setCurrentPage(1);
+    setOrden(`Ordenado ${event.target.value}`)
+  }
     //PAGINADO
     const [currentPage,setCurrentPage] = useState(1);
     const [productsPerPage] = useState(12);
@@ -40,6 +47,10 @@ export default function Products() {
       </div>
       <div className={s.container}>
         <div className={s.sideBar}>
+        <div className={s.AZbutton}>
+        <button value='AZ' onClick={(e) => OrderName(e)}>A - Z</button>
+        <button value='ZA' onClick={(e) => OrderName(e)}>Z - A</button>
+        </div>
           <SideBar setCurrentPage={setCurrentPage}/>
         </div>
         <div className={s.productsContainer}>
