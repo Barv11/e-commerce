@@ -2,6 +2,7 @@ import {
   GET_ALL_PRODUCTS,
   TOGGLE_PRODUCT_TYPE,
   SEARCH_PRODUCT_BY_NAME,
+  SEARCH_PRODUCT_BY_ID,
   CLEAR_PRODUCTS
 } from "./actionsTypes";
 import axios from "axios";
@@ -32,6 +33,12 @@ export const searchProductByName = (name) => async (dispatch) => {
   const productos = await axios.get("http://localhost:3001/productos");
   const productosbyName = productos.data.filter((p) => p.name.includes(name));
   dispatch({ type: SEARCH_PRODUCT_BY_NAME, payload: productosbyName });
+};
+
+export const searchProductById = (id) => async (dispatch) => {
+  const producto = await axios.get("http://localhost:3001/productos/"+id);
+  const productosbyId = producto.data
+  dispatch({ type: SEARCH_PRODUCT_BY_ID, payload: productosbyId });
 };
 
 export const clearProducts = () => dispatch => {

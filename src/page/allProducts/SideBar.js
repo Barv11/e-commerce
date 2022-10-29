@@ -10,6 +10,10 @@ import {
 export default function SideBar() {
   const dispatch = useDispatch();
 
+  const handlerAll = () => {
+    dispatch(getAllProductos());
+  }
+
   const handleClick = (type) => {
     dispatch(clearProducts());
     dispatch(getAllProductos());
@@ -19,6 +23,7 @@ export default function SideBar() {
   return (
     <div className={s.container}>
       <div className={s.typesContainer}>
+        <button onClick={handlerAll}>All</button>
         <button onClick={() => handleClick("mother")}>MotherBoards</button>
         <button onClick={() => handleClick("procesador")}>Procesadores</button>
         <button onClick={() => handleClick("ram")}>RAM</button>

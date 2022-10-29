@@ -4,15 +4,15 @@
 }
 
 .sideBar {
-  border: 1px solid black;
-  width: 15vw;
+  width: 17%;
   margin: 10px;
 }
 
 .productsContainer {
-  border: 1px solid black;
   margin: 10px;
-  width: 85vw;
+  width: 83%;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
