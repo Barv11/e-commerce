@@ -17,6 +17,7 @@
   flex-wrap: wrap;
 }
 
+
 .AZbutton{
   display: flex;
   align-items: center;
@@ -37,4 +38,13 @@
 .AZbutton button:hover {
   background-color: rgb(115, 37, 187);
   transition: 0.3s;
+
+.containerPagination{
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.filtros{
+  margin: 15px;
 }

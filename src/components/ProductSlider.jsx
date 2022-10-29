@@ -7,6 +7,7 @@ import Card from "./Card/Card";
 
 export default function ProductSlider() {
   const fuente = {
+    id: "dkcmd-sdcsd-csdcasasd",
     type: "fuente",
     brand: "Asus",
     name: "Fuente ASUS ROG STRIX 1000W 80 Plus Gold Full Modular 1000G",
@@ -26,6 +27,7 @@ export default function ProductSlider() {
     ],
     cost: 46040,
   };
+  
   return (
     <div className="container py-4 px-4 justify-content-center">
       <Swiper
@@ -90,6 +92,7 @@ export default function ProductSlider() {
           <Card component={
             fuente
           }/>
+
         </SwiperSlide>
       </Swiper>
     </div>

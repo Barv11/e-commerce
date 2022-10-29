@@ -6,16 +6,12 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { clearProducts, getAllProductos, ordennames } from "../../redux/actions";
 import SideBar from "./SideBar";
+import { Pagination, Filtros } from '../../components';
 
 export default function Products() {
   const dispatch = useDispatch();
   const allProducts = useSelector((state)=> state.allProducts)
   const [orden, setOrden] = useState('')
-  const [currentPage,setCurrentPage] = useState(1)
-  const [PerPage,setPerPage] = useState(300)
-  const indexOfLast = currentPage * PerPage
-  const indexOfFirst = indexOfLast - PerPage
-  const Current = allProducts.slice(indexOfFirst,indexOfLast)
   const searchByNameProduct = useSelector((state) => state.searchByNameProduct);
 
   useEffect(() => {
@@ -29,11 +25,28 @@ export default function Products() {
     setCurrentPage(1);
     setOrden(`Ordenado ${event.target.value}`)
   }
+    //PAGINADO
+    const [currentPage,setCurrentPage] = useState(1);
+    const [productsPerPage] = useState(12);
+    
+    const indiceUltimo = currentPage * productsPerPage;
+    const indicePrimero = indiceUltimo - productsPerPage;
+    let pagProducts = allProducts.slice(indicePrimero, indiceUltimo);
+    
+    
+    console.log(allProducts.length)
+    console.log(pagProducts.length)
+    //Cambio de pagina
+  function pagina(pageNumber){
+    return setCurrentPage(pageNumber)
+  }
 
-  
   return (
     <div>
       <Navbar />
+      <div className={s.filtros}>
+      <Filtros/>
+      </div>
       <div className={s.container}>
         <div className={s.sideBar}>
         <div className={s.AZbutton}>
@@ -54,8 +67,8 @@ export default function Products() {
                 />
               );
             })
-          ) : Current.length ? (
-            Current.map((p) => {
+          ) : pagProducts.length ? (
+            pagProducts.map((p) => {
               return (
                 <ProductCard
                   key={p.id}
@@ -70,6 +83,14 @@ export default function Products() {
           )}
         </div>
       </div>
+      <div className={s.containerPagination}>
+          <Pagination 
+          productsPerPage={productsPerPage} 
+          totalProducts={allProducts.length} 
+          productsFilter={pagProducts.length}
+          pagina={pagina}
+          />
+        </div>
       <Footer />
     </div>
   );
