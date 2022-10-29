@@ -8,16 +8,6 @@ import {
 import axios from "axios";
 import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "./actionsTypes";
 
-// export function getallproductos() {
-//   return async function (dispatch) {
-//     var json = await axios.get("http://localhost:3001/products");
-//     return dispatch({
-//       type: "GET_PRODUCTS",
-//       payload: json.data,
-//     });
-//   };
-// }
-
 export const toggleProductType = (type) => async (dispatch) => {
   const productos = await axios.get("http://localhost:3001/productos");
   const filterProduct = productos.data.filter((p) => p.type === type);
@@ -31,7 +21,9 @@ export const getAllProductos = () => async (dispatch) => {
 
 export const searchProductByName = (name) => async (dispatch) => {
   const productos = await axios.get("http://localhost:3001/productos");
-  const productosbyName = productos.data.filter((p) => p.name.includes(name));
+  const productosbyName = productos.data.filter((p) =>
+    p.name.toLowerCase().includes(name.toLowerCase())
+  );
   dispatch({ type: SEARCH_PRODUCT_BY_NAME, payload: productosbyName });
 };
 
@@ -56,3 +48,12 @@ export const userLogin = (obj) => async (dispatch) => {
 export const userLogout = () => (dispatch) => {
   dispatch({ type: USER_LOGOUT });
 };
+
+export function ordennames(payload) {
+  return function (dispatch) {
+    return dispatch({
+      type: "ORDER_NAME",
+      payload,
+    });
+  };
+}
