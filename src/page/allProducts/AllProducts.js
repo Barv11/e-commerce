@@ -30,6 +30,7 @@ export default function Products() {
     setOrden(`Ordenado ${event.target.value}`)
   }
 
+  
   return (
     <div>
       <Navbar />
