@@ -27,8 +27,7 @@ export default function ProductSlider() {
     ],
     cost: 46040,
   };
-
-
+  
   return (
     <div className="container py-4 px-4 justify-content-center">
       <Swiper
@@ -60,25 +59,40 @@ export default function ProductSlider() {
         }}
       >
         <SwiperSlide>
-          <Card component={fuente}/>
+          <Card component={
+            fuente
+          } />
         </SwiperSlide>
         <SwiperSlide>
-        <Card component={fuente}/>
+          <Card  component={
+            fuente
+          }/>
         </SwiperSlide>
         <SwiperSlide>
-        <Card component={fuente}/>
+          <Card component={
+            fuente
+          }/>
         </SwiperSlide>
         <SwiperSlide>
-        <Card component={fuente}/>
+          <Card component={
+            fuente
+          }/>
         </SwiperSlide>
         <SwiperSlide>
-        <Card component={fuente}/>
+          <Card component={
+            fuente
+          }/>
         </SwiperSlide>
         <SwiperSlide>
-        <Card component={fuente}/>
+          <Card component={
+            fuente
+          }/>
         </SwiperSlide>
         <SwiperSlide>
-        <Card component={fuente}/>
+          <Card component={
+            fuente
+          }/>
+
         </SwiperSlide>
       </Swiper>
     </div>

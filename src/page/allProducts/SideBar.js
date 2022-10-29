@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useState }from "react";
 import s from "./SideBar.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   clearProducts,
   getAllProductos,
   toggleProductType,
+  // ordennames
 } from "../../redux/actions";
 import {cpu, motherboard, tarjeta, cooler, ram, 
   fuente, hdd, ssd, monitor, mouse, keyboard, 
@@ -12,12 +13,19 @@ import {cpu, motherboard, tarjeta, cooler, ram,
 
 export default function SideBar() {
   const dispatch = useDispatch();
-
+  
   const handleClick = (type) => {
     dispatch(clearProducts());
     dispatch(getAllProductos());
     dispatch(toggleProductType(type));
   };
+
+  // const OrderName = (event) =>{
+  //   event.preventDefault();
+  //   dispatch(ordennames(event.target.value));
+  //   setCurrentPage(1);
+  //   setOrden(`Ordenado ${event.target.value}`)
+  // }
 
   return (
     <div className={s.container}>
@@ -37,7 +45,7 @@ export default function SideBar() {
         <button onClick={() => handleClick("fuente")}>
         <img src={fuente} alt="cpu" className={s.image}/>
         </button>
-        <button onClick={() => handleClick("discos")}>
+        <button onClick={() => handleClick("disco")}>
         <img src={hdd} alt="cpu" className={s.image}/>
         </button>
         <button onClick={() => handleClick("cooler")}>
