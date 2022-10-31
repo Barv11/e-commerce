@@ -80,7 +80,7 @@ export default function Navbar() {
         {/* <NavLink>Productos</NavLink> */}
         <NavLink to={'/products'} className={s.child}>Productos</NavLink>
         {/* <MenuProducts className={s.child} /> */}
-        <NavLink to={""} className={s.child}>
+        <NavLink to={"/create"} className={s.child}>
           Crear Producto
         </NavLink>
       </div>

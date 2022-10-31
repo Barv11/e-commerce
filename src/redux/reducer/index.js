@@ -6,6 +6,7 @@ import {
   GET_CURRENT_USER,
   USER_LOGIN,
   USER_LOGOUT,
+  POST_PRODUCT,
 } from "../actions/actionsTypes";
 
 const initialState = {
@@ -25,6 +26,16 @@ function rootReducer(state = initialState, action) {
         ...state,
         allProducts: action.payload,
       };
+    case POST_PRODUCT:
+      return {
+          ...state,
+          allProducts: action.payload,
+        };    
+    // case POST_PRODUCT:
+    //         return {
+    //             ...state
+    //         }
+        
     case SEARCH_PRODUCT_BY_NAME:
       return {
         ...state,

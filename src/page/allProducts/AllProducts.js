@@ -42,7 +42,7 @@ export default function Products() {
                 <ProductCard
                   key={p.id}
                   name={p.name}
-                  img={p.img[0]}
+                  //img={p.img[0]} 
                   cost={p.cost}
                 />
               );
