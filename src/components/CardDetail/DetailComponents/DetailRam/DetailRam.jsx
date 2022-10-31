@@ -33,8 +33,8 @@ export default function DetailRam({ details }) {
         <b>Latencia: </b>
         <ul>
           {Object.entries(latency).map(
-            ([key, value]) => (
-              <li>{key + ": " + value}</li>
+            ([key, value], el) => (
+              <li key={el}>{key + ": " + value}</li>
             )
           )}
         </ul>

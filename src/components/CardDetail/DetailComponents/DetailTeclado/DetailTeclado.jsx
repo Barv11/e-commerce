@@ -35,8 +35,8 @@ export default function DetailTeclado({ details }) {
         <b>Dimensiones: </b>
         <ul>
           {Object.entries(dimensions).map(
-            ([key, value]) => (
-              <li>{key + ": " + value}</li>
+            ([key, value], el) => (
+              <li key={el}>{key + ": " + value}</li>
             )
           )}
         </ul>

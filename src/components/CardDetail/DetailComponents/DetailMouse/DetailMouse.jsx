@@ -22,7 +22,7 @@ export default function DetailMouse({ details }) {
         <b>Conectividad:</b>
         <ul>
           {connectivity?.map((el) => (
-            <li>{el}</li>
+            <li key={el}>{el}</li>
           ))}
         </ul>
       </span>
@@ -46,7 +46,7 @@ export default function DetailMouse({ details }) {
         <b>Dimensiones:</b>
         <ul>
           {sizes?.map((el) => (
-            <li>{el}</li>
+            <li key={el}>{el}</li>
           ))}
         </ul>
       </span>
