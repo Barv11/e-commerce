@@ -30,7 +30,7 @@ export default function Navbar() {
           <img src={pcLogo} alt="logo" className={s.logo} />
         </Link>
         <h1 className={s.mainTitle}>Gamer Tech</h1>
-        <form className={s.form} onSubmit={(e) => e.preventDefault()}>
+        <form className={s.form} onSubmit={() => handleSearch(input)}>
           <input
             value={input}
             onChange={handleInputChange}
