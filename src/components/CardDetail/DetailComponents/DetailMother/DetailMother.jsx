@@ -65,8 +65,8 @@ export default function DetailMother({ details }) {
         <b>Conectividad:</b>
         <ul>
           {Object.entries(mother.details.connectivity).map(
-            ([key, value]) => (
-              <li>{key + ": " + value}</li>
+            ([key, value] , el) => (
+              <li key={el}>{key + ": " + value}</li>
             )
           )}
         </ul>
@@ -75,7 +75,7 @@ export default function DetailMother({ details }) {
         <b>Enchufe: </b>
         <ul>
           {Socket?.map((el) => (
-            <li>{el}</li>
+            <li key={el}>{el}</li>
           ))}
         </ul>
       </span>
@@ -83,8 +83,8 @@ export default function DetailMother({ details }) {
         <b>Energía: </b>
         <ul>
           {Object.entries(mother.details.energy).map(
-            ([key, value]) => (
-              <li>{key + ": " + value}</li>
+            ([key, value], el) => (
+              <li key={el}>{key + ": " + value}</li>
             )
           )}
         </ul>
@@ -93,8 +93,8 @@ export default function DetailMother({ details }) {
         <b>Sonido: </b>
         <ul>
           {Object.entries(mother.details.Sound).map(
-            ([key, value]) => (
-              <li>{key + ": " + value}</li>
+            ([key, value], el) => (
+              <li key={el}>{key + ": " + value}</li>
             )
           )}
         </ul>
@@ -103,8 +103,8 @@ export default function DetailMother({ details }) {
         <b>Memoría: </b>
         <ul>
           {Object.entries(mother.details.Memory).map(
-            ([key, value]) => (
-              <li>{key + ": " + value}</li>
+            ([key, value], el) => (
+              <li key={el}>{key + ": " + value}</li>
             )
           )}
         </ul>

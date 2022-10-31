@@ -50,7 +50,7 @@ export default function DetailGabinete({ details }) {
             {"Front fans dimension: "}
             <ul>
               {cooling.front_fans_dimension_mm?.map((el) => (
-                <li>{el}</li>
+                <li key={el}>{el}</li>
               ))}
             </ul>
           </li>
@@ -59,7 +59,7 @@ export default function DetailGabinete({ details }) {
             {"Back fans num: "}
             <ul>
               {cooling.back_fans_dimension_mm?.map((el) => (
-                <li>{el}</li>
+                <li key={el}>{el}</li>
               ))}
             </ul>
           </li>

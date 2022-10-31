@@ -30,7 +30,6 @@ export default function CardDetail() {
     setImage(e.target.src);
   };
 
-  console.log(searchByIdProduct.img);
   return (
     <React.Fragment>
       <Navbar />
