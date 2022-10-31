@@ -4,6 +4,7 @@ import Login from "../components/LoginForm/LoginForm";
 import Products from "../page/allProducts/AllProducts";
 import Home from "../page/home/Home";
 import Register from "../components/RegisterForm/Register";
+import CreateProduct from "../components/createproductAdmin/createProduct";
 function App() {
   return (
     <Routes>
@@ -12,6 +13,7 @@ function App() {
       <Route exact path={"/register"} element={<Register />} />
       <Route path={"/products"} element={<Products />} />
       <Route path={"/detail/:id"} element={<CardDetail />} />
+      <Route path={"/create"} element={<CreateProduct />} />
     </Routes>
   );
 }
