@@ -27,11 +27,7 @@ export default function Navbar() {
     <nav className={s.navbar}>
       <div className={s.container}>
         <Link to="/">
-          <img
-            src={pcLogo}
-            alt="logo"
-            className={s.logo}
-          />
+          <img src={pcLogo} alt="logo" className={s.logo} />
         </Link>
         <h1 className={s.mainTitle}>Gamer Tech</h1>
         <form className={s.form} onSubmit={(e) => e.preventDefault()}>
@@ -82,8 +78,23 @@ export default function Navbar() {
         </div>
       </div>
       <div className={s.links}>
-        <NavLink to={'/products'} className={s.child}>Productos</NavLink>
-        <NavLink to={"/create"} className={s.child}>
+        <NavLink
+          end
+          to={"/"}
+          className={(navData) => (navData.isActive ? s.activeChild : s.child)}
+        >
+          Home
+        </NavLink>
+        <NavLink
+          to={"/products"}
+          className={(navData) => (navData.isActive ? s.activeChild : s.child)}
+        >
+          Productos
+        </NavLink>
+        <NavLink
+          to={"/create"}
+          className={(navData) => (navData.isActive ? s.activeChild : s.child)}
+        >
           Crear Producto
         </NavLink>
       </div>

@@ -6,12 +6,12 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { clearProducts, getAllProductos, ordennames, orderprecio } from "../../redux/actions";
 import SideBar from "./SideBar";
-import { Pagination, Filtros } from '../../components';
+import { Pagination, Filtros } from "../../components";
 
 export default function Products() {
   const dispatch = useDispatch();
-  const allProducts = useSelector((state)=> state.allProducts)
-  const [orden, setOrden] = useState('')
+  const allProducts = useSelector((state) => state.allProducts);
+  const [orden, setOrden] = useState("");
   const searchByNameProduct = useSelector((state) => state.searchByNameProduct);
 
   useEffect(() => {
@@ -19,8 +19,8 @@ export default function Products() {
     dispatch(getAllProductos());
   }, [dispatch]);
 
-  console.log(allProducts)
-
+  console.log(allProducts);
+  
   //ORDENAMIENTO
   const OrderName = (event) =>{
     event.preventDefault();
@@ -52,12 +52,9 @@ export default function Products() {
   return (
     <div>
       <Navbar />
-      <div className={s.filtros}>
-      <Filtros/>
-      </div>
+      <div className={s.filtros}></div>
       <div className={s.container}>
         <div className={s.sideBar}>
-
         <div className={s.AZbutton}>
         <button value='AZ' onClick={(e) => OrderName(e)}>A - Z</button>
         <button value='ZA' onClick={(e) => OrderName(e)}>Z - A</button>
@@ -67,7 +64,7 @@ export default function Products() {
         <button value='ascendente' onClick={(e)=>OrderPrecio(e)}>Ascendente</button>
         <button value='descendente' onClick={(e)=>OrderPrecio(e)}>Descendente</button>
         </div>
-
+        
           <SideBar setCurrentPage={setCurrentPage} setOrden={setOrden} />
         </div>
         <div className={s.productsContainer}>
@@ -98,16 +95,14 @@ export default function Products() {
           ) : (
             <p>Loading...</p>
           )}
-        </div>
-      </div>
-      <div className={s.containerPagination}>
-          <Pagination 
-          productsPerPage={productsPerPage} 
-          totalProducts={allProducts.length} 
-          productsFilter={pagProducts.length}
-          pagina={pagina}
+          <Pagination
+            productsPerPage={productsPerPage}
+            totalProducts={allProducts.length}
+            productsFilter={pagProducts.length}
+            pagina={pagina}
           />
         </div>
+      </div>
       <Footer />
     </div>
   );

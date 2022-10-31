@@ -9,15 +9,15 @@ function Pagination({ productsPerPage, totalProducts, productsFilter, pagina }) 
         numeroDePaginas.push(i)
     }
     return (
-    <nav>
+    <div className={s.container}>
         <ul className={s.paginationContainer}>
         {numeroDePaginas?.map(num => (
-            <li key={num} className='page-item'>
+            <li key={num} className={s.page}>
                 <button onClick={() => pagina(num)} className={s.btnPagination}>{num}</button>
             </li>
         ))}
         </ul>
-    </nav>
+    </div>
   )
 }
 
