@@ -6,7 +6,8 @@ import {
   ORDER_NAME,
   ORDER_PRECIO,
   SEARCH_PRODUCT_BY_ID,
-  POST_PRODUCT
+  POST_PRODUCT,
+  ADD_PRODUCT
   
 } from "./actionsTypes";
 import axios from "axios";
@@ -48,6 +49,10 @@ export const searchProductById = (id) => async (dispatch) => {
 
 export const clearProducts = () => dispatch => {
   dispatch({ type: CLEAR_PRODUCTS })
+}
+
+export const addProduct = (payload) => {
+  return {type: ADD_PRODUCT, payload}
 }
 
 export const getCurrentUser = (obj) => (dispatch) => {
