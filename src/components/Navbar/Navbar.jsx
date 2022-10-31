@@ -33,7 +33,7 @@ export default function Navbar() {
             className={s.logo}
           />
         </Link>
-        <h1 className={s.mainTitle}>Game Tech</h1>
+        <h1 className={s.mainTitle}>Gamer Tech</h1>
         <form className={s.form} onSubmit={(e) => e.preventDefault()}>
           <input
             value={input}
