@@ -20,6 +20,15 @@ export const getAllProductos = () => async (dispatch) => {
   const productos = await axios.get("http://localhost:3001/productos");
   dispatch({ type: GET_ALL_PRODUCTS, payload: productos.data });
 };
+export function postProduct(payload) {
+  return async function (dispatch) {
+      const product = await axios.post("http://localhost:3001/productos/create", payload)
+      return dispatch({
+        type: POST_PRODUCT,
+        payload: product
+      })
+  }
+};
 
 export const searchProductByName = (name) => async (dispatch) => {
   const productos = await axios.get("http://localhost:3001/productos");

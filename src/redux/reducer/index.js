@@ -9,6 +9,7 @@ import {
   USER_LOGOUT,
   ORDER_NAME,
   ORDER_PRECIO,
+  POST_PRODUCT
 } from "../actions/actionsTypes";
 
 const initialState = {
@@ -46,6 +47,11 @@ function rootReducer(state = initialState, action) {
         searchByNameProduct: [],
         searchByIdProduct: {},
       };
+    case POST_PRODUCT:
+      return {
+          ...state,
+          allProducts: action.payload,
+        };    
     case GET_CURRENT_USER:
       console.log(state);
       return {
