@@ -2,8 +2,12 @@ import {
   GET_ALL_PRODUCTS,
   TOGGLE_PRODUCT_TYPE,
   SEARCH_PRODUCT_BY_NAME,
+  CLEAR_PRODUCTS,
+  ORDER_NAME,
+  ORDER_PRECIO,
   SEARCH_PRODUCT_BY_ID,
-  CLEAR_PRODUCTS
+  POST_PRODUCT
+  
 } from "./actionsTypes";
 import axios from "axios";
 import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "./actionsTypes";
@@ -17,6 +21,15 @@ export const toggleProductType = (type) => async (dispatch) => {
 export const getAllProductos = () => async (dispatch) => {
   const productos = await axios.get("http://localhost:3001/productos");
   dispatch({ type: GET_ALL_PRODUCTS, payload: productos.data });
+};
+export function postProduct(payload) {
+  return async function (dispatch) {
+      const product = await axios.post("http://localhost:3001/productos/create", payload)
+      return dispatch({
+        type: POST_PRODUCT,
+        payload: product
+      })
+  }
 };
 
 export const searchProductByName = (name) => async (dispatch) => {
@@ -52,7 +65,16 @@ export const userLogout = () => (dispatch) => {
 export function ordennames(payload) {
   return function (dispatch) {
     return dispatch({
-      type: "ORDER_NAME",
+      type: ORDER_NAME,
+      payload,
+    });
+  };
+}
+
+export function orderprecio(payload){
+  return function (dispatch) {
+    return dispatch({
+      type: ORDER_PRECIO,
       payload,
     });
   };

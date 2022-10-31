@@ -8,6 +8,8 @@ import {
   USER_LOGIN,
   USER_LOGOUT,
   ORDER_NAME,
+  ORDER_PRECIO,
+  POST_PRODUCT
 } from "../actions/actionsTypes";
 
 const initialState = {
@@ -45,6 +47,11 @@ function rootReducer(state = initialState, action) {
         searchByNameProduct: [],
         searchByIdProduct: {},
       };
+    case POST_PRODUCT:
+      return {
+          ...state,
+          allProducts: action.payload,
+        };    
     case GET_CURRENT_USER:
       console.log(state);
       return {
@@ -76,6 +83,22 @@ function rootReducer(state = initialState, action) {
         return{
             ...state,
             allProducts: order,
+        }
+        case ORDER_PRECIO:
+        let order2 = action.payload === 'ascendente'?
+        state.allProducts.sort(function(a,b){
+            if(a.cost > b.cost) return 1
+            if(b.cost > a.cost ) return -1
+            return 0
+        }) :
+        state.allProducts.sort(function(a,b){
+            if(a.cost > b.cost) return -1
+            if(b.cost > a.cost ) return 1
+            return 0
+        })
+        return{
+            ...state,
+            allProducts: order2,
         }
     default:
       return {

@@ -6,7 +6,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchProductByName } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
-import pcLogo from "../../assets/pc-logo.png";
+import pcLogo from '../../assets/pc-logo.png';
+import usuarioLogo from '../../assets/user-login-icon.png'
 
 export default function Navbar() {
   const [input, setInput] = useState("");
@@ -28,7 +29,7 @@ export default function Navbar() {
         <Link to="/">
           <img src={pcLogo} alt="logo" className={s.logo} />
         </Link>
-        <h1 className={s.mainTitle}>Game Tech</h1>
+        <h1 className={s.mainTitle}>Gamer Tech</h1>
         <form className={s.form} onSubmit={(e) => e.preventDefault()}>
           <input
             value={input}
@@ -55,12 +56,16 @@ export default function Navbar() {
         </form>
         <div className={s.containerChild}>
           <div className={s.user}>
+          <Link to={'/login'}>
             <img
-              src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+              src={usuarioLogo}
               alt="usuario"
               className={s.userimg}
             />
-            <span>Usuario</span>
+            </Link>
+            <Link style={{ textDecoration: 'none' }} to={'/login'}>
+            <span className={s.userTxt}>Usuario</span>
+            </Link>
           </div>
           <svg
             className="w-6 h-6"
