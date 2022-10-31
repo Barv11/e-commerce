@@ -54,7 +54,7 @@ function validate (input){
     const [product, setProduct] = useState({
       name: '',
       cost:'', 
-      // img: '', 
+      // g 
       // details: '',
       type: '',
       brand:'',
@@ -196,8 +196,8 @@ function validate (input){
             )} */}
           <label htmlFor='img'>Img</label>
           {/* <FormGroup> */}
-          <input id={"idPrueba"} multiple name = {"uploads"} className={styles.formInput} type={'file'} placeholder={'img'}
-          onChange={(e)=> handleInput(e)}
+          <input multiple name = {"uploads"} className={styles.formInput} type={'file'} placeholder={'img'}
+           value={product.img} onChange={(e)=> handleInput(e)}
           // onChange={(e)=> handleimg(e)} 
           />
           {/* {loading? (<h8>Cargando imágenes...</h8>) : <img src={img} style={{width: "300px"}}/> } */}
