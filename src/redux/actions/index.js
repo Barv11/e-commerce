@@ -7,8 +7,8 @@ import {
   ORDER_PRECIO,
   SEARCH_PRODUCT_BY_ID,
   POST_PRODUCT,
-  ADD_PRODUCT
-  
+  ADD_PRODUCT,
+  ADD_CART_PRODUCTS,
 } from "./actionsTypes";
 import axios from "axios";
 import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "./actionsTypes";
@@ -25,13 +25,16 @@ export const getAllProductos = () => async (dispatch) => {
 };
 export function postProduct(payload) {
   return async function (dispatch) {
-      const product = await axios.post("http://localhost:3001/productos/create", payload)
-      return dispatch({
-        type: POST_PRODUCT,
-        payload: product
-      })
-  }
-};
+    const product = await axios.post(
+      "http://localhost:3001/productos/create",
+      payload
+    );
+    return dispatch({
+      type: POST_PRODUCT,
+      payload: product,
+    });
+  };
+}
 
 export const searchProductByName = (name) => async (dispatch) => {
   const productos = await axios.get("http://localhost:3001/productos");
@@ -42,18 +45,18 @@ export const searchProductByName = (name) => async (dispatch) => {
 };
 
 export const searchProductById = (id) => async (dispatch) => {
-  const producto = await axios.get("http://localhost:3001/productos/"+id);
-  const productosbyId = producto.data
+  const producto = await axios.get("http://localhost:3001/productos/" + id);
+  const productosbyId = producto.data;
   dispatch({ type: SEARCH_PRODUCT_BY_ID, payload: productosbyId });
 };
 
-export const clearProducts = () => dispatch => {
-  dispatch({ type: CLEAR_PRODUCTS })
-}
+export const clearProducts = () => (dispatch) => {
+  dispatch({ type: CLEAR_PRODUCTS });
+};
 
 export const addProduct = (payload) => {
-  return {type: ADD_PRODUCT, payload}
-}
+  return { type: ADD_PRODUCT, payload };
+};
 
 export const getCurrentUser = (obj) => (dispatch) => {
   return dispatch({ type: GET_CURRENT_USER, payload: obj });
@@ -76,7 +79,7 @@ export function ordennames(payload) {
   };
 }
 
-export function orderprecio(payload){
+export function orderprecio(payload) {
   return function (dispatch) {
     return dispatch({
       type: ORDER_PRECIO,
@@ -84,3 +87,8 @@ export function orderprecio(payload){
     });
   };
 }
+
+export const addCartProduct = (array) => async (dispatch) => {
+  localStorage.setItem("cities", JSON.stringify(array));
+  dispatch({ type: ADD_CART_PRODUCTS });
+};

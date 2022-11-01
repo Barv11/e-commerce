@@ -11,6 +11,7 @@ import {
   ORDER_PRECIO,
   POST_PRODUCT,
   ADD_PRODUCT,
+  ADD_CART_PRODUCTS,
 } from "../actions/actionsTypes";
 
 const initialState = {
@@ -71,6 +72,10 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         loginAccess: action.payload,
+      };
+    case ADD_CART_PRODUCTS:
+      return {
+        ...state,
       };
     case USER_LOGOUT:
       return {
