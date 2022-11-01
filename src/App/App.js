@@ -5,6 +5,7 @@ import Products from "../page/allProducts/AllProducts";
 import Home from "../page/home/Home";
 import Register from "../components/RegisterForm/Register";
 import CreateProduct from "../components/createproductAdmin/createProduct";
+import Carrito from "../components/Carrito/Carrito";
 function App() {
   return (
     <Routes>
@@ -14,6 +15,7 @@ function App() {
       <Route path={"/products"} element={<Products />} />
       <Route path={"/detail/:id"} element={<CardDetail />} />
       <Route path={"/create"} element={<CreateProduct />} />
+      <Route path={"/carrito"} element={<Carrito />} />
     </Routes>
   );
 }
