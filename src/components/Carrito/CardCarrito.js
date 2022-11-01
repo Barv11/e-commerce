@@ -9,21 +9,19 @@ export default function CardCarrito({
   cost,
   id,
   deleteCartProduct,
+  handleCartQuantity,
+  quantity,
 }) {
-  const [cantidad, setCantidad] = useState(1);
+  const [cantidad, setCantidad] = useState(quantity);
 
   const [products, setProducts] = useState(
     JSON.parse(localStorage.getItem("products") || "[]")
   );
 
-    const handleCantidad = (e) => {
-      setProducts([
-        ...products,
-      ]);
-      setCantidad(e.target.value);
-    };
-
-//   localStorage.setItem("products", JSON.stringify(products));
+  const handleCantidad = (e) => {
+    handleCartQuantity(id, e.target.value);
+    setCantidad(e.target.value);
+  };
 
   return (
     <div className={s.container}>
@@ -40,9 +38,9 @@ export default function CardCarrito({
           type="number"
           min="1"
           max="3"
-          placeholder={cantidad}
+          value={cantidad}
         />
-        <h3>{`$${cost * 1}`}</h3>
+        <h3>{`$${cost * quantity}`}</h3>
         <div className={s.trashCan} onClick={() => deleteCartProduct(id)}>
           <i class="uil uil-trash-alt"></i>
         </div>

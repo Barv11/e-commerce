@@ -100,6 +100,7 @@ export default function Products() {
                   img={p.img[0]}
                   cost={p.cost}
                   cart={handleCart}
+                  quantity={1}
                 />
               );
             })
@@ -113,6 +114,7 @@ export default function Products() {
                   img={p.img[0]}
                   cost={p.cost}
                   cart={handleCart}
+                  quantity={1}
                 />
               );
             })

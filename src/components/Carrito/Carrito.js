@@ -11,12 +11,26 @@ export default function Carrito() {
     JSON.parse(localStorage.getItem("products") || "[]")
   );
 
+  const [quantity, setQuantity] = useState(1);
 
+  const handleCartQuantity = (id, quantity) => {
+    let finalProducts = [
+      ...products.map((el, index) => {
+        if (el.id === id) {
+          products[index].quantity = Number(quantity);
+        }
+        return el;
+      }),
+    ];
+    setProducts(finalProducts);
+    setQuantity(quantity);
+  };
+
+  localStorage.setItem("products", JSON.stringify(products));
 
   const deleteCartProduct = (id) => {
     setProducts((oldProducts) => oldProducts.filter((p) => p.id !== id));
   };
-  localStorage.setItem("products", JSON.stringify(products));
 
   const deleteCart = () => {
     setProducts([]);
@@ -24,10 +38,8 @@ export default function Carrito() {
   };
 
   const totalProductsValue = products.reduce((acc, p) => {
-    return acc + p.cost;
+    return acc + p.cost * p.quantity;
   }, 0);
-
-  console.log(totalProductsValue);
 
   return (
     <div className={s.mainContainer}>
@@ -49,6 +61,8 @@ export default function Carrito() {
               img={p.img}
               cost={p.cost}
               deleteCartProduct={deleteCartProduct}
+              handleCartQuantity={handleCartQuantity}
+              quantity={p.quantity}
             />
           ))
         ) : (
