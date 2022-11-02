@@ -12,12 +12,15 @@ import {
   POST_PRODUCT,
   ADD_PRODUCT,
   ADD_CART_PRODUCTS,
+  REGISTER_USER
 } from "../actions/actionsTypes";
 
 const initialState = {
   allProducts: [],
   searchByNameProduct: [],
   searchByIdProduct: {},
+  user: {},
+  loginAccess: {}
 };
 
 function rootReducer(state = initialState, action) {
@@ -116,6 +119,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         allProducts: order2,
       };
+    case REGISTER_USER:
+      return{
+        ...state,
+        user: action.payload
+      }
     default:
       return {
         ...state,
