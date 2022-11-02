@@ -14,8 +14,12 @@ export default function Login() {
   const dispatch = useDispatch();
   const [loginError, setLoginError] = useState(false);
   const navigate = useNavigate();
-  const loginAccess = useSelector((state) => state.loginAccess); 
+  const loginAccess = useSelector((state) => state.loginAccess);
   const [loading, setLoading] = useState(false);
+
+  const [local, setLocal] = useState()
+
+
 
   const toggleEye = () => {
     setPassEye(!passEye);
@@ -33,9 +37,6 @@ export default function Login() {
     pass: false,
   });
 
-  
-
-
   const [error, setError] = useState({});
 
   const handleClick = (e) => {
@@ -47,42 +48,44 @@ export default function Login() {
     }
   };
 
- 
   console.log(input);
-  
 
-   const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!Object.keys(error).length && input.pass !== "") {
-  
       dispatch(userLogin(input));
       setInput({
         username: "",
         email: "",
         pass: "",
-      })
-      if (!loginAccess.data) {
-        setLoginError(true);
-      }
-    } else {
-      setClick({
-        username: true,
-        email: true,
-        pass: true,
       });
+      if (!loginAccess.data?.token) {
+        setLoginError(true);
+      } else {
+        const token = loginAccess.data?.token
+        setClick({
+          username: true,
+          email: true,
+          pass: true,
+        })
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            logged: true,
+            token: token,
+          })
+        );
+        navigate("/");
+      }
     }
-    navigate("/")
   };
 
-  console.log(loginAccess);
   // useEffect(() => {
   //   if (loginAccess.data) {
   //     navigate("/");
   //     dispatch(userLogout());
   //   }
   // }, [loginAccess,dispatch]);
- 
-  console.log(error);
 
   const handleInputChange = (e) => {
     setInput({
@@ -105,7 +108,7 @@ export default function Login() {
           <div className={s.forms}>
             <div className={s.formLogin}>
               <span className={s.title}>Login</span>
-              <form action='#'>
+              <form action="#">
                 <div className={s.inputField}>
                   <input
                     type="text"
@@ -172,7 +175,9 @@ export default function Login() {
                 </div>
 
                 <div className={s.loginButton}>
-                  <button onClick={handleSubmit}>{loading ? <Loader /> : "Login Now"}</button>
+                  <button onClick={handleSubmit}>
+                    {loading ? <Loader /> : "Login Now"}
+                  </button>
                 </div>
                 {loginError && (
                   <p className={s.loginError}>Email o Contraseña incorrectos</p>
