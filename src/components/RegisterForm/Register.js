@@ -8,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function Register() {
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
+  
   const [input, setInput] = useState({
     username: "",
     email: "",
@@ -62,6 +62,7 @@ export default function Register() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!Object.keys(error).length && input.username !== "") {
+      console.log("register");
       dispatch(userRegister(input));
       setInput({
         username: "",

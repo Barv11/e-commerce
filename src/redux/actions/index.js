@@ -71,7 +71,7 @@ export const getCurrentUser = (obj) => (dispatch) => {
   return dispatch({ type: GET_CURRENT_USER, payload: obj });
 };
 export const userLogin = (obj) => async (dispatch) => {
-  const login = await axios.post("http://localhost:3001/user/login", obj);
+  const login = await axios.post("http://localhost:3001/user/create/signup", obj);
   dispatch({ type: USER_LOGIN, payload: login });
 };
 
