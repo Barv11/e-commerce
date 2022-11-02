@@ -56,6 +56,7 @@ function CreateProduct() {
   // const allProducts = useSelector(state => state.adminProducts)
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const user = useSelector(state => state.loginAccess)
 
   function validate(input) {
     const errors = {};
@@ -121,8 +122,9 @@ function CreateProduct() {
   };
 
   const handleSubmit = (e) => {
+    const {token} = user
     e.preventDefault();
-    dispatch(postProduct(product));
+    dispatch(postProduct(product,{token}));
 
     setProduct({
       name: "",
