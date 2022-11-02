@@ -9,6 +9,7 @@ import {
   POST_PRODUCT,
   ADD_PRODUCT,
   ADD_CART_PRODUCTS,
+  REGISTER_USER
 } from "./actionsTypes";
 import axios from "axios";
 import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "./actionsTypes";
@@ -23,11 +24,19 @@ export const getAllProductos = () => async (dispatch) => {
   const productos = await axios.get("http://localhost:3001/productos");
   dispatch({ type: GET_ALL_PRODUCTS, payload: productos.data });
 };
-export function postProduct(payload) {
+
+
+export function postProduct(payload, {token}) {
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
   return async function (dispatch) {
     const product = await axios.post(
       "http://localhost:3001/productos/create",
-      payload
+      payload, config
     );
     return dispatch({
       type: POST_PRODUCT,
@@ -64,6 +73,11 @@ export const getCurrentUser = (obj) => (dispatch) => {
 export const userLogin = (obj) => async (dispatch) => {
   const login = await axios.post("http://localhost:3001/user/create/signup", obj);
   dispatch({ type: USER_LOGIN, payload: login });
+};
+
+export const userRegister = (user) => async (dispatch) => {
+  const register = await axios.post("http://localhost:3001/user/create", user);
+  dispatch({ type: REGISTER_USER, payload: register });
 };
 
 export const userLogout = () => (dispatch) => {

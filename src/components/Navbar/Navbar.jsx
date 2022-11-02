@@ -8,11 +8,14 @@ import { searchProductByName } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
 import pcLogo from "../../assets/pc-logo.png";
 import usuarioLogo from "../../assets/user-login-icon.png";
+import { useTab } from "@mui/base";
 
 export default function Navbar() {
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [userState] = useState(JSON.parse(localStorage.getItem("user")));
 
   const handleSearch = (input) => {
     navigate("/products");
@@ -60,7 +63,7 @@ export default function Navbar() {
               <img src={usuarioLogo} alt="usuario" className={s.userimg} />
             </Link>
             <Link style={{ textDecoration: "none" }} to={"/login"}>
-              <span className={s.userTxt}>Usuario</span>
+              <span className={s.userTxt}>{userState.logged? "nombre" : "Log In"}</span>
             </Link>
           </div>
           <Link to="/carrito">
