@@ -1,0 +1,43 @@
+.container {
+  padding: .75em;
+  width: 50%;
+  background-color: rgb(228, 228, 228);
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  gap: .8em;
+}
+
+.user {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 2em;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid rgb(207, 149, 207);
+}
+.name {
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+
+.star {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  margin-left: .3em;
+  gap: .2em;
+}
+
+.text {
+  font-size: 1rem;
+  width: 100%;
+  margin-bottom: 0;
+}
