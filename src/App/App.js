@@ -1,13 +1,8 @@
 import { Route, Routes } from "react-router-dom";
-import CardDetail from "../components/CardDetail/CardDetail";
-import Login from "../components/LoginForm/LoginForm";
-import Products from "../page/allProducts/AllProducts";
-import Home from "../page/home/Home";
-import Register from "../components/RegisterForm/Register";
-import CreateProduct from "../components/createproductAdmin/createProduct";
+import { Products, Home, Profile} from '../page';
+import {CardDetail, Login, Register, CreateProduct, Carrito} from '../components'
 import AdminPage from "../page/Admin/AdminPage";
 import Orden from "../components/Orden/Orden";
-import Carrito from "../components/Carrito/Carrito";
 import { useState } from "react";
 
 function App() {
@@ -36,7 +31,7 @@ function App() {
       <Route path={"/admin"} element={<AdminPage />} />
       <Route path={"/orden"} element={<Orden />} />
       <Route path={"/carrito"} element={<Carrito />} />
-
+      <Route path={"/profile"} element={<Profile />} />
     </Routes>
   );
 }
