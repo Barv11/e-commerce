@@ -6,33 +6,48 @@ import CardCarrito from "./CardCarrito";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getCartProduct } from "../../redux/actions";
+import { getCartProduct, addCartProduct } from "../../redux/actions";
 
 export default function Carrito() {
   const dispatch = useDispatch();
   const userFound = useSelector((state) => state.userFound);
-  const cartProducts = useSelector((state) => state.cartProducts);
+  const cartProducts = useSelector((state) => state.cartProducts.data?.carts);
   const [products, setProducts] = useState(
     JSON.parse(localStorage.getItem("products") || "[]")
   );
-
-  const { id } = userFound;
-
-  const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("user") || "[]")
-  );
+  const [loading, setLoading] = useState(true);
 
   localStorage.setItem("products", JSON.stringify(products));
 
+  // useEffect(() => {
+  //   if (user.logged) {
+  //     dispatch(addCartProduct(userFound.id, products));
+  //     dispatch(getCartProduct(userFound.id));
+  //     setProducts([]);
+  //     setProducts(cartProducts);
+  //   }
+  // }, []);
+
+  const [user] = useState(JSON.parse(localStorage.getItem("user")));
+
   useEffect(() => {
     if (user.logged) {
-      dispatch(getCartProduct(id));
+      dispatch(addCartProduct(userFound.id, products));
+      dispatch(getCartProduct(userFound.id));
+      deleteCart();
+    } else {
+      setProducts(products);
     }
-  }, []);
+  }, [dispatch]);
 
-  console.log(cartProducts)
-
-  console.log(userFound.id);
+  setTimeout(() => {
+    setLoading(false);
+    if (cartProducts) {
+      setProducts(cartProducts);
+      console.log(cartProducts);
+      localStorage.setItem("products", JSON.stringify([]));
+    }
+  }, 2000);
 
   const handleCartQuantity = (id, quantity) => {
     let finalProducts = [
@@ -52,10 +67,9 @@ export default function Carrito() {
 
   const deleteCart = () => {
     setProducts([]);
-    localStorage.setItem("products", JSON.stringify([]));
   };
 
-  const totalProductsValue = products.reduce((acc, p) => {
+  const totalProductsValue = products?.reduce((acc, p) => {
     return acc + p.cost * p.quantity;
   }, 0);
 
@@ -71,7 +85,9 @@ export default function Carrito() {
             <h4>Sub Total</h4>
           </div>
         </div>
-        {products.length ? (
+        {loading ? (
+          <p>Loading...</p>
+        ) : products.length ? (
           products.map((p) => (
             <CardCarrito
               key={p.id}
