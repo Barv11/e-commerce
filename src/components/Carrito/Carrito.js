@@ -56,6 +56,7 @@ export default function Carrito() {
         {products.length ? (
           products.map((p) => (
             <CardCarrito
+              key={p.id}
               id={p.id}
               name={p.name}
               img={p.img}
