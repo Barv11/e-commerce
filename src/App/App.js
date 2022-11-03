@@ -5,6 +5,8 @@ import Products from "../page/allProducts/AllProducts";
 import Home from "../page/home/Home";
 import Register from "../components/RegisterForm/Register";
 import CreateProduct from "../components/createproductAdmin/createProduct";
+import AdminPage from "../page/Admin/AdminPage";
+import Orden from "../components/Orden/Orden";
 function App() {
   return (
     <Routes>
@@ -14,6 +16,8 @@ function App() {
       <Route path={"/products"} element={<Products />} />
       <Route path={"/detail/:id"} element={<CardDetail />} />
       <Route path={"/create"} element={<CreateProduct />} />
+      <Route path={"/admin"} element={<AdminPage />} />
+      <Route path={"/orden"} element={<Orden />} />
     </Routes>
   );
 }

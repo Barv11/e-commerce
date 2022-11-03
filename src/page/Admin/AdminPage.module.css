@@ -1,0 +1,78 @@
+.adminsbContainer{
+    height: 700px;
+    width: 100%;
+    /* background-color: #8b77bc; */
+    background: rgb(27,7,110);
+    background: linear-gradient(0deg, rgba(27,7,110,1) 0%, rgba(101,61,187,1) 38%, rgba(205,122,255,1) 100%);
+}
+
+.adminImg{
+    padding-top: 13px;
+    width: 90px;
+
+}
+
+.adminName{
+    font-size: 18px;
+    padding-left: 10px;
+}
+
+.catTxt{
+   font-size: 20px;
+   color: rgb(235, 194, 248);
+   padding-left: 10px; 
+   font-family: 'Open Sans';
+}
+
+.topBarContainer{
+    height: 120px;
+    width: 100%;
+    background: rgb(93,71,128);
+    background: linear-gradient(127deg, rgba(93,71,128,1) 33%, rgba(40,7,60,1) 100%);
+
+}
+
+.dashboardTitle{
+    font-family: Heavitas;
+    font-size: 26px;
+    color: rgb(239, 230, 230);
+    padding-top: 15px;
+    padding-left: 15px;
+}
+
+.dashboardSubTitle{
+    font-size: 16px;
+    color: rgb(239, 230, 230);
+    padding-top: 15px;
+    padding-left: 15px;
+}
+
+.btnRegresar{
+    background-color: #8b77bc;
+    color: rgb(239, 230, 230);
+    width: 120px;
+}
+
+.adminSB{
+    width: 17%;
+
+}
+
+.adminTB{
+    width: 83%;
+}
+
+.sideTopContainer{
+    height: 100%;
+    display: flex;
+}
+
+@font-face {
+    font-family: 'Heavitas';
+    src: url('../../components/fonts/HEAVITAS.TTF');
+  }
+
+@font-face{
+  font-family: 'Open Sans', 'sans-serif';
+  src: url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+}
