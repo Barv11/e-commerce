@@ -7,6 +7,8 @@ export const GET_CURRENT_USER = "GET_CURRENT_USER";
 export const USER_LOGIN = "USER_LOGIN";
 export const USER_LOGOUT = "USER_LOGOUT";
 export const ORDER_NAME = "ORDER_NAME";
-export const ORDER_PRECIO= "ORDER_PRECIO";
+export const ORDER_PRECIO = "ORDER_PRECIO";
 export const POST_PRODUCT = "POST_PRODUCT";
+export const GET_ALL_USERS = "GET_ALL_USERS";
+export const POST_ADMIN = "POST_ADMIN";
 

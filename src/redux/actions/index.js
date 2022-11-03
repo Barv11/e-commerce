@@ -6,7 +6,9 @@ import {
   ORDER_NAME,
   ORDER_PRECIO,
   SEARCH_PRODUCT_BY_ID,
-  POST_PRODUCT
+  POST_PRODUCT,
+  GET_ALL_USERS,
+  POST_ADMIN,
   
 } from "./actionsTypes";
 import axios from "axios";
@@ -79,3 +81,18 @@ export function orderprecio(payload){
     });
   };
 }
+
+export const getAllUsers = () => async (dispatch) =>{
+    const productos = await axios.get("http://localhost:3001/user");
+    dispatch({ type: GET_ALL_USERS, payload: productos.data });
+};
+
+export function postAdmin(payload) {
+  return async function (dispatch) {
+      const user = await axios.post("http://localhost:3001/user", payload)
+      return dispatch({
+        type: POST_ADMIN,
+        payload: user
+      })
+  }
+};
