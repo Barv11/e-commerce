@@ -17,9 +17,7 @@ export default function Login() {
   const loginAccess = useSelector((state) => state.loginAccess);
   const [loading, setLoading] = useState(false);
 
-  const [local, setLocal] = useState()
-
-
+  const [user, setUser] = useState(false);
 
   const toggleEye = () => {
     setPassEye(!passEye);
@@ -48,8 +46,6 @@ export default function Login() {
     }
   };
 
-  console.log(input);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!Object.keys(error).length && input.pass !== "") {
@@ -59,35 +55,32 @@ export default function Login() {
         email: "",
         pass: "",
       });
-      if (!loginAccess.data?.token) {
-        setLoginError(true);
-      } else {
-        const token = loginAccess.data?.token
-        setClick({
-          username: true,
-          email: true,
-          pass: true,
-        })
-        localStorage.setItem(
-          "user",
-          JSON.stringify({
-            logged: true,
-            token: token,
-          })
-        );
-        navigate("/");
-      }
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+        if (JSON.parse(localStorage.getItem("user")).logged === false) {
+          setLoginError(true);
+        } else {
+          setLoginError(false);
+        }
+      }, 3000);
     }
   };
 
-  // useEffect(() => {
-  //   if (loginAccess.data) {
-  //     navigate("/");
-  //     dispatch(userLogout());
-  //   }
-  // }, [loginAccess,dispatch]);
+  if (loginAccess.data?.token) {
+    dispatch(userLogin("clear"));
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        logged: true,
+        token: loginAccess.data.token,
+      })
+    );
+    navigate("/");
+  }
 
   const handleInputChange = (e) => {
+    setLoginError(false);
     setInput({
       ...input,
       [e.target.name]: e.target.value,
