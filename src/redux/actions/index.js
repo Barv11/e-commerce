@@ -10,7 +10,8 @@ import {
   ADD_PRODUCT,
   ADD_CART_PRODUCTS,
   REGISTER_USER,
-  GET_USER
+  GET_USER,
+  GET_CART_PRODUCTS,
 } from "./actionsTypes";
 import axios from "axios";
 import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "./actionsTypes";
@@ -71,7 +72,6 @@ export const getCurrentUser = (obj) => (dispatch) => {
   return dispatch({ type: GET_CURRENT_USER, payload: obj });
 };
 export const userLogin = (obj) => async (dispatch) => {
-
   if (obj === "clear") {
     dispatch({ type: USER_LOGIN, payload: {} });
   } else {
@@ -110,18 +110,25 @@ export function orderprecio(payload) {
   };
 }
 
-export const addCartProduct = (array) => async (dispatch) => {
-  const cartProducts = await axios.post(
-    "http://localhost:3001/cart",
-    array
-  );
-  dispatch({ type: ADD_CART_PRODUCTS, payload: cartProducts});
+export const getCartProduct = (id) => async (dispatch) => {
+  const obj = { id: id };
+  console.log(obj);
+  const productos = await axios.post("http://localhost:3001/cart/get", obj);
+  dispatch({ type: GET_CART_PRODUCTS, payload: productos });
+};
+
+export const addCartProduct = (id, array) => async (dispatch) => {
+  const obj = { id: id, productosCarrito: array };
+  const a = await axios.post("http://localhost:3001/cart", obj);
+  console.log(a);
+  dispatch({ type: ADD_CART_PRODUCTS });
 };
 
 export const getUser = (stringToken) => async (dispatch) => {
-  const myUser = {token: stringToken.toString()}
+  const myUser = { token: stringToken.toString() };
   const userFound = await axios.post(
-    "http://localhost:3001/user/login/find", myUser
+    "http://localhost:3001/user/login/find",
+    myUser
   );
-  dispatch({ type: GET_USER, payload: userFound });
+  dispatch({ type: GET_USER, payload: userFound.data });
 };

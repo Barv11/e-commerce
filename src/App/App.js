@@ -8,8 +8,23 @@ import CreateProduct from "../components/createproductAdmin/createProduct";
 import AdminPage from "../page/Admin/AdminPage";
 import Orden from "../components/Orden/Orden";
 import Carrito from "../components/Carrito/Carrito";
+import { useState } from "react";
 
 function App() {
+  
+  const [user] = useState(
+    JSON.parse(
+      localStorage.getItem("user") ||
+        JSON.stringify({
+          logged: false,
+          token: "",
+        })
+    )
+  );
+
+  localStorage.setItem("user", JSON.stringify(user));
+  
+
   return (
     <Routes>
       <Route exact path={"/"} element={<Home />} />

@@ -76,8 +76,6 @@ export default function Login() {
         token: loginAccess.data.token,
       })
     );
-    const cart = JSON.parse(localStorage.getItem("products") || "[]")
-    // dispatch()
     navigate("/");
   }
 
