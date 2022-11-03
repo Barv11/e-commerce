@@ -119,8 +119,8 @@ export const getCartProduct = (id) => async (dispatch) => {
 
 export const addCartProduct = (id, array) => async (dispatch) => {
   const obj = { id: id, productosCarrito: array };
-  const a = await axios.post("http://localhost:3001/cart", obj);
-  console.log(a);
+  console.log(obj);
+  const a = await axios.post("http://localhost:3001/cart/create", obj);
   dispatch({ type: ADD_CART_PRODUCTS });
 };
 
