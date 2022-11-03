@@ -1,9 +1,10 @@
 .containerForm{
     width: 100%;
-    height: 950px;
+    height: 100%;
     background-image: url("https://i.ytimg.com/vi/mafZwdP6wq8/maxresdefault.jpg");
     background-size: 100% auto;
-    
+    background-color: #f8e7fa;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,7 +17,7 @@
 .productContainer{
 
     width: 700px;
-    height: auto;
+    /* height: 100vh;  */
     background: #fffdfd;
     border-radius: 8px;
     box-shadow: 0 0 40px -10px #000;
@@ -32,8 +33,8 @@
 }
 
 .form{
-    width: 100%;
-    height: 100%;
+    /* width: 100%;
+    height: 100%; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,7 +43,6 @@
 
 .titleForm{
     font-weight: 700;
-    font-family: 'Segoe UI';
     padding-bottom: 10px;
     width: 300px;
     color: rgb(89, 3, 146);

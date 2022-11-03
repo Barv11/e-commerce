@@ -9,13 +9,21 @@ import {
   USER_LOGOUT,
   ORDER_NAME,
   ORDER_PRECIO,
-  POST_PRODUCT
+  POST_PRODUCT,
+  ADD_PRODUCT,
+  ADD_CART_PRODUCTS,
+  REGISTER_USER,
+  GET_USER
 } from "../actions/actionsTypes";
 
 const initialState = {
   allProducts: [],
   searchByNameProduct: [],
   searchByIdProduct: {},
+  user: {},
+  loginAccess: {},
+  userFound: {},
+  cartProducts: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -47,11 +55,19 @@ function rootReducer(state = initialState, action) {
         searchByNameProduct: [],
         searchByIdProduct: {},
       };
+    case ADD_PRODUCT:
+      return {
+        ...state,
+        allProducts: [],
+        searchByNameProduct: [],
+        searchByIdProduct: {},
+      };
+
     case POST_PRODUCT:
       return {
-          ...state,
-          allProducts: action.payload,
-        };    
+        ...state,
+        allProducts: [...state.allProducts, action.payload],
+      };
     case GET_CURRENT_USER:
       console.log(state);
       return {
@@ -63,43 +79,60 @@ function rootReducer(state = initialState, action) {
         ...state,
         loginAccess: action.payload,
       };
+    case ADD_CART_PRODUCTS:
+      return {
+        ...state,
+        cartProducts: action.payload
+      };
     case USER_LOGOUT:
       return {
         ...state,
         loginAccess: {},
       };
     case ORDER_NAME:
-        let order = action.payload === 'AZ'?
-        state.allProducts.sort(function(a,b){
-            if(a.name > b.name) return 1
-            if(b.name > a.name ) return -1
-            return 0
-        }) :
-        state.allProducts.sort(function(a,b){
-            if(a.name > b.name) return -1
-            if(b.name > a.name ) return 1
-            return 0
-        })
-        return{
-            ...state,
-            allProducts: order,
-        }
-        case ORDER_PRECIO:
-        let order2 = action.payload === 'ascendente'?
-        state.allProducts.sort(function(a,b){
-            if(a.cost > b.cost) return 1
-            if(b.cost > a.cost ) return -1
-            return 0
-        }) :
-        state.allProducts.sort(function(a,b){
-            if(a.cost > b.cost) return -1
-            if(b.cost > a.cost ) return 1
-            return 0
-        })
-        return{
-            ...state,
-            allProducts: order2,
-        }
+      let order =
+        action.payload === "AZ"
+          ? state.allProducts.sort(function (a, b) {
+              if (a.name > b.name) return 1;
+              if (b.name > a.name) return -1;
+              return 0;
+            })
+          : state.allProducts.sort(function (a, b) {
+              if (a.name > b.name) return -1;
+              if (b.name > a.name) return 1;
+              return 0;
+            });
+      return {
+        ...state,
+        allProducts: order,
+      };
+    case ORDER_PRECIO:
+      let order2 =
+        action.payload === "ascendente"
+          ? state.allProducts.sort(function (a, b) {
+              if (a.cost > b.cost) return 1;
+              if (b.cost > a.cost) return -1;
+              return 0;
+            })
+          : state.allProducts.sort(function (a, b) {
+              if (a.cost > b.cost) return -1;
+              if (b.cost > a.cost) return 1;
+              return 0;
+            });
+      return {
+        ...state,
+        allProducts: order2,
+      };
+    case REGISTER_USER:
+      return{
+        ...state,
+        user: action.payload
+      };
+      case GET_USER : 
+      return {
+        ...state,
+        userFound: action.payload
+      }
     default:
       return {
         ...state,
