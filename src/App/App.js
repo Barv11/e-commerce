@@ -1,11 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import CardDetail from "../components/CardDetail/CardDetail";
-import Login from "../components/LoginForm/LoginForm";
-import Products from "../page/allProducts/AllProducts";
-import Home from "../page/home/Home";
-import Register from "../components/RegisterForm/Register";
-import CreateProduct from "../components/createproductAdmin/createProduct";
-import Carrito from "../components/Carrito/Carrito";
+import { Products, Home, Profile} from '../page';
+import {CardDetail, Login, Register, CreateProduct, Carrito} from '../components'
 function App() {
   return (
     <Routes>
@@ -16,6 +11,7 @@ function App() {
       <Route path={"/detail/:id"} element={<CardDetail />} />
       <Route path={"/create"} element={<CreateProduct />} />
       <Route path={"/carrito"} element={<Carrito />} />
+      <Route path={"/profile"} element={<Profile />} />
     </Routes>
   );
 }
