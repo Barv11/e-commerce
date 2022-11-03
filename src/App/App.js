@@ -5,8 +5,11 @@ import Products from "../page/allProducts/AllProducts";
 import Home from "../page/home/Home";
 import Register from "../components/RegisterForm/Register";
 import CreateProduct from "../components/createproductAdmin/createProduct";
+import AdminPage from "../page/Admin/AdminPage";
+import Orden from "../components/Orden/Orden";
 import Carrito from "../components/Carrito/Carrito";
 import { useState } from "react";
+
 function App() {
   
   const [user] = useState(
@@ -30,7 +33,10 @@ function App() {
       <Route path={"/products"} element={<Products />} />
       <Route path={"/detail/:id"} element={<CardDetail />} />
       <Route path={"/create"} element={<CreateProduct />} />
+      <Route path={"/admin"} element={<AdminPage />} />
+      <Route path={"/orden"} element={<Orden />} />
       <Route path={"/carrito"} element={<Carrito />} />
+
     </Routes>
   );
 }
