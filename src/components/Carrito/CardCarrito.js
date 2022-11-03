@@ -14,9 +14,7 @@ export default function CardCarrito({
 }) {
   const [cantidad, setCantidad] = useState(quantity);
 
-  const [products, setProducts] = useState(
-    JSON.parse(localStorage.getItem("products") || "[]")
-  );
+
 
   const handleCantidad = (e) => {
     handleCartQuantity(id, e.target.value);

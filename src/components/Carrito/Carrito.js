@@ -1,17 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
 import s from "./Carrito.module.css";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import CardCarrito from "./CardCarrito";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { getCartProduct } from "../../redux/actions";
 
 export default function Carrito() {
+  const dispatch = useDispatch();
+  const userFound = useSelector((state) => state.userFound);
+  const cartProducts = useSelector((state) => state.cartProducts);
   const [products, setProducts] = useState(
     JSON.parse(localStorage.getItem("products") || "[]")
   );
 
-  const [quantity, setQuantity] = useState(1);
+  const { id } = userFound;
+
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("user") || "[]")
+  );
+
+  localStorage.setItem("products", JSON.stringify(products));
+
+  useEffect(() => {
+    if (user.logged) {
+      dispatch(getCartProduct(id));
+    }
+  }, []);
+
+  console.log(cartProducts)
+
+  console.log(userFound.id);
 
   const handleCartQuantity = (id, quantity) => {
     let finalProducts = [
@@ -23,10 +44,7 @@ export default function Carrito() {
       }),
     ];
     setProducts(finalProducts);
-    setQuantity(quantity);
   };
-
-  localStorage.setItem("products", JSON.stringify(products));
 
   const deleteCartProduct = (id) => {
     setProducts((oldProducts) => oldProducts.filter((p) => p.id !== id));
