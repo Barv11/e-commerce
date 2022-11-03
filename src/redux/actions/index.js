@@ -10,6 +10,7 @@ import {
   ADD_PRODUCT,
   ADD_CART_PRODUCTS,
   REGISTER_USER,
+  GET_USER
 } from "./actionsTypes";
 import axios from "axios";
 import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "./actionsTypes";
@@ -110,6 +111,17 @@ export function orderprecio(payload) {
 }
 
 export const addCartProduct = (array) => async (dispatch) => {
-  localStorage.setItem("cities", JSON.stringify(array));
-  dispatch({ type: ADD_CART_PRODUCTS });
+  const cartProducts = await axios.post(
+    "http://localhost:3001/cart",
+    array
+  );
+  dispatch({ type: ADD_CART_PRODUCTS, payload: cartProducts});
+};
+
+export const getUser = (stringToken) => async (dispatch) => {
+  const myUser = {token: stringToken.toString()}
+  const userFound = await axios.post(
+    "http://localhost:3001/user/login/find", myUser
+  );
+  dispatch({ type: GET_USER, payload: userFound });
 };

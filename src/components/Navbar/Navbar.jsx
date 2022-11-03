@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import MenuProducts from "../MenuProducts";
 import { Link, NavLink } from "react-router-dom";
 import s from "./Navbar.module.css";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { searchProductByName } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { searchProductByName, getUser } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
 import pcLogo from "../../assets/pc-logo.png";
 import usuarioLogo from "../../assets/user-login-icon.png";
@@ -17,6 +17,8 @@ export default function Navbar() {
 
   const [userState] = useState(JSON.parse(localStorage.getItem("user")));
 
+  const userFound = useSelector(state => state.userFound)
+
   const handleSearch = (input) => {
     navigate("/products");
     dispatch(searchProductByName(input));
@@ -25,6 +27,14 @@ export default function Navbar() {
   const handleInputChange = (e) => {
     setInput(e.target.value);
   };
+
+  useEffect(() => {
+    if(userState.logged){
+      dispatch(getUser(userState.token))
+    }
+  },[dispatch])
+
+  console.log(userFound)
 
   return (
     <nav className={s.navbar}>
@@ -63,7 +73,7 @@ export default function Navbar() {
               <img src={usuarioLogo} alt="usuario" className={s.userimg} />
             </Link>
             <Link style={{ textDecoration: "none" }} to={"/login"}>
-              <span className={s.userTxt}>{userState.logged? "nombre" : "Log In"}</span>
+              <span className={s.userTxt}>{userState.logged ? userFound.data?.userName : "Log In"}</span>
             </Link>
           </div>
           <Link to="/carrito">
