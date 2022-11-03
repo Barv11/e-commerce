@@ -70,6 +70,7 @@ export const getCurrentUser = (obj) => (dispatch) => {
   return dispatch({ type: GET_CURRENT_USER, payload: obj });
 };
 export const userLogin = (obj) => async (dispatch) => {
+
   if (obj === "clear") {
     dispatch({ type: USER_LOGIN, payload: {} });
   } else {
