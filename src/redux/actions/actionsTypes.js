@@ -12,4 +12,5 @@ export const POST_PRODUCT = "POST_PRODUCT";
 export const ADD_PRODUCT = "ADD_PRODUCT";
 export const ADD_CART_PRODUCTS = "ADD_CART_PRODUCTS";
 export const REGISTER_USER = "REGISTER_USER";
-export const GET_USER = "GET_USER"
+export const GET_USER = "GET_USER";
+export const GET_CART_PRODUCTS = "GET_CART_PRODUCTS";
