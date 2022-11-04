@@ -11,8 +11,10 @@ export default function Paybutton(cartItem) {
         /* userId: user.id */
       )
       .then((res) => {
-        if (res.data.url) {
-          window.location.href = res.data.url;
+
+        if (res.data) {
+          window.location.href = res.data;
+
         }
       })
       .catch((err) => console.log(err.message));
