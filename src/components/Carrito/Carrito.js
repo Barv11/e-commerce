@@ -38,15 +38,13 @@ export default function Carrito() {
   const [user] = useState(JSON.parse(localStorage.getItem("user")));
 
   useEffect(() => {
-    dispatch(getCartProduct(userFound.id));
     const fn = async () => {
+      await dispatch(getCartProduct(userFound.id));
       if (user.logged) {
         if (cartProducts?.length < 1) {
           await dispatch(addCartProduct(userFound.id, products));
           await dispatch(getCartProduct(userFound.id));
-          setTimeout(() => {
-            setProducts([]);
-          }, 3000);
+          setProducts([]);
         } else {
           await dispatch(getCartProduct(userFound.id));
           setProducts([]);
@@ -55,7 +53,7 @@ export default function Carrito() {
     };
     fn();
     setLoading(false);
-  }, [userFound, setDbProducts, dispatch, addCartProduct, getCartProduct]);
+  }, [userFound, dispatch, addCartProduct]);
 
   localStorage.setItem("products", JSON.stringify(products));
 
