@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function DetailFuente({details}) {
-    const {Watts, format, color} = details
+    const {Watts, Format, Color, Dimensions} = details
   return (
     <>
         <span>
@@ -9,24 +9,32 @@ export default function DetailFuente({details}) {
         {Watts}
       </span>
       <span>
-        <b>Dimensiones: </b>
-        {format}
+        <b>Formato: </b>
+        {Format}
+      </span>
+      <span>
+        <b>Color: </b>
+        {Color}
+      </span>
+      <span>
+        <b>Operating Temperature: </b>
+        {details["Operating Temperature"]}
       </span>
       <span>
         <b>Dimensiones: </b>
-        {color}
+        {Dimensions}
       </span>
       <span>
-        <b>Dimensiones: </b>
-        {details["operating temperature"]}
+        <b>Input Voltaje: </b>
+        {details["Input Voltage"]}
       </span>
       <span>
-        <b>Dimensiones: </b>
-        {details["input voltage"]}
+        <b>Cooling systems: </b>
+        {details["Cooling system"]}
       </span>
       <span>
-        <b>Dimensiones: </b>
-        {details["cooling systems"]}
+        <b>RGB Fan: </b>
+        {details["RGB Fan"]}
       </span>
     </>
   )
