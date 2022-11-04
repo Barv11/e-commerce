@@ -129,6 +129,8 @@ export function orderprecio(payload) {
 export const getAllUsers = () => async (dispatch) =>{
     const users = await axios.get("http://localhost:3001/user/create");
     dispatch({ type: GET_ALL_USERS, payload: users.data });
+  }
+
 export const getCartProduct = (id) => async (dispatch) => {
   const obj = { id: id };
   console.log(obj);

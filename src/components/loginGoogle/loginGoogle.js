@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import jwtDecode from "jwt-decode";
 import s from "./loginGoogle.module.css";
-import { getCurrentUser } from "../../redux/actions";
+import { userRegister } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -13,14 +13,16 @@ export default function LoginGoogle() {
   const handleCallbackResponse = (response) => {
     let userObj = jwtDecode(response.credential);
     console.log(userObj);
-    // dispatch(getCurrentUser(userObj));
+    navigate("/");
+    const obj = {first_name : userObj.given_name, last_name: userObj.family_name, email: userObj.email, password: userObj.jti, picture: userObj.picture, username:userObj.name}
+    dispatch(userRegister(obj));
   };
-
+  
   useEffect(() => {
     /* global google */
     google.accounts.id.initialize({
       client_id:
-        "991930929385-3ajl2kmv3f3oidcn5oivdvg4rn56htce.apps.googleusercontent.com",
+        "728691745498-7f5j7df1rd6qd9ldi2jgojelbptod9l2.apps.googleusercontent.com",
       callback: handleCallbackResponse,
     });
 
@@ -36,3 +38,4 @@ export default function LoginGoogle() {
     </div>
   );
 }
+
