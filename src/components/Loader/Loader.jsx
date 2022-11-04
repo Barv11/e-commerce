@@ -4,7 +4,7 @@ import React from "react";
 
 export default function Loader() {
   return (
-    <div>
+    <div className={s.container}>
       <div className={s.ldsEllipsis}>
         <div></div>
         <div></div>

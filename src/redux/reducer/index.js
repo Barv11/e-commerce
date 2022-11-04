@@ -12,13 +12,20 @@ import {
   POST_PRODUCT,
   ADD_PRODUCT,
   ADD_CART_PRODUCTS,
-  PAGO,
+  REGISTER_USER,
+  GET_USER,
+  GET_CART_PRODUCTS,
+  CLEAR_CART_PRODUCTS,
 } from "../actions/actionsTypes";
 
 const initialState = {
   allProducts: [],
   searchByNameProduct: [],
   searchByIdProduct: {},
+  user: {},
+  loginAccess: {},
+  userFound: {},
+  cartProducts: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -74,6 +81,16 @@ function rootReducer(state = initialState, action) {
         ...state,
         loginAccess: action.payload,
       };
+    case GET_CART_PRODUCTS:
+      return {
+        ...state,
+        cartProducts: action.payload,
+      };
+    case CLEAR_CART_PRODUCTS:
+      return {
+        ...state,
+        cartProducts: [],
+      };
     case ADD_CART_PRODUCTS:
       return {
         ...state,
@@ -116,6 +133,16 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         allProducts: order2,
+      };
+    case REGISTER_USER:
+      return {
+        ...state,
+        user: action.payload,
+      };
+    case GET_USER:
+      return {
+        ...state,
+        userFound: action.payload,
       };
     default:
       return {

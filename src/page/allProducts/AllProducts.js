@@ -1,6 +1,7 @@
 import Navbar from "../../components/Navbar/Navbar";
 import s from "./AllProducts.module.css";
 import Footer from "../../components/Footer/Footer";
+import Loader from "../../components/Loader/Loader";
 import ProductCard from "./ProductCard";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -66,7 +67,6 @@ export default function Products() {
   return (
     <div>
       <Navbar />
-      <div className={s.filtros}></div>
       <div className={s.container}>
         <div className={s.sideBar}>
           <div className={s.AZbutton}>
@@ -80,10 +80,10 @@ export default function Products() {
 
           <div className={s.AZbutton}>
             <button value="ascendente" onClick={(e) => OrderPrecio(e)}>
-              Ascendente
+              Más barato
             </button>
             <button value="descendente" onClick={(e) => OrderPrecio(e)}>
-              Descendente
+              Más caro
             </button>
           </div>
 
@@ -119,7 +119,7 @@ export default function Products() {
               );
             })
           ) : (
-            <p>Loading...</p>
+            <Loader />
           )}
           <Pagination
             productsPerPage={productsPerPage}

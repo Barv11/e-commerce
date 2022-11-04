@@ -4,13 +4,13 @@
 }
 
 .sideBar {
-  width: 17%;
+  width: 20%;
   margin: 10px;
 }
 
 .productsContainer {
   margin: 10px;
-  width: 83%;
+  width: 80%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -21,7 +21,9 @@
 .AZbutton{
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
+  margin-bottom: 1em;
+  gap: 1em;
 }
 
 .AZbutton button{
@@ -36,7 +38,8 @@
 }
 
 .AZbutton button:hover {
-  background-color: rgb(115, 37, 187);
+  background-color: rgb(145, 92, 196);
+  color: #ffffff;
   transition: 0.3s;
 }
 

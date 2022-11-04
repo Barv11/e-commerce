@@ -9,7 +9,10 @@ import {
   POST_PRODUCT,
   ADD_PRODUCT,
   ADD_CART_PRODUCTS,
-  PAGO,
+  REGISTER_USER,
+  GET_USER,
+  GET_CART_PRODUCTS,
+  CLEAR_CART_PRODUCTS,
 } from "./actionsTypes";
 import axios from "axios";
 import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "./actionsTypes";
@@ -24,11 +27,18 @@ export const getAllProductos = () => async (dispatch) => {
   const productos = await axios.get("http://localhost:3001/productos");
   dispatch({ type: GET_ALL_PRODUCTS, payload: productos.data });
 };
-export function postProduct(payload) {
+
+export function postProduct(payload, { token }) {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
   return async function (dispatch) {
     const product = await axios.post(
       "http://localhost:3001/productos/create",
-      payload
+      payload,
+      config
     );
     return dispatch({
       type: POST_PRODUCT,
@@ -63,8 +73,20 @@ export const getCurrentUser = (obj) => (dispatch) => {
   return dispatch({ type: GET_CURRENT_USER, payload: obj });
 };
 export const userLogin = (obj) => async (dispatch) => {
-  const login = await axios.post("http://localhost:5001/create/signup", obj);
-  dispatch({ type: USER_LOGIN, payload: login });
+  if (obj === "clear") {
+    dispatch({ type: USER_LOGIN, payload: {} });
+  } else {
+    const login = await axios.post("http://localhost:3001/user/login", obj);
+    dispatch({ type: USER_LOGIN, payload: login });
+  }
+};
+
+export const userRegister = (user) => async (dispatch) => {
+  const register = await axios.post(
+    "http://localhost:3001/user/create/signup",
+    user
+  );
+  dispatch({ type: REGISTER_USER, payload: register });
 };
 
 export const userLogout = () => (dispatch) => {
@@ -89,7 +111,29 @@ export function orderprecio(payload) {
   };
 }
 
-export const addCartProduct = (array) => async (dispatch) => {
-  localStorage.setItem("cities", JSON.stringify(array));
+export const getCartProduct = (id) => async (dispatch) => {
+  const obj = { id: id };
+  console.log(obj);
+  const productos = await axios.post("http://localhost:3001/cart/get", obj);
+  dispatch({ type: GET_CART_PRODUCTS, payload: productos });
+};
+
+export const clearCartProduct = () => (dispatch) => {
+  dispatch({ type: CLEAR_CART_PRODUCTS });
+};
+
+export const addCartProduct = (id, array) => async (dispatch) => {
+  const obj = { id: id, productosCarrito: array };
+  console.log(obj);
+  const a = await axios.post("http://localhost:3001/cart/create", obj);
   dispatch({ type: ADD_CART_PRODUCTS });
+};
+
+export const getUser = (stringToken) => async (dispatch) => {
+  const myUser = { token: stringToken.toString() };
+  const userFound = await axios.post(
+    "http://localhost:3001/user/login/find",
+    myUser
+  );
+  dispatch({ type: GET_USER, payload: userFound.data });
 };

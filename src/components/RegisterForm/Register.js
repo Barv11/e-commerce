@@ -2,8 +2,14 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import s from "./Register.module.css";
 import validate from "./validator";
+import { userRegister } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  
   const [input, setInput] = useState({
     username: "",
     email: "",
@@ -56,8 +62,21 @@ export default function Register() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!Object.keys(error).length && input.username !== "") {
-      // dispatch();
       console.log("register");
+      dispatch(userRegister(input));
+      setInput({
+        username: "",
+        email: "",
+        password: "",
+        date_of_birth: "",
+        phone_number: "",
+        first_name: "",
+        last_name: "",
+        city: "",
+        zip_code: "",
+        address: "",
+      });
+      navigate("/login");
     } else {
       setClick({
         username: true,

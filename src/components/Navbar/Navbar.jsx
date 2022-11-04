@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import MenuProducts from "../MenuProducts";
 import { Link, NavLink } from "react-router-dom";
 import s from "./Navbar.module.css";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { searchProductByName } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  searchProductByName,
+  getUser,
+  clearCartProduct,
+} from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
 import pcLogo from "../../assets/pc-logo.png";
 import usuarioLogo from "../../assets/user-login-icon.png";
@@ -14,6 +18,26 @@ export default function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [userState, setUserState] = useState(
+    JSON.parse(localStorage.getItem("user"))
+  );
+
+  const userFound = useSelector((state) => state.userFound);
+
+  const signOut = () => {
+    dispatch(clearCartProduct());
+    setUserState(
+      JSON.parse(
+        JSON.stringify({
+          logged: false,
+          token: "",
+        })
+      )
+    );
+  };
+
+  localStorage.setItem("user", JSON.stringify(userState));
+
   const handleSearch = (input) => {
     navigate("/products");
     dispatch(searchProductByName(input));
@@ -22,6 +46,12 @@ export default function Navbar() {
   const handleInputChange = (e) => {
     setInput(e.target.value);
   };
+
+  useEffect(() => {
+    if (userState.logged) {
+      dispatch(getUser(userState.token));
+    }
+  }, [dispatch]);
 
   return (
     <nav className={s.navbar}>
@@ -59,8 +89,15 @@ export default function Navbar() {
             <Link to={"/login"}>
               <img src={usuarioLogo} alt="usuario" className={s.userimg} />
             </Link>
+            <Link style={{ textDecoration: "none" }} to={"/"}>
+              <span onClick={() => signOut()} className={s.userTxt}>
+                {userState.logged ? "Sign Out" : ""}
+              </span>
+            </Link>
             <Link style={{ textDecoration: "none" }} to={"/login"}>
-              <span className={s.userTxt}>Usuario</span>
+              <span className={s.userTxt}>
+                {userState.logged ? userFound?.userName : "Log In"}
+              </span>
             </Link>
           </div>
           <Link to="/carrito">
