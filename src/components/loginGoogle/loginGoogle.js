@@ -17,7 +17,7 @@ export default function LoginGoogle() {
     const obj = {first_name : userObj.given_name, last_name: userObj.family_name, email: userObj.email, password: userObj.jti, picture: userObj.picture, username:userObj.name}
     dispatch(userRegister(obj));
   };
-
+  
   useEffect(() => {
     /* global google */
     google.accounts.id.initialize({
@@ -38,3 +38,4 @@ export default function LoginGoogle() {
     </div>
   );
 }
+
