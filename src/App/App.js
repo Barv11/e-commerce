@@ -16,6 +16,7 @@ function App() {
       <Route path={"/detail/:id"} element={<CardDetail />} />
       <Route path={"/create"} element={<CreateProduct />} />
       <Route path={"/carrito"} element={<Carrito />} />
+      <Route path={"/create-checkout-session"} element={""} />
     </Routes>
   );
 }

@@ -12,6 +12,7 @@ import {
   POST_PRODUCT,
   ADD_PRODUCT,
   ADD_CART_PRODUCTS,
+  PAGO,
 } from "../actions/actionsTypes";
 
 const initialState = {

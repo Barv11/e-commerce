@@ -5,8 +5,13 @@ import Footer from "../Footer/Footer";
 import CardCarrito from "./CardCarrito";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { pagar } from "../../redux/actions";
+import { useDispatch } from "react-redux";
+import Paybutton from "../PayButton/Paybutton";
 
 export default function Carrito() {
+  const dispatch = useDispatch();
+
   const [products, setProducts] = useState(
     JSON.parse(localStorage.getItem("products") || "[]")
   );
@@ -41,6 +46,7 @@ export default function Carrito() {
     return acc + p.cost * p.quantity;
   }, 0);
 
+  console.log(products);
   return (
     <div className={s.mainContainer}>
       <Navbar />
@@ -82,7 +88,7 @@ export default function Carrito() {
         </div>
         <div className={s.checkOutContainer}>
           <h3>{`$${totalProductsValue}`}</h3>
-          <button>Continuar</button>
+          <Paybutton cartItem={products} />
         </div>
       </div>
       <Footer />
