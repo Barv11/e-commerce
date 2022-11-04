@@ -9,7 +9,7 @@ import { getUser, getCartProduct } from "../../redux/actions";
 
 export default function Home() {
   const dispatch = useDispatch();
-  const userFound = useSelector((state) => state.userFound);
+  // const userFound = useSelector((state) => state.userFound);
 
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user") || "[]")
@@ -22,7 +22,7 @@ export default function Home() {
   useEffect(() => {
     if (user.logged) {
       dispatch(getUser(user.token));
-      dispatch(getCartProduct(userFound.id));
+      // dispatch(getCartProduct(userFound.id));
     }
   }, []);
 

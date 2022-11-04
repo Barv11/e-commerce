@@ -30,21 +30,22 @@ export default function Carrito() {
 
   const [user] = useState(JSON.parse(localStorage.getItem("user")));
 
+
   useEffect(() => {
     if (user.logged) {
       dispatch(addCartProduct(userFound.id, products));
       dispatch(getCartProduct(userFound.id));
-      deleteCart();
+      // deleteCart();
+      console.log("contame")
     } else {
       setProducts(products);
     }
-  }, [dispatch]);
+  }, [ userFound, dispatch, addCartProduct, getCartProduct]);
 
   setTimeout(() => {
     setLoading(false);
     if (cartProducts) {
       setProducts(cartProducts);
-      console.log(cartProducts);
       localStorage.setItem("products", JSON.stringify([]));
     }
   }, 2000);

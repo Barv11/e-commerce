@@ -12,6 +12,7 @@ import {
   REGISTER_USER,
   GET_USER,
   GET_CART_PRODUCTS,
+  CLEAR_CART_PRODUCTS,
 } from "./actionsTypes";
 import axios from "axios";
 import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "./actionsTypes";
@@ -115,6 +116,10 @@ export const getCartProduct = (id) => async (dispatch) => {
   console.log(obj);
   const productos = await axios.post("http://localhost:3001/cart/get", obj);
   dispatch({ type: GET_CART_PRODUCTS, payload: productos });
+};
+
+export const clearCartProduct = () => (dispatch) => {
+  dispatch({ type: CLEAR_CART_PRODUCTS });
 };
 
 export const addCartProduct = (id, array) => async (dispatch) => {

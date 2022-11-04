@@ -4,7 +4,11 @@ import { Link, NavLink } from "react-router-dom";
 import s from "./Navbar.module.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { searchProductByName, getUser } from "../../redux/actions";
+import {
+  searchProductByName,
+  getUser,
+  clearCartProduct,
+} from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
 import pcLogo from "../../assets/pc-logo.png";
 import usuarioLogo from "../../assets/user-login-icon.png";
@@ -21,6 +25,7 @@ export default function Navbar() {
   const userFound = useSelector((state) => state.userFound);
 
   const signOut = () => {
+    dispatch(clearCartProduct());
     setUserState(
       JSON.parse(
         JSON.stringify({
