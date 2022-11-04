@@ -1,18 +1,55 @@
-import React from "react";
+import React, { useEffect } from "react";
 import s from "./Carrito.module.css";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import CardCarrito from "./CardCarrito";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Paybutton from "../PayButton/Paybutton";
+import { getCartProduct, addCartProduct } from "../../redux/actions";
 
 export default function Carrito() {
+  const dispatch = useDispatch();
+  const userFound = useSelector((state) => state.userFound);
+  const cartProducts = useSelector((state) => state.cartProducts.data?.carts);
   const [products, setProducts] = useState(
     JSON.parse(localStorage.getItem("products") || "[]")
   );
+  const [loading, setLoading] = useState(true);
 
-  const [quantity, setQuantity] = useState(1);
+  localStorage.setItem("products", JSON.stringify(products));
+
+  // useEffect(() => {
+  //   if (user.logged) {
+  //     dispatch(addCartProduct(userFound.id, products));
+  //     dispatch(getCartProduct(userFound.id));
+  //     setProducts([]);
+  //     setProducts(cartProducts);
+  //   }
+  // }, []);
+
+  const [user] = useState(JSON.parse(localStorage.getItem("user")));
+
+
+  useEffect(() => {
+    if (user.logged) {
+      dispatch(addCartProduct(userFound.id, products));
+      dispatch(getCartProduct(userFound.id));
+      // deleteCart();
+      console.log("contame")
+    } else {
+      setProducts(products);
+    }
+  }, [ userFound, dispatch, addCartProduct, getCartProduct]);
+
+  setTimeout(() => {
+    setLoading(false);
+    if (cartProducts) {
+      setProducts(cartProducts);
+      localStorage.setItem("products", JSON.stringify([]));
+    }
+  }, 2000);
 
   const handleCartQuantity = (id, quantity) => {
     let finalProducts = [
@@ -24,10 +61,7 @@ export default function Carrito() {
       }),
     ];
     setProducts(finalProducts);
-    setQuantity(quantity);
   };
-
-  localStorage.setItem("products", JSON.stringify(products));
 
   const deleteCartProduct = (id) => {
     setProducts((oldProducts) => oldProducts.filter((p) => p.id !== id));
@@ -35,13 +69,13 @@ export default function Carrito() {
 
   const deleteCart = () => {
     setProducts([]);
-    localStorage.setItem("products", JSON.stringify([]));
   };
 
-  const totalProductsValue = products.reduce((acc, p) => {
+  const totalProductsValue = products?.reduce((acc, p) => {
     return acc + p.cost * p.quantity;
   }, 0);
 
+  console.log(products);
   return (
     <div className={s.mainContainer}>
       <Navbar />
@@ -54,9 +88,12 @@ export default function Carrito() {
             <h4>Sub Total</h4>
           </div>
         </div>
-        {products.length ? (
+        {loading ? (
+          <p>Loading...</p>
+        ) : products.length ? (
           products.map((p) => (
             <CardCarrito
+              key={p.id}
               id={p.id}
               name={p.name}
               img={p.img}
