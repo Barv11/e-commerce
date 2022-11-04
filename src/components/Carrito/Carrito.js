@@ -5,6 +5,7 @@ import Footer from "../Footer/Footer";
 import CardCarrito from "./CardCarrito";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Paybutton from "../PayButton/Paybutton";
 
 export default function Carrito() {
   const [products, setProducts] = useState(
@@ -82,7 +83,7 @@ export default function Carrito() {
         </div>
         <div className={s.checkOutContainer}>
           <h3>{`$${totalProductsValue}`}</h3>
-          <button>Continuar</button>
+          <Paybutton cartItem={products} />
         </div>
       </div>
       <Footer />
