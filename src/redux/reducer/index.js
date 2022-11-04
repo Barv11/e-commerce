@@ -15,6 +15,7 @@ import {
   REGISTER_USER,
   GET_USER,
   GET_CART_PRODUCTS,
+  GET_ALL_USERS,
   CLEAR_CART_PRODUCTS,
   DELETE_CART_PRODUCT,
 } from "../actions/actionsTypes";
@@ -27,6 +28,8 @@ const initialState = {
   loginAccess: {},
   userFound: {},
   cartProducts: [],
+  allUsers: [],
+=======
 };
 
 function rootReducer(state = initialState, action) {
@@ -153,6 +156,11 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+    case GET_ALL_USERS:
+      return {
+        ...state,
+        allUsers: action.payload,
+        };
   }
 }
 
