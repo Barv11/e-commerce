@@ -83,10 +83,10 @@ export function orderprecio(payload){
 }
 
 export const getAllUsers = () => async (dispatch) =>{
-    const productos = await axios.get("http://localhost:3001/user");
-    dispatch({ type: GET_ALL_USERS, payload: productos.data });
+    const users = await axios.get("http://localhost:3001/user/create");
+    dispatch({ type: GET_ALL_USERS, payload: users.data });
 };
 
 // export function userToAdmin(){
-//   ruta en el back para cambiar los props rol
+//   ruta en el back para cambiar la propiedad role
 // }

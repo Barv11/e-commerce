@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useId } from 'react';
 import Table from 'react-bootstrap/Table';
 import { useSelector } from 'react-redux';
@@ -5,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { getAllUsers } from '../../redux/actions';
 
 export default function AllUsers(){
-    let dispatch = useDispatch
+    let dispatch = useDispatch()
     useEffect (() => {
         dispatch(getAllUsers())
     }, [dispatch]) 
@@ -13,13 +14,19 @@ export default function AllUsers(){
     const allUsers = useSelector((state) => state.allUsers);
     console.log(allUsers)
 
-    function handleButtonBanned(userId){
-        //active o desactive propiedad show (bannear = show en false)
+    async function handleButtonBanned(userId){ 
+        await axios.put(`http://localhost:3001/user/create/${userId}`, {show: false})
+        dispatch(getAllUsers())
     }
 
-    function handleButtonUnbanned(userId){
+    async function handleButtonUnbanned(userId){
         //active o desactive propiedad show (desbannear = show en true)
+        await axios.put(`http://localhost:3001/user/create/${userId}`, {show: true})
+        dispatch(getAllUsers())
     }
+
+    //(userId, role)
+
     
     return(
         <div>
@@ -35,7 +42,7 @@ export default function AllUsers(){
                     </tr>
                 </thead>
                 <tbody>
-                    {allUsers && allUsers.map((u) => {
+                    {allUsers && allUsers?.map((u) => {
                         return (
                         <tr>
                         <td>{u.id}</td>
@@ -43,9 +50,10 @@ export default function AllUsers(){
                         <td>{u.lastName}</td>
                         <td>{u.userName}</td>
                         <td>{u.email}</td>
+                        <td>{u.role}</td> 
                         {u.show ? 
-                        <td><button>Borrar</button></td> :
-                        <td><button>Restaurar</button></td> 
+                        <td><button onClick={() => handleButtonBanned(u.id)}>Ban</button></td> :
+                        <td><button onClick={() => handleButtonUnbanned(u.id)}>Unban</button></td> 
                         }
                         </tr>
                         )
