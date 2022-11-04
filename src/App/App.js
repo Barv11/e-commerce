@@ -31,6 +31,7 @@ function App() {
       <Route path={"/admin"} element={<AdminPage />} />
       <Route path={"/orden"} element={<Orden />} />
       <Route path={"/carrito"} element={<Carrito />} />
+      <Route path={"/create-checkout-session"} element={""} />
       <Route path={"/profile"} element={<Profile />} />
     </Routes>
   );

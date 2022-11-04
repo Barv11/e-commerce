@@ -6,6 +6,7 @@ import CardCarrito from "./CardCarrito";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Paybutton from "../PayButton/Paybutton";
 import { getCartProduct, addCartProduct } from "../../redux/actions";
 
 export default function Carrito() {
@@ -74,6 +75,7 @@ export default function Carrito() {
     return acc + p.cost * p.quantity;
   }, 0);
 
+  console.log(products);
   return (
     <div className={s.mainContainer}>
       <Navbar />
@@ -118,7 +120,7 @@ export default function Carrito() {
         </div>
         <div className={s.checkOutContainer}>
           <h3>{`$${totalProductsValue}`}</h3>
-          <button>Continuar</button>
+          <Paybutton cartItem={products} />
         </div>
       </div>
       <Footer />
