@@ -1,21 +1,31 @@
 import axios from "axios";
 /* import { useSelector } from "react-redux"; */
+import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 export default function Paybutton(cartItem) {
-  /* const user = useSelector((state) => state.auth); */
+  
+  const [user] = useState(JSON.parse(localStorage.getItem("user")));
+  const navigate = useNavigate();
+
   const handleCheckout = () => {
-    axios
-      .post(
-        "http://localhost:3001/create-checkout-session",
-        cartItem
-        /* userId: user.id */
-      )
-      .then((res) => {
-        if (res.data.url) {
-          window.location.href = res.data.url;
-        }
-      })
-      .catch((err) => console.log(err.message));
+    if(user.logged){
+      axios
+        .post(
+          "http://localhost:3001/create-checkout-session",
+          cartItem
+          /* userId: user.id */
+        )
+        .then((res) => {
+          if (res.data) {
+            window.location.href = res.data;
+          }
+        })
+        .catch((err) => console.log(err.message));
+
+    } else {
+      navigate("/register")
+    }
   };
   return (
     <div>
