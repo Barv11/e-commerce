@@ -29,7 +29,6 @@ const initialState = {
   userFound: {},
   cartProducts: [],
   allUsers: [],
-=======
 };
 
 function rootReducer(state = initialState, action) {
