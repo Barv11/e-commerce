@@ -8,6 +8,9 @@ import {
   SEARCH_PRODUCT_BY_ID,
   POST_PRODUCT,
   UPDATE_PRODUCT,
+  GET_ALL_USERS,
+  POST_ADMIN,
+  ADD_PRODUCT,
   ADD_CART_PRODUCTS,
   REGISTER_USER,
   GET_USER,
@@ -129,6 +132,9 @@ export function orderprecio(payload) {
   };
 }
 
+export const getAllUsers = () => async (dispatch) =>{
+    const users = await axios.get("http://localhost:3001/user/create");
+    dispatch({ type: GET_ALL_USERS, payload: users.data });
 export const getCartProduct = (id) => async (dispatch) => {
   const obj = { id: id };
   console.log(obj);
