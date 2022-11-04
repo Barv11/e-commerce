@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { postProduct, getAllProductos } from "../../redux/actions/index";
+import { postProduct, getAllProductos,saveToken } from "../../redux/actions/index";
 import Navbar from "../Navbar/Navbar";
 import styles from "./createProduct.module.css";
 
@@ -56,7 +56,7 @@ function CreateProduct() {
   // const allProducts = useSelector(state => state.adminProducts)
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const user = useSelector(state => state.loginAccess)
+  // const user = useSelector(state => state.loginAccess)
 
   function validate(input) {
     const errors = {};
@@ -84,6 +84,10 @@ function CreateProduct() {
 
   const [details, setDetails] = useState({});
   const [input, setInput] = useState({});
+
+  const [user] = useState(
+    JSON.parse(localStorage.getItem("user") || "[]")
+  );
 
   const handleDetailsInput = (e) => {
     setDetails({
@@ -156,9 +160,11 @@ function CreateProduct() {
 
  
   const handleSubmit = (e) => {
-    const {token} = user
+    
     e.preventDefault();
-    dispatch(postProduct(product,{token}));
+    console.log(user.token)
+    saveToken(user.token);
+    dispatch(postProduct(product));
 
     setProduct({
       name: "",

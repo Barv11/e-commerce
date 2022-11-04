@@ -17,6 +17,11 @@ import {
 import axios from "axios";
 import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "./actionsTypes";
 
+let token = null;
+export const saveToken = (newToken) => {
+  token = `Bearer ${newToken}`
+}
+
 export const toggleProductType = (type) => async (dispatch) => {
   const productos = await axios.get("http://localhost:3001/productos");
   const filterProduct = productos.data.filter((p) => p.type === type);
@@ -24,16 +29,23 @@ export const toggleProductType = (type) => async (dispatch) => {
 };
 
 export const getAllProductos = () => async (dispatch) => {
-  const productos = await axios.get("http://localhost:3001/productos");
+  const config = {
+    headers: {
+      "authorization": token,
+    },
+  };
+  console.log(token)
+  const productos = await axios.get("http://localhost:3001/productos", config);
   dispatch({ type: GET_ALL_PRODUCTS, payload: productos.data });
 };
 
-export function postProduct(payload, { token }) {
+export function postProduct(payload) {
   const config = {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: token,
     },
   };
+  console.log(config)
   return async function (dispatch) {
     const product = await axios.post(
       "http://localhost:3001/productos/create",
