@@ -45,9 +45,11 @@ export default function DetailMouse({ details }) {
       <span>
         <b>Dimensiones:</b>
         <ul>
-          {sizes?.map((el) => (
-            <li key={el}>{el}</li>
-          ))}
+          {Object.entries(sizes).map(
+            ([key, value], el) => (
+              <li key={el}>{key + ": " + value}</li>
+            )
+          )}
         </ul>
       </span>
 

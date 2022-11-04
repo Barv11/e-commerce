@@ -6,6 +6,7 @@ import ProductCard from "./ProductCard";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
+  addCartProduct,
   clearProducts,
   getAllProductos,
   ordennames,
@@ -19,13 +20,22 @@ export default function Products() {
   const allProducts = useSelector((state) => state.allProducts);
   const [orden, setOrden] = useState("");
   const searchByNameProduct = useSelector((state) => state.searchByNameProduct);
+  const userFound = useSelector((state) => state.userFound);
+
+  const [user] = useState(JSON.parse(localStorage.getItem("user")));
 
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("products") || "[]")
   );
 
   const handleCart = (props) => {
-    setCart([...cart.filter((p) => p.id !== props.id), props]);
+    if (user.logged) {
+      dispatch(addCartProduct(userFound.id, [props]));
+      console.log([props]);
+      // setCart([...cart.filter((p) => p.id !== props.id), props]);
+    } else {
+      setCart([...cart.filter((p) => p.id !== props.id), props]);
+    }
   };
 
   localStorage.setItem("products", JSON.stringify(cart));
