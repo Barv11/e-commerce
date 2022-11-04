@@ -134,13 +134,16 @@ export function orderprecio(payload) {
 
 export const getAllUsers = () => async (dispatch) =>{
     const users = await axios.get("http://localhost:3001/user/create");
-    dispatch({ type: GET_ALL_USERS, payload: users.data })}
+    dispatch({ type: GET_ALL_USERS, payload: users.data });
+}
+  
 export const getCartProduct = (id) => async (dispatch) => {
   const obj = { id: id };
   console.log(obj);
   const productos = await axios.post("http://localhost:3001/cart/get", obj);
   dispatch({ type: GET_CART_PRODUCTS, payload: productos });
 };
+
 
 export const clearCartProduct = () => (dispatch) => {
   dispatch({ type: CLEAR_CART_PRODUCTS });
@@ -165,4 +168,5 @@ export const getUser = (stringToken) => async (dispatch) => {
 export const deleteCartProduct = (id) => async (dispatch) => {
   axios.post("http://localhost:3001/cart/delete", { id: id });
   dispatch({ type: DELETE_CART_PRODUCT });
-};
+}
+
