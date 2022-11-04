@@ -5,7 +5,7 @@ import Footer from "../../components/Footer/Footer.jsx";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser, getCartProduct } from "../../redux/actions";
+import { getUser, getCartProduct,saveToken } from "../../redux/actions";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -22,6 +22,7 @@ export default function Home() {
   useEffect(() => {
     if (user.logged) {
       dispatch(getUser(user.token));
+      saveToken(user.token);
     }
   }, []);
 

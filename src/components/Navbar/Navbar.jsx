@@ -8,6 +8,7 @@ import {
   searchProductByName,
   getUser,
   clearCartProduct,
+  saveToken
 } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
 import pcLogo from "../../assets/pc-logo.png";
@@ -22,7 +23,8 @@ export default function Navbar() {
 
   const signOut = () => {
     dispatch(clearCartProduct());
-    setUser(
+    saveToken(null)
+        setUser(
       JSON.parse(
         JSON.stringify({
           logged: false,

@@ -11,6 +11,8 @@ import {
   addCartProduct,
   deleteCartProduct,
 } from "../../redux/actions";
+import Paybutton from "../PayButton/Paybutton";
+
 
 export default function Carrito() {
   const dispatch = useDispatch();
@@ -95,8 +97,6 @@ export default function Carrito() {
     setProducts((oldProducts) => oldProducts.filter((p) => p.id !== id));
   };
 
-  console.log("leeme");
-
   const deleteCart = () => {
     if (user.logged) {
       dbProducts.map((p) => {
@@ -110,6 +110,7 @@ export default function Carrito() {
   const totalProductsValue = products?.reduce((acc, p) => {
     return acc + p.cost * p.quantity;
   }, 0);
+
 
   const totalDbProductsValue = dbProducts?.reduce((acc, p) => {
     return acc + p.cost * p.quantity;
@@ -180,7 +181,9 @@ export default function Carrito() {
               ? `$${totalDbProductsValue}`
               : `$${totalProductsValue}`}
           </h3>
-          <button>Continuar</button>
+             {user.logged
+              ? <Paybutton cartItem={dbProducts} />
+              : <Paybutton cartItem={products} />}
         </div>
       </div>
       <Footer />
