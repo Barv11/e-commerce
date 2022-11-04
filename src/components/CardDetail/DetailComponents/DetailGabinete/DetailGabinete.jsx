@@ -9,12 +9,9 @@ export default function DetailGabinete({ details }) {
     material,
     RGB,
     connectivity,
-    power_supply_type,
-    mother_types,
-    max_length_psu,
-    max_length_gpu,
   } = details;
   // structure type
+  console.log(details)
   return (
     <>
       <span>
@@ -71,19 +68,19 @@ export default function DetailGabinete({ details }) {
       </span>
       <span>
         <b>Fuente de Alimentación: </b>
-        {power_supply_type}
+        {connectivity.power_supply_type}
       </span>
       <span>
         <b>Tipo de Mother: </b>
-        {mother_types}
+        {connectivity.mother_types}
       </span>
       <span>
         <b>Máxima longitud PSU: </b>
-        {max_length_psu}
+        {connectivity.max_length_psu}
       </span>
       <span>
         <b>Máxima longitud GPU: </b>
-        {max_length_gpu}
+        {connectivity.max_length_gpu}
       </span>
       <span>
         <b>Peso: </b>
