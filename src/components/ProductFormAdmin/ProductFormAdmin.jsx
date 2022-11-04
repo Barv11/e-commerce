@@ -12,7 +12,6 @@ import Loader from "../Loader/Loader";
 import styles from "./ProductFormAdmin.module.css";
 
 // Lo moví acá para no ocupar visión (provisonal)
-
 //Cloudinary
 //   const [img, setimg] = useState("");
 //   const [loading, setLoading] = useState(false);
@@ -55,7 +54,6 @@ import styles from "./ProductFormAdmin.module.css";
 //     )
 //     return res.data.secure_url;
 // }
-
 function ProductFormAdmin() {
   const navigate = useNavigate();
   const { id } = useParams();
