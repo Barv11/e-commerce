@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import {
   postProduct,
   getAllProductos,
   searchProductById,
+  updateProduct,
 } from "../../redux/actions/index";
 import Navbar from "../Navbar/Navbar";
 import Loader from "../Loader/Loader";
@@ -56,6 +57,7 @@ import styles from "./ProductFormAdmin.module.css";
 // }
 
 function ProductFormAdmin() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.loginAccess);
@@ -137,8 +139,10 @@ function ProductFormAdmin() {
     const { token } = user;
     e.preventDefault();
     if (id) {
+      dispatch(updateProduct(product));
+      navigate("/products")
     } else {
-      //   dispatch(postProduct(product, { token }));
+      // dispatch(postProduct(product, { token }));
 
       setProduct({
         name: "",
@@ -167,12 +171,6 @@ function ProductFormAdmin() {
     return dispatch(getAllProductos());
   }, []);
 
-  console.log("producto encontrado por id ", searchByIdProduct);
-  console.log("producto creado ", product);
-  console.log(
-    Object.entries(product).length,
-    Object.entries(searchByIdProduct).length
-  );
   return (
     <>
       <Navbar />
@@ -311,213 +309,277 @@ function ProductFormAdmin() {
                     type="text"
                     name="generation"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.generation}
+                    value={product.details?.generation}
                   />
                   <label>Connectividad</label>
-                  <label>Cantidad De Slot Pci-e 16X</label>
-                  <input
-                    className={styles.formInput}
-                    placeholder=""
-                    type="text"
-                    name="Cantidad De Slot Pci-e 16X"
-                    onChange={(e) => handleDetailsInput(e)}
-                    value={
-                      product.details.connectivity["Cantidad De Slot Pci-e 16X"]
-                    }
-                  />
-                  <label>Cantidad De Slot Pci-e 1X</label>
-                  <input
-                    className={styles.formInput}
-                    placeholder=""
-                    type="text"
-                    name="Cantidad De Slot Pci-e 1X"
-                    onChange={(e) => handleDetailsInput(e)}
-                    value={
-                      product.details.connectivity["Cantidad De Slot Pci-e 1X"]
-                    }
-                  />
-                  <label>Tecnologia Multi Gpu</label>
-                  <input
-                    className={styles.formInput}
-                    placeholder=""
-                    type="text"
-                    name="Tecnologia Multi Gpu"
-                    onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.connectivity["Tecnologia Multi Gpu"]}
-                  />
-                  <label>Puertos Sata</label>
-                  <input
-                    className={styles.formInput}
-                    placeholder=""
-                    type="text"
-                    name="Puertos Sata"
-                    onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.connectivity["Puertos Sata"]}
-                  />
-                  <label>Salida Vga</label>
-                  <input
-                    className={styles.formInput}
-                    placeholder=""
-                    type="text"
-                    name="Salida Vga"
-                    onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.connectivity["Salida Vga"]}
-                  />
-                  <label>Salida HDMI</label>
-                  <input
-                    className={styles.formInput}
-                    placeholder=""
-                    type="text"
-                    name="Salida HDMI"
-                    onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.connectivity["Salida HDMI"]}
-                  />
-                  <label>Salida Dvi</label>
-                  <input
-                    className={styles.formInput}
-                    placeholder=""
-                    type="text"
-                    name="Salida Dvi"
-                    onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.connectivity["Salida Dvi"]}
-                  />
-                  <label>Salidas Display Ports</label>
-                  <input
-                    className={styles.formInput}
-                    placeholder=""
-                    type="text"
-                    name="Salidas Display Ports"
-                    onChange={(e) => handleDetailsInput(e)}
-                    value={
-                      product.details.connectivity["Salidas Display Ports"]
-                    }
-                  />
-                  <label>Cantidad de Slot M.2 Totales</label>
-                  <input
-                    className={styles.formInput}
-                    placeholder=""
-                    type="text"
-                    name="Cantidad de Slot M.2 Totales"
-                    onChange={(e) => handleDetailsInput(e)}
-                    value={
-                      product.details.connectivity[
-                        "Cantidad de Slot M.2 Totales"
-                      ]
-                    }
-                  />
-                  <label>Placa Wifi Integrada</label>
-                  <input
-                    className={styles.formInput}
-                    placeholder=""
-                    type="text"
-                    name="Placa Wifi Integrada"
-                    onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.connectivity["Placa Wifi Integrada"]}
-                  />
-                  <label>Placa de Red</label>
-                  <input
-                    className={styles.formInput}
-                    placeholder=""
-                    type="text"
-                    name="Placa de Red"
-                    onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.connectivity["Placa de Red"]}
-                  />
-                  <label>Puerto Ps/2</label>
-                  <input
-                    className={styles.formInput}
-                    placeholder=""
-                    type="text"
-                    name="Puerto Ps/2"
-                    onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.connectivity["Puerto Ps/2"]}
-                  />
-                  <label>Puertos Usb 2.0 Traseros</label>
-                  <input
-                    className={styles.formInput}
-                    placeholder=""
-                    type="text"
-                    name="Puertos Usb 2.0 Traseros"
-                    onChange={(e) => handleDetailsInput(e)}
-                    value={
-                      product.details.connectivity["Puertos Usb 2.0 Traseros"]
-                    }
-                  />
-                  <label>Puertos Usb 3.0 Traseros</label>
-                  <input
-                    className={styles.formInput}
-                    placeholder=""
-                    type="text"
-                    name="Puertos Usb 3.0 Traseros"
-                    onChange={(e) => handleDetailsInput(e)}
-                    value={
-                      product.details.connectivity["Puertos Usb 3.0 Traseros"]
-                    }
-                  />
-                  <label>Puertos Usb 3.1 Traseros</label>
-                  <input
-                    className={styles.formInput}
-                    placeholder=""
-                    type="text"
-                    name="Puertos Usb 3.1 Traseros"
-                    onChange={(e) => handleDetailsInput(e)}
-                    value={
-                      product.details.connectivity["Puertos Usb 3.1 Traseros"]
-                    }
-                  />
-                  <label>Puertos Usb 3.2 Traseros</label>
-                  <input
-                    className={styles.formInput}
-                    placeholder=""
-                    type="text"
-                    name="Puertos Usb 3.2 Traseros"
-                    onChange={(e) => handleDetailsInput(e)}
-                    value={
-                      product.details.connectivity["Puertos Usb 3.2 Traseros"]
-                    }
-                  />
-                  <label>Puertos Usb Type-c</label>
-                  <input
-                    className={styles.formInput}
-                    placeholder=""
-                    type="text"
-                    name="Puertos Usb Type-c"
-                    onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.connectivity["Puertos Usb Type-c"]}
-                  />
-                  <label>Cantidad De Slot Pci-e 4X</label>
-                  <input
-                    className={styles.formInput}
-                    placeholder=""
-                    type="text"
-                    name="Cantidad De Slot Pci-e 4X"
-                    onChange={(e) => handleDetailsInput(e)}
-                    value={
-                      product.details.connectivity["Cantidad De Slot Pci-e 4X"]
-                    }
-                  />
-                  <label>Cantidad De Slot M.2 Sata</label>
-                  <input
-                    className={styles.formInput}
-                    placeholder=""
-                    type="text"
-                    name="Cantidad De Slot M.2 Sata"
-                    onChange={(e) => handleDetailsInput(e)}
-                    value={
-                      product.details.connectivity["Cantidad De Slot M.2 Sata"]
-                    }
-                  />
-                  <label>Cantidad De Slot M.2 Nvme</label>
-                  <input
-                    className={styles.formInput}
-                    placeholder=""
-                    type="text"
-                    name="Cantidad De Slot M.2 Nvme"
-                    onChange={(e) => handleDetailsInput(e)}
-                    value={
-                      product.details.connectivity["Cantidad De Slot M.2 Nvme"]
-                    }
-                  />
+                  <label>
+                    Cantidad De Slot Pci-e 16X
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="Cantidad De Slot Pci-e 16X"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={
+                        product.details?.connectivity?.[
+                          "Cantidad De Slot Pci-e 16X"
+                        ]
+                      }
+                    />
+                  </label>
+                  <label>
+                    Cantidad De Slot Pci-e 1X
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="Cantidad De Slot Pci-e 1X"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={
+                        product.details?.connectivity?.[
+                          "Cantidad De Slot Pci-e 1X"
+                        ]
+                      }
+                    />
+                  </label>
+                  <label>
+                    Tecnologia Multi Gpu
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="Tecnologia Multi Gpu"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={
+                        product.details?.connectivity?.["Tecnologia Multi Gpu"]
+                      }
+                    />
+                  </label>
+                  <label>
+                    Puertos Sata
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="Puertos Sata"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={product.details?.connectivity?.["Puertos Sata"]}
+                    />
+                  </label>
+                  <label>
+                    Salida Vga
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="Salida Vga"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={product.details?.connectivity?.["Salida Vga"]}
+                    />
+                  </label>
+                  <label>
+                    Salida HDMI
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="Salida HDMI"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={product.details?.connectivity?.["Salida HDMI"]}
+                    />
+                  </label>
+                  <label>
+                    Salida Dvi
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="Salida Dvi"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={product.details?.connectivity?.["Salida Dvi"]}
+                    />
+                  </label>
+                  <label>
+                    Salidas Display Ports
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="Salidas Display Ports"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={
+                        product.details?.connectivity?.["Salidas Display Ports"]
+                      }
+                    />
+                  </label>
+                  <label>
+                    Cantidad de Slot M.2 Totales
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="Cantidad de Slot M.2 Totales"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={
+                        product.details?.connectivity?.[
+                          "Cantidad de Slot M.2 Totales"
+                        ]
+                      }
+                    />
+                  </label>
+                  <label>
+                    Placa Wifi Integrada
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="Placa Wifi Integrada"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={
+                        product.details?.connectivity?.["Placa Wifi Integrada"]
+                      }
+                    />
+                  </label>
+                  <label>
+                    Placa de Red
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="Placa de Red"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={product.details?.connectivity?.["Placa de Red"]}
+                    />
+                  </label>
+                  <label>
+                    Puerto Ps/2
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="Puerto Ps/2"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={product.details?.connectivity?.["Puerto Ps/2"]}
+                    />
+                  </label>
+                  <label>
+                    Puertos Usb 2.0 Traseros
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="Puertos Usb 2.0 Traseros"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={
+                        product.details?.connectivity?.[
+                          "Puertos Usb 2.0 Traseros"
+                        ]
+                      }
+                    />
+                  </label>
+                  <label>
+                    Puertos Usb 3.0 Traseros
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="Puertos Usb 3.0 Traseros"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={
+                        product.details?.connectivity?.[
+                          "Puertos Usb 3.0 Traseros"
+                        ]
+                      }
+                    />
+                  </label>
+                  <label>
+                    Puertos Usb 3.1 Traseros
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="Puertos Usb 3.1 Traseros"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={
+                        product.details?.connectivity?.[
+                          "Puertos Usb 3.1 Traseros"
+                        ]
+                      }
+                    />
+                  </label>
+                  <label>
+                    Puertos Usb 3.2 Traseros
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="Puertos Usb 3.2 Traseros"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={
+                        product.details?.connectivity?.[
+                          "Puertos Usb 3.2 Traseros"
+                        ]
+                      }
+                    />
+                  </label>
+                  <label>
+                    Puertos Usb Type-c
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="Puertos Usb Type-c"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={
+                        product.details?.connectivity?.["Puertos Usb Type-c"]
+                      }
+                    />
+                  </label>
+                  <label>
+                    Cantidad De Slot Pci-e 4X
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="Cantidad De Slot Pci-e 4X"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={
+                        product.details?.connectivity?.[
+                          "Cantidad De Slot Pci-e 4X"
+                        ]
+                      }
+                    />
+                  </label>
+                  <label>
+                    Cantidad De Slot M.2 Sata
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="Cantidad De Slot M.2 Sata"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={
+                        product.details?.connectivity?.[
+                          "Cantidad De Slot M.2 Sata"
+                        ]
+                      }
+                    />
+                  </label>
+                  <label>
+                    Cantidad De Slot M.2 Nvme
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="Cantidad De Slot M.2 Nvme"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={
+                        product.details?.connectivity?.[
+                          "Cantidad De Slot M.2 Nvme"
+                        ]
+                      }
+                    />
+                  </label>
                 </>
               ) : product.type === "procesador" ? (
                 <>
@@ -528,7 +590,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="Modelo"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.Modelo}
+                    value={product.details?.Modelo}
                   />
                   <label>Socket</label>
                   <input
@@ -537,7 +599,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="Socket"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.Socket}
+                    value={product.details?.Socket}
                   />
                   <label>Núcleos</label>
                   <input
@@ -546,7 +608,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="Núcleos"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details["Núcleos"]}
+                    value={product.details?.["Núcleos"]}
                   />
                   <label>Frecuencia</label>
                   <input
@@ -555,7 +617,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="Frecuencia"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.Frecuencia}
+                    value={product.details?.Frecuencia}
                   />
                   <label>Proceso_De_Fabricación</label>
                   <input
@@ -564,7 +626,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="Proceso_De_Fabricación"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.Proceso_De_Fabricación}
+                    value={product.details?.Proceso_De_Fabricación}
                   />
                   <label>Gpu</label>
                   <input
@@ -573,7 +635,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="Gpu"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.Gpu}
+                    value={product.details?.Gpu}
                   />
                   <label>Hilos</label>
                   <input
@@ -582,7 +644,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="Hilos"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.Hilos}
+                    value={product.details?.Hilos}
                   />
                   <label>Frecuencia Turbo</label>
                   <input
@@ -591,7 +653,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="Frecuencia_Turbo"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.Frecuencia_Turbo}
+                    value={product.details?.Frecuencia_Turbo}
                   />
                 </>
               ) : product.type === "disco" ? (
@@ -603,7 +665,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="type"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.type}
+                    value={product.details?.type}
                   />
                   <label>Capacidad</label>
                   <input
@@ -612,7 +674,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="capacity"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.capacity}
+                    value={product.details?.capacity}
                   />
                   <label>Frecuencia</label>
                   <input
@@ -621,7 +683,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="frequency"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.frequency}
+                    value={product.details?.frequency}
                   />
                   <label>BUS</label>
                   <input
@@ -630,7 +692,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="bus"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.bus}
+                    value={product.details?.bus}
                   />
                   <label>Búfer</label>
                   <input
@@ -639,7 +701,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="bufer"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.bufer}
+                    value={product.details?.bufer}
                   />
                   <label>Dimensiones</label>
                   <input
@@ -648,7 +710,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="size"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.size}
+                    value={product.details?.size}
                   />
                 </>
               ) : product.type === "ram" ? (
@@ -660,7 +722,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="type"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.type}
+                    value={product.details?.type}
                   />
                   <label>Formato</label>
                   <input
@@ -669,7 +731,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="format"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.format}
+                    value={product.details?.format}
                   />
                   <label>Frecuencia</label>
                   <input
@@ -678,7 +740,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="frequency"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.frequency}
+                    value={product.details?.frequency}
                   />
                   <label>Capacidad</label>
                   <input
@@ -687,7 +749,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="capacity"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.capacity}
+                    value={product.details?.capacity}
                   />
                   <label>Latencia</label>
                   <input
@@ -696,7 +758,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="latency"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.latency}
+                    value={product.details?.latency}
                   />
                   <label>Voltaje</label>
                   <input
@@ -705,7 +767,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="voltage"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.voltage}
+                    value={product.details?.voltage}
                   />
                   <label>RGB</label>
                   <input
@@ -714,7 +776,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="RGB"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.RGB}
+                    value={product.details?.RGB}
                   />
                   <label>Disipador</label>
                   <input
@@ -723,7 +785,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="disipador"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.disipador}
+                    value={product.details?.disipador}
                   />
                 </>
               ) : product.type === "solido" ? (
@@ -735,7 +797,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="type"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.type}
+                    value={product.details?.type}
                   />
                   <label>Capacidad</label>
                   <input
@@ -744,7 +806,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="capacity"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.capacity}
+                    value={product.details?.capacity}
                   />
                   <label>Tamaño</label>
                   <input
@@ -753,7 +815,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="size"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.size}
+                    value={product.details?.size}
                   />
                   <label>bus</label>
                   <input
@@ -762,7 +824,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="bus"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.bus}
+                    value={product.details?.bus}
                   />
                   <label>Lectura</label>
                   <input
@@ -771,7 +833,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="lectura"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.lectura}
+                    value={product.details?.lectura}
                   />
                   <label>Escritura</label>
                   <input
@@ -780,7 +842,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="escritura"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.escritura}
+                    value={product.details?.escritura}
                   />
                 </>
               ) : product.type === "tarjeta" ? (
@@ -792,7 +854,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="tipo"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.tipo}
+                    value={product.details?.tipo}
                   />
                   <label>Chipset Gpu</label>
                   <input
@@ -801,7 +863,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="chipsetGpu"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.chipsetGpu}
+                    value={product.details?.chipsetGpu}
                   />
                   <label>Caracteristicas Especiales</label>
                   <input
@@ -810,7 +872,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="CaracteristicasEspeciales"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.CaracteristicasEspeciales}
+                    value={product.details?.CaracteristicasEspeciales}
                   />
                   <label>Dimensiones</label>
                   <input
@@ -819,7 +881,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="dimensiones"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.dimensiones}
+                    value={product.details?.dimensiones}
                   />
                   <label>Conectividad</label>
                   <input
@@ -828,7 +890,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="conectividad"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.conectividad}
+                    value={product.details?.conectividad}
                   />
                   <label>Consumo</label>
                   <input
@@ -837,7 +899,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="consumo"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.consumo}
+                    value={product.details?.consumo}
                   />
                   <label>Watts Recomendados</label>
                   <input
@@ -846,7 +908,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="wattsRecomendados"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.wattsRecomendados}
+                    value={product.details?.wattsRecomendados}
                   />
                   <label>Cantidad Pcie De 6 Pines</label>
                   <input
@@ -855,7 +917,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="CantidadPcieDe6Pines"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.CantidadPcieDe6Pines}
+                    value={product.details?.CantidadPcieDe6Pines}
                   />
                   <label>Cantidad Pcie De 8 Pines</label>
                   <input
@@ -864,7 +926,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="CantidadPcieDe8Pines"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.CantidadPcieDe8Pines}
+                    value={product.details?.CantidadPcieDe8Pines}
                   />
                   <label>Backplate</label>
                   <input
@@ -873,7 +935,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="backplate"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.backplate}
+                    value={product.details?.backplate}
                   />
                   <label>Block Vga Water Cooling</label>
                   <input
@@ -882,7 +944,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="BlockVgaWaterCooling"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.BlockVgaWaterCooling}
+                    value={product.details?.BlockVgaWaterCooling}
                   />
                   <label>Cantidad Cooler</label>
                   <input
@@ -891,7 +953,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="cantidadCooler"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.cantidadCooler}
+                    value={product.details?.cantidadCooler}
                   />
                   <label>Velocidad Memoria</label>
                   <input
@@ -900,7 +962,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="velocidadMemoria"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.velocidadMemoria}
+                    value={product.details?.velocidadMemoria}
                   />
                   <label>Tipo De Memoria</label>
                   <input
@@ -909,7 +971,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="tipoDeMemoria"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.tipoDeMemoria}
+                    value={product.details?.tipoDeMemoria}
                   />
                   <label>Capasidad De Memoria</label>
                   <input
@@ -918,7 +980,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="CapasidadDeMemoria"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.CapasidadDeMemoria}
+                    value={product.details?.CapasidadDeMemoria}
                   />
                   <label>Interface De Memoria</label>
                   <input
@@ -927,7 +989,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="interfaceDeMemoria"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.interfaceDeMemoria}
+                    value={product.details?.interfaceDeMemoria}
                   />
                   <label>Velosidad Core Turbo</label>
                   <input
@@ -936,7 +998,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="VelosidadCoreTurbo"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.VelosidadCoreTurbo}
+                    value={product.details?.VelosidadCoreTurbo}
                   />
                   <label>Tipo De Procesos</label>
                   <input
@@ -945,7 +1007,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="tipoDeProcesos"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.tipoDeProcesos}
+                    value={product.details?.tipoDeProcesos}
                   />
                   <label>Cantidad De Procesos</label>
                   <input
@@ -954,7 +1016,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="CantidadDeProcesos"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.CantidadDeProcesos}
+                    value={product.details?.CantidadDeProcesos}
                   />
                 </>
               ) : product.type === "pantalla" ? (
@@ -966,7 +1028,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="tiempoDeRespuesta"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.tiempoDeRespuesta}
+                    value={product.details?.tiempoDeRespuesta}
                   />
                   <label>Tipo De Panel</label>
                   <input
@@ -975,7 +1037,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="tipoDePanel"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.tipoDePanel}
+                    value={product.details?.tipoDePanel}
                   />
                   <label>Resolution</label>
                   <input
@@ -984,7 +1046,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="resolution"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.resolution}
+                    value={product.details?.resolution}
                   />
                   <label>Iluminacion</label>
                   <input
@@ -993,7 +1055,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="iluminacion"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.iluminacion}
+                    value={product.details?.iluminacion}
                   />
                   <label>Consumo</label>
                   <input
@@ -1002,7 +1064,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="consumo"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.consumo}
+                    value={product.details?.consumo}
                   />
                   <label>Connectivity</label>
                   <input
@@ -1011,7 +1073,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="connectivity"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.connectivity}
+                    value={product.details?.connectivity}
                   />
                   <label>RGB</label>
                   <input
@@ -1020,7 +1082,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="RGB"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.RGB}
+                    value={product.details?.RGB}
                   />
                   <label>Peso</label>
                   <input
@@ -1029,7 +1091,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="peso"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.peso}
+                    value={product.details?.peso}
                   />
                   <label>Frequency</label>
                   <input
@@ -1038,7 +1100,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="frequency"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.frequency}
+                    value={product.details?.frequency}
                   />
                   <label>Pulgadas</label>
                   <input
@@ -1047,7 +1109,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="pulgadas"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.pulgadas}
+                    value={product.details?.pulgadas}
                   />
                 </>
               ) : product.type === "fuente" ? (
@@ -1059,7 +1121,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="Watts"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.Watts}
+                    value={product.details?.Watts}
                   />
                   <label>Formato</label>
                   <input
@@ -1068,7 +1130,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="format"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.Format}
+                    value={product.details?.Format}
                   />
                   <label>Color</label>
                   <input
@@ -1077,7 +1139,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="Color"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.Color}
+                    value={product.details?.Color}
                   />
                   <label>Operating Temperature</label>
                   <input
@@ -1086,7 +1148,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="Operating temperature"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details["Operating Temperature"]}
+                    value={product.details?.["Operating Temperature"]}
                   />
                   <label>Dimensiones</label>
                   <input
@@ -1095,7 +1157,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="Dimensions"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.Dimensions}
+                    value={product.details?.Dimensions}
                   />
                   <label>Input Voltage</label>
                   <input
@@ -1104,7 +1166,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="Input voltage"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details["Input Voltage"]}
+                    value={product.details?.["Input Voltage"]}
                   />
                   <label>Cooling system</label>
                   <input
@@ -1113,7 +1175,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="Cooling system"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details["Cooling system"]}
+                    value={product.details?.["Cooling system"]}
                   />
                   <label>RGB Fan</label>
                   <input
@@ -1122,7 +1184,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="RGB Fan"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details["RGB Fan"]}
+                    value={product.details?.["RGB Fan"]}
                   />
                 </>
               ) : product.type === "teclado" ? (
@@ -1134,7 +1196,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="RGB"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.RGB}
+                    value={product.details?.RGB}
                   />
                   <label>Color</label>
                   <input
@@ -1143,7 +1205,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="color"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.color}
+                    value={product.details?.color}
                   />
                   <label>Conectividad</label>
                   <input
@@ -1152,7 +1214,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="connectivity"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.connectivity}
+                    value={product.details?.connectivity}
                   />
                   <label>Tipo de teclado</label>
                   <input
@@ -1161,7 +1223,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="tipo_de_teclado"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.tipo_de_teclado}
+                    value={product.details?.tipo_de_teclado}
                   />
                   <label>Tipo de mecanismo</label>
                   <input
@@ -1170,7 +1232,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="tipo_de_mecanismo"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.tipo_de_mecanismo}
+                    value={product.details?.tipo_de_mecanismo}
                   />
                   <label>Dimensiones</label>
                   <label>
@@ -1181,7 +1243,7 @@ function ProductFormAdmin() {
                       type="text"
                       name="dimensions"
                       onChange={(e) => handleDetailsInput(e)}
-                      value={product.details.dimensions.ancho}
+                      value={product.details?.dimensions?.ancho}
                     />
                   </label>
                   <label>
@@ -1192,7 +1254,7 @@ function ProductFormAdmin() {
                       type="text"
                       name="dimensions"
                       onChange={(e) => handleDetailsInput(e)}
-                      value={product.details.dimensions.profundidad}
+                      value={product.details?.dimensions?.profundidad}
                     />
                   </label>
                   <label>
@@ -1203,7 +1265,7 @@ function ProductFormAdmin() {
                       type="text"
                       name="dimensions"
                       onChange={(e) => handleDetailsInput(e)}
-                      value={product.details.dimensions.alto}
+                      value={product.details?.dimensions?.alto}
                     />
                   </label>
                 </>
@@ -1216,7 +1278,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="RGB"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.RGB}
+                    value={product.details?.RGB}
                   />
                   <label>Fans</label>
                   <input
@@ -1225,7 +1287,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="fans"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.fans}
+                    value={product.details?.fans}
                   />
                   <label>nivel de ruido</label>
                   <input
@@ -1234,7 +1296,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="nivel de ruido"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details["nivel de ruido"]}
+                    value={product.details?.["nivel de ruido"]}
                   />
                   <label>Consumo</label>
                   <input
@@ -1243,7 +1305,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="consumo"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.consumo}
+                    value={product.details?.consumo}
                   />
                   <label>TDP</label>
                   <input
@@ -1252,7 +1314,7 @@ function ProductFormAdmin() {
                     type="text"
                     name="tdp"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.tdp}
+                    value={product.details?.tdp}
                   />
                   <label>Disipación</label>
                   <input
@@ -1261,240 +1323,473 @@ function ProductFormAdmin() {
                     type="text"
                     name="disipasión"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details["disipasión"]}
+                    value={product.details?.["disipasión"]}
                   />
 
-                  <label>Dimenciones</label>
+                  <label>Dimensiones</label>
                   <label>
                     Altura
                     <input
                       className={styles.formInput}
-                      placeholder="ej: 230 mm"
+                      placeholder="ej: 66 mm"
                       type="text"
                       name="dimensions"
                       onChange={(e) => handleDetailsInput(e)}
-                      value={product.details.dimensions.altura}
+                      value={product.details?.dimensions?.altura}
                     />
                   </label>
                   <label>
                     Tamaño Coolers
                     <input
                       className={styles.formInput}
-                      placeholder="ej:173 mm"
+                      placeholder="ej: 120 mm"
                       type="text"
                       name="dimensions"
                       onChange={(e) => handleDetailsInput(e)}
-                      value={product.details.dimensions.tamaño_coolers}
+                      value={product.details?.dimensions?.tamaño_coolers}
                     />
                   </label>
-                  <label>Compatibilidad</label>
+                  <label>Compatibilidades</label>
                   <input
                     className={styles.formInput}
-                    placeholder="ej: 230 mm x 173 mm..."
+                    placeholder="..."
                     type="text"
                     name="compatibilidad"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.compatibilidad}
+                    value={product.details?.compatibilidad?.[0]}
                   />
-                  {/* #################################################################################################################################################################################################################################################################### */}
+                  <input
+                    className={styles.formInput}
+                    placeholder="..."
+                    type="text"
+                    name="compatibilidad"
+                    onChange={(e) => handleDetailsInput(e)}
+                    value={product.details?.compatibilidad?.[1]}
+                  />
+                  <input
+                    className={styles.formInput}
+                    placeholder="..."
+                    type="text"
+                    name="compatibilidad"
+                    onChange={(e) => handleDetailsInput(e)}
+                    value={product.details?.compatibilidad?.[2]}
+                  />
+                  <input
+                    className={styles.formInput}
+                    placeholder="..."
+                    type="text"
+                    name="compatibilidad"
+                    onChange={(e) => handleDetailsInput(e)}
+                    value={product.details?.compatibilidad?.[3]}
+                  />
+                  <input
+                    className={styles.formInput}
+                    placeholder="..."
+                    type="text"
+                    name="compatibilidad"
+                    onChange={(e) => handleDetailsInput(e)}
+                    value={product.details?.compatibilidad?.[4]}
+                  />
+                  <input
+                    className={styles.formInput}
+                    placeholder="..."
+                    type="text"
+                    name="compatibilidad"
+                    onChange={(e) => handleDetailsInput(e)}
+                    value={product.details?.compatibilidad?.[5]}
+                  />
                 </>
               ) : product.type === "mouse" ? (
                 <>
-                  <label>RGB</label>
+                  <label>Luces RGB</label>
                   <input
                     className={styles.formInput}
-                    placeholder=""
+                    placeholder="ej: none"
                     type="text"
-                    name="RGB"
+                    name="rgb"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.name}
+                    value={product.details?.rgb}
                   />
-                  <label>description</label>
+                  <label>Descripción</label>
                   <input
                     className={styles.formInput}
                     placeholder=""
                     type="text"
                     name="description"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.name}
+                    value={product.details?.description}
                   />
-                  <label>connectivity</label>
-                  <input
-                    className={styles.formInput}
-                    placeholder=""
-                    type="text"
-                    name="connectivity"
-                    onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.name}
-                  />
-                  <label>sensitivity</label>
+                  <label>Conectividades</label>
+                  <label>
+                    1:
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="connectivity"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={product.details?.connectivity?.[0]}
+                    />
+                  </label>
+                  <label>
+                    2:
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="connectivity"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={product.details?.connectivity?.[1]}
+                    />
+                  </label>
+                  <label>
+                    3:
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="connectivity"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={product.details?.connectivity?.[2]}
+                    />
+                  </label>
+                  <label>
+                    4:
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="connectivity"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={product.details?.connectivity?.[3]}
+                    />
+                  </label>
+                  <label>Sensibilidad</label>
                   <input
                     className={styles.formInput}
                     placeholder="ej: De Mano..."
                     type="text"
                     name="sensitivity"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.name}
+                    value={product.details?.sensitivity}
                   />
-                  <label>buttons</label>
+                  <label>Botones</label>
                   <input
                     className={styles.formInput}
                     placeholder=""
                     type="text"
                     name="buttons"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.name}
+                    value={product.details?.buttons}
                   />
-                  <label>clicks</label>
+                  <label>Clicks</label>
                   <input
                     className={styles.formInput}
                     placeholder="ej: 230 mm x 173 mm x 37 mm..."
                     type="text"
                     name="clicks"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.name}
+                    value={product.details?.clicks}
                   />
-                  <label>sizes</label>
+                  <label>Dimensiones</label>
+                  <label>
+                    Longitud
+                    <input
+                      className={styles.formInput}
+                      type="text"
+                      name="sizes"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={product.details?.sizes?.longitud}
+                    />
+                  </label>
+                  <label>
+                    Ancho
+                    <input
+                      className={styles.formInput}
+                      type="text"
+                      name="sizes"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={product.details?.sizes?.ancho}
+                    />
+                  </label>
+                  <label>
+                    Altura
+                    <input
+                      className={styles.formInput}
+                      type="text"
+                      name="sizes"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={product.details?.sizes?.altura}
+                    />
+                  </label>
+                  <label>Peso</label>
                   <input
                     className={styles.formInput}
-                    placeholder="ej: 230 mm x 173 mm x 37 mm..."
-                    type="text"
-                    name="sizes"
-                    onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.name}
-                  />
-                  <label>weight</label>
-                  <input
-                    className={styles.formInput}
-                    placeholder="ej: 230 mm x 173 mm x 37 mm..."
                     type="text"
                     name="weight"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.name}
+                    value={product.details?.weight}
                   />
                 </>
               ) : product.type === "auricular" ? (
                 <>
-                  <label>audio</label>
+                  <label>Audio</label>
                   <input
                     className={styles.formInput}
                     placeholder=""
                     type="text"
                     name="audio"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.name}
+                    value={product.details?.audio}
                   />
-                  <label>color</label>
+                  <label>Color</label>
                   <input
                     className={styles.formInput}
                     placeholder=""
                     type="text"
                     name="color"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.name}
+                    value={product.details?.color}
                   />
-                  <label>conexion</label>
+                  <label>Conexión</label>
                   <input
                     className={styles.formInput}
                     placeholder=""
                     type="text"
                     name="conexion"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.name}
+                    value={product.details?.conexion}
                   />
-                  <label>microfono</label>
+                  <label>Micrófono</label>
                   <input
                     className={styles.formInput}
                     placeholder="ej: De Mano..."
                     type="text"
                     name="microfono"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.name}
+                    value={product.details?.microfono}
                   />
                   <label>Tipo De Audio</label>
                   <input
                     className={styles.formInput}
                     placeholder=""
                     type="text"
-                    name="Tipo De Audio"
+                    name="TipoDeAudio"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.name}
+                    value={product.details?.TipoDeAudio}
                   />
                 </>
               ) : product.type === "gabinete" ? (
                 <>
-                  <label>dimensions</label>
+                  <label>Dimensiones</label>
                   <input
                     className={styles.formInput}
-                    placeholder=""
+                    placeholder="ej: 52 cm x 24.5 cm x 52 cm"
                     type="text"
                     name="dimensions"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.name}
+                    value={product.details?.dimensions}
                   />
-                  <label>weight</label>
+                  <label>Peso</label>
                   <input
                     className={styles.formInput}
                     placeholder=""
                     type="text"
                     name="weight"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.name}
+                    value={product.details?.weight}
                   />
-                  <label>cooling</label>
-                  <input
-                    className={styles.formInput}
-                    placeholder=""
-                    type="text"
-                    name="cooling"
-                    onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.name}
-                  />
-                  <label>color</label>
+
+                  <label>Cooling</label>
+
+                  <label>
+                    Front Fans Num
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="cooling"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={product.details?.cooling?.front_fans_num}
+                    />
+                  </label>
+                  <label>Front Fans Dimension(mm)</label>
+                  <label>
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="cooling"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={
+                        product.details?.cooling?.front_fans_dimension_mm?.[0]
+                      }
+                    />
+                  </label>
+                  <label>
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="cooling"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={
+                        product.details?.cooling?.front_fans_dimension_mm?.[1]
+                      }
+                    />
+                  </label>
+                  <label>
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="cooling"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={
+                        product.details?.cooling?.front_fans_dimension_mm?.[2]
+                      }
+                    />
+                  </label>
+                  <label>
+                    Back Fans Num
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="cooling"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={product.details?.cooling?.back_fans_num}
+                    />
+                  </label>
+                  <label>Back Fans Dimension(mm)</label>
+                  <label>
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="cooling"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={
+                        product.details?.cooling?.back_fans_dimension_mm?.[0]
+                      }
+                    />
+                  </label>
+                  <label>Color</label>
                   <input
                     className={styles.formInput}
                     placeholder="ej: De Mano..."
                     type="text"
                     name="color"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.name}
+                    value={product.details?.color}
                   />
-                  <label>material</label>
+                  <label>Materiales</label>
                   <input
                     className={styles.formInput}
                     placeholder=""
                     type="text"
                     name="material"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.name}
+                    value={product.details?.material}
                   />
-                  <label>RGB</label>
+                  <label>Luces RGB</label>
                   <input
                     className={styles.formInput}
                     placeholder=""
                     type="text"
                     name="RGB"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.name}
+                    value={product.details?.RGB}
                   />
-                  <label>structure type</label>
+                  <label>Tipo de Estructura</label>
                   <input
                     className={styles.formInput}
                     placeholder=""
                     type="text"
                     name="structure type"
                     onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.name}
+                    value={product.details?.["structure type"]}
                   />
-                  <label>connectivity</label>
-                  <input
-                    className={styles.formInput}
-                    placeholder=""
-                    type="text"
-                    name="connectivity"
-                    onChange={(e) => handleDetailsInput(e)}
-                    value={product.details.name}
-                  />
+
+                  <label>Conectividad</label>
+                  <label>Disk</label>
+                  <label>
+                    HDD
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="connectivity"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={product.details?.connectivity?.disk?.hdd}
+                    />
+                  </label>
+                  <label>
+                    SSD
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="connectivity"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={product.details?.connectivity?.disk?.ssd}
+                    />
+                  </label>
+                  <label>
+                    Size Inch
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="connectivity"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={product.details?.connectivity?.disk?.size_inch}
+                    />
+                  </label>
+                  <label>
+                    Fuente de Alimentación
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="connectivity"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={product.details?.connectivity?.power_supply_type}
+                    />
+                  </label>
+                  <label>
+                    Tipo de Mother
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="connectivity"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={product.details?.connectivity?.mother_types}
+                    />
+                  </label>
+                  <label>
+                    Máxima longitud PSU
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="connectivity"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={product.details?.connectivity?.max_length_psu}
+                    />
+                  </label>
+                  <label>
+                    Máxima longitud GPU
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="connectivity"
+                      onChange={(e) => handleDetailsInput(e)}
+                      value={product.details?.connectivity?.max_length_gpu}
+                    />
+                  </label>
                 </>
               ) : null}
 

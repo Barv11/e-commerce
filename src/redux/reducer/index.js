@@ -10,7 +10,7 @@ import {
   ORDER_NAME,
   ORDER_PRECIO,
   POST_PRODUCT,
-  ADD_PRODUCT,
+  UPDATE_PRODUCT,
   ADD_CART_PRODUCTS,
   REGISTER_USER,
   GET_USER,
@@ -56,19 +56,16 @@ function rootReducer(state = initialState, action) {
         searchByNameProduct: [],
         searchByIdProduct: {},
       };
-    case ADD_PRODUCT:
-      return {
-        ...state,
-        allProducts: [],
-        searchByNameProduct: [],
-        searchByIdProduct: {},
-      };
-
     case POST_PRODUCT:
       return {
         ...state,
         allProducts: [...state.allProducts, action.payload],
       };
+    case UPDATE_PRODUCT:
+      return {
+        ...state,
+      };
+
     case GET_CURRENT_USER:
       console.log(state);
       return {

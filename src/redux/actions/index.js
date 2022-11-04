@@ -7,7 +7,7 @@ import {
   ORDER_PRECIO,
   SEARCH_PRODUCT_BY_ID,
   POST_PRODUCT,
-  ADD_PRODUCT,
+  UPDATE_PRODUCT,
   ADD_CART_PRODUCTS,
   REGISTER_USER,
   GET_USER,
@@ -46,6 +46,15 @@ export function postProduct(payload, { token }) {
   };
 }
 
+export const updateProduct = (product) => async (dispatch) => {
+  
+  const { id, name, brand, img, details, cost, type } = product
+  
+  const response = await axios.put("http://localhost:3001/productos?id="+id, {name, brand, img, details, cost, type});
+  
+  dispatch({ type: UPDATE_PRODUCT, payload: response.data });
+};
+
 export const searchProductByName = (name) => async (dispatch) => {
   const productos = await axios.get("http://localhost:3001/productos");
   const productosbyName = productos.data.filter((p) =>
@@ -62,10 +71,6 @@ export const searchProductById = (id) => async (dispatch) => {
 
 export const clearProducts = () => (dispatch) => {
   dispatch({ type: CLEAR_PRODUCTS });
-};
-
-export const addProduct = (payload) => {
-  return { type: ADD_PRODUCT, payload };
 };
 
 export const getCurrentUser = (obj) => (dispatch) => {
