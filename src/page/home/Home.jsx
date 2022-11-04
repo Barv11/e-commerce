@@ -22,10 +22,10 @@ export default function Home() {
   useEffect(() => {
     if (user.logged) {
       dispatch(getUser(user.token));
-      // dispatch(getCartProduct(userFound.id));
     }
   }, []);
 
+  
   return (
     <div>
       <Navbar />

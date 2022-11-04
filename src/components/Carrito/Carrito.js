@@ -6,7 +6,11 @@ import CardCarrito from "./CardCarrito";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getCartProduct, addCartProduct } from "../../redux/actions";
+import {
+  getCartProduct,
+  addCartProduct,
+  deleteCartProduct,
+} from "../../redux/actions";
 
 export default function Carrito() {
   const dispatch = useDispatch();
@@ -16,6 +20,8 @@ export default function Carrito() {
     JSON.parse(localStorage.getItem("products") || "[]")
   );
   const [loading, setLoading] = useState(true);
+
+  const [dbProducts, setDbProducts] = useState([]);
 
   localStorage.setItem("products", JSON.stringify(products));
 
@@ -30,47 +36,82 @@ export default function Carrito() {
 
   const [user] = useState(JSON.parse(localStorage.getItem("user")));
 
+  useEffect(() => {
+    const fn = async () => {
+      if (user.logged) {
+        if (cartProducts?.length < 1) {
+          await dispatch(addCartProduct(userFound.id, products));
+          await dispatch(getCartProduct(userFound.id));
+          setProducts([]);
+        } else {
+          await dispatch(getCartProduct(userFound.id));
+          setProducts([]);
+        }
+        setLoading(false);
+      } else {
+        setLoading(false);
+      }
+    };
+    fn();
+  }, [userFound, dbProducts,setDbProducts, dispatch, addCartProduct, getCartProduct]);
 
   useEffect(() => {
-    if (user.logged) {
-      dispatch(addCartProduct(userFound.id, products));
-      dispatch(getCartProduct(userFound.id));
-      // deleteCart();
-      console.log("contame")
-    } else {
-      setProducts(products);
-    }
-  }, [ userFound, dispatch, addCartProduct, getCartProduct]);
-
-  setTimeout(() => {
-    setLoading(false);
-    if (cartProducts) {
-      setProducts(cartProducts);
-      localStorage.setItem("products", JSON.stringify([]));
-    }
-  }, 2000);
+    setDbProducts(cartProducts);
+  }, [cartProducts]);
 
   const handleCartQuantity = (id, quantity) => {
-    let finalProducts = [
-      ...products.map((el, index) => {
-        if (el.id === id) {
-          products[index].quantity = Number(quantity);
-        }
-        return el;
-      }),
-    ];
-    setProducts(finalProducts);
+    if (user.logged) {
+      let finalProducts = [
+        ...dbProducts.map((el, index) => {
+          if (el.id === id) {
+            dbProducts[index].quantity = Number(quantity);
+          }
+          return el;
+        }),
+      ];
+      setDbProducts(finalProducts);
+    } else {
+      let finalProducts = [
+        ...products.map((el, index) => {
+          if (el.id === id) {
+            products[index].quantity = Number(quantity);
+          }
+          return el;
+        }),
+      ];
+      setProducts(finalProducts);
+    }
   };
 
-  const deleteCartProduct = (id) => {
+  if (user.logged) {
+    localStorage.setItem("products", JSON.stringify(products));
+  }
+
+  const deleteCartProd = (id) => {
+    if (user.logged) {
+      dispatch(deleteCartProduct(id));
+      setDbProducts((oldProducts) => oldProducts.filter((p) => p.id !== id));
+    }
     setProducts((oldProducts) => oldProducts.filter((p) => p.id !== id));
   };
 
+  console.log("leeme");
+
   const deleteCart = () => {
-    setProducts([]);
+    if (user.logged) {
+      dbProducts.map((p) => {
+        deleteCartProd(p.id);
+      });
+    } else {
+      setProducts([]);
+    }
   };
 
   const totalProductsValue = products?.reduce((acc, p) => {
+    return acc + p.cost * p.quantity;
+  }, 0);
+
+  const totalDbProductsValue = dbProducts?.reduce((acc, p) => {
     return acc + p.cost * p.quantity;
   }, 0);
 
@@ -88,15 +129,32 @@ export default function Carrito() {
         </div>
         {loading ? (
           <p>Loading...</p>
+        ) : user.logged ? (
+          dbProducts?.length ? (
+            dbProducts.map((p) => (
+              <CardCarrito
+                key={p.id}
+                id={p.id}
+                name={p.name}
+                img={p.img}
+                cost={p.cost}
+                deleteCartProd={deleteCartProd}
+                handleCartQuantity={handleCartQuantity}
+                quantity={p.quantity}
+              />
+            ))
+          ) : (
+            <p id={s.p}>No hay items en el Carrito</p>
+          )
         ) : products.length ? (
-          products.map((p) => (
+          products?.map((p) => (
             <CardCarrito
               key={p.id}
               id={p.id}
               name={p.name}
               img={p.img}
               cost={p.cost}
-              deleteCartProduct={deleteCartProduct}
+              deleteCartProd={deleteCartProd}
               handleCartQuantity={handleCartQuantity}
               quantity={p.quantity}
             />
@@ -117,7 +175,11 @@ export default function Carrito() {
           </button>
         </div>
         <div className={s.checkOutContainer}>
-          <h3>{`$${totalProductsValue}`}</h3>
+          <h3>
+            {user.logged
+              ? `$${totalDbProductsValue}`
+              : `$${totalProductsValue}`}
+          </h3>
           <button>Continuar</button>
         </div>
       </div>

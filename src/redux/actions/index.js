@@ -13,6 +13,7 @@ import {
   GET_USER,
   GET_CART_PRODUCTS,
   CLEAR_CART_PRODUCTS,
+  DELETE_CART_PRODUCT,
 } from "./actionsTypes";
 import axios from "axios";
 import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "./actionsTypes";
@@ -136,4 +137,9 @@ export const getUser = (stringToken) => async (dispatch) => {
     myUser
   );
   dispatch({ type: GET_USER, payload: userFound.data });
+};
+
+export const deleteCartProduct = (id) => async (dispatch) => {
+  axios.post("http://localhost:3001/cart/delete", { id: id });
+  dispatch({ type: DELETE_CART_PRODUCT });
 };
