@@ -10,11 +10,12 @@ import {
   ORDER_NAME,
   ORDER_PRECIO,
   POST_PRODUCT,
-  ADD_PRODUCT,
+  UPDATE_PRODUCT,
   ADD_CART_PRODUCTS,
   REGISTER_USER,
   GET_USER,
   GET_CART_PRODUCTS,
+  GET_ALL_USERS,
   CLEAR_CART_PRODUCTS,
   DELETE_CART_PRODUCT,
 } from "../actions/actionsTypes";
@@ -27,6 +28,8 @@ const initialState = {
   loginAccess: {},
   userFound: {},
   cartProducts: [],
+  allUsers: [],
+=======
 };
 
 function rootReducer(state = initialState, action) {
@@ -58,19 +61,16 @@ function rootReducer(state = initialState, action) {
         searchByNameProduct: [],
         searchByIdProduct: {},
       };
-    case ADD_PRODUCT:
-      return {
-        ...state,
-        allProducts: [],
-        searchByNameProduct: [],
-        searchByIdProduct: {},
-      };
-
     case POST_PRODUCT:
       return {
         ...state,
         allProducts: [...state.allProducts, action.payload],
       };
+    case UPDATE_PRODUCT:
+      return {
+        ...state,
+      };
+
     case GET_CURRENT_USER:
       console.log(state);
       return {
@@ -153,6 +153,11 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+    case GET_ALL_USERS:
+      return {
+        ...state,
+        allUsers: action.payload,
+        };
   }
 }
 

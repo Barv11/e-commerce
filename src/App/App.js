@@ -1,9 +1,11 @@
 import { Route, Routes } from "react-router-dom";
 import { Products, Home, Profile} from '../page';
-import {CardDetail, Login, Register, CreateProduct, Carrito} from '../components'
+import {CardDetail, Login, Register, ProductFormAdmin, Carrito} from '../components'
 import AdminPage from "../page/Admin/AdminPage";
 import Orden from "../components/Orden/Orden";
+import AllUsers from "../components/ListaUsuarios/AllUsers";
 import { useState } from "react";
+
 
 function App() {
   
@@ -27,9 +29,11 @@ function App() {
       <Route exact path={"/register"} element={<Register />} />
       <Route path={"/products"} element={<Products />} />
       <Route path={"/detail/:id"} element={<CardDetail />} />
-      <Route path={"/create"} element={<CreateProduct />} />
+      <Route path={"/create"} element={<ProductFormAdmin />} />
+      <Route path={"/edit/:id"} element={<ProductFormAdmin />} />
       <Route path={"/admin"} element={<AdminPage />} />
       <Route path={"/orden"} element={<Orden />} />
+      <Route path={"/users"} element={<AllUsers />} />
       <Route path={"/carrito"} element={<Carrito />} />
       <Route path={"/create-checkout-session"} element={""} />
       <Route path={"/profile"} element={<Profile />} />
