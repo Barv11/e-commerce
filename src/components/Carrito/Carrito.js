@@ -13,7 +13,6 @@ import {
 } from "../../redux/actions";
 import Paybutton from "../PayButton/Paybutton";
 
-
 export default function Carrito() {
   const dispatch = useDispatch();
   const userFound = useSelector((state) => state.userFound);
@@ -40,22 +39,22 @@ export default function Carrito() {
 
   useEffect(() => {
     const fn = async () => {
+      await dispatch(getCartProduct(userFound.id));
       if (user.logged) {
         if (cartProducts?.length < 1) {
           await dispatch(addCartProduct(userFound.id, products));
           await dispatch(getCartProduct(userFound.id));
-          setProducts([]);
         } else {
           await dispatch(getCartProduct(userFound.id));
-          setProducts([]);
         }
-        setLoading(false);
-      } else {
-        setLoading(false);
+        setProducts([]);
       }
     };
     fn();
-  }, [userFound, dbProducts,setDbProducts, dispatch, addCartProduct, getCartProduct]);
+    setLoading(false);
+  }, [userFound, setDbProducts, dispatch, addCartProduct, getCartProduct]);
+
+  localStorage.setItem("products", JSON.stringify(products));
 
   useEffect(() => {
     setDbProducts(cartProducts);
@@ -85,10 +84,6 @@ export default function Carrito() {
     }
   };
 
-  if (user.logged) {
-    localStorage.setItem("products", JSON.stringify(products));
-  }
-
   const deleteCartProd = (id) => {
     if (user.logged) {
       dispatch(deleteCartProduct(id));
@@ -110,7 +105,6 @@ export default function Carrito() {
   const totalProductsValue = products?.reduce((acc, p) => {
     return acc + p.cost * p.quantity;
   }, 0);
-
 
   const totalDbProductsValue = dbProducts?.reduce((acc, p) => {
     return acc + p.cost * p.quantity;
@@ -181,9 +175,11 @@ export default function Carrito() {
               ? `$${totalDbProductsValue}`
               : `$${totalProductsValue}`}
           </h3>
-             {user.logged
-              ? <Paybutton cartItem={dbProducts} />
-              : <Paybutton cartItem={products} />}
+          {user.logged ? (
+            <Paybutton cartItem={dbProducts} />
+          ) : (
+            <Paybutton cartItem={products} />
+          )}
         </div>
       </div>
       <Footer />
