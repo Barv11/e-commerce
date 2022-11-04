@@ -4,7 +4,8 @@
 
 .line {
     position: relative;
-    text-align: center;
+    display: flex;
+    justify-content:space-evenly;
     margin: 2em 0;
 }
 
@@ -12,9 +13,16 @@
     position: relative;
     display: inline;
     text-align: center;
+    font-size: 2rem;
     padding: 0 1em;
     z-index: 10;
     background-color: rgb(255, 255, 255);
+    border: none;
+    outline: none;
+}
+
+.focus {
+    border-bottom: 3px solid rgb(180, 9, 172);
 }
 
 .line::before {
@@ -29,10 +37,10 @@
     bottom: 0;
     margin: auto;
     /* background-color: black; */
-    border: 1px solid rgb(63, 63, 63);
+    border: 1px solid rgb(180, 9, 172);
 }
 
-.container {
+.containerDetails {
     padding: 0 20%;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -41,9 +49,30 @@
     gap: 1em;
     font-family: 'Montserrat', sans-serif;
     justify-items: start;
-    align-items: center;
+    align-items:flex-start;
 }
 
-.container span {
+.containerReseñas {
+    display: flex;
+    gap: 2em;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+}
 
+
+.addReview {
+    background-color: yellow;
+    border: none;
+    padding: .5em 1em;
+    font-size: 1.2rem;
+    -webkit-text-stroke: 1px rgb(17, 17, 17);
+    font-weight: 600;
+    font-family:'Heavitas';
+    color: #ffffff;
+    transition: all .1s linear
+}
+
+.addReview:hover {
+    transform: scale(1.1);
 }

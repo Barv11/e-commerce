@@ -1,7 +1,8 @@
 .containerForm{
     width: 100%;
-    /* background-image: url("https://i.ytimg.com/vi/mafZwdP6wq8/maxresdefault.jpg"); */
-    /* background-size: 100% auto; */
+    height: 100%;
+    background-image: url("https://i.ytimg.com/vi/mafZwdP6wq8/maxresdefault.jpg");
+    background-size: 100% auto;
     background-color: #f8e7fa;
 
     display: flex;
@@ -15,8 +16,8 @@
 
 .productContainer{
 
-    /* width: 700px;
-    height: 100vh; */
+    width: 700px;
+    /* height: 100vh;  */
     background: #fffdfd;
     border-radius: 8px;
     box-shadow: 0 0 40px -10px #000;

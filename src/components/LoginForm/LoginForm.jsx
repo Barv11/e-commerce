@@ -14,8 +14,10 @@ export default function Login() {
   const dispatch = useDispatch();
   const [loginError, setLoginError] = useState(false);
   const navigate = useNavigate();
-  /*   const loginAccess = useSelector((state) => state.loginAccess); */
+  const loginAccess = useSelector((state) => state.loginAccess);
   const [loading, setLoading] = useState(false);
+
+  const [user, setUser] = useState(false);
 
   const toggleEye = () => {
     setPassEye(!passEye);
@@ -44,33 +46,41 @@ export default function Login() {
     }
   };
 
-  console.log(input);
-
-  /*   const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!Object.keys(error).length && input.pass !== "") {
       dispatch(userLogin(input));
-      if (!loginAccess.data) {
-        setLoginError(true);
-      }
-    } else {
-      setClick({
-        username: true,
-        email: true,
-        pass: true,
+      setInput({
+        username: "",
+        email: "",
+        pass: "",
       });
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+        if (JSON.parse(localStorage.getItem("user")).logged === false) {
+          setLoginError(true);
+        } else {
+          setLoginError(false);
+        }
+      }, 3000);
     }
   };
-  useEffect(() => {
-    if (loginAccess.data) {
-      navigate("/");
-      dispatch(userLogout());
-    }
-  }, [loginAccess]);
- */
-  console.log(error);
+
+  if (loginAccess.data?.token) {
+    dispatch(userLogin("clear"));
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        logged: true,
+        token: loginAccess.data.token,
+      })
+    );
+    navigate("/");
+  }
 
   const handleInputChange = (e) => {
+    setLoginError(false);
     setInput({
       ...input,
       [e.target.name]: e.target.value,
@@ -158,7 +168,9 @@ export default function Login() {
                 </div>
 
                 <div className={s.loginButton}>
-                  <button>{loading ? <Loader /> : "Login Now"}</button>
+                  <button onClick={handleSubmit}>
+                    {loading ? <Loader /> : "Login Now"}
+                  </button>
                 </div>
                 {loginError && (
                   <p className={s.loginError}>Email o Contraseña incorrectos</p>
