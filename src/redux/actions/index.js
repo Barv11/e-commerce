@@ -87,12 +87,6 @@ export const getAllUsers = () => async (dispatch) =>{
     dispatch({ type: GET_ALL_USERS, payload: productos.data });
 };
 
-export function postAdmin(payload) {
-  return async function (dispatch) {
-      const user = await axios.post("http://localhost:3001/user", payload)
-      return dispatch({
-        type: POST_ADMIN,
-        payload: user
-      })
-  }
-};
+// export function userToAdmin(){
+//   ruta en el back para cambiar los props rol
+// }

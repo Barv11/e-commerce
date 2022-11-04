@@ -14,7 +14,11 @@ export default function AllUsers(){
     console.log(allUsers)
 
     function handleButtonBanned(userId){
-        //active o desactive .show (bannear=true, desbannear=false)
+        //active o desactive propiedad show (bannear = show en false)
+    }
+
+    function handleButtonUnbanned(userId){
+        //active o desactive propiedad show (desbannear = show en true)
     }
     
     return(

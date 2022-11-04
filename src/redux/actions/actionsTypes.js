@@ -11,4 +11,11 @@ export const ORDER_PRECIO = "ORDER_PRECIO";
 export const POST_PRODUCT = "POST_PRODUCT";
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const POST_ADMIN = "POST_ADMIN";
+export const GET_CART_PRODUCTs = "GET_CART_PRODUCTS";
+export const ADD_CART_PRODUCTS = "ADD_CART_PRODUCTS";
+export const ADD_PRODUCT = "ADD_PRODUCT";
+export const GET_CART_PRODUCTS = "GET_CART_PRODUCTS";
+export const GET_USER = "GET_USER";
+export const REGISTER_USER = "REGISTER_USER";
+
 

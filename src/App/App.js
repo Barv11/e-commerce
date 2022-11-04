@@ -7,6 +7,7 @@ import Register from "../components/RegisterForm/Register";
 import CreateProduct from "../components/createproductAdmin/createProduct";
 import AdminPage from "../page/Admin/AdminPage";
 import Orden from "../components/Orden/Orden";
+import AllUsers from "../components/ListaUsuarios/AllUsers";
 function App() {
   return (
     <Routes>
@@ -18,6 +19,7 @@ function App() {
       <Route path={"/create"} element={<CreateProduct />} />
       <Route path={"/admin"} element={<AdminPage />} />
       <Route path={"/orden"} element={<Orden />} />
+      <Route path={"/users"} element={<AllUsers />} />
     </Routes>
   );
 }
