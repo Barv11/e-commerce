@@ -7,6 +7,7 @@ import {
   ORDER_PRECIO,
   SEARCH_PRODUCT_BY_ID,
   POST_PRODUCT,
+  UPDATE_PRODUCT,
   GET_ALL_USERS,
   POST_ADMIN,
   ADD_PRODUCT,
@@ -62,6 +63,15 @@ export function postProduct(payload) {
   };
 }
 
+export const updateProduct = (product) => async (dispatch) => {
+  
+  const { id, name, brand, img, details, cost, type } = product
+  
+  const response = await axios.put("http://localhost:3001/productos?id="+id, {name, brand, img, details, cost, type});
+  
+  dispatch({ type: UPDATE_PRODUCT, payload: response.data });
+};
+
 export const searchProductByName = (name) => async (dispatch) => {
   const productos = await axios.get("http://localhost:3001/productos");
   const productosbyName = productos.data.filter((p) =>
@@ -78,10 +88,6 @@ export const searchProductById = (id) => async (dispatch) => {
 
 export const clearProducts = () => (dispatch) => {
   dispatch({ type: CLEAR_PRODUCTS });
-};
-
-export const addProduct = (payload) => {
-  return { type: ADD_PRODUCT, payload };
 };
 
 export const getCurrentUser = (obj) => (dispatch) => {
@@ -129,7 +135,7 @@ export function orderprecio(payload) {
 export const getAllUsers = () => async (dispatch) =>{
     const users = await axios.get("http://localhost:3001/user/create");
     dispatch({ type: GET_ALL_USERS, payload: users.data });
-  }
+}
 
 export const getCartProduct = (id) => async (dispatch) => {
   const obj = { id: id };
@@ -161,4 +167,5 @@ export const getUser = (stringToken) => async (dispatch) => {
 export const deleteCartProduct = (id) => async (dispatch) => {
   axios.post("http://localhost:3001/cart/delete", { id: id });
   dispatch({ type: DELETE_CART_PRODUCT });
-};
+}
+
