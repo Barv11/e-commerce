@@ -16,6 +16,8 @@ import {
   GET_USER,
   GET_CART_PRODUCTS,
   GET_ALL_USERS,
+  CLEAR_CART_PRODUCTS,
+  DELETE_CART_PRODUCT,
 } from "../actions/actionsTypes";
 
 const initialState = {
@@ -27,6 +29,7 @@ const initialState = {
   userFound: {},
   cartProducts: [],
   allUsers: [],
+=======
 };
 
 function rootReducer(state = initialState, action) {
@@ -86,6 +89,15 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         cartProducts: action.payload,
+      };
+    case DELETE_CART_PRODUCT:
+      return {
+        ...state,
+      };
+    case CLEAR_CART_PRODUCTS:
+      return {
+        ...state,
+        cartProducts: [],
       };
     case ADD_CART_PRODUCTS:
       return {

@@ -33,7 +33,7 @@ export default function DetailCooler({details}) {
         <b>Compatibilidad: </b>
         <ul>
               {compatibilidad?.map((el) => (
-                <li>{el}</li>
+                <li key={el}>{el}</li>
               ))}
             </ul>
       </span>

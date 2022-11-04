@@ -21,7 +21,7 @@
 
 .carrousel1 img {
   width: 450px;
-  outline: 4px solid orange;
+  outline: 4px solid rgb(216, 230, 29);
 }
 .carrousel2 {
     display: flex;

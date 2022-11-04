@@ -1,0 +1,119 @@
+.container {
+  height: auto;
+  min-height: 43vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+#p {
+  margin-top: 100px;
+}
+
+.textContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+  width: 80vw;
+}
+
+.textContainer h4 {
+  font-size: 22px;
+}
+
+.textContainer .text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 450px;
+  margin-right: 100px;
+}
+
+.cardContainer {
+  height: 100px;
+  width: 80vw;
+  margin: 10px;
+}
+
+.elseContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.clearCarritoContainer {
+  height: 80px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 80vw;
+}
+
+.clearCarritoContainer button {
+  padding: 12px 40px;
+  border-radius: 10px;
+  background-color: blueviolet;
+  color: white;
+  border: none;
+  transition: 0.3s;
+  position: relative;
+}
+
+.clearCarritoContainer i {
+  position: absolute;
+  left: 15px;
+  top: 8px;
+  font-size: 22px;
+}
+
+.clearCarritoContainer button:hover {
+  background-color: rgb(121, 37, 199);
+  transition: 0.3s;
+}
+
+.clearCarritoContainer button:active {
+  background-color: rgb(106, 33, 173);
+}
+
+#borrarCarrito {
+  background-color: rgb(223, 0, 0);
+}
+
+#borrarCarrito:hover {
+  background-color: rgb(184, 0, 0);
+}
+
+#borrarCarrito:active {
+  background-color: rgb(155, 0, 0);
+}
+
+.checkOutContainer {
+  border-top: 1px solid black;
+  height: 200px;
+  width: 80vw;
+  text-align: end;
+  padding: 30px;
+}
+
+.checkOutContainer button {
+  padding: 12px 40px;
+  border-radius: 10px;
+  background-color: rgb(99, 221, 0);
+  color: white;
+  border: none;
+  transition: 0.3s;
+  position: relative;
+}
+
+.checkOutContainer button:hover {
+  background-color: rgb(92, 204, 0);
+  transition: 0.3s;
+}
+
+.checkOutContainer button:active {
+  background-color: rgb(80, 177, 0);
+  transition: 0.3s;
+}

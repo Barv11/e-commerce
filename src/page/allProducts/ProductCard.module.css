@@ -15,6 +15,35 @@
     rgb(240, 212, 240) 25%,
     rgba(70, 151, 236, 0) 100%
   );
+  position: relative;
+}
+
+.cart {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 15px;
+  font-size: 20px;
+  transition: 0.2s;
+  color: transparent;
+}
+
+.container:hover .cart {
+  color: black;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.cart i{
+  font-size: 25px;
+}
+
+.cart i:hover {
+  color: blueviolet;
+}
+
+.cart i:active {
+  color: black;
 }
 
 .container img {

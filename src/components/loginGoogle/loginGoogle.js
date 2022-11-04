@@ -13,8 +13,7 @@ export default function LoginGoogle() {
   const handleCallbackResponse = (response) => {
     let userObj = jwtDecode(response.credential);
     console.log(userObj);
-    navigate("/");
-    dispatch(getCurrentUser(userObj));
+    // dispatch(getCurrentUser(userObj));
   };
 
   useEffect(() => {

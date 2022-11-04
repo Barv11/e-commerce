@@ -1,14 +1,27 @@
 import { Route, Routes } from "react-router-dom";
-import CardDetail from "../components/CardDetail/CardDetail";
-import Login from "../components/LoginForm/LoginForm";
-import Products from "../page/allProducts/AllProducts";
-import Home from "../page/home/Home";
-import Register from "../components/RegisterForm/Register";
-import CreateProduct from "../components/createproductAdmin/createProduct";
+import { Products, Home, Profile} from '../page';
+import {CardDetail, Login, Register, CreateProduct, Carrito} from '../components'
 import AdminPage from "../page/Admin/AdminPage";
 import Orden from "../components/Orden/Orden";
 import AllUsers from "../components/ListaUsuarios/AllUsers";
+import { useState } from "react";
+
+
 function App() {
+  
+  const [user] = useState(
+    JSON.parse(
+      localStorage.getItem("user") ||
+        JSON.stringify({
+          logged: false,
+          token: "",
+        })
+    )
+  );
+
+  localStorage.setItem("user", JSON.stringify(user));
+  
+
   return (
     <Routes>
       <Route exact path={"/"} element={<Home />} />
@@ -20,6 +33,9 @@ function App() {
       <Route path={"/admin"} element={<AdminPage />} />
       <Route path={"/orden"} element={<Orden />} />
       <Route path={"/users"} element={<AllUsers />} />
+      <Route path={"/carrito"} element={<Carrito />} />
+      <Route path={"/create-checkout-session"} element={""} />
+      <Route path={"/profile"} element={<Profile />} />
     </Routes>
   );
 }
