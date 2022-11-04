@@ -16,6 +16,7 @@ import {
   GET_USER,
   GET_CART_PRODUCTS,
   CLEAR_CART_PRODUCTS,
+  DELETE_CART_PRODUCT,
 } from "../actions/actionsTypes";
 
 const initialState = {
@@ -85,6 +86,10 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         cartProducts: action.payload,
+      };
+    case DELETE_CART_PRODUCT:
+      return {
+        ...state,
       };
     case CLEAR_CART_PRODUCTS:
       return {

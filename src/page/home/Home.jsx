@@ -23,10 +23,10 @@ export default function Home() {
     if (user.logged) {
       dispatch(getUser(user.token));
       saveToken(user.token);
-      // dispatch(getCartProduct(userFound.id));
     }
   }, []);
 
+  
   return (
     <div>
       <Navbar />
