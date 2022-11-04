@@ -113,7 +113,7 @@ export default function Login() {
                     onClick={handleClick}
                     required
                   />
-                  <i class="uil uil-envelope icon"></i>
+                  <i className="uil uil-envelope icon"></i>
                   {click.username && error.username && (
                     <p className={s.error}>{error.username}</p>
                   )}
@@ -129,7 +129,7 @@ export default function Login() {
                     onClick={handleClick}
                     required
                   />
-                  <i class="uil uil-envelope icon"></i>
+                  <i className="uil uil-envelope icon"></i>
                   {click.email && error.email && (
                     <p className={s.error}>{error.email}</p>
                   )}
@@ -138,7 +138,7 @@ export default function Login() {
                 <div className={s.inputField}>
                   <i
                     id={s.eye}
-                    class={!passEye ? "uil uil-eye-slash" : "uil uil-eye"}
+                    className={!passEye ? "uil uil-eye-slash" : "uil uil-eye"}
                     onClick={toggleEye}
                   ></i>
                   <input
@@ -150,7 +150,7 @@ export default function Login() {
                     value={input.pass}
                     required
                   />
-                  <i class="uil uil-lock"></i>
+                  <i className="uil uil-lock"></i>
                   {click.pass && error.pass && (
                     <p className={s.error}>{error.pass}</p>
                   )}
@@ -158,7 +158,7 @@ export default function Login() {
                 <div className={s.checkboxText}>
                   <div className={s.checkboxContent}>
                     <input type="checkbox" id="logCheck" />
-                    <label for="logCheck" className="text">
+                    <label htmlFor="logCheck" className="text">
                       Remember me
                     </label>
                   </div>
