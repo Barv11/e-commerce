@@ -10,6 +10,7 @@ export const ORDER_NAME = "ORDER_NAME";
 export const ORDER_PRECIO = "ORDER_PRECIO";
 export const POST_PRODUCT = "POST_PRODUCT";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
+export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const POST_ADMIN = "POST_ADMIN";
 export const GET_CART_PRODUCTs = "GET_CART_PRODUCTS";

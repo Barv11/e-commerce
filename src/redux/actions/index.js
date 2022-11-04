@@ -7,6 +7,7 @@ import {
   ORDER_PRECIO,
   SEARCH_PRODUCT_BY_ID,
   POST_PRODUCT,
+  DELETE_PRODUCT,
   UPDATE_PRODUCT,
   GET_ALL_USERS,
   POST_ADMIN,
@@ -71,6 +72,12 @@ export const updateProduct = (product) => async (dispatch) => {
   
   dispatch({ type: UPDATE_PRODUCT, payload: response.data });
 };
+
+export const deleteProduct = (id) => async (dispatch) => {
+  const response = await axios.put("http://localhost:3001/productos/"+id);
+
+  dispatch({ type: DELETE_PRODUCT, payload: response.data })
+}
 
 export const searchProductByName = (name) => async (dispatch) => {
   const productos = await axios.get("http://localhost:3001/productos");

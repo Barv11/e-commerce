@@ -11,6 +11,7 @@ import {
   ORDER_PRECIO,
   POST_PRODUCT,
   UPDATE_PRODUCT,
+  DELETE_PRODUCT,
   ADD_CART_PRODUCTS,
   REGISTER_USER,
   GET_USER,
@@ -69,7 +70,10 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
-
+    case DELETE_PRODUCT:
+      return {
+        ...state,
+      };
     case GET_CURRENT_USER:
       console.log(state);
       return {
@@ -156,7 +160,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         allUsers: action.payload,
-        };
+      };
   }
 }
 
