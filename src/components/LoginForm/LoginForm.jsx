@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import Loader from "../Loader/Loader";
+import LoginGoogle from "../loginGoogle/loginGoogle";
 
 export default function Login() {
   const [passEye, setPassEye] = useState(false);
@@ -178,7 +179,7 @@ export default function Login() {
               </form>
               <div className={s.googleBtn}>
                 <p id={s.googleOr}>Sign in With Google</p>
-                {/*      <LoginGoogle /> */}
+                     <LoginGoogle />
               </div>
               <div className={s.loginSignup}>
                 <span className="text">
