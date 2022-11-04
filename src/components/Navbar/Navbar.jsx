@@ -4,7 +4,12 @@ import { Link, NavLink } from "react-router-dom";
 import s from "./Navbar.module.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { searchProductByName, getUser } from "../../redux/actions";
+import {
+  searchProductByName,
+  getUser,
+  clearCartProduct,
+  saveToken
+} from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
 import pcLogo from "../../assets/pc-logo.png";
 import usuarioLogo from "../../assets/user-login-icon.png";
@@ -14,14 +19,12 @@ export default function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [userState, setUserState] = useState(
-    JSON.parse(localStorage.getItem("user"))
-  );
-
   const userFound = useSelector((state) => state.userFound);
 
   const signOut = () => {
-    setUserState(
+    dispatch(clearCartProduct());
+    saveToken(null)
+        setUser(
       JSON.parse(
         JSON.stringify({
           logged: false,
@@ -31,7 +34,9 @@ export default function Navbar() {
     );
   };
 
-  localStorage.setItem("user", JSON.stringify(userState));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+
+  localStorage.setItem("user", JSON.stringify(user));
 
   const handleSearch = (input) => {
     navigate("/products");
@@ -43,8 +48,8 @@ export default function Navbar() {
   };
 
   useEffect(() => {
-    if (userState.logged) {
-      dispatch(getUser(userState.token));
+    if (user.logged) {
+      dispatch(getUser(user.token));
     }
   }, [dispatch]);
 
@@ -81,19 +86,34 @@ export default function Navbar() {
         </form>
         <div className={s.containerChild}>
           <div className={s.user}>
-            <Link to={"/login"}>
-              <img src={usuarioLogo} alt="usuario" className={s.userimg} />
-            </Link>
-            <Link style={{ textDecoration: "none" }} to={"/"}>
-              <span onClick={() => signOut()} className={s.userTxt}>
-                {userState.logged ? "Sign Out" : ""}
+            {user.logged && (
+              <span
+                style={{ textDecoration: "none" }}
+                onClick={() => signOut()}
+                className={s.userTxt}
+              >
+                Sign Out
               </span>
-            </Link>
-            <Link style={{ textDecoration: "none" }} to={"/login"}>
-              <span className={s.userTxt}>
-                {userState.logged ? userFound?.userName : "Log In"}
-              </span>
-            </Link>
+            )}
+
+            {user.logged ? (
+              <Link to={"/profile"}>
+                <img src={usuarioLogo} alt="usuario" className={s.userimg} />
+              </Link>
+            ) : (
+              <Link to={"/login"}>
+                <img src={usuarioLogo} alt="usuario" className={s.userimg} />
+              </Link>
+            )}
+            {user.logged ? (
+              <Link style={{ textDecoration: "none" }} to={"/profile"}>
+                <span className={s.userTxt}>{userFound?.userName}</span>
+              </Link>
+            ) : (
+              <Link style={{ textDecoration: "none" }} to={"/login"}>
+                <span className={s.userTxt}>Log In</span>
+              </Link>
+            )}
           </div>
           <Link to="/carrito">
             <svg

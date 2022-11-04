@@ -5,11 +5,11 @@ import Footer from "../../components/Footer/Footer.jsx";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser, addCartProduct } from "../../redux/actions";
+import { getUser, getCartProduct,saveToken } from "../../redux/actions";
 
 export default function Home() {
   const dispatch = useDispatch();
-  const userFound = useSelector((state) => state.userFound);
+  // const userFound = useSelector((state) => state.userFound);
 
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user") || "[]")
@@ -22,10 +22,11 @@ export default function Home() {
   useEffect(() => {
     if (user.logged) {
       dispatch(getUser(user.token));
-      dispatch(addCartProduct(userFound.id, products));
+      saveToken(user.token);
     }
   }, []);
 
+  
   return (
     <div>
       <Navbar />

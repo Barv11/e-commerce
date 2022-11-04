@@ -12,9 +12,16 @@ import {
   REGISTER_USER,
   GET_USER,
   GET_CART_PRODUCTS,
+  CLEAR_CART_PRODUCTS,
+  DELETE_CART_PRODUCT,
 } from "./actionsTypes";
 import axios from "axios";
 import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "./actionsTypes";
+
+let token = null;
+export const saveToken = (newToken) => {
+  token = `Bearer ${newToken}`
+}
 
 export const toggleProductType = (type) => async (dispatch) => {
   const productos = await axios.get("http://localhost:3001/productos");
@@ -23,16 +30,23 @@ export const toggleProductType = (type) => async (dispatch) => {
 };
 
 export const getAllProductos = () => async (dispatch) => {
-  const productos = await axios.get("http://localhost:3001/productos");
+  const config = {
+    headers: {
+      "authorization": token,
+    },
+  };
+  console.log(token)
+  const productos = await axios.get("http://localhost:3001/productos", config);
   dispatch({ type: GET_ALL_PRODUCTS, payload: productos.data });
 };
 
-export function postProduct(payload, { token }) {
+export function postProduct(payload) {
   const config = {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: token,
     },
   };
+  console.log(config)
   return async function (dispatch) {
     const product = await axios.post(
       "http://localhost:3001/productos/create",
@@ -122,10 +136,14 @@ export const getCartProduct = (id) => async (dispatch) => {
   dispatch({ type: GET_CART_PRODUCTS, payload: productos });
 };
 
+export const clearCartProduct = () => (dispatch) => {
+  dispatch({ type: CLEAR_CART_PRODUCTS });
+};
+
 export const addCartProduct = (id, array) => async (dispatch) => {
   const obj = { id: id, productosCarrito: array };
-  const a = await axios.post("http://localhost:3001/cart", obj);
-  console.log(a);
+  console.log(obj);
+  const a = await axios.post("http://localhost:3001/cart/create", obj);
   dispatch({ type: ADD_CART_PRODUCTS });
 };
 
@@ -136,4 +154,9 @@ export const getUser = (stringToken) => async (dispatch) => {
     myUser
   );
   dispatch({ type: GET_USER, payload: userFound.data });
+};
+
+export const deleteCartProduct = (id) => async (dispatch) => {
+  axios.post("http://localhost:3001/cart/delete", { id: id });
+  dispatch({ type: DELETE_CART_PRODUCT });
 };

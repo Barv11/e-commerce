@@ -8,13 +8,13 @@ export default function CardCarrito({
   img,
   cost,
   id,
-  deleteCartProduct,
+  deleteCartProd,
   handleCartQuantity,
   quantity,
 }) {
   const [cantidad, setCantidad] = useState(quantity);
 
-
+  console.log(id);
 
   const handleCantidad = (e) => {
     handleCartQuantity(id, e.target.value);
@@ -36,10 +36,10 @@ export default function CardCarrito({
           type="number"
           min="1"
           max="3"
-          value={cantidad}
+          value={quantity}
         />
         <h3>{`$${cost * quantity}`}</h3>
-        <div className={s.trashCan} onClick={() => deleteCartProduct(id)}>
+        <div className={s.trashCan} onClick={() => deleteCartProd(id)}>
           <i class="uil uil-trash-alt"></i>
         </div>
       </div>
