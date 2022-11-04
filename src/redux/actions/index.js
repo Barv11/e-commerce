@@ -86,7 +86,3 @@ export const getAllUsers = () => async (dispatch) =>{
     const users = await axios.get("http://localhost:3001/user/create");
     dispatch({ type: GET_ALL_USERS, payload: users.data });
 };
-
-// export function userToAdmin(){
-//   ruta en el back para cambiar la propiedad role
-// }

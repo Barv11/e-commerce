@@ -25,7 +25,6 @@ export default function AllUsers(){
         dispatch(getAllUsers())
     }
 
-    //(userId, role)
 
     
     return(
