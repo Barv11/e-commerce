@@ -15,7 +15,6 @@
 
 .adminName{
     font-size: 18px;
-    font-family: 'Open Sans';
     padding-left: 10px;
     margin-left: 65px;
     margin-top: 15px;
@@ -31,7 +30,6 @@
    font-size: 20px;
    color: rgb(235, 194, 248);
    padding-left: 10px; 
-   font-family: 'Open Sans';
    text-shadow: rgb(52, 50, 50) 2px 0 2px;
 }
 
@@ -63,7 +61,6 @@
 /* USER LIST */
 
 .userListTxt{
-    font-family: 'Open Sans';
     font-size: 29px;
     color: rgb(239, 230, 230);
     margin: 28px;

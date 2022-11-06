@@ -1,7 +1,7 @@
 import React from "react";
 
-export default function DetailAuricular({details}) {
-    const { audio, color, conexion, microfono, TipoDeAudio } = details
+export default function DetailAuricular({ details }) {
+  const { audio, color, conexion, microfono, TipoDeAudio } = details;
   return (
     <>
       <span>
@@ -11,10 +11,8 @@ export default function DetailAuricular({details}) {
       <span>
         <b>Color: </b>
         <ul>
-              {color?.map((el) => (
-                <li key={el}>{el}</li>
-              ))}
-            </ul>
+          <li>{color}</li>
+        </ul>
       </span>
       <span>
         <b>Conectividad: </b>
