@@ -149,6 +149,7 @@ function ProductFormAdmin() {
         type: "defect",
         details: {},
       });
+      alert("Producto Creado con Exito!")
     }
   };
 

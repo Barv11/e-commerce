@@ -141,12 +141,6 @@ export default function Navbar() {
         >
           Productos
         </NavLink>
-        <NavLink
-          to={"/create"}
-          className={(navData) => (navData.isActive ? s.activeChild : s.child)}
-        >
-          Crear Producto
-        </NavLink>
       </div>
     </nav>
   );
