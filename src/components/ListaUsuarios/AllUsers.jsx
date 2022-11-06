@@ -1,9 +1,11 @@
 import axios from 'axios';
-import React, { useEffect, useId, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { getAllUsers } from '../../redux/actions';
+import s from '../../page/Admin/AdminPage.module.css'
+import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
 
 export default function AllUsers(){
     let dispatch = useDispatch()
@@ -11,7 +13,7 @@ export default function AllUsers(){
         dispatch(getAllUsers())
     }, [dispatch]) 
     const [input, setInput] = useState({
-        role: "",
+        role: "", 
     })
 
     const allUsers = useSelector((state) => state.allUsers);
@@ -27,10 +29,6 @@ export default function AllUsers(){
         dispatch(getAllUsers())
     }
 
-    //async function handleSelect(userId, role){
-    //await axios.put(`http://localhost:3001/user/create/${userId}`, u.role)
-    //dispatch(getAllusers())
-
     const setRole = async (e) => {
         setInput(
             {...input,
@@ -44,12 +42,16 @@ export default function AllUsers(){
             id:id, role:input.role
         })
     }
-
     
     return(
         <div>
-            <h1>User List</h1>
-            <Table striped bordered hover>
+            <div className={s.UserListTitleIcon}>
+            <h1 className={s.userListTxt}>User List</h1> 
+            <div className={s.usersListIcon}>
+                <PeopleAltRoundedIcon/>
+            </div>
+            </div>
+            <Table striped bordered hover variant="dark">
                 <thead>
                     <tr>
                     <th>#</th>
@@ -83,7 +85,7 @@ export default function AllUsers(){
                         <td><button onClick={() => handleButtonUnbanned(u.id)}>Unban</button></td> 
                         }
                         <td>
-                            <button onClick={() => handleRoleChange(u.id)}>Actualizar</button>
+                            <button onClick={() => handleRoleChange(u.id)}>Confirmar</button>
                         </td>
                         </tr>
                         )
