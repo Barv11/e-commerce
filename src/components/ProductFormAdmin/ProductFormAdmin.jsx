@@ -6,60 +6,20 @@ import {
   getAllProductos,
   searchProductById,
   updateProduct,
+  // postImage,
 } from "../../redux/actions/index";
 import Navbar from "../Navbar/Navbar";
 import Loader from "../Loader/Loader";
 import styles from "./ProductFormAdmin.module.css";
 
-// Lo moví acá para no ocupar visión (provisonal)
-//Cloudinary
-//   const [img, setimg] = useState("");
-//   const [loading, setLoading] = useState(false);
-
-//   const handleimg = async (e) => {
-//     const files = e.target.files
-//     const data = new FormData();
-//     data.append("file", files[0]);
-//     data.append("upload_preset", "imgs")
-//     setLoading(true);
-
-//     const res = await axios.post (
-//         "https://api.cloudinary.com/v1_1/juliap/img/upload",
-//         data
-//     )
-
-//     console.log(res)
-//     setimg(res.data.secure_url)
-
-//     setProduct({
-//       ...product,
-//       img: res.data.secure_url
-//     });
-//     setErrors(validate({
-//       ...product,
-//       img:res.data.secure_url
-//     }))
-//     setLoading(false)
-// }
-//ProductsController
-// const imgsCloudinary = async (img) =>{
-//          const files = img;
-//         const data = new FormData(); //datos que vamos a recibir
-//         data.append("file", files[0]);//los files q recibimos
-//         data.append("upload_preset", "imgs") //la carpeta donde lo vamos a subir
-
-//     const res = await axios.post (
-//         "https://api.cloudinary.com/v1_1/juliap/img/upload",
-//         data
-//     )
-//     return res.data.secure_url;
-// }
 function ProductFormAdmin() {
   const navigate = useNavigate();
+  const [imgPrev, setImgPrev] = useState([]);
   const { id } = useParams();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.loginAccess);
   const searchByIdProduct = useSelector((state) => state.searchByIdProduct);
+  // const url = useSelector((state) => state.url);
   const [errors, setErrors] = useState({});
   const [product, setProduct] = useState({
     name: "",
@@ -90,6 +50,317 @@ function ProductFormAdmin() {
     return errors;
   }
 
+  const handleOnSelect = (e) => {
+    switch (e.target.value) {
+      case "mother":
+        setProduct({
+          ...product,
+          type: e.target.value,
+          details: {
+            generation: "",
+            connectivity: {
+              "Cantidad De Slot Pci-e 16X": "",
+              "Cantidad De Slot Pci-e 1X": "",
+              "Tecnologia Multi Gpu": "",
+              "Puertos Sata": "",
+              "Salida Vga": "",
+              "Salida HDMI": "",
+              "Salida Dvi": "",
+              "Salidas Display Ports": "",
+              "Cantidad de Slot M.2 Totales": "",
+              "Placa Wifi Integrada": "",
+              "Placa de Red": "",
+              "Puerto Ps/2": "",
+              "Puertos Usb 2.0 Traseros": "",
+              "Puertos Usb 3.0 Traseros": "",
+              "Puertos Usb 3.1 Traseros": "",
+              "Puertos Usb 3.2 Traseros": "",
+              "Puertos Usb Type-c": "",
+              "Cantidad De Slot Pci-e 4X": "",
+              "Cantidad De Slot M.2 Sata": "",
+              "Cantidad De Slot M.2 Nvme": "",
+            },
+            Socket: [],
+            energy: {
+              "Watts Máximos Para Cpu": "",
+              "Conectos Cpu 4Pines": "",
+              "Conector Cpu 4Pines Plus": "",
+              "Conector 24Pines": "",
+              Consumo: "",
+              "Procesador Integrado": "",
+            },
+            Sound: {
+              "Placa De Sonido": "",
+            },
+            Memory: {
+              Ddr4: "",
+            },
+            Dimensions: "",
+          },
+        });
+        break;
+      case "procesador":
+        setProduct({
+          ...product,
+          type: e.target.value,
+          details: {
+            Modelo: "",
+            Socket: "",
+            Núcleos: "",
+            Frecuencia: "",
+            Proceso_De_Fabricación: "",
+            Gpu: "",
+            Hilos: "",
+            Frecuencia_Turbo: "",
+          },
+        });
+        break;
+      case "disco":
+        setProduct({
+          ...product,
+          type: e.target.value,
+          details: {
+            type: "",
+            capacity: "",
+            frequency: "",
+            bus: "",
+            bufer: "",
+            size: "",
+          },
+        });
+        break;
+      case "ram":
+        setProduct({
+          ...product,
+          type: e.target.value,
+          details: {
+            type: "",
+            format: "",
+            frequency: "",
+            capacity: "",
+            latency: "",
+            voltage: "",
+            RGB: "",
+            disipador: "",
+          },
+        });
+        break;
+      case "solido":
+        setProduct({
+          ...product,
+          type: e.target.value,
+          details: {
+            type: "",
+            capacity: "",
+            bus: "",
+            size: "",
+            lectura: "",
+            escritura: "",
+          },
+        });
+        break;
+      case "tarjeta":
+        setProduct({
+          ...product,
+          type: e.target.value,
+          details: {
+            tipo: "",
+            chipsetGpu: "",
+            CaracteristicasEspeciales: "",
+            dimensiones: "",
+            conectividad: "",
+            consumo: "",
+            wattsRecomendados: "",
+            CantidadPcieDe6Pines: "",
+            CantidadPcieDe8Pines: "",
+            backplate: "",
+            BlockVgaWaterCooling: "",
+            cantidadCooler: "",
+            velocidadMemoria: "",
+            tipoDeMemoria: "",
+            CapasidadDeMemoria: "",
+            interfaceDeMemoria: "",
+            VelosidadCoreTurbo: "",
+            tipoDeProcesos: "",
+            CantidadDeProcesos: "",
+          },
+        });
+        break;
+      case "mouse":
+        setProduct({
+          ...product,
+          type: e.target.value,
+          details: {
+            description: "",
+            connectivity: [],
+            rgb: "",
+            sensitivity: "",
+            buttons: "",
+            clicks: "",
+            sizes: {
+              longitud: "",
+              ancho: "",
+              altura: "",
+            },
+            weight: "",
+          },
+        });
+        break;
+      case "pantalla":
+        setProduct({
+          ...product,
+          type: e.target.value,
+          details: {
+            tiempoDeRespuesta: "",
+            tipoDePanel: "",
+            resolution: "",
+            iluminacion: "",
+            consumo: "",
+            connectivity: "",
+            RGB: "",
+            peso: "",
+            frequency: "",
+            pulgadas: "",
+          },
+        });
+        break;
+      case "fuente":
+        setProduct({
+          ...product,
+          type: e.target.value,
+          details: {
+            Watts: "",
+            Format: "",
+            Color: "",
+            "Operating Temperature": "",
+            Dimensions: "",
+            "Input Voltage": "",
+            "Cooling system": "",
+            "RGB Fan": "",
+          },
+        });
+        break;
+      case "teclado":
+        setProduct({
+          ...product,
+          type: e.target.value,
+          details: {
+            RGB: "",
+            color: "",
+            connectivity: "",
+            tipo_de_teclado: "",
+            tipo_de_mecanismo: "",
+            dimensions: {
+              ancho: "",
+              profundidad: "",
+              alto: "",
+            },
+          },
+        });
+        break;
+      case "auricular":
+        setProduct({
+          ...product,
+          type: e.target.value,
+          details: {
+            audio: "",
+            color: "",
+            conexion: "",
+            microfono: "",
+            TipoDeAudio: "",
+          },
+        });
+        break;
+      case "gabinete":
+        setProduct({
+          ...product,
+          type: e.target.value,
+          details: {
+            dimensions: "",
+            weight: "",
+            cooling: {
+              front_fans_num: "",
+              front_fans_dimension_mm: [],
+              back_fans_num: "",
+              back_fans_dimension_mm: [],
+            },
+            color: "",
+            material: "",
+            RGB: "",
+            "structure type": "",
+            connectivity: {
+              disk: {
+                hdd: "",
+                ssd: "",
+                size_inch: "",
+              },
+              power_supply_type: "",
+              mother_types: "",
+              max_length_psu: "",
+              max_length_gpu: "",
+            },
+          },
+        });
+        break;
+      case "cooler":
+        setProduct({
+          ...product,
+          type: e.target.value,
+          details: {
+            fans: "",
+            RGB: "",
+            "nivel de ruido": "",
+            consumo: "",
+            tdp: "",
+            disipasión: "",
+            dimensions: {
+              altura: "",
+              tamaño_coolers: "",
+            },
+            compatibilidad: [],
+          },
+        });
+        break;
+
+      default:
+        break;
+    }
+  };
+
+  const handlerOnObj = (e) => {
+    const { name, value, dataset } = e.target;
+    if (dataset.subsubname) {
+      const obj = {
+        ...product,
+      };
+      obj.details[name][dataset.subname][dataset.subsubname] = value;
+      setProduct(obj);
+    } else {
+      const obj = {
+        ...product,
+      };
+      obj.details[name][dataset.subname] = value;
+      setProduct(obj);
+    }
+  };
+
+  const handlerOnArr = (e) => {
+    const { name, value, dataset } = e.target;
+    if (dataset.subname) {
+      const obj = {
+        ...product,
+      };
+      obj.details[name][dataset.subname][dataset.foo] = value;
+      setProduct(obj);
+    } else {
+      const obj = {
+        ...product,
+      };
+      obj.details[name][dataset.foo] = value;
+      setProduct(obj);
+    }
+  };
+
   const handleDetailsInput = (e) => {
     setProduct({
       ...product,
@@ -101,58 +372,57 @@ function ProductFormAdmin() {
   };
 
   const handleInput = (e) => {
-    if (e.target.name === "uploads") {
-      setProduct({
-        ...product,
-        img: [e.target.value],
-      });
+    setProduct({
+      ...product,
+      [e.target.name]: e.target.value,
+    });
 
-      setErrors(
-        validate({
-          ...product,
-          img: [e.target.value],
-        })
-      );
-    } else if (e.target.name === "type") {
-      setProduct({
-        ...product,
-        type: e.target.value,
-      });
-    } else {
-      setProduct({
+    setErrors(
+      validate({
         ...product,
         [e.target.name]: e.target.value,
-      });
+      })
+    );
+  };
 
-      setErrors(
-        validate({
-          ...product,
-          [e.target.name]: e.target.value,
-        })
-      );
-    }
+  const uploadImage = async (e) => {
+    const file = e.target.files[0];
+    // dispatch(postImage(file))
+    // console.log(url)
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", "pc-images");
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/dyodnn524/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+    const img = await res.json();
+    setImgPrev([img.secure_url]);
   };
 
   const handleSubmit = (e) => {
     const { token } = user;
     e.preventDefault();
     if (id) {
-      dispatch(updateProduct(product));
-      navigate("/products")
+      dispatch(updateProduct({ ...product, img: imgPrev }));
+      // navigate("/products");
     } else {
-      // dispatch(postProduct(product, { token }));
-
+      // dispatch(postProduct({ ...product, img: imgPrev }, { token }));
+      dispatch(postProduct({ ...product, img: imgPrev }));
+      console.log({ ...product, img: imgPrev })
       setProduct({
         name: "",
         cost: "",
         brand: "",
-        img: "",
+        img: [""],
         type: "defect",
         details: {},
       });
     }
   };
-
   useEffect(() => {
     if (id) {
       dispatch(searchProductById(id));
@@ -161,10 +431,12 @@ function ProductFormAdmin() {
 
   useEffect(() => {
     if (id) {
+      console.log(searchByIdProduct)
       setProduct(searchByIdProduct);
+      setImgPrev([searchByIdProduct?.img?.[0]])
     }
   }, [searchByIdProduct]);
-
+  
   useEffect(() => {
     return dispatch(getAllProductos());
   }, []);
@@ -223,34 +495,51 @@ function ProductFormAdmin() {
                 {errors.brand ? errors.brand : ""}
               </p>
 
-              <label htmlFor="img">Img</label>
-              {/* <FormGroup> */}
-              {/* <input placeholder=''
-              id={"idPrueba"}
-              multiple
-              name={"uploads"}
-              className={styles.formInput}
-              type={"file"}
-              placeholder={"img"}
-              onChange={(e) => handleInput(e)}
-              // onChange={(e)=> handleimg(e)}
-            /> */}
-              <input
-                id={"idPrueba"}
-                name={"uploads"}
-                className={styles.formInput}
-                type={"text"}
-                value={product.img}
-                placeholder={"Ingrese url de imagen"}
-                onChange={(e) => handleInput(e)}
-              />
+              <div className={styles.wrapinput}>
+                <label htmlFor="inputTag" className={styles.upload}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="icon icon-tabler icon-tabler-upload"
+                    width={120}
+                    height={120}
+                    viewBox="0 0 24 24"
+                    strokeWidth={2}
+                    stroke="white"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"></path>
+                    <polyline points="7 9 12 4 17 9"></polyline>
+                    <line x1={12} y1={4} x2={12} y2={16}></line>
+                  </svg>
+                  <span className={styles.labelimg}>Imagen</span>
+                </label>
+                <input
+                  id="inputTag"
+                  className={`${styles.formInput} ${styles.inputimg}`}
+                  name={"uploads"}
+                  accept="image/png, image/jpg, image/jpeg"
+                  type={"file"}
+                  onChange={uploadImage}
+                />
+                {imgPrev.length ? (
+                  <img
+                    src={imgPrev.length ? imgPrev : null}
+                    alt="img"
+                    className={styles.imgprev}
+                  />
+                ) : (
+                  <div className={styles.block}></div>
+                )}
+              </div>
               <br />
-              <p className={styles.textError}>{errors.img ? errors.img : ""}</p>
-
               <label>Categorías</label>
+
               <select
                 name="type"
-                onChange={(e) => handleInput(e)}
+                onChange={handleOnSelect}
                 className={styles.formInput}
                 value={product.type}
               >
@@ -297,7 +586,7 @@ function ProductFormAdmin() {
                   Cooler
                 </option>
               </select>
-
+              <br />
               {product.type === "mother" ? (
                 <>
                   <label>Generación</label>
@@ -306,7 +595,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="generation"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.generation}
                   />
                   <label>Connectividad</label>
@@ -316,8 +605,9 @@ function ProductFormAdmin() {
                       className={styles.formInput}
                       placeholder=""
                       type="text"
-                      name="Cantidad De Slot Pci-e 16X"
-                      onChange={(e) => handleDetailsInput(e)}
+                      name="connectivity"
+                      data-subname="Cantidad De Slot Pci-e 16X"
+                      onChange={handlerOnObj}
                       value={
                         product.details?.connectivity?.[
                           "Cantidad De Slot Pci-e 16X"
@@ -331,8 +621,9 @@ function ProductFormAdmin() {
                       className={styles.formInput}
                       placeholder=""
                       type="text"
-                      name="Cantidad De Slot Pci-e 1X"
-                      onChange={(e) => handleDetailsInput(e)}
+                      name="connectivity"
+                      data-subname="Cantidad De Slot Pci-e 1X"
+                      onChange={handlerOnObj}
                       value={
                         product.details?.connectivity?.[
                           "Cantidad De Slot Pci-e 1X"
@@ -346,8 +637,9 @@ function ProductFormAdmin() {
                       className={styles.formInput}
                       placeholder=""
                       type="text"
-                      name="Tecnologia Multi Gpu"
-                      onChange={(e) => handleDetailsInput(e)}
+                      name="connectivity"
+                      data-subname="Tecnologia Multi Gpu"
+                      onChange={handlerOnObj}
                       value={
                         product.details?.connectivity?.["Tecnologia Multi Gpu"]
                       }
@@ -359,8 +651,9 @@ function ProductFormAdmin() {
                       className={styles.formInput}
                       placeholder=""
                       type="text"
-                      name="Puertos Sata"
-                      onChange={(e) => handleDetailsInput(e)}
+                      name="connectivity"
+                      data-subname="Puertos Sata"
+                      onChange={handlerOnObj}
                       value={product.details?.connectivity?.["Puertos Sata"]}
                     />
                   </label>
@@ -370,8 +663,9 @@ function ProductFormAdmin() {
                       className={styles.formInput}
                       placeholder=""
                       type="text"
-                      name="Salida Vga"
-                      onChange={(e) => handleDetailsInput(e)}
+                      name="connectivity"
+                      data-subname="Salida Vga"
+                      onChange={handlerOnObj}
                       value={product.details?.connectivity?.["Salida Vga"]}
                     />
                   </label>
@@ -381,8 +675,9 @@ function ProductFormAdmin() {
                       className={styles.formInput}
                       placeholder=""
                       type="text"
-                      name="Salida HDMI"
-                      onChange={(e) => handleDetailsInput(e)}
+                      name="connectivity"
+                      data-subname="Salida HDMI"
+                      onChange={handlerOnObj}
                       value={product.details?.connectivity?.["Salida HDMI"]}
                     />
                   </label>
@@ -392,8 +687,9 @@ function ProductFormAdmin() {
                       className={styles.formInput}
                       placeholder=""
                       type="text"
-                      name="Salida Dvi"
-                      onChange={(e) => handleDetailsInput(e)}
+                      name="connectivity"
+                      data-subname="Salida Dvi"
+                      onChange={handlerOnObj}
                       value={product.details?.connectivity?.["Salida Dvi"]}
                     />
                   </label>
@@ -403,8 +699,9 @@ function ProductFormAdmin() {
                       className={styles.formInput}
                       placeholder=""
                       type="text"
-                      name="Salidas Display Ports"
-                      onChange={(e) => handleDetailsInput(e)}
+                      name="connectivity"
+                      data-subname="Salidas Display Ports"
+                      onChange={handlerOnObj}
                       value={
                         product.details?.connectivity?.["Salidas Display Ports"]
                       }
@@ -416,8 +713,9 @@ function ProductFormAdmin() {
                       className={styles.formInput}
                       placeholder=""
                       type="text"
-                      name="Cantidad de Slot M.2 Totales"
-                      onChange={(e) => handleDetailsInput(e)}
+                      name="connectivity"
+                      data-subname="Cantidad de Slot M.2 Totales"
+                      onChange={handlerOnObj}
                       value={
                         product.details?.connectivity?.[
                           "Cantidad de Slot M.2 Totales"
@@ -431,8 +729,9 @@ function ProductFormAdmin() {
                       className={styles.formInput}
                       placeholder=""
                       type="text"
-                      name="Placa Wifi Integrada"
-                      onChange={(e) => handleDetailsInput(e)}
+                      name="connectivity"
+                      data-subname="Placa Wifi Integrada"
+                      onChange={handlerOnObj}
                       value={
                         product.details?.connectivity?.["Placa Wifi Integrada"]
                       }
@@ -444,8 +743,9 @@ function ProductFormAdmin() {
                       className={styles.formInput}
                       placeholder=""
                       type="text"
-                      name="Placa de Red"
-                      onChange={(e) => handleDetailsInput(e)}
+                      name="connectivity"
+                      data-subname="Placa de Red"
+                      onChange={handlerOnObj}
                       value={product.details?.connectivity?.["Placa de Red"]}
                     />
                   </label>
@@ -455,8 +755,9 @@ function ProductFormAdmin() {
                       className={styles.formInput}
                       placeholder=""
                       type="text"
-                      name="Puerto Ps/2"
-                      onChange={(e) => handleDetailsInput(e)}
+                      name="connectivity"
+                      data-subname="Puerto Ps/2"
+                      onChange={handlerOnObj}
                       value={product.details?.connectivity?.["Puerto Ps/2"]}
                     />
                   </label>
@@ -466,8 +767,9 @@ function ProductFormAdmin() {
                       className={styles.formInput}
                       placeholder=""
                       type="text"
-                      name="Puertos Usb 2.0 Traseros"
-                      onChange={(e) => handleDetailsInput(e)}
+                      name="connectivity"
+                      data-subname="Puertos Usb 2.0 Traseros"
+                      onChange={handlerOnObj}
                       value={
                         product.details?.connectivity?.[
                           "Puertos Usb 2.0 Traseros"
@@ -481,8 +783,9 @@ function ProductFormAdmin() {
                       className={styles.formInput}
                       placeholder=""
                       type="text"
-                      name="Puertos Usb 3.0 Traseros"
-                      onChange={(e) => handleDetailsInput(e)}
+                      name="connectivity"
+                      data-subname="Puertos Usb 3.0 Traseros"
+                      onChange={handlerOnObj}
                       value={
                         product.details?.connectivity?.[
                           "Puertos Usb 3.0 Traseros"
@@ -496,8 +799,9 @@ function ProductFormAdmin() {
                       className={styles.formInput}
                       placeholder=""
                       type="text"
-                      name="Puertos Usb 3.1 Traseros"
-                      onChange={(e) => handleDetailsInput(e)}
+                      name="connectivity"
+                      data-subname="Puertos Usb 3.1 Traseros"
+                      onChange={handlerOnObj}
                       value={
                         product.details?.connectivity?.[
                           "Puertos Usb 3.1 Traseros"
@@ -511,8 +815,9 @@ function ProductFormAdmin() {
                       className={styles.formInput}
                       placeholder=""
                       type="text"
-                      name="Puertos Usb 3.2 Traseros"
-                      onChange={(e) => handleDetailsInput(e)}
+                      name="connectivity"
+                      data-subname="Puertos Usb 3.2 Traseros"
+                      onChange={handlerOnObj}
                       value={
                         product.details?.connectivity?.[
                           "Puertos Usb 3.2 Traseros"
@@ -526,8 +831,9 @@ function ProductFormAdmin() {
                       className={styles.formInput}
                       placeholder=""
                       type="text"
-                      name="Puertos Usb Type-c"
-                      onChange={(e) => handleDetailsInput(e)}
+                      name="connectivity"
+                      data-subname="Puertos Usb Type-c"
+                      onChange={handlerOnObj}
                       value={
                         product.details?.connectivity?.["Puertos Usb Type-c"]
                       }
@@ -539,8 +845,9 @@ function ProductFormAdmin() {
                       className={styles.formInput}
                       placeholder=""
                       type="text"
-                      name="Cantidad De Slot Pci-e 4X"
-                      onChange={(e) => handleDetailsInput(e)}
+                      name="connectivity"
+                      data-subname="Cantidad De Slot Pci-e 4X"
+                      onChange={handlerOnObj}
                       value={
                         product.details?.connectivity?.[
                           "Cantidad De Slot Pci-e 4X"
@@ -554,8 +861,9 @@ function ProductFormAdmin() {
                       className={styles.formInput}
                       placeholder=""
                       type="text"
-                      name="Cantidad De Slot M.2 Sata"
-                      onChange={(e) => handleDetailsInput(e)}
+                      name="connectivity"
+                      data-subname="Cantidad De Slot M.2 Sata"
+                      onChange={handlerOnObj}
                       value={
                         product.details?.connectivity?.[
                           "Cantidad De Slot M.2 Sata"
@@ -569,8 +877,9 @@ function ProductFormAdmin() {
                       className={styles.formInput}
                       placeholder=""
                       type="text"
-                      name="Cantidad De Slot M.2 Nvme"
-                      onChange={(e) => handleDetailsInput(e)}
+                      name="connectivity"
+                      data-subname="Cantidad De Slot M.2 Nvme"
+                      onChange={handlerOnObj}
                       value={
                         product.details?.connectivity?.[
                           "Cantidad De Slot M.2 Nvme"
@@ -578,6 +887,164 @@ function ProductFormAdmin() {
                       }
                     />
                   </label>
+                  <label>Socket</label>
+                  <label>
+                    1:
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="Socket"
+                      onChange={handlerOnArr}
+                      data-foo={0}
+                      value={product.details?.Socket?.[0]}
+                    />
+                  </label>
+                  <label>
+                    2:
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="Socket"
+                      onChange={handlerOnArr}
+                      data-foo={1}
+                      value={product.details?.Socket?.[1]}
+                    />
+                  </label>
+                  <label>
+                    3:
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="Socket"
+                      onChange={handlerOnArr}
+                      data-foo={2}
+                      value={product.details?.Socket?.[2]}
+                    />
+                  </label>
+                  <label>
+                    4:
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="Socket"
+                      onChange={handlerOnArr}
+                      data-foo={3}
+                      value={product.details?.Socket?.[3]}
+                    />
+                  </label>
+                  <label>Energía</label>
+                  <label>
+                    Watts Máximos Para Cpu
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="energy"
+                      data-subname="Watts Máximos Para Cpu"
+                      onChange={handlerOnObj}
+                      value={
+                        product.details?.energy?.["Watts Máximos Para Cpu"]
+                      }
+                    />
+                  </label>
+                  <label>
+                    Conectos Cpu 4Pines
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="energy"
+                      data-subname="Conectos Cpu 4Pines"
+                      onChange={handlerOnObj}
+                      value={product.details?.energy?.["Conectos Cpu 4Pines"]}
+                    />
+                  </label>
+                  <label>
+                    Conector Cpu 4Pines Plus
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="energy"
+                      data-subname="Conector Cpu 4Pines Plus"
+                      onChange={handlerOnObj}
+                      value={
+                        product.details?.energy?.["Conector Cpu 4Pines Plus"]
+                      }
+                    />
+                  </label>
+                  <label>
+                    Conector 24Pines
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="energy"
+                      data-subname="Conector 24Pines"
+                      onChange={handlerOnObj}
+                      value={product.details?.energy?.["Conector 24Pines"]}
+                    />
+                  </label>
+                  <label>
+                    Consumo
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="energy"
+                      data-subname="Consumo"
+                      onChange={handlerOnObj}
+                      value={product.details?.energy?.Consumo}
+                    />
+                  </label>
+                  <label>
+                    Procesador Integrado
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="energy"
+                      data-subname="Procesador Integrado"
+                      onChange={handlerOnObj}
+                      value={product.details?.energy?.["Procesador Integrado"]}
+                    />
+                  </label>
+                  <label>Sonido</label>
+                  <label>
+                    Placa De Sonido
+                    <input
+                      className={styles.formInput}
+                      placeholder=""
+                      type="text"
+                      name="Sound"
+                      data-subname="Placa De Sonido"
+                      onChange={handlerOnObj}
+                      value={product.details?.Sound?.["Placa De Sonido"]}
+                    />
+                  </label>
+                  <label>Memoria Ddr4</label>
+                  <input
+                    className={styles.formInput}
+                    placeholder=""
+                    type="text"
+                    name="Memory"
+                    data-subname="Ddr4"
+                    onChange={handlerOnObj}
+                    value={product.details?.Memory?.Ddr4}
+                  />
+                  <label>Dimensiones</label>
+                  <input
+                    className={styles.formInput}
+                    placeholder=""
+                    type="text"
+                    name="Dimensions"
+                    onChange={handleDetailsInput}
+                    value={product.details?.Dimensions}
+                  />
                 </>
               ) : product.type === "procesador" ? (
                 <>
@@ -587,7 +1054,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="Modelo"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.Modelo}
                   />
                   <label>Socket</label>
@@ -596,7 +1063,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="Socket"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.Socket}
                   />
                   <label>Núcleos</label>
@@ -605,7 +1072,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="Núcleos"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.["Núcleos"]}
                   />
                   <label>Frecuencia</label>
@@ -614,7 +1081,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="Frecuencia"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.Frecuencia}
                   />
                   <label>Proceso_De_Fabricación</label>
@@ -623,7 +1090,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="Proceso_De_Fabricación"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.Proceso_De_Fabricación}
                   />
                   <label>Gpu</label>
@@ -632,7 +1099,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="Gpu"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.Gpu}
                   />
                   <label>Hilos</label>
@@ -641,7 +1108,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="Hilos"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.Hilos}
                   />
                   <label>Frecuencia Turbo</label>
@@ -650,7 +1117,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="Frecuencia_Turbo"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.Frecuencia_Turbo}
                   />
                 </>
@@ -662,7 +1129,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="type"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.type}
                   />
                   <label>Capacidad</label>
@@ -671,7 +1138,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="capacity"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.capacity}
                   />
                   <label>Frecuencia</label>
@@ -680,7 +1147,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="frequency"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.frequency}
                   />
                   <label>BUS</label>
@@ -689,7 +1156,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="bus"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.bus}
                   />
                   <label>Búfer</label>
@@ -698,7 +1165,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="bufer"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.bufer}
                   />
                   <label>Dimensiones</label>
@@ -707,7 +1174,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="size"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.size}
                   />
                 </>
@@ -719,7 +1186,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="type"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.type}
                   />
                   <label>Formato</label>
@@ -728,7 +1195,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="format"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.format}
                   />
                   <label>Frecuencia</label>
@@ -737,7 +1204,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="frequency"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.frequency}
                   />
                   <label>Capacidad</label>
@@ -746,7 +1213,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="capacity"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.capacity}
                   />
                   <label>Latencia</label>
@@ -755,7 +1222,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="latency"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.latency}
                   />
                   <label>Voltaje</label>
@@ -764,7 +1231,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="voltage"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.voltage}
                   />
                   <label>RGB</label>
@@ -773,7 +1240,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="RGB"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.RGB}
                   />
                   <label>Disipador</label>
@@ -782,7 +1249,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="disipador"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.disipador}
                   />
                 </>
@@ -794,7 +1261,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="type"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.type}
                   />
                   <label>Capacidad</label>
@@ -803,7 +1270,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="capacity"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.capacity}
                   />
                   <label>Tamaño</label>
@@ -812,7 +1279,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="size"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.size}
                   />
                   <label>bus</label>
@@ -821,7 +1288,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="bus"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.bus}
                   />
                   <label>Lectura</label>
@@ -830,7 +1297,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="lectura"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.lectura}
                   />
                   <label>Escritura</label>
@@ -839,7 +1306,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="escritura"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.escritura}
                   />
                 </>
@@ -851,7 +1318,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="tipo"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.tipo}
                   />
                   <label>Chipset Gpu</label>
@@ -860,7 +1327,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="chipsetGpu"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.chipsetGpu}
                   />
                   <label>Caracteristicas Especiales</label>
@@ -869,7 +1336,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="CaracteristicasEspeciales"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.CaracteristicasEspeciales}
                   />
                   <label>Dimensiones</label>
@@ -878,7 +1345,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="dimensiones"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.dimensiones}
                   />
                   <label>Conectividad</label>
@@ -887,7 +1354,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="conectividad"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.conectividad}
                   />
                   <label>Consumo</label>
@@ -896,7 +1363,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="consumo"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.consumo}
                   />
                   <label>Watts Recomendados</label>
@@ -905,7 +1372,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="wattsRecomendados"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.wattsRecomendados}
                   />
                   <label>Cantidad Pcie De 6 Pines</label>
@@ -914,7 +1381,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="CantidadPcieDe6Pines"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.CantidadPcieDe6Pines}
                   />
                   <label>Cantidad Pcie De 8 Pines</label>
@@ -923,7 +1390,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="CantidadPcieDe8Pines"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.CantidadPcieDe8Pines}
                   />
                   <label>Backplate</label>
@@ -932,7 +1399,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="backplate"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.backplate}
                   />
                   <label>Block Vga Water Cooling</label>
@@ -941,7 +1408,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="BlockVgaWaterCooling"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.BlockVgaWaterCooling}
                   />
                   <label>Cantidad Cooler</label>
@@ -950,7 +1417,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="cantidadCooler"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.cantidadCooler}
                   />
                   <label>Velocidad Memoria</label>
@@ -959,7 +1426,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="velocidadMemoria"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.velocidadMemoria}
                   />
                   <label>Tipo De Memoria</label>
@@ -968,7 +1435,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="tipoDeMemoria"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.tipoDeMemoria}
                   />
                   <label>Capasidad De Memoria</label>
@@ -977,7 +1444,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="CapasidadDeMemoria"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.CapasidadDeMemoria}
                   />
                   <label>Interface De Memoria</label>
@@ -986,7 +1453,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="interfaceDeMemoria"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.interfaceDeMemoria}
                   />
                   <label>Velosidad Core Turbo</label>
@@ -995,7 +1462,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="VelosidadCoreTurbo"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.VelosidadCoreTurbo}
                   />
                   <label>Tipo De Procesos</label>
@@ -1004,7 +1471,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="tipoDeProcesos"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.tipoDeProcesos}
                   />
                   <label>Cantidad De Procesos</label>
@@ -1013,7 +1480,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="CantidadDeProcesos"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.CantidadDeProcesos}
                   />
                 </>
@@ -1025,7 +1492,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="tiempoDeRespuesta"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.tiempoDeRespuesta}
                   />
                   <label>Tipo De Panel</label>
@@ -1034,7 +1501,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="tipoDePanel"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.tipoDePanel}
                   />
                   <label>Resolution</label>
@@ -1043,7 +1510,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="resolution"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.resolution}
                   />
                   <label>Iluminacion</label>
@@ -1052,7 +1519,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="iluminacion"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.iluminacion}
                   />
                   <label>Consumo</label>
@@ -1061,7 +1528,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="consumo"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.consumo}
                   />
                   <label>Connectivity</label>
@@ -1070,7 +1537,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="connectivity"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.connectivity}
                   />
                   <label>RGB</label>
@@ -1079,7 +1546,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="RGB"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.RGB}
                   />
                   <label>Peso</label>
@@ -1088,7 +1555,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="peso"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.peso}
                   />
                   <label>Frequency</label>
@@ -1097,7 +1564,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="frequency"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.frequency}
                   />
                   <label>Pulgadas</label>
@@ -1106,7 +1573,7 @@ function ProductFormAdmin() {
                     placeholder="pulgadas ej: 24.5..."
                     type="text"
                     name="pulgadas"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.pulgadas}
                   />
                 </>
@@ -1118,7 +1585,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="Watts"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.Watts}
                   />
                   <label>Formato</label>
@@ -1127,7 +1594,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="format"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.Format}
                   />
                   <label>Color</label>
@@ -1136,7 +1603,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="Color"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.Color}
                   />
                   <label>Operating Temperature</label>
@@ -1145,7 +1612,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="Operating temperature"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.["Operating Temperature"]}
                   />
                   <label>Dimensiones</label>
@@ -1154,7 +1621,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="Dimensions"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.Dimensions}
                   />
                   <label>Input Voltage</label>
@@ -1163,7 +1630,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="Input voltage"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.["Input Voltage"]}
                   />
                   <label>Cooling system</label>
@@ -1172,7 +1639,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="Cooling system"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.["Cooling system"]}
                   />
                   <label>RGB Fan</label>
@@ -1181,7 +1648,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="RGB Fan"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.["RGB Fan"]}
                   />
                 </>
@@ -1193,7 +1660,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="RGB"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.RGB}
                   />
                   <label>Color</label>
@@ -1202,7 +1669,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="color"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.color}
                   />
                   <label>Conectividad</label>
@@ -1211,7 +1678,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="connectivity"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.connectivity}
                   />
                   <label>Tipo de teclado</label>
@@ -1220,7 +1687,7 @@ function ProductFormAdmin() {
                     placeholder="ej: De Mano..."
                     type="text"
                     name="tipo_de_teclado"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.tipo_de_teclado}
                   />
                   <label>Tipo de mecanismo</label>
@@ -1229,7 +1696,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="tipo_de_mecanismo"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.tipo_de_mecanismo}
                   />
                   <label>Dimensiones</label>
@@ -1240,7 +1707,8 @@ function ProductFormAdmin() {
                       placeholder="ej: 230 mm x 173 mm x 37 mm..."
                       type="text"
                       name="dimensions"
-                      onChange={(e) => handleDetailsInput(e)}
+                      data-subname="ancho"
+                      onChange={handlerOnObj}
                       value={product.details?.dimensions?.ancho}
                     />
                   </label>
@@ -1251,7 +1719,8 @@ function ProductFormAdmin() {
                       placeholder="ej: 230 mm x 173 mm x 37 mm..."
                       type="text"
                       name="dimensions"
-                      onChange={(e) => handleDetailsInput(e)}
+                      data-subname="profundidad"
+                      onChange={handlerOnObj}
                       value={product.details?.dimensions?.profundidad}
                     />
                   </label>
@@ -1262,7 +1731,8 @@ function ProductFormAdmin() {
                       placeholder="ej: 230 mm x 173 mm x 37 mm..."
                       type="text"
                       name="dimensions"
-                      onChange={(e) => handleDetailsInput(e)}
+                      data-subname="alto"
+                      onChange={handlerOnObj}
                       value={product.details?.dimensions?.alto}
                     />
                   </label>
@@ -1275,7 +1745,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="RGB"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.RGB}
                   />
                   <label>Fans</label>
@@ -1284,7 +1754,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="fans"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.fans}
                   />
                   <label>nivel de ruido</label>
@@ -1293,7 +1763,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="nivel de ruido"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.["nivel de ruido"]}
                   />
                   <label>Consumo</label>
@@ -1302,7 +1772,7 @@ function ProductFormAdmin() {
                     placeholder="ej: De Mano..."
                     type="text"
                     name="consumo"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.consumo}
                   />
                   <label>TDP</label>
@@ -1311,7 +1781,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="tdp"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.tdp}
                   />
                   <label>Disipación</label>
@@ -1320,7 +1790,7 @@ function ProductFormAdmin() {
                     placeholder="ej: De Mano..."
                     type="text"
                     name="disipasión"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.["disipasión"]}
                   />
 
@@ -1332,7 +1802,8 @@ function ProductFormAdmin() {
                       placeholder="ej: 66 mm"
                       type="text"
                       name="dimensions"
-                      onChange={(e) => handleDetailsInput(e)}
+                      data-subname="altura"
+                      onChange={handlerOnObj}
                       value={product.details?.dimensions?.altura}
                     />
                   </label>
@@ -1343,7 +1814,8 @@ function ProductFormAdmin() {
                       placeholder="ej: 120 mm"
                       type="text"
                       name="dimensions"
-                      onChange={(e) => handleDetailsInput(e)}
+                      data-subname="tamaño_coolers"
+                      onChange={handlerOnObj}
                       value={product.details?.dimensions?.tamaño_coolers}
                     />
                   </label>
@@ -1353,7 +1825,8 @@ function ProductFormAdmin() {
                     placeholder="..."
                     type="text"
                     name="compatibilidad"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handlerOnArr}
+                    data-foo={0}
                     value={product.details?.compatibilidad?.[0]}
                   />
                   <input
@@ -1361,7 +1834,8 @@ function ProductFormAdmin() {
                     placeholder="..."
                     type="text"
                     name="compatibilidad"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handlerOnArr}
+                    data-foo={1}
                     value={product.details?.compatibilidad?.[1]}
                   />
                   <input
@@ -1369,7 +1843,8 @@ function ProductFormAdmin() {
                     placeholder="..."
                     type="text"
                     name="compatibilidad"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handlerOnArr}
+                    data-foo={2}
                     value={product.details?.compatibilidad?.[2]}
                   />
                   <input
@@ -1377,7 +1852,8 @@ function ProductFormAdmin() {
                     placeholder="..."
                     type="text"
                     name="compatibilidad"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handlerOnArr}
+                    data-foo={3}
                     value={product.details?.compatibilidad?.[3]}
                   />
                   <input
@@ -1385,7 +1861,8 @@ function ProductFormAdmin() {
                     placeholder="..."
                     type="text"
                     name="compatibilidad"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handlerOnArr}
+                    data-foo={4}
                     value={product.details?.compatibilidad?.[4]}
                   />
                   <input
@@ -1393,7 +1870,8 @@ function ProductFormAdmin() {
                     placeholder="..."
                     type="text"
                     name="compatibilidad"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handlerOnArr}
+                    data-foo={5}
                     value={product.details?.compatibilidad?.[5]}
                   />
                 </>
@@ -1405,7 +1883,7 @@ function ProductFormAdmin() {
                     placeholder="ej: none"
                     type="text"
                     name="rgb"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.rgb}
                   />
                   <label>Descripción</label>
@@ -1414,7 +1892,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="description"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.description}
                   />
                   <label>Conectividades</label>
@@ -1425,7 +1903,8 @@ function ProductFormAdmin() {
                       placeholder=""
                       type="text"
                       name="connectivity"
-                      onChange={(e) => handleDetailsInput(e)}
+                      onChange={handlerOnArr}
+                      data-foo={0}
                       value={product.details?.connectivity?.[0]}
                     />
                   </label>
@@ -1436,7 +1915,8 @@ function ProductFormAdmin() {
                       placeholder=""
                       type="text"
                       name="connectivity"
-                      onChange={(e) => handleDetailsInput(e)}
+                      onChange={handlerOnArr}
+                      data-foo={1}
                       value={product.details?.connectivity?.[1]}
                     />
                   </label>
@@ -1447,7 +1927,8 @@ function ProductFormAdmin() {
                       placeholder=""
                       type="text"
                       name="connectivity"
-                      onChange={(e) => handleDetailsInput(e)}
+                      onChange={handlerOnArr}
+                      data-foo={2}
                       value={product.details?.connectivity?.[2]}
                     />
                   </label>
@@ -1458,7 +1939,8 @@ function ProductFormAdmin() {
                       placeholder=""
                       type="text"
                       name="connectivity"
-                      onChange={(e) => handleDetailsInput(e)}
+                      onChange={handlerOnArr}
+                      data-foo={3}
                       value={product.details?.connectivity?.[3]}
                     />
                   </label>
@@ -1468,7 +1950,7 @@ function ProductFormAdmin() {
                     placeholder="ej: De Mano..."
                     type="text"
                     name="sensitivity"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.sensitivity}
                   />
                   <label>Botones</label>
@@ -1477,7 +1959,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="buttons"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.buttons}
                   />
                   <label>Clicks</label>
@@ -1486,7 +1968,7 @@ function ProductFormAdmin() {
                     placeholder="ej: 230 mm x 173 mm x 37 mm..."
                     type="text"
                     name="clicks"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.clicks}
                   />
                   <label>Dimensiones</label>
@@ -1496,7 +1978,8 @@ function ProductFormAdmin() {
                       className={styles.formInput}
                       type="text"
                       name="sizes"
-                      onChange={(e) => handleDetailsInput(e)}
+                      data-subname="longitud"
+                      onChange={handlerOnObj}
                       value={product.details?.sizes?.longitud}
                     />
                   </label>
@@ -1506,7 +1989,8 @@ function ProductFormAdmin() {
                       className={styles.formInput}
                       type="text"
                       name="sizes"
-                      onChange={(e) => handleDetailsInput(e)}
+                      data-subname="ancho"
+                      onChange={handlerOnObj}
                       value={product.details?.sizes?.ancho}
                     />
                   </label>
@@ -1516,7 +2000,8 @@ function ProductFormAdmin() {
                       className={styles.formInput}
                       type="text"
                       name="sizes"
-                      onChange={(e) => handleDetailsInput(e)}
+                      data-subname="altura"
+                      onChange={handlerOnObj}
                       value={product.details?.sizes?.altura}
                     />
                   </label>
@@ -1525,7 +2010,7 @@ function ProductFormAdmin() {
                     className={styles.formInput}
                     type="text"
                     name="weight"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.weight}
                   />
                 </>
@@ -1537,7 +2022,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="audio"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.audio}
                   />
                   <label>Color</label>
@@ -1546,7 +2031,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="color"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.color}
                   />
                   <label>Conexión</label>
@@ -1555,7 +2040,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="conexion"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.conexion}
                   />
                   <label>Micrófono</label>
@@ -1564,7 +2049,7 @@ function ProductFormAdmin() {
                     placeholder="ej: De Mano..."
                     type="text"
                     name="microfono"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.microfono}
                   />
                   <label>Tipo De Audio</label>
@@ -1573,7 +2058,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="TipoDeAudio"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.TipoDeAudio}
                   />
                 </>
@@ -1585,7 +2070,7 @@ function ProductFormAdmin() {
                     placeholder="ej: 52 cm x 24.5 cm x 52 cm"
                     type="text"
                     name="dimensions"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.dimensions}
                   />
                   <label>Peso</label>
@@ -1594,7 +2079,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="weight"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.weight}
                   />
 
@@ -1607,7 +2092,8 @@ function ProductFormAdmin() {
                       placeholder=""
                       type="text"
                       name="cooling"
-                      onChange={(e) => handleDetailsInput(e)}
+                      data-subname="front_fans_num"
+                      onChange={handlerOnObj}
                       value={product.details?.cooling?.front_fans_num}
                     />
                   </label>
@@ -1618,7 +2104,9 @@ function ProductFormAdmin() {
                       placeholder=""
                       type="text"
                       name="cooling"
-                      onChange={(e) => handleDetailsInput(e)}
+                      onChange={handlerOnArr}
+                      data-foo={0}
+                      data-subname="front_fans_dimension_mm"
                       value={
                         product.details?.cooling?.front_fans_dimension_mm?.[0]
                       }
@@ -1630,7 +2118,9 @@ function ProductFormAdmin() {
                       placeholder=""
                       type="text"
                       name="cooling"
-                      onChange={(e) => handleDetailsInput(e)}
+                      onChange={handlerOnArr}
+                      data-foo={1}
+                      data-subname="front_fans_dimension_mm"
                       value={
                         product.details?.cooling?.front_fans_dimension_mm?.[1]
                       }
@@ -1642,7 +2132,9 @@ function ProductFormAdmin() {
                       placeholder=""
                       type="text"
                       name="cooling"
-                      onChange={(e) => handleDetailsInput(e)}
+                      onChange={handlerOnArr}
+                      data-foo={2}
+                      data-subname="front_fans_dimension_mm"
                       value={
                         product.details?.cooling?.front_fans_dimension_mm?.[2]
                       }
@@ -1655,7 +2147,8 @@ function ProductFormAdmin() {
                       placeholder=""
                       type="text"
                       name="cooling"
-                      onChange={(e) => handleDetailsInput(e)}
+                      data-subname="back_fans_num"
+                      onChange={handlerOnObj}
                       value={product.details?.cooling?.back_fans_num}
                     />
                   </label>
@@ -1666,7 +2159,9 @@ function ProductFormAdmin() {
                       placeholder=""
                       type="text"
                       name="cooling"
-                      onChange={(e) => handleDetailsInput(e)}
+                      onChange={handlerOnArr}
+                      data-foo={0}
+                      data-subname="back_fans_dimension_mm"
                       value={
                         product.details?.cooling?.back_fans_dimension_mm?.[0]
                       }
@@ -1678,7 +2173,7 @@ function ProductFormAdmin() {
                     placeholder="ej: De Mano..."
                     type="text"
                     name="color"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.color}
                   />
                   <label>Materiales</label>
@@ -1687,7 +2182,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="material"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.material}
                   />
                   <label>Luces RGB</label>
@@ -1696,7 +2191,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="RGB"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.RGB}
                   />
                   <label>Tipo de Estructura</label>
@@ -1705,7 +2200,7 @@ function ProductFormAdmin() {
                     placeholder=""
                     type="text"
                     name="structure type"
-                    onChange={(e) => handleDetailsInput(e)}
+                    onChange={handleDetailsInput}
                     value={product.details?.["structure type"]}
                   />
 
@@ -1718,7 +2213,9 @@ function ProductFormAdmin() {
                       placeholder=""
                       type="text"
                       name="connectivity"
-                      onChange={(e) => handleDetailsInput(e)}
+                      data-subname="disk"
+                      data-subsubname="hdd"
+                      onChange={handlerOnObj}
                       value={product.details?.connectivity?.disk?.hdd}
                     />
                   </label>
@@ -1729,7 +2226,9 @@ function ProductFormAdmin() {
                       placeholder=""
                       type="text"
                       name="connectivity"
-                      onChange={(e) => handleDetailsInput(e)}
+                      data-subname="disk"
+                      data-subsubname="ssd"
+                      onChange={handlerOnObj}
                       value={product.details?.connectivity?.disk?.ssd}
                     />
                   </label>
@@ -1740,7 +2239,9 @@ function ProductFormAdmin() {
                       placeholder=""
                       type="text"
                       name="connectivity"
-                      onChange={(e) => handleDetailsInput(e)}
+                      data-subname="disk"
+                      data-subsubname="size_inch"
+                      onChange={handlerOnObj}
                       value={product.details?.connectivity?.disk?.size_inch}
                     />
                   </label>
@@ -1751,7 +2252,8 @@ function ProductFormAdmin() {
                       placeholder=""
                       type="text"
                       name="connectivity"
-                      onChange={(e) => handleDetailsInput(e)}
+                      data-subname="power_supply_type"
+                      onChange={handlerOnObj}
                       value={product.details?.connectivity?.power_supply_type}
                     />
                   </label>
@@ -1762,7 +2264,8 @@ function ProductFormAdmin() {
                       placeholder=""
                       type="text"
                       name="connectivity"
-                      onChange={(e) => handleDetailsInput(e)}
+                      data-subname="mother_types"
+                      onChange={handlerOnObj}
                       value={product.details?.connectivity?.mother_types}
                     />
                   </label>
@@ -1773,7 +2276,8 @@ function ProductFormAdmin() {
                       placeholder=""
                       type="text"
                       name="connectivity"
-                      onChange={(e) => handleDetailsInput(e)}
+                      data-subname="max_length_psu"
+                      onChange={handlerOnObj}
                       value={product.details?.connectivity?.max_length_psu}
                     />
                   </label>
@@ -1784,7 +2288,8 @@ function ProductFormAdmin() {
                       placeholder=""
                       type="text"
                       name="connectivity"
-                      onChange={(e) => handleDetailsInput(e)}
+                      data-subname="max_length_gpu"
+                      onChange={handlerOnObj}
                       value={product.details?.connectivity?.max_length_gpu}
                     />
                   </label>

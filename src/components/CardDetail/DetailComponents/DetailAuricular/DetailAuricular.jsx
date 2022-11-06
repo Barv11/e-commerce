@@ -10,11 +10,7 @@ export default function DetailAuricular({details}) {
       </span>
       <span>
         <b>Color: </b>
-        <ul>
-              {color?.map((el) => (
-                <li key={el}>{el}</li>
-              ))}
-            </ul>
+        {color}
       </span>
       <span>
         <b>Conectividad: </b>

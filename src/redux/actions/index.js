@@ -6,6 +6,7 @@ import {
   ORDER_NAME,
   ORDER_PRECIO,
   SEARCH_PRODUCT_BY_ID,
+  POST_IMAGE,
   POST_PRODUCT,
   DELETE_PRODUCT,
   UPDATE_PRODUCT,
@@ -24,8 +25,8 @@ import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "./actionsTypes";
 
 let token = null;
 export const saveToken = (newToken) => {
-  token = `Bearer ${newToken}`
-}
+  token = `Bearer ${newToken}`;
+};
 
 export const toggleProductType = (type) => async (dispatch) => {
   const productos = await axios.get("http://localhost:3001/productos");
@@ -36,12 +37,31 @@ export const toggleProductType = (type) => async (dispatch) => {
 export const getAllProductos = () => async (dispatch) => {
   const config = {
     headers: {
-      "authorization": token,
+      authorization: token,
     },
   };
-  console.log(token)
+  console.log(token);
   const productos = await axios.get("http://localhost:3001/productos", config);
   dispatch({ type: GET_ALL_PRODUCTS, payload: productos.data });
+};
+
+export const postImage = (file) => async (dispatch) => {
+  const data = new FormData();
+  data.append("file", file[0]);
+  data.append("upload_preset", "pc-images");
+  const response = await fetch(
+    "https://api.cloudinary.com/v1_1/dyodnn524/image/upload",
+    {
+      method: "POST",
+      body: data,
+    }
+  );
+  const img = await response.json();
+  console.log(img)
+  return dispatch({
+    type: POST_IMAGE,
+    payload: img.url
+  })
 };
 
 export function postProduct(payload) {
@@ -50,7 +70,7 @@ export function postProduct(payload) {
       Authorization: token,
     },
   };
-  console.log(config)
+  console.log(config);
   return async function (dispatch) {
     const product = await axios.post(
       "http://localhost:3001/productos/create",
@@ -65,19 +85,25 @@ export function postProduct(payload) {
 }
 
 export const updateProduct = (product) => async (dispatch) => {
-  
-  const { id, name, brand, img, details, cost, type } = product
-  
-  const response = await axios.put("http://localhost:3001/productos?id="+id, {name, brand, img, details, cost, type});
-  
+  const { id, name, brand, img, details, cost, type } = product;
+
+  const response = await axios.put("http://localhost:3001/productos?id=" + id, {
+    name,
+    brand,
+    img,
+    details,
+    cost,
+    type,
+  });
+
   dispatch({ type: UPDATE_PRODUCT, payload: response.data });
 };
 
 export const deleteProduct = (id) => async (dispatch) => {
-  const response = await axios.put("http://localhost:3001/productos/"+id);
+  const response = await axios.put("http://localhost:3001/productos/" + id);
 
-  dispatch({ type: DELETE_PRODUCT, payload: response.data })
-}
+  dispatch({ type: DELETE_PRODUCT, payload: response.data });
+};
 
 export const searchProductByName = (name) => async (dispatch) => {
   const productos = await axios.get("http://localhost:3001/productos");
@@ -139,18 +165,17 @@ export function orderprecio(payload) {
   };
 }
 
-export const getAllUsers = () => async (dispatch) =>{
-    const users = await axios.get("http://localhost:3001/user/create");
-    dispatch({ type: GET_ALL_USERS, payload: users.data });
-}
-  
+export const getAllUsers = () => async (dispatch) => {
+  const users = await axios.get("http://localhost:3001/user/create");
+  dispatch({ type: GET_ALL_USERS, payload: users.data });
+};
+
 export const getCartProduct = (id) => async (dispatch) => {
   const obj = { id: id };
   console.log(obj);
   const productos = await axios.post("http://localhost:3001/cart/get", obj);
   dispatch({ type: GET_CART_PRODUCTS, payload: productos });
 };
-
 
 export const clearCartProduct = () => (dispatch) => {
   dispatch({ type: CLEAR_CART_PRODUCTS });
@@ -175,5 +200,4 @@ export const getUser = (stringToken) => async (dispatch) => {
 export const deleteCartProduct = (id) => async (dispatch) => {
   axios.post("http://localhost:3001/cart/delete", { id: id });
   dispatch({ type: DELETE_CART_PRODUCT });
-}
-
+};

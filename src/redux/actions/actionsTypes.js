@@ -8,6 +8,7 @@ export const USER_LOGIN = "USER_LOGIN";
 export const USER_LOGOUT = "USER_LOGOUT";
 export const ORDER_NAME = "ORDER_NAME";
 export const ORDER_PRECIO = "ORDER_PRECIO";
+export const POST_IMAGE = "POST_IMAGE";
 export const POST_PRODUCT = "POST_PRODUCT";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";

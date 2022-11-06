@@ -16,25 +16,29 @@ export default function CardDetail() {
   const [image, setImage] = useState("");
   const dispatch = useDispatch();
   const searchByIdProduct = useSelector((state) => state.searchByIdProduct);
+  const { name, brand, img, detail, cost } = searchByIdProduct;
 
   useEffect(() => {
     dispatch(searchProductById(id));
   }, [dispatch]);
 
   useEffect(() => {
-    setImage(img);
+    if (Object.entries(searchByIdProduct).length !== 0) {
+      console.log(image);
+      setImage(img[0]);
+      console.log(Boolean(Object.entries(searchByIdProduct).length !== 0));
+    }
   }, [searchByIdProduct]);
 
   useEffect(() => {
     return dispatch(clearProducts());
   }, []);
 
-  const { name, brand, img, detail, cost } = searchByIdProduct;
-
   const handleOnClick = (e) => {
     setImage(e.target.src);
   };
 
+  console.log(searchByIdProduct)
   return (
     <React.Fragment>
       <Navbar />
@@ -45,12 +49,12 @@ export default function CardDetail() {
           <div className={s.container}>
             <div className={s.carrousel}>
               <div className={s.carrousel1}>
-                <img src={img[0]} alt={name} />
+                <img src={image.length ? image : img[0]} alt={name} />
               </div>
               <div className={s.carrousel2}>
-                <img src={img[0]} alt={name} onClick={handleOnClick} />
-                <img src={img[1]} alt={name} onClick={handleOnClick} />
-                <img src={img[2]} alt={name} onClick={handleOnClick} />
+                {img?.map((el) => (
+                  <img src={el} alt={name} onClick={handleOnClick} className={image === el ? s.border : null}/>
+                ))}
               </div>
             </div>
             <div className={s.details}>
