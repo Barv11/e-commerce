@@ -1,20 +1,30 @@
+/* SIDE BAR */
+
 .adminsbContainer{
     height: 700px;
     width: 100%;
-    /* background-color: #8b77bc; */
     background: rgb(27,7,110);
     background: linear-gradient(0deg, rgba(27,7,110,1) 0%, rgba(101,61,187,1) 38%, rgba(205,122,255,1) 100%);
 }
 
 .adminImg{
-    padding-top: 13px;
     width: 90px;
-
+    margin-left: 60px;
+    margin-top: 25px;
 }
 
 .adminName{
     font-size: 18px;
+    font-family: 'Open Sans';
     padding-left: 10px;
+    margin-left: 65px;
+    margin-top: 15px;
+    color: rgb(67, 6, 104);
+}
+
+.categoriesContainer{
+    justify-content: center;
+    align-items: center; 
 }
 
 .catTxt{
@@ -22,14 +32,16 @@
    color: rgb(235, 194, 248);
    padding-left: 10px; 
    font-family: 'Open Sans';
+   text-shadow: rgb(52, 50, 50) 2px 0 2px;
 }
 
+/* TOPBAR */
+
 .topBarContainer{
-    height: 120px;
+    height: 100%;
     width: 100%;
     background: rgb(93,71,128);
     background: linear-gradient(127deg, rgba(93,71,128,1) 33%, rgba(40,7,60,1) 100%);
-
 }
 
 .dashboardTitle{
@@ -38,6 +50,7 @@
     color: rgb(239, 230, 230);
     padding-top: 15px;
     padding-left: 15px;
+    text-shadow: rgb(45, 26, 64) 2px 0 3px;
 }
 
 .dashboardSubTitle{
@@ -47,11 +60,26 @@
     padding-left: 15px;
 }
 
-.btnRegresar{
-    background-color: #8b77bc;
+/* USER LIST */
+
+.userListTxt{
+    font-family: 'Open Sans';
+    font-size: 29px;
     color: rgb(239, 230, 230);
-    width: 120px;
+    margin: 28px;
+    text-shadow: rgb(45, 26, 64) 2px 0 3px;
+
 }
+
+.UserListTitleIcon{
+    display: flex;
+}
+
+.usersListIcon{
+    margin-top: 33px;
+}
+
+
 
 .adminSB{
     width: 17%;
@@ -66,6 +94,7 @@
     height: 100%;
     display: flex;
 }
+
 
 @font-face {
     font-family: 'Heavitas';
