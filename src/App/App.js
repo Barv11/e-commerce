@@ -1,12 +1,22 @@
 import { Route, Routes } from "react-router-dom";
-import { Products, Home, Profile} from '../page';
-import {CardDetail, Login, Register, CreateProduct, Carrito} from '../components'
+import { Products, Home, Profile } from "../page";
+import {
+  CardDetail,
+  Login,
+  Register,
+  CreateProduct,
+  Carrito,
+} from "../components";
 import AdminPage from "../page/Admin/AdminPage";
 import Orden from "../components/Orden/Orden";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { saveToken } from "../redux/actions";
 
 function App() {
-  
+  const dispatch = useDispatch();
+
   const [user] = useState(
     JSON.parse(
       localStorage.getItem("user") ||
@@ -18,7 +28,12 @@ function App() {
   );
 
   localStorage.setItem("user", JSON.stringify(user));
-  
+
+  useEffect(() => {
+    if (user.logged) {
+      saveToken(user.token);
+    }
+  }, []);
 
   return (
     <Routes>

@@ -12,7 +12,7 @@ export default function Paybutton(cartItem) {
     if(user.logged){
       axios
         .post(
-          "http://localhost:3001/create-checkout-session",
+          "https://gametech.up.railway.app/create-checkout-session",
           cartItem
           /* userId: user.id */
         )

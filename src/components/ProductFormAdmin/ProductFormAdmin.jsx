@@ -134,13 +134,12 @@ function ProductFormAdmin() {
   };
 
   const handleSubmit = (e) => {
-    const { token } = user;
     e.preventDefault();
     if (id) {
       dispatch(updateProduct(product));
-      navigate("/products")
+      navigate("/products");
     } else {
-      // dispatch(postProduct(product, { token }));
+      dispatch(postProduct(product));
 
       setProduct({
         name: "",
