@@ -1,0 +1,43 @@
+.card {
+    /* background-color: #969696; */
+    /* display: flex;
+    flex-flow: column nowrap; */
+    border: 1px solid #808080;
+    border-top: none;
+    display: inline-block;
+    align-items: center;
+    padding: 1.5em;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 10px 10px 0 0;
+    margin: 5px;
+    width: 250px;
+}
+
+.img {
+    width: 150px;
+}
+
+.name {
+    font-size: 1.3rem;
+    margin: .5em 0;
+}
+
+.cost {
+    font-size: 1.8rem;
+    margin: .5em 0;
+}
+
+.detail {
+    font-size: .9rem;
+    padding: .5em 1.3em;
+    text-decoration: none;
+    border-radius: 10px;
+    color: #ffffff;
+    background-color:#563E92;
+}
+
+.detail:hover {
+    background-color:#8672b8;
+    outline: 1px solid #563E92;
+}

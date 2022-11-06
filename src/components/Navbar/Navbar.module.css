@@ -1,0 +1,153 @@
+.navbar {
+  display: flex;
+  flex-flow: column nowrap;
+  font-family: "Montserrat", sans-serif;
+}
+
+.container {
+  background-color: #69329c;
+  padding: 5px 0;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffffff;
+}
+
+.logo {
+  padding-left: 40px;
+  width: 90px;
+}
+
+.mainTitle {
+  font-family: Heavitas;
+  margin-top: 8px;
+}
+
+.form {
+  width: 40%;
+  height: 40px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form input {
+  width: 100%;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  background-color: #ffffff;
+  height: 100%;
+  padding-left: 10px;
+  padding-right: 45px;
+  font-family: "Montserrat", sans-serif;
+  box-shadow: 0 0 5px #000000;
+}
+
+.form svg {
+  width: 1.8em;
+  height: 1.8em;
+  position: absolute;
+  right: 5px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  padding-left: 3px;
+  border-left: 1px solid #868686;
+  stroke: #888888;
+}
+
+.containerChild {
+  padding-right: 40px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 3em;
+}
+
+.containerChild svg {
+  cursor: pointer;
+  width: 2.2em;
+  height: 2.2em;
+  fill: #ffffff;
+  background-color: #7c4da5;
+  box-shadow: -1px 1px 0 1px #313131;
+  padding: 0.5em;
+  transform: translate(1px, -1px);
+  border-radius: 25%;
+}
+.containerChild svg:active {
+  transform: scale(1) rotate(0deg) translate(-1px, 1px);
+  box-shadow: none;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.userimg {
+  width: 50px;
+  cursor: pointer;
+}
+
+.userTxt{
+  color: #ffffff
+}
+
+.user span {
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.links {
+  cursor: pointer;
+  background-color: #7b7ad6;
+  padding: 0.6em 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.child {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  color: #ffffff;
+  margin-right: 16px;
+  margin-left: 16px;
+  border-radius: 10px;
+  padding: 0 10px;
+}
+
+.child:hover{
+  background-color: white;
+}
+
+.activeChild {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  color: #7b7ad6;
+  margin-right: 16px;
+  margin-left: 16px;
+  border-radius: 10px;
+  padding: 0 10px;
+  background-color: white;
+}
+
+.form svg:hover {
+  cursor: pointer;
+}
+
+@font-face {
+  font-family: 'Heavitas';
+  src: url('.././fonts/HEAVITAS.TTF');
+}

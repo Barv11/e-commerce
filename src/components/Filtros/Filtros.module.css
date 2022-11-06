@@ -1,0 +1,33 @@
+.globalContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filterSelect{
+    width: 100%;
+    margin: 5px;
+}
+
+.filterSelect select{
+    width: 100%;
+    background-color: #ffffff;
+    padding: 4px 2px;
+    font-weight: 600;
+    color: rgb(37, 37, 37);
+    border-radius: 5px;
+    border: 1px solid blueviolet;
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none;
+    transition: .3s;
+}
+
+.filterSelect select:hover{
+    background-color: #7b7ad6;
+}
+
+.filterSelect select option {
+    color: inherit;
+    background-color: #d1aee0;
+}

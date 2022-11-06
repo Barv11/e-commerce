@@ -1,0 +1,104 @@
+/* SIDE BAR */
+
+.adminsbContainer{
+    height: 700px;
+    width: 100%;
+    background: rgb(27,7,110);
+    background: linear-gradient(0deg, rgba(27,7,110,1) 0%, rgba(101,61,187,1) 38%, rgba(205,122,255,1) 100%);
+}
+
+.adminImg{
+    width: 90px;
+    margin-left: 60px;
+    margin-top: 25px;
+}
+
+.adminName{
+    font-size: 18px;
+    padding-left: 10px;
+    margin-left: 65px;
+    margin-top: 15px;
+    color: rgb(67, 6, 104);
+}
+
+.categoriesContainer{
+    justify-content: center;
+    align-items: center; 
+}
+
+.catTxt{
+   font-size: 20px;
+   color: rgb(235, 194, 248);
+   padding-left: 10px; 
+   text-shadow: rgb(52, 50, 50) 2px 0 2px;
+}
+
+/* TOPBAR */
+
+.topBarContainer{
+    height: 100%;
+    width: 100%;
+    background: rgb(93,71,128);
+    background: linear-gradient(127deg, rgba(93,71,128,1) 33%, rgba(40,7,60,1) 100%);
+}
+
+.dashboardTitle{
+    font-family: Heavitas;
+    font-size: 26px;
+    color: rgb(239, 230, 230);
+    padding-top: 15px;
+    padding-left: 15px;
+    text-shadow: rgb(45, 26, 64) 2px 0 3px;
+}
+
+.dashboardSubTitle{
+    font-size: 16px;
+    color: rgb(239, 230, 230);
+    padding-top: 15px;
+    padding-left: 15px;
+}
+
+/* USER LIST */
+
+.userListTxt{
+    font-size: 29px;
+    color: rgb(239, 230, 230);
+    margin: 28px;
+    text-shadow: rgb(45, 26, 64) 2px 0 3px;
+
+}
+
+.UserListTitleIcon{
+    display: flex;
+}
+
+.usersListIcon{
+    margin-top: 33px;
+}
+
+
+
+.adminSB{
+    width: 17%;
+
+}
+
+.adminTB{
+    width: 83%;
+}
+
+.sideTopContainer{
+    height: 100%;
+    display: flex;
+}
+
+
+@font-face {
+    font-family: 'Heavitas';
+    src: url('../../components/fonts/HEAVITAS.TTF');
+  }
+
+@font-face{
+  font-family: 'Open Sans', 'sans-serif';
+  src: url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+}
