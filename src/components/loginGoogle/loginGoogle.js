@@ -77,7 +77,7 @@ export default function LoginGoogle() {
     /* global google */
     google.accounts.id.initialize({
       client_id:
-        "728691745498-7f5j7df1rd6qd9ldi2jgojelbptod9l2.apps.googleusercontent.com",
+        "991930929385-3ajl2kmv3f3oidcn5oivdvg4rn56htce.apps.googleusercontent.com",
       callback: handleCallbackResponse,
     });
 
