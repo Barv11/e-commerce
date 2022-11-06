@@ -41,14 +41,13 @@ export default function Carrito() {
     const fn = async () => {
       await dispatch(getCartProduct(userFound.id));
       if (user.logged) {
-        if (cartProducts?.length < 1) {
+        if (!cartProducts?.length) {
           await dispatch(addCartProduct(userFound.id, products));
           await dispatch(getCartProduct(userFound.id));
-          setProducts([]);
         } else {
           await dispatch(getCartProduct(userFound.id));
-          setProducts([]);
         }
+        setProducts([]);
       }
     };
     fn();
