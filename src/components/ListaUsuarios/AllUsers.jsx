@@ -20,12 +20,12 @@ export default function AllUsers(){
     console.log(allUsers)
 
     async function handleButtonBanned(userId){ 
-        await axios.put(`http://localhost:3001/user/create/${userId}`, {show: false})
+        await axios.put(`https://gametech.up.railway.app/user/create/${userId}`, {show: false})
         dispatch(getAllUsers())
     }
 
     async function handleButtonUnbanned(userId){
-        await axios.put(`http://localhost:3001/user/create/${userId}`, {show: true})
+        await axios.put(`https://gametech.up.railway.app/user/create/${userId}`, {show: true})
         dispatch(getAllUsers())
     }
 
@@ -38,7 +38,7 @@ export default function AllUsers(){
     console.log(input.role)
 
     async function handleRoleChange(id){
-        await axios.put(`http://localhost:3001/user/create/edit`, {
+        await axios.put(`https://gametech.up.railway.app/user/create/edit`, {
             id:id, role:input.role
         })
     }

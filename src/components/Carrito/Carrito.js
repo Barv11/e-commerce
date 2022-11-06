@@ -58,6 +58,7 @@ export default function Carrito() {
 
   useEffect(() => {
     setDbProducts(cartProducts);
+    setLoading(false);
   }, [cartProducts]);
 
   const handleCartQuantity = (id, quantity) => {
