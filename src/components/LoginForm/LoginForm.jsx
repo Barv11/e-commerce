@@ -74,7 +74,7 @@ export default function Login() {
       "user",
       JSON.stringify({
         logged: true,
-        token: loginAccess.data.token,
+        token: loginAccess.data.token
       })
     );
     navigate("/");
@@ -179,7 +179,7 @@ export default function Login() {
               </form>
               <div className={s.googleBtn}>
                 <p id={s.googleOr}>Sign in With Google</p>
-                     <LoginGoogle />
+                <LoginGoogle />
               </div>
               <div className={s.loginSignup}>
                 <span className="text">

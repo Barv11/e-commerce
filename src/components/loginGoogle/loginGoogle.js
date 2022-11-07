@@ -3,26 +3,81 @@ import { useEffect, useState } from "react";
 import jwtDecode from "jwt-decode";
 import s from "./loginGoogle.module.css";
 import { userRegister } from "../../redux/actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { getUser, getAllUsers } from "../../redux/actions";
+import { userLogin } from "../../redux/actions";
 
 export default function LoginGoogle() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const loginAccess = useSelector((state) => state.loginAccess);
+  const allUsers = useSelector((state) => state.allUsers);
+  const [googleCreated] = useState(
+    JSON.parse(localStorage.getItem("googleCreated"))
+  );
+
   const handleCallbackResponse = (response) => {
-    let userObj = jwtDecode(response.credential);
-    console.log(userObj);
-    navigate("/");
-    const obj = {first_name : userObj.given_name, last_name: userObj.family_name, email: userObj.email, password: userObj.jti, picture: userObj.picture, username:userObj.name}
-    dispatch(userRegister(obj));
+    const userObj = jwtDecode(response.credential);
+    const obj = {
+      first_name: userObj.given_name,
+      last_name: userObj.family_name,
+      email: userObj.email,
+      password: userObj.given_name + userObj.family_name + userObj.email,
+      picture: userObj.picture,
+      username: userObj.name,
+    };
+
+    const fn = async () => {
+      if (googleCreated) {
+        await dispatch(
+          userLogin({
+            username: obj.username,
+            pass: obj.first_name + obj.last_name + obj.email,
+          })
+        );
+        if (loginAccess.data?.token) {
+          dispatch(userLogin("clear"));
+          localStorage.setItem(
+            "user",
+            JSON.stringify({
+              logged: true,
+              token: loginAccess.data.token,
+            })
+          );
+          navigate("/");
+        }
+      } else {
+        await dispatch(userRegister(obj));
+        localStorage.setItem("googleCreated", JSON.stringify(true));
+        await dispatch(
+          userLogin({
+            username: obj.username,
+            pass: obj.first_name + obj.last_name + obj.email,
+          })
+        );
+        if (loginAccess.data?.token) {
+          dispatch(userLogin("clear"));
+          localStorage.setItem(
+            "user",
+            JSON.stringify({
+              logged: true,
+              token: loginAccess.data.token,
+            })
+          );
+          navigate("/");
+        }
+      }
+    };
+    fn();
   };
-  
+
   useEffect(() => {
     /* global google */
     google.accounts.id.initialize({
       client_id:
-        "733514435284-l74vb75poain8kmhmqqvir2oiovhf1b1.apps.googleusercontent.com",
+        "728691745498-7f5j7df1rd6qd9ldi2jgojelbptod9l2.apps.googleusercontent.com",
       callback: handleCallbackResponse,
     });
 
@@ -38,4 +93,3 @@ export default function LoginGoogle() {
     </div>
   );
 }
-

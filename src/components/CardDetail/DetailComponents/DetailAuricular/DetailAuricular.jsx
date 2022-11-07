@@ -1,7 +1,7 @@
 import React from "react";
 
-export default function DetailAuricular({details}) {
-    const { audio, color, conexion, microfono, TipoDeAudio } = details
+export default function DetailAuricular({ details }) {
+  const { audio, color, conexion, microfono, TipoDeAudio } = details;
   return (
     <>
       <span>
