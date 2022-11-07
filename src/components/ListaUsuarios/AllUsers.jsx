@@ -45,6 +45,7 @@ export default function AllUsers() {
       id: id,
       role: input.role,
     });
+    alert("Rol cambiado con exito!");
   }
 
   return (
