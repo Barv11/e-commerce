@@ -21,17 +21,32 @@
 
 .carrousel1 img {
   width: 450px;
-  outline: 4px solid rgb(216, 230, 29);
+  height: 450px;
+  object-fit:contain;
+  /* box-shadow: 0 0 10px 5px #000000; */
+  filter: drop-shadow(0 0 10px #000000) ; 
 }
+
 .carrousel2 {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    gap: 1em;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  gap: 1em;
 }
+
 .carrousel2 img {
-    width: 120px;
+  object-fit: cover;
+  width: 120px;
+  height: 120px;
+  transition: transform .5s;
 }
+
+.border {
+  transform: translateY(-10px);
+  outline: 4px solid rgb(216, 230, 29);
+  box-shadow: 0 0 10px 5px #000000;
+}
+
 .details {
   flex-basis: 40%;
   display: flex;

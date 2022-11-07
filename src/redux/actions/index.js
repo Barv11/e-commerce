@@ -6,6 +6,7 @@ import {
   ORDER_NAME,
   ORDER_PRECIO,
   SEARCH_PRODUCT_BY_ID,
+  POST_IMAGE,
   POST_PRODUCT,
   DELETE_PRODUCT,
   UPDATE_PRODUCT,
@@ -40,8 +41,27 @@ export const getAllProductos = () => async (dispatch) => {
     },
   };
   console.log(token);
-  const productos = await axios.get("https://gametech.up.railway.app/productos", config);
+const productos = await axios.get("https://gametech.up.railway.app/productos", config);
   dispatch({ type: GET_ALL_PRODUCTS, payload: productos.data });
+};
+
+export const postImage = (file) => async (dispatch) => {
+  const data = new FormData();
+  data.append("file", file[0]);
+  data.append("upload_preset", "pc-images");
+  const response = await fetch(
+    "https://api.cloudinary.com/v1_1/dyodnn524/image/upload",
+    {
+      method: "POST",
+      body: data,
+    }
+  );
+  const img = await response.json();
+  console.log(img)
+  return dispatch({
+    type: POST_IMAGE,
+    payload: img.url
+  })
 };
 
 export function postProduct(payload) {
@@ -80,10 +100,11 @@ export const updateProduct = (product) => async (dispatch) => {
 };
 
 export const deleteProduct = (id) => async (dispatch) => {
-  const response = await axios.put("https://gametech.up.railway.app/productos/"+id);
 
-  dispatch({ type: DELETE_PRODUCT, payload: response.data })
-}
+const response = await axios.put("https://gametech.up.railway.app/productos/"+id);
+
+  dispatch({ type: DELETE_PRODUCT, payload: response.data });
+};
 
 export const searchProductByName = (name) => async (dispatch) => {
   const productos = await axios.get("https://gametech.up.railway.app/productos");
@@ -145,11 +166,11 @@ export function orderprecio(payload) {
   };
 }
 
+
 export const getAllUsers = () => async (dispatch) =>{
     const users = await axios.get("https://gametech.up.railway.app/user/create");
     dispatch({ type: GET_ALL_USERS, payload: users.data });
 }
-
 
 export const getCartProduct = (id) => async (dispatch) => {
   const obj = { id: id };

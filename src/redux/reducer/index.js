@@ -9,6 +9,7 @@ import {
   USER_LOGOUT,
   ORDER_NAME,
   ORDER_PRECIO,
+  POST_IMAGE,
   POST_PRODUCT,
   UPDATE_PRODUCT,
   DELETE_PRODUCT,
@@ -30,6 +31,7 @@ const initialState = {
   userFound: {},
   cartProducts: [],
   allUsers: [],
+  url: "",
 };
 
 function rootReducer(state = initialState, action) {
@@ -60,7 +62,13 @@ function rootReducer(state = initialState, action) {
         allProducts: [],
         searchByNameProduct: [],
         searchByIdProduct: {},
+        url: "",
       };
+    case POST_IMAGE:
+      return {
+        ...state,
+        url: action.payload
+      }
     case POST_PRODUCT:
       return {
         ...state,

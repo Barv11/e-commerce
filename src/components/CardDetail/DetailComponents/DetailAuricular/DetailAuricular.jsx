@@ -10,9 +10,7 @@ export default function DetailAuricular({ details }) {
       </span>
       <span>
         <b>Color: </b>
-        <ul>
-          <li>{color}</li>
-        </ul>
+        {color}
       </span>
       <span>
         <b>Conectividad: </b>

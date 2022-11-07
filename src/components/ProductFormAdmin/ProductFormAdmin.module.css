@@ -96,3 +96,48 @@
 .textError{
     color: red;
 }
+
+.wrapinput {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.upload {
+  cursor: pointer;
+  border-radius: 20px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: .5em;
+  background-color: rgb(181, 151, 182);
+  width: 200px;
+  height: 200px;
+}
+
+.labelimg {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: .2em;
+  color: #ffffff;
+}
+
+.imgprev {
+  background-color: #ffffff;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.inputimg {
+  display: none;
+}
+
+.block {
+  width: 200px;
+  height: 200px;
+}
