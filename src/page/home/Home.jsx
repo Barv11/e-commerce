@@ -15,13 +15,12 @@ export default function Home() {
     JSON.parse(localStorage.getItem("user") || "[]")
   );
 
-  const [products, setProducts] = useState(
-    JSON.parse(localStorage.getItem("products") || "[]")
-  );
+  // const [products, setProducts] = useState(
+  //   JSON.parse(localStorage.getItem("products") || "[]")
+  // );
 
   useEffect(() => {
     if (user.logged) {
-      dispatch(getUser(user.token));
       saveToken(user.token);
     }
   }, []);
