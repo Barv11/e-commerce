@@ -117,6 +117,10 @@
   width: 200px;
   height: 200px;
 }
+.upload i {
+  font-size: 6rem;
+  color: #ffffff;
+}
 
 .labelimg {
   text-align: center;

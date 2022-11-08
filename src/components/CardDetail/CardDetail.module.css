@@ -75,7 +75,7 @@
   color: #c78711
 }
 
-.svg {
+.icon {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -83,11 +83,9 @@
   color: #248b24;
 }
 
-.svg svg {
-    width: 1.7em;
-    height: 1.7em;
-    stroke: #248b24;
-    margin-right: .7em;
+.icon i {
+    font-size: 2rem;
+    margin-right: .2em;
 }
 
 .especificaciones {

@@ -412,7 +412,7 @@ function ProductFormAdmin() {
     } else {
       // dispatch(postProduct({ ...product, img: imgPrev }, { token }));
       dispatch(postProduct({ ...product, img: imgPrev }));
-      console.log({ ...product, img: imgPrev })
+      console.log({ ...product, img: imgPrev });
       setProduct({
         name: "",
         cost: "",
@@ -431,14 +431,14 @@ function ProductFormAdmin() {
 
   useEffect(() => {
     if (id) {
-      console.log(searchByIdProduct)
+      console.log(searchByIdProduct);
       setProduct(searchByIdProduct);
-      setImgPrev([searchByIdProduct?.img?.[0]])
+      setImgPrev([searchByIdProduct?.img?.[0]]);
     }
   }, [searchByIdProduct]);
-  
+
   useEffect(() => {
-    document.title = `Gamer Tech | ${id ? 'Edit' : 'Create'}`
+    document.title = `Gamer Tech | ${id ? "Edit" : "Create"}`;
     return dispatch(getAllProductos());
   }, []);
 
@@ -498,23 +498,7 @@ function ProductFormAdmin() {
 
               <div className={styles.wrapinput}>
                 <label htmlFor="inputTag" className={styles.upload}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="icon icon-tabler icon-tabler-upload"
-                    width={120}
-                    height={120}
-                    viewBox="0 0 24 24"
-                    strokeWidth={2}
-                    stroke="white"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"></path>
-                    <polyline points="7 9 12 4 17 9"></polyline>
-                    <line x1={12} y1={4} x2={12} y2={16}></line>
-                  </svg>
+                  <i class="uil uil-image-plus"></i>
                   <span className={styles.labelimg}>Imagen</span>
                 </label>
                 <input

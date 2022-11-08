@@ -13,6 +13,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { saveToken } from "../redux/actions";
+import EditProducts from "../components/EditProducts/EditProducts";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ function App() {
       <Route path={"/detail/:id"} element={<CardDetail />} />
       <Route path={"/create"} element={<CreateProduct />} />
       <Route path={"/edit/:id"} element={<CreateProduct />} />
+      <Route path={"/edit"} element={<EditProducts />} />
       <Route path={"/admin"} element={<AdminPage />} />
       <Route path={"/orden"} element={<Orden />} />
       <Route path={"/carrito"} element={<Carrito />} />
