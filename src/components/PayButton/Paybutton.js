@@ -14,7 +14,7 @@ export default function Paybutton(cartItem) {
     if(user.logged){
       axios
         .post(
-          `${local}create-checkout-session`,
+          `${deployed}create-checkout-session`,
           cartItem
           /* userId: user.id */
         )

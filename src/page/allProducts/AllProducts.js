@@ -30,7 +30,9 @@ export default function Products() {
     JSON.parse(localStorage.getItem("products") || "[]")
   );
 
-  const handleSearch = (input) => {
+  const handleSearch = (e) => {
+    e.preventDefault()
+    dispatch(clearProducts());
     dispatch(searchProductByName(input));
   };
 
@@ -115,7 +117,7 @@ export default function Products() {
           <SideBar setCurrentPage={setCurrentPage} setOrden={setOrden} />
         </div>
         <div className={s.productsContainer}>
-        <form className={s.form} onSubmit={() => handleSearch(input)}>
+        <form className={s.form} onSubmit={handleSearch}>
           <input
             value={input}
             onChange={handleInputChange}
