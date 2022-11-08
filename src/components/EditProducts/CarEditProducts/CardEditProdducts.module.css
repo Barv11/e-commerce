@@ -22,15 +22,15 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  flex-basis: 45%;
+  flex-basis: 40%;
 }
 
 .text:nth-child(3) {
-  flex-basis: 15%;
+  flex-basis: 13%;
 }
 
 .text:nth-child(4) {
-  flex-basis: 10%;
+  flex-basis: 8%;
 }
 
 .link {
@@ -45,10 +45,10 @@
   filter: drop-shadow(0 0 5px black);
 }
 
-.detail {
+.delete {
   cursor: pointer;
-  color: #7c007c;
+  color: #a50f0f;
 }
-.detail:hover {
+.delete:hover {
   filter: drop-shadow(0 0 5px black);
 }

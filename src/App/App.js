@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { saveToken } from "../redux/actions";
 import EditProducts from "../components/EditProducts/EditProducts";
+import About from "../components/About/About";
 
 function App() {
   const dispatch = useDispatch();
@@ -50,6 +51,7 @@ function App() {
       <Route path={"/orden"} element={<Orden />} />
       <Route path={"/carrito"} element={<Carrito />} />
       <Route path={"/profile"} element={<Profile />} />
+      <Route path={"/about"} element={<About />} />
     </Routes>
   );
 }

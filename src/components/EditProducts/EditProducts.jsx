@@ -7,7 +7,7 @@ import {
   getAllProductos,
   toggleProductType,
 } from "../../redux/actions";
-import CardEditProducts from "./CardEditProducts/CardEditProducts";
+import CardEditProducts from "./CarEditProducts/CardEditProducts";
 import Loader from "../Loader/Loader";
 import s from "./EditProducts.module.css";
 
@@ -80,8 +80,8 @@ export default function EditProducts() {
   return (
     <div>
       <Navbar />
-      <h1 className={s.title}>Manejador de Productos:</h1>
-      <h4 className={s.subtitle}>Productos actuales: {allProducts.length}</h4>
+      <h1 className={s.title}>Inventario de Productos:</h1>
+      <h4 className={s.subtitle}>Productos actuales: {allProducts.length} {type !== "defect" ? `${type}(es/s)` : 'en total'}</h4>
       <div className={s.container}>
         <div className={s.searchContainer}>
           <hr />
@@ -151,7 +151,7 @@ export default function EditProducts() {
           <span className={s.text}>Marca</span>
           <span className={s.text}>Precio</span>
           <span className={s.text}>Editar</span>
-          <span className={s.text}>Detalle</span>
+          <span className={s.text}>Eliminar</span>
         </div>
         {result.length > 0 ? (
           result

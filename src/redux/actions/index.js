@@ -22,8 +22,9 @@ import {
 } from "./actionsTypes";
 import axios from "axios";
 import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "./actionsTypes";
-let deployed = "https://gametech.up.railway.app"
-let local = 'http://localhost:3001/'
+
+let url = "https://gametech.up.railway.app"
+// let url = "http://localhost:3001"
 
 let token = null;
 export const saveToken = (newToken) => {
@@ -31,7 +32,7 @@ export const saveToken = (newToken) => {
 };
 
 export const toggleProductType = (type) => async (dispatch) => {
-  const productos = await axios.get(`${local}productos`);
+  const productos = await axios.get(`${url}/productos`);
   const filterProduct = productos.data.filter((p) => p.type === type);
   dispatch({ type: TOGGLE_PRODUCT_TYPE, payload: filterProduct });
 };
@@ -43,7 +44,7 @@ export const getAllProductos = () => async (dispatch) => {
     },
   };
   console.log(token);
-const productos = await axios.get(`${local}productos`, config);
+const productos = await axios.get(`${url}/productos`, config);
   dispatch({ type: GET_ALL_PRODUCTS, payload: productos.data });
 };
 
@@ -75,7 +76,7 @@ export function postProduct(payload) {
   console.log(config);
   return async function (dispatch) {
     const product = await axios.post(
-      `${local}productos/create`,
+      `${url}/productos/create`,
       payload,
       config
     );
@@ -88,8 +89,7 @@ export function postProduct(payload) {
 
 export const updateProduct = (product) => async (dispatch) => {
   const { id, name, brand, img, details, cost, type } = product;
-
-  const response = await axios.put(`${local}productos?id=` + id, {
+  const response = await axios.put(`${url}/productos?id=` + id, {
     name,
     brand,
     img,
@@ -102,14 +102,12 @@ export const updateProduct = (product) => async (dispatch) => {
 };
 
 export const deleteProduct = (id) => async (dispatch) => {
-
-const response = await axios.put(`${local}productos/`+id);
-
+const response = await axios.put(`${url}/productos/`+id);
   dispatch({ type: DELETE_PRODUCT, payload: response.data });
 };
 
 export const searchProductByName = (name) => async (dispatch) => {
-  const productos = await axios.get(`${local}productos`);
+  const productos = await axios.get(`${url}/productos`);
   const productosbyName = productos.data.filter((p) =>
     p.name.toLowerCase().includes(name.toLowerCase())
   );
@@ -117,7 +115,7 @@ export const searchProductByName = (name) => async (dispatch) => {
 };
 
 export const searchProductById = (id) => async (dispatch) => {
-  const producto = await axios.get(`${local}productos/` + id);
+  const producto = await axios.get(`${url}/productos/` + id);
   const productosbyId = producto.data;
   dispatch({ type: SEARCH_PRODUCT_BY_ID, payload: productosbyId });
 };
@@ -133,14 +131,14 @@ export const userLogin = (obj) => async (dispatch) => {
   if (obj === "clear") {
     dispatch({ type: USER_LOGIN, payload: {} });
   } else {
-    const login = await axios.post(`${local}user/login`, obj);
+    const login = await axios.post(`${url}/user/login`, obj);
     dispatch({ type: USER_LOGIN, payload: login });
   }
 };
 
 export const userRegister = (user) => async (dispatch) => {
   const register = await axios.post(
-    `${local}user/create/signup`,
+    `${url}/user/create/signup`,
     user
   );
   dispatch({ type: REGISTER_USER, payload: register });
@@ -170,14 +168,14 @@ export function orderprecio(payload) {
 
 
 export const getAllUsers = () => async (dispatch) =>{
-    const users = await axios.get(`${local}user/create`);
+    const users = await axios.get(`${url}/user/create`);
     dispatch({ type: GET_ALL_USERS, payload: users.data });
 }
 
 export const getCartProduct = (id) => async (dispatch) => {
   const obj = { id: id };
   console.log(obj);
-  const productos = await axios.post(`${local}cart/get`, obj);
+  const productos = await axios.post("${url}/cart/get", obj);
   dispatch({ type: GET_CART_PRODUCTS, payload: productos });
 };
 
@@ -188,20 +186,20 @@ export const clearCartProduct = () => (dispatch) => {
 export const addCartProduct = (id, array) => async (dispatch) => {
   const obj = { id: id, productosCarrito: array };
   console.log(obj);
-  const a = await axios.post(`${local}cart/create`, obj);
+  const a = await axios.post(`${url}/cart/create`, obj);
   dispatch({ type: ADD_CART_PRODUCTS });
 };
 
 export const getUser = (stringToken) => async (dispatch) => {
   const myUser = { token: stringToken.toString() };
   const userFound = await axios.post(
-    `${local}user/login/find`,
+    `${url}/user/login/find`,
     myUser
   );
   dispatch({ type: GET_USER, payload: userFound.data });
 };
 
 export const deleteCartProduct = (id) => async (dispatch) => {
-  axios.post(`${local}cart/delete`, { id: id });
+  axios.post(`${url}/cart/delete`, { id: id });
   dispatch({ type: DELETE_CART_PRODUCT });
 };
