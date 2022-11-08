@@ -48,17 +48,14 @@
   box-shadow: 0 0 5px #000000;
 }
 
-.form svg {
-  width: 1.8em;
-  height: 1.8em;
+.form i {
+  font-size: 1.6rem;
   position: absolute;
-  right: 5px;
+  right: 10px;
   top: 0;
   bottom: 0;
   margin: auto;
-  padding-left: 3px;
-  border-left: 1px solid #868686;
-  stroke: #888888;
+  color: #888888;
 }
 
 .containerChild {
@@ -70,20 +67,18 @@
   gap: 3em;
 }
 
-.containerChild svg {
+.containerChild i {
   cursor: pointer;
-  width: 2.2em;
-  height: 2.2em;
-  fill: #ffffff;
+  font-size: 2rem;
+  color: #ffffff;
   background-color: #7c4da5;
-  box-shadow: -1px 1px 0 1px #313131;
-  padding: 0.5em;
-  transform: translate(1px, -1px);
-  border-radius: 25%;
-}
-.containerChild svg:active {
-  transform: scale(1) rotate(0deg) translate(-1px, 1px);
   box-shadow: none;
+  padding: .2em;
+  box-shadow: 0 0 5px #313131;
+  border-radius: 15px;
+}
+.containerChild i:hover {
+  box-shadow: 0 0 5px #cccccc;
 }
 
 .user {
@@ -107,7 +102,6 @@
 }
 
 .links {
-  cursor: pointer;
   background-color: #7b7ad6;
   padding: 0.6em 0;
   text-align: center;
@@ -143,7 +137,7 @@
   background-color: white;
 }
 
-.form svg:hover {
+.form i:hover {
   cursor: pointer;
 }
 
