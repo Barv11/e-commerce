@@ -11,5 +11,6 @@ export {default as mouse} from '../icons/mouse.png'
 export {default as keyboard} from '../icons/keyboard.png'
 export {default as gabinete} from '../icons/computer.png'
 export {default as headphones} from '../icons/headphones.png'
+export {default as filter} from '../icons/filter.png'
 
 

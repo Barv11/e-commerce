@@ -26,7 +26,7 @@ export default function CardDetail() {
     if (Object.entries(searchByIdProduct).length !== 0) {
       console.log(image);
       setImage(img[0]);
-      console.log(Boolean(Object.entries(searchByIdProduct).length !== 0));
+      document.title = `Gamer Tech | ${searchByIdProduct.name}`
     }
   }, [searchByIdProduct]);
 
@@ -37,8 +37,6 @@ export default function CardDetail() {
   const handleOnClick = (e) => {
     setImage(e.target.src);
   };
-
-  console.log(searchByIdProduct)
   return (
     <React.Fragment>
       <Navbar />

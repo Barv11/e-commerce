@@ -438,6 +438,7 @@ function ProductFormAdmin() {
   }, [searchByIdProduct]);
   
   useEffect(() => {
+    document.title = `Gamer Tech | ${id ? 'Edit' : 'Create'}`
     return dispatch(getAllProductos());
   }, []);
 

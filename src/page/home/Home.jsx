@@ -26,6 +26,9 @@ export default function Home() {
     }
   }, []);
 
+  useEffect(() =>{
+    document.title = `Gamer Tech`
+  }, []); 
   
   return (
     <div>

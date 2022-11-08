@@ -1,51 +1,55 @@
-
-.containerGlobal{
-    background-color: blueviolet;
+.containerGlobal {
+  background-color: rgb(199, 159, 236);
 }
 
-.cardUser{
-display: flex;
-justify-content: center;
-align-items: center;
-    background-color: white;
-    width: 80%;
-    height: 90%;
-    border-radius: 5px;
-    margin: 15px 10%;
+.cardUser {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: 80%;
+  border-radius: 5px;
+  margin: 15px 10%;
 }
 
-.imgProfile{
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    margin: 15px;
-    background-color: blueviolet;
+.imgProfile {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 15px;
+  background-color: blueviolet;
 }
 
-.headProfile{
-    display: flex;
-    align-items: center;
-    background-color: blueviolet;
-    border-radius: 15px;
-    margin: 15px 0;
+.headProfile {
+    width: 90%;
+  display: flex;
+  align-items: center;
+  background-color: blueviolet;
+  border-radius: 15px;
+  margin: 15px 0;
 }
-.subtitle{
-    margin: 15px 0;
-    font-size: 25px;
-    font-weight: 600;
-    padding: 5px 0;
-}
-
-.acordeon{
-    width: 70vw;   
+.subtitle {
+  margin: 15px 0;
+  font-size: 25px;
+  font-weight: 600;
+  padding: 5px 0;
 }
 
-.allBody{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.acordeonContainer {
+    min-height: calc(100vh - 475px);
 }
-    /* .insideItem{
+
+.acordeon {
+  width: 70vw;
+}
+
+.allBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* .insideItem{
     display: flex;
     flex-direction: column; 
         align-items: center; 

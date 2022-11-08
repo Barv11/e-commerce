@@ -1,6 +1,6 @@
 .container {
-  height: 310px;
   width: 200px;
+  height: 350px;
   /* padding: 1em 0; */
   margin: 10px;
   display: flex;
@@ -17,6 +17,41 @@
   );
   position: relative;
 }
+
+.cart2 {
+  cursor: pointer;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: .5em;
+  text-decoration: none;
+  /* background-color: #7bbd50; */
+  background-color: transparent;
+  color: rgb(100, 100, 100);
+  padding: 2px 15px;
+  margin-bottom: 1em;
+  border-radius: 10px;
+  border: none;
+  transition: 0.3s;
+  text-decoration: underline;
+}
+
+.cart2:hover {
+  background-color: #408612;
+  color: white;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.add {
+  font-size: 1rem;
+}
+
+.cart2 i {
+  font-size: 1.2rem;
+}
+
+
 
 .cart {
   position: absolute;

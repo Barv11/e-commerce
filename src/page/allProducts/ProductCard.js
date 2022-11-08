@@ -3,14 +3,13 @@ import { NavLink } from "react-router-dom";
 import s from "./ProductCard.module.css";
 
 export default function ProductCard(props) {
-
-  const [cartState, setCartState] = useState(false)
+  const [cartState, setCartState] = useState(false);
 
   return (
     <div className={s.container}>
-      <div className={s.cart} onClick={() => props.cart(props)}>
+      {/* <div className={s.cart} onClick={() => props.cart(props)}>
         <i class="uil uil-shopping-cart"></i>
-      </div>
+      </div> */}
       <div className={s.imgContainer}>
         <img src={props.img} alt={props.name} />
       </div>
@@ -19,6 +18,10 @@ export default function ProductCard(props) {
       <NavLink to={"/detail/" + props.id} className={s.button}>
         Ver más
       </NavLink>
+      <div className={s.cart2} onClick={() => props.cart(props)}>
+        <span className={s.add}>Add to cart</span>
+        <i className="uil uil-shopping-cart"></i>
+      </div>
     </div>
   );
 }
