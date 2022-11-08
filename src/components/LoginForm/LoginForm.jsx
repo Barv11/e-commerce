@@ -95,6 +95,10 @@ export default function Login() {
     );
   };
 
+  useEffect(() =>{
+    document.title = `Gamer Tech | Login`
+  }, []); 
+
   return (
     <div className={s.container}>
       <div className={s.formMainContainer}>

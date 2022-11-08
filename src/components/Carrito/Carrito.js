@@ -61,6 +61,10 @@ export default function Carrito() {
     setLoading(false);
   }, [cartProducts]);
 
+  useEffect(() =>{
+    document.title = `Gamer Tech | Cart`
+  }, []); 
+
   const handleCartQuantity = (id, quantity) => {
     if (user.logged) {
       let finalProducts = [

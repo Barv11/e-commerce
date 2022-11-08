@@ -3,8 +3,12 @@ import Navbar from '../../components/Navbar/Navbar';
 import AdminSideBar from './AdminSideBar';
 import AdminTopBar from './AdminTopBar';
 import s from './AdminPage.module.css'
+import { useEffect } from 'react';
 
 export default function AdminPage(){
+    useEffect(() =>{
+        document.title = `Gamer Tech | Admin`
+      }, []); 
     return(
         <div>
             <Navbar />

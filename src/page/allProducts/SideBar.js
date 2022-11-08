@@ -21,6 +21,7 @@ import {
   keyboard,
   gabinete,
   headphones,
+  filter,
 } from "../../assets/icons";
 
 export default function SideBar({ setCurrentPage, setOrden }) {
@@ -32,6 +33,12 @@ export default function SideBar({ setCurrentPage, setOrden }) {
     setCurrentPage(1);
     setOrden("");
   };
+  const clearFilter = () => {
+    dispatch(clearProducts());
+    dispatch(getAllProductos());
+    setCurrentPage(1);
+    setOrden("");
+  }
 
   // const OrderName = (event) =>{
   //   event.preventDefault();
@@ -43,43 +50,46 @@ export default function SideBar({ setCurrentPage, setOrden }) {
   return (
     <div className={s.container}>
       <div className={s.typesContainer}>
-        <button data-foo='Mother' onClick={() => handleClick("mother")}>
+        <button data-foo="Reiniciar" onClick={clearFilter}>
+          <img src={filter} alt="cpu" className={s.image} />
+        </button>
+        <button data-foo="Mother" onClick={() => handleClick("mother")}>
           <img src={motherboard} alt="cpu" className={s.image} />
         </button>
-        <button data-foo='Procesador' onClick={() => handleClick("procesador")}>
+        <button data-foo="Procesador" onClick={() => handleClick("procesador")}>
           <img src={cpu} alt="cpu" className={s.image} />
         </button>
-        <button data-foo='Ram' onClick={() => handleClick("ram")}>
+        <button data-foo="Ram" onClick={() => handleClick("ram")}>
           <img src={ram} alt="cpu" className={s.image} />
         </button>
-        <button data-foo='Tarjeta' onClick={() => handleClick("tarjeta")}>
+        <button data-foo="Tarjeta" onClick={() => handleClick("tarjeta")}>
           <img src={tarjeta} alt="cpu" className={s.image} />
         </button>
-        <button data-foo='Fuente' onClick={() => handleClick("fuente")}>
+        <button data-foo="Fuente" onClick={() => handleClick("fuente")}>
           <img src={fuente} alt="cpu" className={s.image} />
         </button>
-        <button data-foo='Disco' onClick={() => handleClick("disco")}>
+        <button data-foo="Disco" onClick={() => handleClick("disco")}>
           <img src={hdd} alt="cpu" className={s.image} />
         </button>
-        <button data-foo='Cooler' onClick={() => handleClick("cooler")}>
+        <button data-foo="Cooler" onClick={() => handleClick("cooler")}>
           <img src={cooler} alt="cpu" className={s.image} />
         </button>
-        <button data-foo='Solido' onClick={() => handleClick("solido")}>
+        <button data-foo="Solido" onClick={() => handleClick("solido")}>
           <img src={ssd} alt="cpu" className={s.image} />
         </button>
-        <button data-foo='Pantalla' onClick={() => handleClick("pantalla")}>
+        <button data-foo="Pantalla" onClick={() => handleClick("pantalla")}>
           <img src={monitor} alt="cpu" className={s.image} />
         </button>
-        <button data-foo='Mouse' onClick={() => handleClick("mouse")}>
+        <button data-foo="Mouse" onClick={() => handleClick("mouse")}>
           <img src={mouse} alt="cpu" className={s.image} />
         </button>
-        <button data-foo='Teclado' onClick={() => handleClick("teclado")}>
+        <button data-foo="Teclado" onClick={() => handleClick("teclado")}>
           <img src={keyboard} alt="cpu" className={s.image} />
         </button>
-        <button data-foo='Gabinete' onClick={() => handleClick("gabinete")}>
+        <button data-foo="Gabinete" onClick={() => handleClick("gabinete")}>
           <img src={gabinete} alt="cpu" className={s.image} />
         </button>
-        <button data-foo='Auricular' onClick={() => handleClick("auricular")}>
+        <button data-foo="Auricular" onClick={() => handleClick("auricular")}>
           <img src={headphones} alt="cpu" className={s.image} />
         </button>
       </div>

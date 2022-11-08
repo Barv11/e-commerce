@@ -40,6 +40,11 @@ export default function Products() {
 
   localStorage.setItem("products", JSON.stringify(cart));
 
+
+  useEffect(() =>{
+    document.title = `Gamer Tech | Productos`
+  }, []); 
+
   useEffect(() => {
     dispatch(clearProducts());
     dispatch(getAllProductos());
@@ -131,14 +136,14 @@ export default function Products() {
           ) : (
             <Loader />
           )}
-          <Pagination
-            productsPerPage={productsPerPage}
-            totalProducts={allProducts.length}
-            productsFilter={pagProducts.length}
-            pagina={pagina}
-          />
         </div>
       </div>
+      <Pagination
+        productsPerPage={productsPerPage}
+        totalProducts={allProducts.length}
+        productsFilter={pagProducts.length}
+        pagina={pagina}
+      />
       <Footer />
     </div>
   );

@@ -5,6 +5,7 @@ import validate from "./validator";
 import { userRegister } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -90,6 +91,10 @@ export default function Register() {
       });
     }
   };
+
+  useEffect(() =>{
+    document.title = `Gamer Tech | Register`
+  }, []); 
 
   return (
     <div className={s.container}>
