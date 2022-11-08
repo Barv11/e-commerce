@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import s from "./Login.module.css";
 import validate from "./validator";
-import { userLogin, userLogout } from "../../redux/actions";
+import { userLogin } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
@@ -16,8 +16,6 @@ export default function Login() {
   const navigate = useNavigate();
   const loginAccess = useSelector((state) => state.loginAccess);
   const [loading, setLoading] = useState(false);
-
-  const [user, setUser] = useState(false);
 
   const toggleEye = () => {
     setPassEye(!passEye);
@@ -73,7 +71,7 @@ export default function Login() {
       "user",
       JSON.stringify({
         logged: true,
-        token: loginAccess.data.token
+        token: loginAccess.data.token,
       })
     );
     navigate("/");
@@ -94,9 +92,9 @@ export default function Login() {
     );
   };
 
-  useEffect(() =>{
-    document.title = `Gamer Tech | Login`
-  }, []); 
+  useEffect(() => {
+    document.title = `Gamer Tech | Login`;
+  }, []);
 
   return (
     <div className={s.container}>
