@@ -12,6 +12,16 @@ export default function LoginGoogle() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const [user] = useState(
+    JSON.parse(
+      localStorage.getItem("user") ||
+        JSON.stringify({
+          logged: false,
+          token: "",
+        })
+    )
+  );
+
   const loginAccess = useSelector((state) => state.loginAccess);
   const allUsers = useSelector((state) => state.allUsers);
 
@@ -26,10 +36,8 @@ export default function LoginGoogle() {
       username: userObj.given_name,
     };
 
-    const user = allUsers.filter(
-      (u) => u.userName === obj.username
-    );
-    
+    const user = allUsers.filter((u) => u.userName === obj.username);
+
     const fn = async () => {
       if (user.length === 0) {
         await dispatch(userRegister(obj));
@@ -58,7 +66,6 @@ export default function LoginGoogle() {
         );
         navigate("/");
       }
-
     };
     fn();
   };
@@ -77,7 +84,8 @@ export default function LoginGoogle() {
     });
 
     dispatch(getAllUsers());
-  }, []);
+    dispatch(getUser(user.token));
+  }, [dispatch, getUser, user]);
 
   return (
     <div>
