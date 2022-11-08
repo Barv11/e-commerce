@@ -8,9 +8,12 @@ import { useNavigate } from "react-router-dom";
 import { getUser, getAllUsers } from "../../redux/actions";
 import { userLogin } from "../../redux/actions";
 
-export default function LoginGoogle() {
+export default function LoginGoogle(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const allUsers = useSelector((state) => state.allUsers);
+
+  const loginAccess = useSelector((state) => state.loginAccess);
 
   const [user] = useState(
     JSON.parse(
@@ -22,11 +25,9 @@ export default function LoginGoogle() {
     )
   );
 
-  const loginAccess = useSelector((state) => state.loginAccess);
-  const allUsers = useSelector((state) => state.allUsers);
-
   const handleCallbackResponse = (response) => {
     const userObj = jwtDecode(response.credential);
+    dispatch(getAllUsers());
     const obj = {
       first_name: userObj.given_name,
       last_name: userObj.family_name,
@@ -36,10 +37,12 @@ export default function LoginGoogle() {
       username: userObj.given_name,
     };
 
-    const user = allUsers.filter((u) => u.userName === obj.username);
+    const userFilter = allUsers.filter((u) => u.userName === obj.username);
 
+    console.log(allUsers)
     const fn = async () => {
-      if (user.length === 0) {
+      console.log(userFilter);
+      if (userFilter.length === 0) {
         await dispatch(userRegister(obj));
         await dispatch(
           userLogin({
@@ -82,10 +85,7 @@ export default function LoginGoogle() {
       theme: "outline",
       size: "large",
     });
-
-    dispatch(getAllUsers());
-    dispatch(getUser(user.token));
-  }, [dispatch, getUser, user]);
+  }, [dispatch, getAllUsers, allUsers]);
 
   return (
     <div>
