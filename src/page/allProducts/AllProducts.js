@@ -43,7 +43,7 @@ export default function Products() {
     if (user.logged) {
       dispatch(addCartProduct(userFound.id, [props]));
       console.log([props]);
-      // setCart([...cart.filter((p) => p.id !== props.id), props]);
+      setCart([...cart.filter((p) => p.id !== props.id), props]);
     } else {
       setCart([...cart.filter((p) => p.id !== props.id), props]);
     }
@@ -51,10 +51,9 @@ export default function Products() {
 
   localStorage.setItem("products", JSON.stringify(cart));
 
-
-  useEffect(() =>{
-    document.title = `Gamer Tech | Productos`
-  }, []); 
+  useEffect(() => {
+    document.title = `Gamer Tech | Productos`;
+  }, []);
 
   useEffect(() => {
     dispatch(clearProducts());
