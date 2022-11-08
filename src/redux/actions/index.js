@@ -89,7 +89,6 @@ export function postProduct(payload) {
 
 export const updateProduct = (product) => async (dispatch) => {
   const { id, name, brand, img, details, cost, type } = product;
-
   const response = await axios.put(`${url}/productos?id=` + id, {
     name,
     brand,
@@ -103,9 +102,7 @@ export const updateProduct = (product) => async (dispatch) => {
 };
 
 export const deleteProduct = (id) => async (dispatch) => {
-
 const response = await axios.put(`${url}/productos/`+id);
-
   dispatch({ type: DELETE_PRODUCT, payload: response.data });
 };
 

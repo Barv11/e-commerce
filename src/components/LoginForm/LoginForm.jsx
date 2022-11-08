@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import s from "./Login.module.css";
 import validate from "./validator";
-/* import LoginGoogle from "../loginGoogle/loginGoogle"; */
 import { userLogin, userLogout } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
