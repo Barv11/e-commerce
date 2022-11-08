@@ -408,9 +408,16 @@ function ProductFormAdmin() {
     e.preventDefault();
     if (id) {
       dispatch(updateProduct({ ...product, img: imgPrev }));
-      // navigate("/products");
+      navigate("/admin");
+      setProduct({
+        name: "",
+        cost: "",
+        brand: "",
+        img: [""],
+        type: "defect",
+        details: {},
+      });
     } else {
-      // dispatch(postProduct({ ...product, img: imgPrev }, { token }));
       dispatch(postProduct({ ...product, img: imgPrev }));
       console.log({ ...product, img: imgPrev });
       setProduct({

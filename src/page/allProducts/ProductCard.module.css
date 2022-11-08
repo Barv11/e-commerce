@@ -107,7 +107,7 @@
 }
 
 .button:hover {
-  background-color: rgb(115, 37, 187);
+  background-color: #7325bb;
   color: white;
   transition: 0.3s;
 }
