@@ -34,7 +34,6 @@ function App() {
   useEffect(() => {
     if (user.logged) {
       saveToken(user.token);
-      dispatch(getUser(user.token));
     }
   }, []);
 
