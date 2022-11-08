@@ -1,0 +1,54 @@
+.container {
+  width: 95%;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 1.5em;
+  background-color: #d4d4d4;
+  padding: 1em;
+}
+
+.text,
+.edit,
+.detail {
+  font-size: 1rem;
+  color: #000000;
+}
+
+.text:first-child {
+  flex-basis: 10%;
+}
+
+.text:nth-child(2) {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  flex-basis: 45%;
+}
+
+.text:nth-child(3) {
+  flex-basis: 15%;
+}
+
+.text:nth-child(4) {
+  flex-basis: 10%;
+}
+
+.link {
+  flex-basis: 10%;
+  text-decoration: none;
+}
+.edit {
+  cursor: pointer;
+  color: #007c00;
+}
+.edit:hover {
+  filter: drop-shadow(0 0 5px black);
+}
+
+.detail {
+  cursor: pointer;
+  color: #7c007c;
+}
+.detail:hover {
+  filter: drop-shadow(0 0 5px black);
+}
