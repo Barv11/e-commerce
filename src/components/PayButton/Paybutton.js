@@ -7,12 +7,14 @@ export default function Paybutton(cartItem) {
   
   const [user] = useState(JSON.parse(localStorage.getItem("user")));
   const navigate = useNavigate();
+  let local = "http://localhost:3001/";
+  let deployed = "https://gametech.up.railway.app/";
 
   const handleCheckout = () => {
     if(user.logged){
       axios
         .post(
-          "https://gametech.up.railway.app/create-checkout-session",
+          `${local}create-checkout-session`,
           cartItem
           /* userId: user.id */
         )
