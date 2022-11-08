@@ -14,9 +14,6 @@ export default function LoginGoogle() {
 
   const loginAccess = useSelector((state) => state.loginAccess);
   const allUsers = useSelector((state) => state.allUsers);
-  const [googleCreated] = useState(
-    JSON.parse(localStorage.getItem("googleCreated"))
-  );
 
   const handleCallbackResponse = (response) => {
     const userObj = jwtDecode(response.credential);
@@ -26,49 +23,42 @@ export default function LoginGoogle() {
       email: userObj.email,
       password: userObj.given_name + userObj.family_name + userObj.email,
       picture: userObj.picture,
-      username: userObj.name,
+      username: userObj.given_name,
     };
 
+    const user = allUsers.filter(
+      (u) => u.userName === obj.username
+    );
+    
     const fn = async () => {
-      if (googleCreated) {
-        await dispatch(
-          userLogin({
-            username: obj.username,
-            pass: obj.first_name + obj.last_name + obj.email,
-          })
-        );
-        if (loginAccess.data?.token) {
-          dispatch(userLogin("clear"));
-          localStorage.setItem(
-            "user",
-            JSON.stringify({
-              logged: true,
-              token: loginAccess.data.token,
-            })
-          );
-          navigate("/");
-        }
-      } else {
+      if (user.length === 0) {
         await dispatch(userRegister(obj));
-        localStorage.setItem("googleCreated", JSON.stringify(true));
         await dispatch(
           userLogin({
             username: obj.username,
-            pass: obj.first_name + obj.last_name + obj.email,
+            pass: obj.password,
           })
         );
-        if (loginAccess.data?.token) {
-          dispatch(userLogin("clear"));
-          localStorage.setItem(
-            "user",
-            JSON.stringify({
-              logged: true,
-              token: loginAccess.data.token,
-            })
-          );
-          navigate("/");
-        }
+      } else {
+        await dispatch(
+          userLogin({
+            username: obj.username,
+            pass: obj.password,
+          })
+        );
       }
+      if (loginAccess.data?.token) {
+        dispatch(userLogin("clear"));
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            logged: true,
+            token: loginAccess.data.token,
+          })
+        );
+        navigate("/");
+      }
+
     };
     fn();
   };
@@ -85,6 +75,8 @@ export default function LoginGoogle() {
       theme: "outline",
       size: "large",
     });
+
+    dispatch(getAllUsers());
   }, []);
 
   return (
