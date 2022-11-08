@@ -12,7 +12,7 @@ import Orden from "../components/Orden/Orden";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { saveToken } from "../redux/actions";
+import { saveToken, getUser } from "../redux/actions";
 import EditProducts from "../components/EditProducts/EditProducts";
 import About from "../components/About/About";
 
@@ -34,6 +34,7 @@ function App() {
   useEffect(() => {
     if (user.logged) {
       saveToken(user.token);
+      dispatch(getUser(user.token));
     }
   }, []);
 
