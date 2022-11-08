@@ -11,6 +11,7 @@ import {
   getAllProductos,
   ordennames,
   orderprecio,
+  searchProductByName,
 } from "../../redux/actions";
 import SideBar from "./SideBar";
 import { Pagination, Filtros } from "../../components";
@@ -19,6 +20,7 @@ export default function Products() {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.allProducts);
   const [orden, setOrden] = useState("");
+  const [input, setInput] = useState("");
   const searchByNameProduct = useSelector((state) => state.searchByNameProduct);
   const userFound = useSelector((state) => state.userFound);
 
@@ -27,6 +29,15 @@ export default function Products() {
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("products") || "[]")
   );
+
+  const handleSearch = (input) => {
+    dispatch(searchProductByName(input));
+  };
+
+  const handleInputChange = (e) => {
+    setInput(e.target.value);
+  };
+
 
   const handleCart = (props) => {
     if (user.logged) {
@@ -105,6 +116,15 @@ export default function Products() {
           <SideBar setCurrentPage={setCurrentPage} setOrden={setOrden} />
         </div>
         <div className={s.productsContainer}>
+        <form className={s.form} onSubmit={() => handleSearch(input)}>
+          <input
+            value={input}
+            onChange={handleInputChange}
+            type="text"
+            placeholder="Buscar producto..."
+          />
+          <i className="uil uil-search" onClick={() => handleSearch(input)}></i>
+        </form>
           {searchByNameProduct.length ? (
             searchByNameProduct.map((p) => {
               return (

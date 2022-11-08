@@ -15,14 +15,26 @@
   color: #ffffff;
 }
 
+.link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding-left: 1.5em;
+  gap: .8em;
+}
+
 .logo {
-  padding-left: 40px;
-  width: 90px;
+  width: 70px;
+  height: 50px;
 }
 
 .mainTitle {
+  letter-spacing: .1em;
+  display: inline-block;
   font-family: Heavitas;
+  font-size: 2.2rem;
   margin-top: 8px;
+  color: #ffffff;
 }
 
 .form {
@@ -31,7 +43,6 @@
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 .form input {
@@ -59,26 +70,19 @@
 }
 
 .containerChild {
-  padding-right: 40px;
+  padding-right: 20px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-end;
   align-items: center;
-  gap: 3em;
+  gap: 2.5em;
 }
 
 .containerChild i {
   cursor: pointer;
-  font-size: 2rem;
+  font-size: 1rem;
   color: #ffffff;
-  background-color: #7c4da5;
-  box-shadow: none;
   padding: .2em;
-  box-shadow: 0 0 5px #313131;
-  border-radius: 15px;
-}
-.containerChild i:hover {
-  box-shadow: 0 0 5px #cccccc;
 }
 
 .user {
@@ -88,57 +92,54 @@
 }
 
 .userimg {
-  width: 50px;
+  width: 40px;
   cursor: pointer;
 }
 
 .userTxt{
+  cursor: pointer;
+  font-size: 1rem;
   color: #ffffff
 }
 
-.user span {
-  font-size: 1.3rem;
-  cursor: pointer;
+.userTxt:hover {
+  filter: drop-shadow(0 0 5px #000000) drop-shadow(0 0 5px #000000);
 }
 
 .links {
-  background-color: #7b7ad6;
+  background-color: #ebebeb;
+  border-bottom: 1px solid rgb(207, 207, 207);
   padding: 0.6em 0;
-  text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 2.5em;
 }
 
 .child {
   text-decoration: none;
   text-transform: uppercase;
   font-size: 1.2rem;
-  color: #ffffff;
-  margin-right: 16px;
-  margin-left: 16px;
-  border-radius: 10px;
-  padding: 0 10px;
+  font-weight: 600;
+  color: #2c2c2c;
 }
 
 .child:hover{
-  background-color: white;
+  filter: drop-shadow(0 0 3px rgb(49, 49, 49));
+  color: #a13793;
 }
 
 .activeChild {
   text-decoration: none;
   text-transform: uppercase;
   font-size: 1.2rem;
-  color: #7b7ad6;
-  margin-right: 16px;
-  margin-left: 16px;
-  border-radius: 10px;
-  padding: 0 10px;
-  background-color: white;
+  font-weight: 600;
+  filter: drop-shadow(0 0 3px rgb(49, 49, 49));
+  color: #a13793;
 }
 
-.form i:hover {
-  cursor: pointer;
+.activeChild:hover {
+  color: #a13793;
 }
 
 @font-face {

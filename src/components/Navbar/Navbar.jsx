@@ -8,23 +8,23 @@ import {
   searchProductByName,
   getUser,
   clearCartProduct,
-  saveToken
+  saveToken,
 } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
 import pcLogo from "../../assets/pc-logo.png";
 import usuarioLogo from "../../assets/user-login-icon.png";
 
 export default function Navbar() {
-  const [input, setInput] = useState("");
+  // const [input, setInput] = useState("");
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const userFound = useSelector((state) => state.userFound);
 
   const signOut = () => {
     dispatch(clearCartProduct());
-    saveToken(null)
-        setUser(
+    saveToken(null);
+    setUser(
       JSON.parse(
         JSON.stringify({
           logged: false,
@@ -38,14 +38,14 @@ export default function Navbar() {
 
   localStorage.setItem("user", JSON.stringify(user));
 
-  const handleSearch = (input) => {
-    navigate("/products");
-    dispatch(searchProductByName(input));
-  };
+  // const handleSearch = (input) => {
+  //   navigate("/products");
+  //   dispatch(searchProductByName(input));
+  // };
 
-  const handleInputChange = (e) => {
-    setInput(e.target.value);
-  };
+  // const handleInputChange = (e) => {
+  //   setInput(e.target.value);
+  // };
 
   useEffect(() => {
     if (user.logged) {
@@ -56,11 +56,11 @@ export default function Navbar() {
   return (
     <nav className={s.navbar}>
       <div className={s.container}>
-        <Link to="/">
+        <Link to="/" className={s.link}>
           <img src={pcLogo} alt="logo" className={s.logo} />
+          <h1 className={s.mainTitle}>Gamer Tech</h1>
         </Link>
-        <h1 className={s.mainTitle}>Gamer Tech</h1>
-        <form className={s.form} onSubmit={() => handleSearch(input)}>
+        {/* <form className={s.form} onSubmit={() => handleSearch(input)}>
           <input
             value={input}
             onChange={handleInputChange}
@@ -68,40 +68,36 @@ export default function Navbar() {
             placeholder="Buscador"
           />
           <i className="uil uil-search"></i>
-        </form>
+        </form> */}
         <div className={s.containerChild}>
           <div className={s.user}>
-            {user.logged && (
-              <span
-                style={{ textDecoration: "none" }}
-                onClick={() => signOut()}
-                className={s.userTxt}
-              >
-                Sign Out
-              </span>
-            )}
-
-            {user.logged ? (
+            {/* {user.logged && (
               <Link to={"/profile"}>
                 <img src={usuarioLogo} alt="usuario" className={s.userimg} />
               </Link>
-            ) : (
-              <Link to={"/login"}>
-                <img src={usuarioLogo} alt="usuario" className={s.userimg} />
-              </Link>
-            )}
+            )} */}
             {user.logged ? (
-              <Link style={{ textDecoration: "none" }} to={"/profile"}>
+              <Link className={s.link} to={"/profile"}>
+                <img src={usuarioLogo} alt="usuario" className={s.userimg} />
                 <span className={s.userTxt}>{userFound?.userName}</span>
               </Link>
             ) : (
               <Link style={{ textDecoration: "none" }} to={"/login"}>
-                <span className={s.userTxt}>Log In</span>
+                <span className={s.userTxt}>
+                  Iniciar Sesión<i class="uil uil-sign-in-alt"></i>
+                </span>
               </Link>
             )}
           </div>
-          <Link to="/carrito">
-          <i class="uil uil-shopping-cart"></i>
+          {user.logged && (
+            <span className={s.userTxt} onClick={() => signOut()}>
+              Cerrar Sesión<i class="uil uil-sign-out-alt"></i>
+            </span>
+          )}
+          <Link style={{ textDecoration: "none" }} to="/carrito">
+            <span className={s.userTxt}>
+              Carrito<i class="uil uil-shopping-cart"></i>
+            </span>
           </Link>
         </div>
       </div>
@@ -111,13 +107,19 @@ export default function Navbar() {
           to={"/"}
           className={(navData) => (navData.isActive ? s.activeChild : s.child)}
         >
-          Home
+          Inicio
         </NavLink>
         <NavLink
           to={"/products"}
           className={(navData) => (navData.isActive ? s.activeChild : s.child)}
         >
           Productos
+        </NavLink>
+        <NavLink
+          to={"/about"}
+          className={(navData) => (navData.isActive ? s.activeChild : s.child)}
+        >
+          nosotros
         </NavLink>
       </div>
     </nav>
