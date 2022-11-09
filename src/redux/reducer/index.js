@@ -21,6 +21,7 @@ import {
   CLEAR_CART_PRODUCTS,
   DELETE_CART_PRODUCT,
   EDIT_DISCOUNT,
+  EDIT_STOCK,
 } from "../actions/actionsTypes";
 
 const initialState = {
@@ -170,6 +171,14 @@ function rootReducer(state = initialState, action) {
         ...state,
         allUsers: action.payload,
       };
+    case EDIT_DISCOUNT:
+      return {
+        ...state,
+      }
+    case EDIT_STOCK:
+      return {
+        ...state,
+      }
   }
 }
 

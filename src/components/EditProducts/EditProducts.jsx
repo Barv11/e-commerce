@@ -153,6 +153,7 @@ export default function EditProducts() {
           <span className={s.text}>Editar</span>
           <span className={s.text}>Eliminar</span>
           <span className={s.text}>Oferta</span>
+          <span className={s.text}>Stock</span>
         </div>
         {result.length > 0 ? (
           result

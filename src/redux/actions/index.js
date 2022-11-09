@@ -20,6 +20,7 @@ import {
   CLEAR_CART_PRODUCTS,
   DELETE_CART_PRODUCT,
   EDIT_DISCOUNT,
+  EDIT_STOCK,
 } from "./actionsTypes";
 import axios from "axios";
 import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "./actionsTypes";
@@ -203,4 +204,9 @@ export const editDiscount = (id, descuento) => async (dispatch) => {
   console.log(descuento)
   console.log(id)
   dispatch({type: EDIT_DISCOUNT})
+}
+
+export const editStock = (id, stockProd) => async (dispatch) => {
+  axios.post(`${url}/stock`, {productId:id, stock:stockProd});
+  dispatch({type: EDIT_STOCK})
 }
