@@ -3,10 +3,19 @@ import { NavLink } from "react-router-dom";
 import s from "./ProductCard.module.css";
 
 export default function ProductCard(props) {
-  const [cartState, setCartState] = useState(false);
+  // const [cartState, setCartState] = useState(false);
+
+  const dis = props.discount;
+
+  const discountCost = (dis * props.cost) / 100;
 
   return (
     <div className={s.container}>
+      {dis > 0 ? (
+        <span className={s.discount}>
+          <div className={s.disNum}>{`${dis}% OFF!`}</div>
+        </span>
+      ) : null}
       {/* <div className={s.cart} onClick={() => props.cart(props)}>
         <i class="uil uil-shopping-cart"></i>
       </div> */}
@@ -14,7 +23,8 @@ export default function ProductCard(props) {
         <img src={props.img} alt={props.name} />
       </div>
       <p id={s.nombre}>{props.name}</p>
-      <p id={s.precio}>{`$${props.cost}`}</p>
+      <p id={dis > 0 ? s.disPrice : s.precio}>{`$${props.cost}`}</p>
+      {dis > 0 ? <p id={s.disCost}>{`$${props.cost - discountCost}`}</p> : null}
       <NavLink to={"/detail/" + props.id} className={s.button}>
         Ver más
       </NavLink>
