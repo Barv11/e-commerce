@@ -31,7 +31,7 @@ export default function Products() {
   );
 
   const handleSearch = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     dispatch(clearProducts());
     dispatch(searchProductByName(input));
   };
@@ -39,7 +39,6 @@ export default function Products() {
   const handleInputChange = (e) => {
     setInput(e.target.value);
   };
-
 
   const handleCart = (props) => {
     if (user.logged) {
@@ -117,15 +116,18 @@ export default function Products() {
           <SideBar setCurrentPage={setCurrentPage} setOrden={setOrden} />
         </div>
         <div className={s.productsContainer}>
-        <form className={s.form} onSubmit={handleSearch}>
-          <input
-            value={input}
-            onChange={handleInputChange}
-            type="text"
-            placeholder="Buscar producto..."
-          />
-          <i className="uil uil-search" onClick={() => handleSearch(input)}></i>
-        </form>
+          <form className={s.form} onSubmit={handleSearch}>
+            <input
+              value={input}
+              onChange={handleInputChange}
+              type="text"
+              placeholder="Buscar producto..."
+            />
+            <i
+              className="uil uil-search"
+              onClick={() => handleSearch(input)}
+            ></i>
+          </form>
           {searchByNameProduct.length ? (
             searchByNameProduct.map((p) => {
               return (
@@ -137,6 +139,7 @@ export default function Products() {
                   cost={p.cost}
                   cart={handleCart}
                   quantity={1}
+                  discount={p.discount}
                 />
               );
             })
@@ -151,6 +154,7 @@ export default function Products() {
                   cost={p.cost}
                   cart={handleCart}
                   quantity={1}
+                  discount={p.discount}
                 />
               );
             })
