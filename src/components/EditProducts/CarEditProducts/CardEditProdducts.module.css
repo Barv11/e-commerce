@@ -59,6 +59,7 @@
 
 .discountContainer{
   display: flex;
+  flex-direction: column;
 }
 
 .discountContainer button{

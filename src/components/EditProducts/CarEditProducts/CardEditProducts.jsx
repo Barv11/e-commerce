@@ -3,16 +3,19 @@ import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { clearProducts, deleteProduct } from "../../../redux/actions";
 import s from "./CardEditProdducts.module.css";
-import { editDiscount } from "../../../redux/actions";
+import { editDiscount, editStock } from "../../../redux/actions";
+import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 
 export default function CardEditProducts(props) {
   const dispatch = useDispatch();
-  const { id, img, name, type, brand, cost, details, discount } = props.product;
+  const { id, img, name, type, brand, cost, details, discount, stock } = props.product;
 
   const capType = type[0].toUpperCase() + type.slice(1);
 
   const [descuento, setDescuento] = useState(discount)
+  const [stockProd, setStockProd] = useState(stock)
   console.log(discount)
+  console.log(stock)
 
   const handlerDelete = () => {
     dispatch(deleteProduct(id));
@@ -23,8 +26,16 @@ export default function CardEditProducts(props) {
     dispatch(editDiscount(id, descuento));
   }
 
+  const handleStockSubmit = (id) => {
+    dispatch(editStock(id, stockProd));
+  }
+
   const handleChange = (e) => {
-    setDescuento(e.target.value)
+    setDescuento(e.target.value);
+  }
+
+  const handleChangeStock = (e) => {
+    setStockProd(e.target.value)
   }
 
   return (
@@ -48,7 +59,15 @@ export default function CardEditProducts(props) {
                value={descuento}
                placeholder={discount}
               />
-        <button onClick={() => {handleDiscountSubmit(id, descuento)}}>Save</button>
+        <button onClick={() => {handleDiscountSubmit(id, descuento)}}><CheckRoundedIcon/></button>
+      </div>
+      <div>
+      <input id={s.inputDis} type="number"
+               onChange={(e) => {handleChangeStock(e)}}
+               value={stockProd}
+               placeholder={stock}
+              />
+        <button onClick={() => {handleStockSubmit(id, stockProd)}}><CheckRoundedIcon/></button>
       </div>
     </div>
   );

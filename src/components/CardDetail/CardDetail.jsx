@@ -17,7 +17,7 @@ export default function CardDetail(props) {
   const [image, setImage] = useState("");
   const dispatch = useDispatch();
   const searchByIdProduct = useSelector((state) => state.searchByIdProduct);
-  const { name, brand, img, detail, cost, discount, quantity } =
+  const { name, brand, img, detail, cost, discount, quantity, stock } =
     searchByIdProduct;
 
   useEffect(() => {
@@ -86,6 +86,7 @@ export default function CardDetail(props) {
                 className={s.route}
               >{`Productos > ${searchByIdProduct.type}`}</span>
               <span className={s.brand}>Marca: {brand}</span>
+              <span className={s.route}>Stock: {stock}</span>
               <span className={s.cost}>${cost}</span>
               <div className={s.icon}>
                 <i class="uil uil-shop"></i>
