@@ -81,7 +81,10 @@ export default function EditProducts() {
     <div>
       <Navbar />
       <h1 className={s.title}>Inventario de Productos:</h1>
-      <h4 className={s.subtitle}>Productos actuales: {allProducts.length} {type !== "defect" ? `${type}(es/s)` : 'en total'}</h4>
+      <h4 className={s.subtitle}>
+        Productos actuales: {allProducts.length}{" "}
+        {type !== "defect" ? `${type}(es/s)` : "en total"}
+      </h4>
       <div className={s.container}>
         <div className={s.searchContainer}>
           <hr />
@@ -158,7 +161,19 @@ export default function EditProducts() {
         {result.length > 0 ? (
           result
             .slice((page - 1) * current, (page - 1) * current + current)
-            .map((el) => <CardEditProducts product={el} />)
+            .map((el) => (
+              <CardEditProducts
+                id={el.id}
+                img={el.img}
+                name={el.name}
+                type={el.type}
+                brand={el.brand}
+                cost={el.cost}
+                details={el.details}
+                discount={el.discount}
+                stock={el.stock}
+              />
+            ))
         ) : (
           <Loader />
         )}

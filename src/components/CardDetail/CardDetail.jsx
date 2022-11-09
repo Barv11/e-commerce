@@ -8,6 +8,7 @@ import {
   searchProductById,
   searchProductByName,
   addCartProduct,
+  getAllProductos,
 } from "../../redux/actions";
 import Navbar from "../Navbar/Navbar";
 import Loader from "../Loader/Loader";
@@ -21,6 +22,7 @@ export default function CardDetail(props) {
     searchByIdProduct;
 
   useEffect(() => {
+    dispatch(getAllProductos());
     dispatch(searchProductById(id));
   }, [dispatch]);
 
