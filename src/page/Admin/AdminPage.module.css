@@ -64,7 +64,7 @@
     font-size: 29px;
     color: #69329c;
     margin: 28px;
-    text-shadow: rgb(198, 178, 218) 2px 0 3px;
+    text-shadow: rgb(255, 255, 255) 3px 0 3px;
     font-family: Heavitas;
 }
 
@@ -78,8 +78,8 @@
 
 .alluserscontainer{
     height: 100vh;
-    background: rgb(155,121,208);
-    background: linear-gradient(204deg, rgba(155,121,208,1) 33%, rgba(221,183,245,1) 100%);
+    background: rgb(177,133,244);
+    background: linear-gradient(347deg, rgba(177,133,244,1) 13%, rgba(226,194,245,1) 100%);
 }
 
 .buscarTxt{
