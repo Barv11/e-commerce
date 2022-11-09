@@ -19,12 +19,13 @@ import {
   GET_CART_PRODUCTS,
   CLEAR_CART_PRODUCTS,
   DELETE_CART_PRODUCT,
+  EDIT_DISCOUNT,
 } from "./actionsTypes";
 import axios from "axios";
 import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "./actionsTypes";
 
-let url = "https://gametech.up.railway.app";
-// let url = "http://localhost:3001"
+// let url = "https://gametech.up.railway.app";
+let url = "http://localhost:3001"
 
 let token = null;
 export const saveToken = (newToken) => {
@@ -196,3 +197,10 @@ export const deleteCartProduct = (id) => async (dispatch) => {
   axios.post(`${url}/cart/delete`, { id: id });
   dispatch({ type: DELETE_CART_PRODUCT });
 };
+
+export const editDiscount = (id, descuento) => async (dispatch) => {
+  axios.post(`${url}/discount`, {productId:id, discount:descuento});
+  console.log(descuento)
+  console.log(id)
+  dispatch({type: EDIT_DISCOUNT})
+}

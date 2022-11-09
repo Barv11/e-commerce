@@ -52,3 +52,15 @@
 .delete:hover {
   filter: drop-shadow(0 0 5px black);
 }
+
+#inputDis{
+  width: 40px;
+}
+
+.discountContainer{
+  display: flex;
+}
+
+.discountContainer button{
+  margin-left: 2px;
+}

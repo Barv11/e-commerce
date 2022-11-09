@@ -20,6 +20,7 @@ import {
   GET_ALL_USERS,
   CLEAR_CART_PRODUCTS,
   DELETE_CART_PRODUCT,
+  EDIT_DISCOUNT,
 } from "../actions/actionsTypes";
 
 const initialState = {
