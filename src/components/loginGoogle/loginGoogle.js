@@ -15,19 +15,8 @@ export default function LoginGoogle(props) {
 
   const loginAccess = useSelector((state) => state.loginAccess);
 
-  const [user] = useState(
-    JSON.parse(
-      localStorage.getItem("user") ||
-        JSON.stringify({
-          logged: false,
-          token: "",
-        })
-    )
-  );
-
   const handleCallbackResponse = (response) => {
     const userObj = jwtDecode(response.credential);
-    dispatch(getAllUsers());
     const obj = {
       first_name: userObj.given_name,
       last_name: userObj.family_name,

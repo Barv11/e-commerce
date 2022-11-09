@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import s from "./Login.module.css";
 import validate from "./validator";
-import { userLogin } from "../../redux/actions";
+import { getAllUsers, userLogin } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
@@ -93,6 +93,7 @@ export default function Login() {
   };
 
   useEffect(() => {
+    dispatch(getAllUsers())
     document.title = `Gamer Tech | Login`;
   }, []);
 
