@@ -15,25 +15,28 @@
   gap: 0.5em;
   text-decoration: none;
   /* background-color: #7bbd50; */
-  background-color: transparent;
-  color: rgb(100, 100, 100);
+  background-color: #408612;
+  color: white;
   margin-bottom: 1em;
   font-size: 17px;
   border-radius: 10px;
   border: none;
   transition: 0.3s;
-  text-decoration: underline;
+  /* text-decoration: underline; */
   justify-content: center;
   margin: 10px 0px;
-  width: 150px;
+  width: 200px;
   height: 45px;
+  border: 2px solid #408612;
 }
 
 .cart2:hover {
-  background-color: #408612;
-  color: white;
-  text-decoration: none;
+  background-color: white;
+  color: rgb(100, 100, 100);
+  /* text-decoration: none; */
   transition: 0.3s;
+  border: 2px solid #408612;
+
 }
 
 .carrousel {
