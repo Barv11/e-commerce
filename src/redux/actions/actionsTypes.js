@@ -21,4 +21,6 @@ export const GET_USER = "GET_USER";
 export const REGISTER_USER = "REGISTER_USER";
 export const CLEAR_CART_PRODUCTS = "CLEAR_CART_PRODUCTS";
 export const DELETE_CART_PRODUCT = "DELETE_CART_PRODUCT";
-
+export const GET_ONE_USER = "GET_ONE_USER";
+export const GET_INTEL = "GET_INTEL";
+export const GET_AMD = "GET_AMD";

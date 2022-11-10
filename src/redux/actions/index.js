@@ -19,12 +19,15 @@ import {
   GET_CART_PRODUCTS,
   CLEAR_CART_PRODUCTS,
   DELETE_CART_PRODUCT,
+  GET_ONE_USER,
+  GET_INTEL,
+  GET_AMD
 } from "./actionsTypes";
 import axios from "axios";
 import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "./actionsTypes";
 
-let url = "https://gametech.up.railway.app";
-// let url = "http://localhost:3001"
+// let url = "https://gametech.up.railway.app";
+let url = "http://localhost:3001"
 
 let token = null;
 export const saveToken = (newToken) => {
@@ -43,7 +46,7 @@ export const getAllProductos = () => async (dispatch) => {
       authorization: token,
     },
   };
-  console.log(token);
+  
   const productos = await axios.get(`${url}/productos`, config);
   dispatch({ type: GET_ALL_PRODUCTS, payload: productos.data });
 };
@@ -60,7 +63,7 @@ export const postImage = (file) => async (dispatch) => {
     }
   );
   const img = await response.json();
-  console.log(img);
+  
   return dispatch({
     type: POST_IMAGE,
     payload: img.url,
@@ -73,7 +76,7 @@ export function postProduct(payload) {
       Authorization: token,
     },
   };
-  console.log(config);
+  
   return async function (dispatch) {
     const product = await axios.post(
       `${url}/productos/create`,
@@ -170,7 +173,7 @@ export const getAllUsers = () => async (dispatch) => {
 
 export const getCartProduct = (id) => async (dispatch) => {
   const obj = { id: id };
-  console.log(obj);
+  
   const productos = await axios.post(`${url}/cart/get`, obj);
   dispatch({ type: GET_CART_PRODUCTS, payload: productos });
 };
@@ -181,7 +184,7 @@ export const clearCartProduct = () => (dispatch) => {
 
 export const addCartProduct = (id, array) => async (dispatch) => {
   const obj = { id: id, productosCarrito: array };
-  console.log(obj);
+  
   const a = await axios.post(`${url}/cart/create`, obj);
   dispatch({ type: ADD_CART_PRODUCTS });
 };
@@ -196,3 +199,24 @@ export const deleteCartProduct = (id) => async (dispatch) => {
   axios.post(`${url}/cart/delete`, { id: id });
   dispatch({ type: DELETE_CART_PRODUCT });
 };
+
+export const getOneUser = () => async (dispatch) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const myUser = await axios.get(`${url}/user/login/name`, config)
+  dispatch({type: GET_ONE_USER, payload: myUser})
+}
+
+export const getIntel = (pcType) => async (dispatch) => {
+  console.log(pcType)
+  const allIntel = await axios.get(`${url}/productos/intel?pcType=${pcType}`)
+  dispatch({type: GET_INTEL, payload: allIntel})
+}
+
+export const getAmd = (pcType) => async (dispatch) => {
+  const allAmd = await axios.get(`${url}/productos/amd?pcType=${pcType}`)
+  dispatch({type: GET_AMD, payload: allAmd})
+}

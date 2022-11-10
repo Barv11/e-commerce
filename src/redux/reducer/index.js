@@ -20,6 +20,9 @@ import {
   GET_ALL_USERS,
   CLEAR_CART_PRODUCTS,
   DELETE_CART_PRODUCT,
+  GET_ONE_USER,
+  GET_INTEL,
+  GET_AMD
 } from "../actions/actionsTypes";
 
 const initialState = {
@@ -32,6 +35,9 @@ const initialState = {
   cartProducts: [],
   allUsers: [],
   url: "",
+  userProfile: {},
+  productsIntel: [],
+  productsAmd: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -160,14 +166,29 @@ function rootReducer(state = initialState, action) {
         ...state,
         userFound: action.payload,
       };
-    default:
-      return {
-        ...state,
-      };
     case GET_ALL_USERS:
       return {
         ...state,
         allUsers: action.payload,
+      };
+    case GET_ONE_USER: 
+    return {
+      ...state,
+      userProfile: action.payload
+    };
+    case GET_INTEL: 
+    return {
+      ...state,
+      productsIntel: action.payload
+    };
+    case GET_AMD: 
+    return {
+      ...state,
+      productsAmd: action.payload
+    };
+    default:
+      return {
+        ...state,
       };
   }
 }
