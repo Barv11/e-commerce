@@ -26,6 +26,11 @@ import {
   REVIEWS_BY_USER,
   UPDATE_REVIEW,
   DELETE_REVIEW,
+  GET_ONE_USER,
+  GET_INTEL,
+  GET_AMD,
+  EDIT_DISCOUNT,
+  EDIT_STOCK,
 } from "../actions/actionsTypes";
 
 const initialState = {
@@ -40,6 +45,9 @@ const initialState = {
   url: "",
   productReviews: [],
   userReviews: [],
+  userProfile: {},
+  productsIntel: [],
+  productsAmd: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -201,10 +209,33 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+    case GET_ONE_USER: 
+    return {
+      ...state,
+      userProfile: action.payload
+    };
+    case GET_INTEL: 
+    return {
+      ...state,
+      productsIntel: action.payload
+    };
+    case GET_AMD: 
+    return {
+      ...state,
+      productsAmd: action.payload
+    };
     default:
       return {
         ...state,
       };
+    case EDIT_DISCOUNT:
+      return {
+        ...state,
+      }
+    case EDIT_STOCK:
+      return {
+        ...state,
+      }
   }
 }
 

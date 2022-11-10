@@ -83,6 +83,12 @@ export default function Navbar() {
           Productos
         </NavLink>
         <NavLink
+          to={"/armado"}
+          className={(navData) => (navData.isActive ? s.activeChild : s.child)}
+        >
+          Arma tu PC
+        </NavLink>
+        <NavLink
           to={"/about"}
           className={(navData) => (navData.isActive ? s.activeChild : s.child)}
         >

@@ -27,4 +27,9 @@ export const PRODUCT_REVIEWS = "PRODUCT_REVIEWS";
 export const REVIEWS_BY_USER = "REVIEWS_BY_USER";
 export const DELETE_REVIEW = "DELETE_REVIEW";
 export const UPDATE_REVIEW = "UPDATE_REVIEW";
+export const GET_ONE_USER = "GET_ONE_USER";
+export const GET_INTEL = "GET_INTEL";
+export const GET_AMD = "GET_AMD";
+export const EDIT_DISCOUNT = "EDIT_DISCOUNT";
+export const EDIT_STOCK = "EDIT_STOCK";
 
