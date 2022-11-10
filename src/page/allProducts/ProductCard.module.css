@@ -1,8 +1,8 @@
 .container {
   width: 200px;
-  height: 350px;
+  height: 380px;
   /* padding: 1em 0; */
-  margin: 10px;
+  margin: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,7 +23,7 @@
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  gap: .5em;
+  gap: 0.5em;
   text-decoration: none;
   /* background-color: #7bbd50; */
   background-color: transparent;
@@ -34,6 +34,12 @@
   border: none;
   transition: 0.3s;
   text-decoration: underline;
+  position: absolute;
+  justify-content: center;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  margin: 15px 20px;
 }
 
 .cart2:hover {
@@ -43,6 +49,58 @@
   transition: 0.3s;
 }
 
+.discount {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  font-size: 18px;
+  width: 130px;
+  height: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.discount::before {
+  content: "";
+  position: absolute;
+  width: 150%;
+  height: 30px;
+  background-color: rgb(238, 0, 0);
+  transform: rotate(-45deg) translateY(-20px);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
+}
+
+.discount::after {
+  content: "";
+  position: absolute;
+  bottom: 8px;
+  left: 0px;
+  width: 10px;
+  height: 10px;
+  background-color: rgb(202, 0, 0);
+  z-index: -1;
+  box-shadow: 114px -115px rgb(202, 0, 0);
+}
+
+.disNum {
+  position: absolute;
+  transform: rotate(-45deg);
+  right: 30px;
+  top: 38px;
+  color: white;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  font-size: 17px;
+  width: 100px;
+}
+
+#disCost {
+  font-size: 28px;
+}
+
 .add {
   font-size: 1rem;
 }
@@ -50,8 +108,6 @@
 .cart2 i {
   font-size: 1.2rem;
 }
-
-
 
 .cart {
   position: absolute;
@@ -69,7 +125,7 @@
   transition: 0.2s;
 }
 
-.cart i{
+.cart i {
   font-size: 25px;
 }
 
@@ -87,11 +143,18 @@
 }
 
 .container #nombre {
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .container #precio {
-  font-size: 30px;
+  font-size: 28px;
+}
+
+.container #disPrice {
+  margin: 0;
+  font-size: 16px;
+  text-decoration: line-through;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .button {

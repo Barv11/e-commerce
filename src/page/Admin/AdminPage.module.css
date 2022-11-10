@@ -62,10 +62,10 @@
 
 .userListTxt{
     font-size: 29px;
-    color: rgb(239, 230, 230);
+    color: #69329c;
     margin: 28px;
-    text-shadow: rgb(45, 26, 64) 2px 0 3px;
-
+    text-shadow: rgb(255, 255, 255) 3px 0 3px;
+    font-family: Heavitas;
 }
 
 .UserListTitleIcon{
@@ -76,7 +76,18 @@
     margin-top: 33px;
 }
 
+.alluserscontainer{
+    height: 100vh;
+    background: rgb(177,133,244);
+    background: linear-gradient(347deg, rgba(177,133,244,1) 13%, rgba(226,194,245,1) 100%);
+}
 
+.buscarTxt{
+    font-size: 18px;
+    margin: 15px;
+    color: rgb(45, 26, 64);
+    font-family: Open Sans; 
+}
 
 .adminSB{
     width: 17%;

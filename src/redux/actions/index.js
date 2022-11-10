@@ -21,7 +21,9 @@ import {
   DELETE_CART_PRODUCT,
   GET_ONE_USER,
   GET_INTEL,
-  GET_AMD
+  GET_AMD,
+  EDIT_DISCOUNT,
+  EDIT_STOCK,
 } from "./actionsTypes";
 import axios from "axios";
 import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "./actionsTypes";
@@ -210,6 +212,18 @@ export const getOneUser = () => async (dispatch) => {
   dispatch({type: GET_ONE_USER, payload: myUser})
 }
 
+export const editDiscount = (id, descuento) => async (dispatch) => {
+  axios.post(`${url}/discount`, {productId:id, discount:descuento});
+  console.log(descuento)
+  console.log(id)
+  dispatch({type: EDIT_DISCOUNT})
+}
+
+export const editStock = (id, stockProd) => async (dispatch) => {
+  axios.post(`${url}/stock`, {productId:id, stock:stockProd});
+  dispatch({type: EDIT_STOCK})
+}
+
 export const getIntel = (pcType) => async (dispatch) => {
   console.log(pcType)
   const allIntel = await axios.get(`${url}/productos/intel?pcType=${pcType}`)
@@ -219,4 +233,4 @@ export const getIntel = (pcType) => async (dispatch) => {
 export const getAmd = (pcType) => async (dispatch) => {
   const allAmd = await axios.get(`${url}/productos/amd?pcType=${pcType}`)
   dispatch({type: GET_AMD, payload: allAmd})
-}
+  }

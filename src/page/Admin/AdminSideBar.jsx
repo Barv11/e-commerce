@@ -9,6 +9,9 @@ export default function AdminSideBar(){
             <img className={s.adminImg} src={adminProfilePhoto} />
             <h2 className={s.adminName}>Admin</h2>
             <div className={s.categoriesContainer}>
+                <Link style={{ textDecoration: 'none' }} to={'/users'}>
+                    <h2 className={s.catTxt}>Lista de Usuarios</h2>
+                </Link>
                 <Link style={{ textDecoration: 'none' }} to={'/create'}>
                     <h2 className={s.catTxt}>Crear Producto</h2>
                 </Link>

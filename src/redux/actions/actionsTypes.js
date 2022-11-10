@@ -24,3 +24,6 @@ export const DELETE_CART_PRODUCT = "DELETE_CART_PRODUCT";
 export const GET_ONE_USER = "GET_ONE_USER";
 export const GET_INTEL = "GET_INTEL";
 export const GET_AMD = "GET_AMD";
+export const EDIT_DISCOUNT = "EDIT_DISCOUNT";
+export const EDIT_STOCK = "EDIT_STOCK";
+

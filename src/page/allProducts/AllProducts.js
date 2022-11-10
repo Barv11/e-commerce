@@ -30,8 +30,14 @@ export default function Products() {
     JSON.parse(localStorage.getItem("products") || "[]")
   );
 
+  // Filtra por los que no tienen Stock
+  const allProductsStockFilter = allProducts.filter((p) => p.stock !== 0);
+  const allSearchProductsStockFilter = searchByNameProduct.filter(
+    (p) => p.stock !== 0
+  );
+
   const handleSearch = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     dispatch(clearProducts());
     dispatch(searchProductByName(input));
   };
@@ -39,7 +45,6 @@ export default function Products() {
   const handleInputChange = (e) => {
     setInput(e.target.value);
   };
-
 
   const handleCart = (props) => {
     if (user.logged) {
@@ -62,7 +67,7 @@ export default function Products() {
     dispatch(getAllProductos());
   }, [dispatch]);
 
-  console.log(allProducts);
+  console.log(allProductsStockFilter);
 
   //ORDENAMIENTO
   const OrderName = (event) => {
@@ -84,7 +89,7 @@ export default function Products() {
 
   const indiceUltimo = currentPage * productsPerPage;
   const indicePrimero = indiceUltimo - productsPerPage;
-  let pagProducts = allProducts.slice(indicePrimero, indiceUltimo);
+  let pagProducts = allProductsStockFilter.slice(indicePrimero, indiceUltimo);
 
   //Cambio de pagina
   function pagina(pageNumber) {
@@ -117,17 +122,20 @@ export default function Products() {
           <SideBar setCurrentPage={setCurrentPage} setOrden={setOrden} />
         </div>
         <div className={s.productsContainer}>
-        <form className={s.form} onSubmit={handleSearch}>
-          <input
-            value={input}
-            onChange={handleInputChange}
-            type="text"
-            placeholder="Buscar producto..."
-          />
-          <i className="uil uil-search" onClick={() => handleSearch(input)}></i>
-        </form>
-          {searchByNameProduct.length ? (
-            searchByNameProduct.map((p) => {
+          <form className={s.form} onSubmit={handleSearch}>
+            <input
+              value={input}
+              onChange={handleInputChange}
+              type="text"
+              placeholder="Buscar producto..."
+            />
+            <i
+              className="uil uil-search"
+              onClick={() => handleSearch(input)}
+            ></i>
+          </form>
+          {allSearchProductsStockFilter.length ? (
+            allSearchProductsStockFilter.map((p) => {
               return (
                 <ProductCard
                   key={p.id}
@@ -137,6 +145,7 @@ export default function Products() {
                   cost={p.cost}
                   cart={handleCart}
                   quantity={1}
+                  discount={p.discount}
                 />
               );
             })
@@ -151,6 +160,7 @@ export default function Products() {
                   cost={p.cost}
                   cart={handleCart}
                   quantity={1}
+                  discount={p.discount}
                 />
               );
             })

@@ -15,6 +15,7 @@ import { useEffect } from "react";
 import { saveToken, getUser } from "../redux/actions";
 import EditProducts from "../components/EditProducts/EditProducts";
 import About from "../components/About/About";
+import AllUsers from "../components/ListaUsuarios/AllUsers";
 
 function App() {
   const dispatch = useDispatch();
@@ -53,6 +54,7 @@ function App() {
       <Route path={"/profile"} element={<Profile />} />
       <Route path={"/about"} element={<About />} />
       <Route path={"/armado"} element={<ArmadoPc />} />
+      <Route path={"/users"} element={<AllUsers />} />
     </Routes>
   );
 }

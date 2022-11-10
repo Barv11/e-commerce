@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux";
 import { getAllUsers } from "../../redux/actions";
 import s from "../../page/Admin/AdminPage.module.css";
 import PeopleAltRoundedIcon from "@mui/icons-material/PeopleAltRounded";
+import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
+import Navbar from '../Navbar/Navbar'
 
 export default function AllUsers() {
   let dispatch = useDispatch();
@@ -18,7 +20,9 @@ export default function AllUsers() {
 
   const allUsers = useSelector((state) => state.allUsers);
   console.log(allUsers);
+  const [search, setSearch] = useState("");
 
+  
   async function handleButtonBanned(userId) {
     await axios.put(`https://gametech.up.railway.app/user/create/edit`, {
       show: false,
@@ -48,27 +52,52 @@ export default function AllUsers() {
     alert("Rol cambiado con exito!");
   }
 
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
+
+  let result = !search
+  ? allUsers
+  : allUsers.filter((el) =>
+    el.userName.toLowerCase().includes(search.toLocaleLowerCase())
+  );
+
+console.log(result);
+
+
   return (
-    <div>
+    <div className={s.alluserscontainer}>
+      <Navbar />
       <div className={s.UserListTitleIcon}>
         <h1 className={s.userListTxt}>User List</h1>
         <div className={s.usersListIcon}>
           <PeopleAltRoundedIcon />
         </div>
       </div>
-      <Table striped bordered hover variant="dark">
+      <span className={s.buscarTxt}>Buscar Username: </span>
+          <input
+            value={search}
+            onChange={handleSearch}
+            type="text"
+            placeholder="Inserte un username..."
+          />
+      <Table striped bordered hover variant="light">
         <thead>
           <tr>
             <th>#</th>
+            <th>Username</th>
             <th>First Name</th>
             <th>Last Name</th>
-            <th>Username</th>
             <th>Email</th>
+            <th>Rol</th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
-          {allUsers &&
-            allUsers?.map((u) => {
+          
+          {result.length > 0 ?
+            result?.map((u) => { 
               return (
                 <tr key={u.id}>
                   <td>{u.id}</td>
@@ -110,12 +139,12 @@ export default function AllUsers() {
                   )}
                   <td>
                     <button onClick={() => handleRoleChange(u.id)}>
-                      Confirmar
+                      <CheckRoundedIcon/>
                     </button>
                   </td>
                 </tr>
               );
-            })}
+            }): <div></div>}
         </tbody>
       </Table>
     </div>

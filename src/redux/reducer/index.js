@@ -22,7 +22,9 @@ import {
   DELETE_CART_PRODUCT,
   GET_ONE_USER,
   GET_INTEL,
-  GET_AMD
+  GET_AMD,
+  EDIT_DISCOUNT,
+  EDIT_STOCK,
 } from "../actions/actionsTypes";
 
 const initialState = {
@@ -190,6 +192,14 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+    case EDIT_DISCOUNT:
+      return {
+        ...state,
+      }
+    case EDIT_STOCK:
+      return {
+        ...state,
+      }
   }
 }
 

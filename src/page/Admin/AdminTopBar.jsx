@@ -7,7 +7,6 @@ export default function AdminTopBar(){
         <div className={s.topBarContainer}>
             <h1 className={s.dashboardTitle}>Dashboard</h1>
             <h2 className={s.dashboardSubTitle}>Bienvenido a tu dashboard</h2>
-            <AllUsers />
         </div>
     )
 }
