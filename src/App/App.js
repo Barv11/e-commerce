@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { Products, Home, Profile } from "../page";
+import { Products, Home, Profile, ArmadoPc } from "../page";
 import {
   CardDetail,
   Login,
@@ -53,6 +53,7 @@ function App() {
       <Route path={"/carrito"} element={<Carrito />} />
       <Route path={"/profile"} element={<Profile />} />
       <Route path={"/about"} element={<About />} />
+      <Route path={"/armado"} element={<ArmadoPc />} />
       <Route path={"/users"} element={<AllUsers />} />
     </Routes>
   );

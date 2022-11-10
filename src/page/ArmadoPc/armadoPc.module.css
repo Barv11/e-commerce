@@ -1,0 +1,116 @@
+.choice{
+    display: flex;
+    align-items: center;
+    height: 65vh;
+}
+
+.intel{
+    border-style: none;
+    width: 50%;
+    height: 80%;
+    margin: 5px;
+    border-radius: 10px;
+    background-image: url('https://res.cloudinary.com/dhadvdeca/image/upload/v1668048204/intelImage_or4qfu.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(100%);
+    transition: filter 1s;
+    box-shadow:  0 -5px 10px #4c9fd5;
+}
+
+.intel:hover{
+    animation: intel 2s linear infinite ;
+    filter: grayscale(0%)
+}
+@keyframes intel {
+    0% { box-shadow: 0 -5px 30px #09418b;}
+    17% { box-shadow: 5px -5px 30px #09418b;}
+    34% { box-shadow: 5px 5px 30px #09418b;}
+    50% { box-shadow: 0 5px 30px #09418b;}
+    67% { box-shadow: -5px 5px 30px #09418b;}
+    84% { box-shadow: -5px -5px 30px #09418b;}
+    100% { box-shadow: 0 -5px 30px #09418b;}
+  }
+
+.amd{
+     border-style:none;
+     width: 50%;
+     height: 80%;
+     margin: 5px;
+     border-radius: 10px;
+     background-image: url('https://res.cloudinary.com/dhadvdeca/image/upload/v1668048209/amdimage_epxhcq.jpg');
+     background-size: cover;
+     background-position: center;
+     filter: grayscale(100%);
+     transition: filter 1s;
+     box-shadow:  0 -5px 10px #f7b24b;
+}
+
+
+.amd:hover {
+    animation: amd 2s linear infinite ;
+    filter: grayscale(0%)
+}
+@keyframes amd {
+    0% { box-shadow: 0 -5px 30px #f7b24b;}
+    17% { box-shadow: 5px -5px 30px #f7b24b;}
+    34% { box-shadow: 5px 5px 30px #f7b24b;}
+    50% { box-shadow: 0 5px 30px #f7b24b;}
+    67% { box-shadow: -5px 5px 30px #f7b24b;}
+    84% { box-shadow: -5px -5px 30px #f7b24b;}
+    100% { box-shadow: 0 -5px 30px #f7b24b;}
+  }
+
+.cardContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 15px;
+    margin: 15px;
+    padding: 10px;
+    background: #ebebeb;
+}
+
+.titleChoice{
+    text-align: end;
+}
+
+.cardChoice{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70vw;
+    height: 30vh;
+    border: 2px solid #69329c;
+    margin: 5px;
+    padding: 25px;
+    overflow: hidden;
+    
+}
+
+.cardChoice:hover{
+    border: 2px dotted #57308B;
+}
+.cardChoice button{
+    padding: 10px;
+    border-radius: 5px;
+    border-style: none;
+    transition: background 0.5s;
+    
+}
+
+.cardChoice button:hover{
+    background: #69329c;
+    color: white;
+}
+
+.cardChoice:hover{
+    border-radius: 20px;
+    animation: rounded 0.5s linear 1;
+}
+
+@keyframes rounded {
+    from{ border-radius: 0}
+    to{ border-radius: 20px}
+}
