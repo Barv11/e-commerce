@@ -36,6 +36,12 @@
   gap: .2em;
 }
 
+.title {
+  font-size: 1.2rem;
+  width: 100%;
+  margin-bottom: 0;
+}
+
 .text {
   font-size: 1rem;
   width: 100%;

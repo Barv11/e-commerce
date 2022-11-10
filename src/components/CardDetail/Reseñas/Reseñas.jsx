@@ -1,11 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import {
+  clearReviews,
+  deleteReview,
+  reviewsOfAProduct,
+} from "../../../redux/actions";
 import s from "./Reseñas.module.css";
 import Star from "./Star/Star";
 
-export default function Reseñas() {
+export default function Reseñas({ review, idProduct, userFound }) {
+  const dispatch = useDispatch();
+  const [usuario, setUsuario] = useState(
+    JSON.parse(localStorage.getItem("user"))
+  );
+  localStorage.setItem("user", JSON.stringify(usuario));
+  const { id, title, description, rating, user } = review;
 
-  const rating = 4;
+  let display = {
+    display: "none"
+  }
 
+  const handlerDelete = () => {
+    dispatch(deleteReview(id));
+    // dispatch(clearReviews());
+    setTimeout(() => {
+      dispatch(reviewsOfAProduct(idProduct));
+    }, 1000);
+  };
+console.log({ 1: userFound.id, 2: user.id})
   return (
     <div className={s.container}>
       <div className={s.user}>
@@ -14,18 +36,17 @@ export default function Reseñas() {
           alt="name"
           className={s.avatar}
         />
-        <span className={s.name}>Bryan Ramos Vargas</span>
+        <span className={s.name}>{`${user.firstName} ${user.lastName}`}</span>
       </div>
       <div className={s.star}>
-        <Star filled={true} quantity={rating}/>
-        <Star filled={false} quantity={5-rating}/>
+        <Star filled={true} quantity={rating} />
+        <Star filled={false} quantity={5 - rating} />
       </div>
-      <p className={s.text}>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic asperiores
-        labore aspernatur omnis, itaque voluptas nemo vitae mollitia expedita
-        dicta rerum consectetur iusto deserunt nobis sint quae dignissimos
-        eligendi neque?
-      </p>
+      <p className={s.title}>{title}</p>
+      {/* <p className={s.text}>{description.replace(/\n/g, "<br />")}</p> */}
+      <p className={s.text}>{description}</p>
+      {/* <i className="uil uil-edit-alt"></i> */}
+      <i className="uil uil-trash-alt" onClick={handlerDelete} style={userFound.id === user.id ? {cursor: "pointer"} : display}></i>
     </div>
   );
 }

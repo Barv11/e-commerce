@@ -19,6 +19,12 @@ import {
   GET_CART_PRODUCTS,
   CLEAR_CART_PRODUCTS,
   DELETE_CART_PRODUCT,
+  CLEAR_REVIEWS,
+  CREATE_REVIEWS,
+  PRODUCT_REVIEWS,
+  REVIEWS_BY_USER,
+  DELETE_REVIEW,
+  UPDATE_REVIEW,
   GET_ONE_USER,
   GET_INTEL,
   GET_AMD,
@@ -28,8 +34,8 @@ import {
 import axios from "axios";
 import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "./actionsTypes";
 
-let url = "https://gametech.up.railway.app";
-// let url = "http://localhost:3001"
+// let url = "https://gametech.up.railway.app";
+let url = "http://localhost:3001";
 
 let token = null;
 export const saveToken = (newToken) => {
@@ -202,6 +208,54 @@ export const deleteCartProduct = (id) => async (dispatch) => {
   dispatch({ type: DELETE_CART_PRODUCT });
 };
 
+export const clearReviews = () => (dispatch) => {
+  dispatch({ type: CLEAR_REVIEWS });
+};
+
+export const createReview = (review) => async (dispatch) => {
+  try {
+    const response = (await axios.post(`${url}/reviews`, review)).data;
+    dispatch({ type: CREATE_REVIEWS, payload: response });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const reviewsOfAProduct = (id) => async (dispatch) => {
+  try {
+    const reviews = (await axios.get(`${url}/reviews?productoId=${id}`)).data;
+    dispatch({ type: PRODUCT_REVIEWS, payload: reviews });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const reviewsByUser = (id) => async (dispatch) => {
+  try {
+    const reviews = (await axios.get(`${url}/reviews?userId=${id}`)).data;
+    dispatch({ type: REVIEWS_BY_USER, payload: reviews });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const updateReview = (review) => async (dispatch) => {
+  try {
+    const response = (await axios.put(`${url}/reviews`, review)).data;
+    dispatch({ type: UPDATE_REVIEW, payload: response });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const deleteReview = (id) => async (dispatch) => {
+  try {
+    const response = (await axios.delete(`${url}/reviews/${id}`)).data;
+    dispatch({ type: DELETE_REVIEW, payload: response });
+  } catch (error) {
+    console.error(error);
+  }
+};
 export const getOneUser = () => async (dispatch) => {
   const config = {
     headers: {

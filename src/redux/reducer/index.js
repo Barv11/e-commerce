@@ -20,6 +20,12 @@ import {
   GET_ALL_USERS,
   CLEAR_CART_PRODUCTS,
   DELETE_CART_PRODUCT,
+  CLEAR_REVIEWS,
+  CREATE_REVIEWS,
+  PRODUCT_REVIEWS,
+  REVIEWS_BY_USER,
+  UPDATE_REVIEW,
+  DELETE_REVIEW,
   GET_ONE_USER,
   GET_INTEL,
   GET_AMD,
@@ -37,6 +43,8 @@ const initialState = {
   cartProducts: [],
   allUsers: [],
   url: "",
+  productReviews: [],
+  userReviews: [],
   userProfile: {},
   productsIntel: [],
   productsAmd: [],
@@ -75,8 +83,8 @@ function rootReducer(state = initialState, action) {
     case POST_IMAGE:
       return {
         ...state,
-        url: action.payload
-      }
+        url: action.payload,
+      };
     case POST_PRODUCT:
       return {
         ...state,
@@ -172,6 +180,34 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         allUsers: action.payload,
+      };
+    case CLEAR_REVIEWS:
+      return {
+        ...state,
+        productReviews: [],
+        userReviews: [],
+      }
+    case CREATE_REVIEWS:
+      return {
+        ...state,
+      };
+    case PRODUCT_REVIEWS:
+      return {
+        ...state,
+        productReviews: action.payload,
+      };
+    case REVIEWS_BY_USER:
+      return {
+        ...state,
+        userReviews: action.payload,
+      };
+    case UPDATE_REVIEW:
+      return {
+        ...state,
+      };
+    case DELETE_REVIEW:
+      return {
+        ...state,
       };
     case GET_ONE_USER: 
     return {
