@@ -1,5 +1,5 @@
 .container {
-    padding-top: 2em;
+  padding-top: 2em;
   font-family: "Montserrat", sans-serif;
   display: flex;
   flex-flow: row nowrap;
@@ -36,7 +36,6 @@
   /* text-decoration: none; */
   transition: 0.3s;
   border: 2px solid #408612;
-
 }
 
 .carrousel {
@@ -47,16 +46,16 @@
 }
 
 .carrousel1 {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .carrousel1 img {
   width: 450px;
   height: 450px;
-  object-fit:contain;
+  object-fit: contain;
   /* box-shadow: 0 0 10px 5px #000000; */
-  filter: drop-shadow(0 0 10px #000000) ; 
+  filter: drop-shadow(0 0 10px #000000);
 }
 
 .carrousel2 {
@@ -70,7 +69,7 @@
   object-fit: cover;
   width: 120px;
   height: 120px;
-  transition: transform .5s;
+  transition: transform 0.5s;
 }
 
 .border {
@@ -94,17 +93,22 @@
 }
 
 .brand {
-    margin: .7em 0;
-    font-weight: 600;
-    color: #c40202;
-    font-size: 1.4rem;
+  margin: 0.7em 0;
+  font-weight: 600;
+  color: #c40202;
+  font-size: 1.4rem;
 }
 
 .cost {
-    margin: .9em 0;
-    font-weight: 600;
+  margin: 0.6em 0;
+  font-weight: 600;
   font-size: 1.7rem;
-  color: #c78711
+  color: #c78711;
+}
+
+.disCost {
+  text-decoration: line-through;
+  margin-top: 10px;
 }
 
 .icon {
@@ -116,11 +120,9 @@
 }
 
 .icon i {
-    font-size: 2rem;
-    margin-right: .2em;
+  font-size: 2rem;
+  margin-right: 0.2em;
 }
 
 .especificaciones {
-
 }
-

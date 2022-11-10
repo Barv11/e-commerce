@@ -11,10 +11,13 @@ export default function CardCarrito({
   deleteCartProd,
   handleCartQuantity,
   quantity,
+  discount,
 }) {
   const [cantidad, setCantidad] = useState(quantity);
 
-  console.log(id);
+  console.log(discount);
+
+  const discountCost = (discount * cost) / 100;
 
   const handleCantidad = (e) => {
     handleCartQuantity(id, e.target.value);
@@ -30,7 +33,15 @@ export default function CardCarrito({
         </div>
       </Link>
       <div className={s.textContainer}>
-        <h3>{`$${cost}`}</h3>
+        {discount === 0 ? (
+          <h3>{`$${cost}`}</h3>
+        ) : (
+          <div className={s.costContainer}>
+            <h5>{`$${cost}`}</h5>
+            <h3>{`$${cost - discountCost}`}</h3>
+          </div>
+        )}
+
         <input
           onChange={(e) => handleCantidad(e)}
           type="number"
@@ -38,7 +49,11 @@ export default function CardCarrito({
           max="3"
           value={quantity}
         />
-        <h3>{`$${cost * quantity}`}</h3>
+        <h3>
+          {discount === 0
+            ? `$${cost * quantity}`
+            : `$${(cost - discountCost) * quantity}`}
+        </h3>
         <div className={s.trashCan} onClick={() => deleteCartProd(id)}>
           <i class="uil uil-trash-alt"></i>
         </div>
