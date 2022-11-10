@@ -53,6 +53,19 @@
   margin-right: 0px;
 }
 
+.costContainer h5{
+  font-size: 14px;
+  position: absolute;
+  top: -50%;
+  right: 10%;
+  text-decoration: line-through;
+}
+
+.costContainer{
+  text-align: center;  
+  position: relative;
+}
+
 .container img {
   width: 100px;
   height: 100px;

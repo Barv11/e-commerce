@@ -43,6 +43,9 @@ export default function CardDetail(props) {
     setImage(e.target.src);
   };
 
+
+  const discountCost = (discount * cost) / 100;
+
   useEffect(() => {
     dispatch(searchProductById(id));
   }, [dispatch]);
@@ -88,7 +91,13 @@ export default function CardDetail(props) {
               >{`Productos > ${searchByIdProduct.type}`}</span>
               <span className={s.brand}>Marca: {brand}</span>
               <span className={s.route}>Stock: {stock}</span>
-              <span className={s.cost}>${cost}</span>
+
+              <span className={discount === 0 ? s.cost : s.disCost}>
+                ${cost}
+              </span>
+              {discount !== 0 && (
+                <span className={s.cost}>${cost - discountCost}</span>
+              )}
               <div className={s.icon}>
                 <i class="uil uil-shop"></i>
                 <span>Retiro en sucursal</span>
