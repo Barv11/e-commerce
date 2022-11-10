@@ -20,22 +20,6 @@ export default function CardDetail(props) {
   const { name, brand, img, detail, cost, discount, quantity } =
     searchByIdProduct;
 
-  useEffect(() => {
-    dispatch(searchProductById(id));
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (Object.entries(searchByIdProduct).length !== 0) {
-      console.log(image);
-      setImage(img[0]);
-      document.title = `Gamer Tech | ${searchByIdProduct.name}`;
-    }
-  }, [searchByIdProduct]);
-
-  useEffect(() => {
-    return dispatch(clearProducts());
-  }, []);
-
   // Funcion para que agregen al carrito
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("products") || "[]")
@@ -57,6 +41,22 @@ export default function CardDetail(props) {
   const handleOnClick = (e) => {
     setImage(e.target.src);
   };
+
+  useEffect(() => {
+    dispatch(searchProductById(id));
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (Object.entries(searchByIdProduct).length !== 0) {
+      setImage(img[0]);
+      document.title = `Gamer Tech | ${searchByIdProduct.name}`;
+    }
+  }, [searchByIdProduct]);
+
+  useEffect(() => {
+    return dispatch(clearProducts());
+  }, []);
+
   return (
     <React.Fragment>
       <Navbar />
@@ -114,7 +114,7 @@ export default function CardDetail(props) {
             </div>
           </div>
           <div className={s.especificaciones}>
-            <Especificaciones product={searchByIdProduct} />
+            <Especificaciones product={searchByIdProduct} userFound={userFound}/>
           </div>
         </main>
       )}

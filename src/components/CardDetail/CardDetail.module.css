@@ -64,6 +64,7 @@
 }
 
 .carrousel2 img {
+  cursor: pointer;
   object-fit: cover;
   width: 120px;
   height: 120px;
