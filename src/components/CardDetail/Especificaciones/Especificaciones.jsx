@@ -111,18 +111,33 @@ export default function Especificaciones({ product, userFound }) {
         <div className={s.containerDetails}>{details}</div>
       ) : (
         <div className={s.containerReseñas}>
-          {productReviews.length
-            ? productReviews.map((el) => <Reseñas review={el} idProduct={product.id} userFound={userFound}/>)
-            : "Este producto no tiene reseñas."}
-            {
-              user.logged ? addReview ? (
-                <ReseñaForm setAddReview={setAddReview} id={product.id} userFound={userFound}/>
-              ) : (
-                <button className={s.addReview} onClick={handlerReview}>
-                  Agregar Reseña
-                </button>
-              ) : 'Debes registrarte para poder ver las reseñas.'
-            }
+          {user.logged ? (
+            productReviews.length ? (
+              <>
+                {productReviews.map((el) => (
+                  <Reseñas review={el} />
+                  ))}
+                  <p className={s.recuerda}>Recuerda que puedes manejar tus reseñas desde tu perfil.</p>
+              </>
+            ) : (
+              <p>Este producto no tiene reseñas.</p>
+            )
+          ) : null}
+          {user.logged ? (
+            addReview ? (
+              <ReseñaForm
+                setAddReview={setAddReview}
+                id={product.id}
+                userFound={userFound}
+              />
+            ) : (
+              <button className={s.addReview} onClick={handlerReview}>
+                Agregar Reseña
+              </button>
+            )
+          ) : (
+            <p>Debes registrarte para poder ver las reseñas.</p>
+          )}
           {}
         </div>
       )}

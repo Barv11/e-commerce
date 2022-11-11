@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { clearProducts, deleteProduct } from "../../../redux/actions";
+import {
+  clearProducts,
+  deleteProduct,
+  getAllProductos,
+} from "../../../redux/actions";
 import s from "./CardEditProdducts.module.css";
 import { editDiscount, editStock } from "../../../redux/actions";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
@@ -17,6 +21,8 @@ export default function CardEditProducts({
   details,
   discount,
   stock,
+  setType,
+  setPage,
 }) {
   const dispatch = useDispatch();
 
@@ -27,7 +33,11 @@ export default function CardEditProducts({
 
   const handlerDelete = () => {
     dispatch(deleteProduct(id));
-    dispatch(clearProducts());
+    setType("defect");
+    setPage(1);
+    setTimeout(() => {
+      dispatch(getAllProductos());
+    }, 1000);
   };
 
   const handleDiscountSubmit = (id) => {

@@ -1,6 +1,9 @@
 import {
   GET_ALL_PRODUCTS,
+  GET_DELETED_PRODUCTS,
   TOGGLE_PRODUCT_TYPE,
+  TOGGLE_DELETED_PRODUCT_TYPE,
+  RESTORE_PRODUCT,
   SEARCH_PRODUCT_BY_NAME,
   CLEAR_PRODUCTS,
   ORDER_NAME,
@@ -20,6 +23,8 @@ import {
   CLEAR_CART_PRODUCTS,
   DELETE_CART_PRODUCT,
   CLEAR_REVIEWS,
+  CLEAR_SEARCH_REVIEW,
+  SEARCH_REVIEW,
   CREATE_REVIEWS,
   PRODUCT_REVIEWS,
   REVIEWS_BY_USER,
@@ -54,9 +59,29 @@ export const getAllProductos = () => async (dispatch) => {
       authorization: token,
     },
   };
-  
+
   const productos = await axios.get(`${url}/productos`, config);
   dispatch({ type: GET_ALL_PRODUCTS, payload: productos.data });
+};
+
+export const getDeleteProducts = () => async (dispatch) => {
+  try {
+    const deleteds = (await axios.get(`${url}/productos/enabled`)).data;
+    dispatch({ type: GET_DELETED_PRODUCTS, payload: deleteds });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const toggleDeletedProductType = (type) => async (dispatch) => {
+  const productos = await axios.get(`${url}/productos/enabled`);
+  const filterProduct = productos.data.filter((p) => p.type === type);
+  dispatch({ type: TOGGLE_DELETED_PRODUCT_TYPE, payload: filterProduct });
+};
+
+export const restoreProduct = (id) => async (dispatch) => {
+  await axios.put(`${url}/productos/restore/` + id);
+  dispatch({ type: RESTORE_PRODUCT});
 };
 
 export const postImage = (file) => async (dispatch) => {
@@ -71,7 +96,7 @@ export const postImage = (file) => async (dispatch) => {
     }
   );
   const img = await response.json();
-  
+
   return dispatch({
     type: POST_IMAGE,
     payload: img.url,
@@ -84,7 +109,7 @@ export function postProduct(payload) {
       Authorization: token,
     },
   };
-  
+
   return async function (dispatch) {
     const product = await axios.post(
       `${url}/productos/create`,
@@ -181,7 +206,7 @@ export const getAllUsers = () => async (dispatch) => {
 
 export const getCartProduct = (id) => async (dispatch) => {
   const obj = { id: id };
-  
+
   const productos = await axios.post(`${url}/cart/get`, obj);
   dispatch({ type: GET_CART_PRODUCTS, payload: productos });
 };
@@ -192,7 +217,7 @@ export const clearCartProduct = () => (dispatch) => {
 
 export const addCartProduct = (id, array) => async (dispatch) => {
   const obj = { id: id, productosCarrito: array };
-  
+
   const a = await axios.post(`${url}/cart/create`, obj);
   dispatch({ type: ADD_CART_PRODUCTS });
 };
@@ -212,10 +237,23 @@ export const clearReviews = () => (dispatch) => {
   dispatch({ type: CLEAR_REVIEWS });
 };
 
+export const clearSearchReview = () => (dispatch) => {
+  dispatch({ type: CLEAR_SEARCH_REVIEW });
+};
+
 export const createReview = (review) => async (dispatch) => {
   try {
     const response = (await axios.post(`${url}/reviews`, review)).data;
     dispatch({ type: CREATE_REVIEWS, payload: response });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const searchReview = (id) => async (dispatch) => {
+  try {
+    const review = (await axios.get(`${url}/reviews/${id}`)).data;
+    dispatch({ type: SEARCH_REVIEW, payload: review });
   } catch (error) {
     console.error(error);
   }
@@ -262,29 +300,29 @@ export const getOneUser = () => async (dispatch) => {
       Authorization: token,
     },
   };
-  const myUser = await axios.get(`${url}/user/login/name`, config)
-  dispatch({type: GET_ONE_USER, payload: myUser})
-}
+  const myUser = await axios.get(`${url}/user/login/name`, config);
+  dispatch({ type: GET_ONE_USER, payload: myUser });
+};
 
 export const editDiscount = (id, descuento) => async (dispatch) => {
-  axios.post(`${url}/discount`, {productId:id, discount:descuento});
-  console.log(descuento)
-  console.log(id)
-  dispatch({type: EDIT_DISCOUNT})
-}
+  axios.post(`${url}/discount`, { productId: id, discount: descuento });
+  console.log(descuento);
+  console.log(id);
+  dispatch({ type: EDIT_DISCOUNT });
+};
 
 export const editStock = (id, stockProd) => async (dispatch) => {
-  axios.post(`${url}/stock`, {productId:id, stock:stockProd});
-  dispatch({type: EDIT_STOCK})
-}
+  axios.post(`${url}/stock`, { productId: id, stock: stockProd });
+  dispatch({ type: EDIT_STOCK });
+};
 
 export const getIntel = (pcType) => async (dispatch) => {
-  console.log(pcType)
-  const allIntel = await axios.get(`${url}/productos/intel?pcType=${pcType}`)
-  dispatch({type: GET_INTEL, payload: allIntel})
-}
+  console.log(pcType);
+  const allIntel = await axios.get(`${url}/productos/intel?pcType=${pcType}`);
+  dispatch({ type: GET_INTEL, payload: allIntel });
+};
 
 export const getAmd = (pcType) => async (dispatch) => {
-  const allAmd = await axios.get(`${url}/productos/amd?pcType=${pcType}`)
-  dispatch({type: GET_AMD, payload: allAmd})
-  }
+  const allAmd = await axios.get(`${url}/productos/amd?pcType=${pcType}`);
+  dispatch({ type: GET_AMD, payload: allAmd });
+};
