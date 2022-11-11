@@ -20,6 +20,7 @@ import {
   GET_ALL_USERS,
   CLEAR_CART_PRODUCTS,
   DELETE_CART_PRODUCT,
+  /*   POST_INFO_VENTA, */
 } from "../actions/actionsTypes";
 
 const initialState = {
@@ -67,8 +68,8 @@ function rootReducer(state = initialState, action) {
     case POST_IMAGE:
       return {
         ...state,
-        url: action.payload
-      }
+        url: action.payload,
+      };
     case POST_PRODUCT:
       return {
         ...state,
@@ -169,6 +170,10 @@ function rootReducer(state = initialState, action) {
         ...state,
         allUsers: action.payload,
       };
+    /*  case POST_INFO_VENTA:
+      return {
+        ...state,
+      }; */
   }
 }
 

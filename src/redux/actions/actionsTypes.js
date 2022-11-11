@@ -21,4 +21,4 @@ export const GET_USER = "GET_USER";
 export const REGISTER_USER = "REGISTER_USER";
 export const CLEAR_CART_PRODUCTS = "CLEAR_CART_PRODUCTS";
 export const DELETE_CART_PRODUCT = "DELETE_CART_PRODUCT";
-
+/* export const POST_INFO_VENTA = "POST_INFO_VENTA"; */
