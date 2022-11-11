@@ -30,6 +30,22 @@ export default function Products() {
     JSON.parse(localStorage.getItem("products") || "[]")
   );
 
+  // Filtra por los que no tienen Stock
+
+  const allProductsStockFilter = allProducts.filter((p) => p.stock !== 0);
+  const finalAllProducts = allProductsStockFilter.sort((a, b) => {
+    if (a.discount - b.discount) {
+      return -1;
+    }
+    if (a.discount + b.discount) {
+      return 1;
+    }
+  });
+
+  const allSearchProductsStockFilter = searchByNameProduct.filter(
+    (p) => p.stock !== 0
+  );
+
   const handleSearch = (e) => {
     e.preventDefault();
     dispatch(clearProducts());
@@ -61,7 +77,7 @@ export default function Products() {
     dispatch(getAllProductos());
   }, [dispatch]);
 
-  console.log(allProducts);
+  console.log(allProductsStockFilter);
 
   //ORDENAMIENTO
   const OrderName = (event) => {
@@ -83,7 +99,7 @@ export default function Products() {
 
   const indiceUltimo = currentPage * productsPerPage;
   const indicePrimero = indiceUltimo - productsPerPage;
-  let pagProducts = allProducts.slice(indicePrimero, indiceUltimo);
+  let pagProducts = finalAllProducts.slice(indicePrimero, indiceUltimo);
 
   //Cambio de pagina
   function pagina(pageNumber) {
@@ -128,8 +144,8 @@ export default function Products() {
               onClick={() => handleSearch(input)}
             ></i>
           </form>
-          {searchByNameProduct.length ? (
-            searchByNameProduct.map((p) => {
+          {allSearchProductsStockFilter.length ? (
+            allSearchProductsStockFilter.map((p) => {
               return (
                 <ProductCard
                   key={p.id}
@@ -150,7 +166,7 @@ export default function Products() {
                   key={p.id}
                   id={p.id}
                   name={p.name}
-                  img={p.img[0]}
+                  img={Array.isArray(p.img) ? p.img[0] : p.img}
                   cost={p.cost}
                   cart={handleCart}
                   quantity={1}

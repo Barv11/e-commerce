@@ -1,10 +1,41 @@
 .container {
-    padding-top: 2em;
+  padding-top: 2em;
   font-family: "Montserrat", sans-serif;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   gap: 2em;
+}
+
+.cart2 {
+  cursor: pointer;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 0.5em;
+  text-decoration: none;
+  /* background-color: #7bbd50; */
+  background-color: #408612;
+  color: white;
+  margin-bottom: 1em;
+  font-size: 17px;
+  border-radius: 10px;
+  border: none;
+  transition: 0.3s;
+  /* text-decoration: underline; */
+  justify-content: center;
+  margin: 10px 0px;
+  width: 200px;
+  height: 45px;
+  border: 2px solid #408612;
+}
+
+.cart2:hover {
+  background-color: white;
+  color: rgb(100, 100, 100);
+  /* text-decoration: none; */
+  transition: 0.3s;
+  border: 2px solid #408612;
 }
 
 .carrousel {
@@ -15,16 +46,16 @@
 }
 
 .carrousel1 {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .carrousel1 img {
   width: 450px;
   height: 450px;
-  object-fit:contain;
+  object-fit: contain;
   /* box-shadow: 0 0 10px 5px #000000; */
-  filter: drop-shadow(0 0 10px #000000) ; 
+  filter: drop-shadow(0 0 10px #000000);
 }
 
 .carrousel2 {
@@ -35,10 +66,11 @@
 }
 
 .carrousel2 img {
+  cursor: pointer;
   object-fit: cover;
   width: 120px;
   height: 120px;
-  transition: transform .5s;
+  transition: transform 0.5s;
 }
 
 .border {
@@ -62,17 +94,22 @@
 }
 
 .brand {
-    margin: .7em 0;
-    font-weight: 600;
-    color: #c40202;
-    font-size: 1.4rem;
+  margin: 0.7em 0;
+  font-weight: 600;
+  color: #c40202;
+  font-size: 1.4rem;
 }
 
 .cost {
-    margin: .9em 0;
-    font-weight: 600;
+  margin: 0.6em 0;
+  font-weight: 600;
   font-size: 1.7rem;
-  color: #c78711
+  color: #c78711;
+}
+
+.disCost {
+  text-decoration: line-through;
+  margin-top: 10px;
 }
 
 .icon {
@@ -84,11 +121,27 @@
 }
 
 .icon i {
-    font-size: 2rem;
-    margin-right: .2em;
+  font-size: 2rem;
+  margin-right: 0.2em;
 }
 
 .especificaciones {
-
 }
+
+.modalTitle{
+  font-size: 35px;
+  font-family: Cocosharp;
+}
+
+.modalSubtitle{
+  font-family: Open Sans, sans-serif;
+}
+
+@font-face {
+  font-family: Cocosharp;
+  src: url('../fonts/COCO-SHARP-BOLD-TRIAL.TTF');
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
 

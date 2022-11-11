@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { Products, Home, Profile } from "../page";
+import { Products, Home, Profile, ArmadoPc } from "../page";
 import {
   CardDetail,
   Login,
@@ -16,6 +16,9 @@ import { saveToken, getUser } from "../redux/actions";
 import EditProducts from "../components/EditProducts/EditProducts";
 import About from "../components/About/About";
 import AllUsers from "../components/ListaUsuarios/AllUsers";
+import ReseñaForm from "../components/CardDetail/ReseñaForm/ReseñaForm";
+import CardEditReviewProfile from "../components/cardProfile/CardEditReviewProfile";
+import RemovedProducts from "../components/RemovedProducts/RemovedProducts";
 
 function App() {
   const dispatch = useDispatch();
@@ -47,12 +50,15 @@ function App() {
       <Route path={"/detail/:id"} element={<CardDetail />} />
       <Route path={"/create"} element={<CreateProduct />} />
       <Route path={"/edit/:id"} element={<CreateProduct />} />
+      <Route path={"/edit/review/:id"} element={<CardEditReviewProfile />}/>
       <Route path={"/edit"} element={<EditProducts />} />
+      <Route path={"/trash"} element={<RemovedProducts />} />
       <Route path={"/admin"} element={<AdminPage />} />
       <Route path={"/orden"} element={<Orden />} />
       <Route path={"/carrito"} element={<Carrito />} />
       <Route path={"/profile"} element={<Profile />} />
       <Route path={"/about"} element={<About />} />
+      <Route path={"/armado"} element={<ArmadoPc />} />
       <Route path={"/users"} element={<AllUsers />} />
     </Routes>
   );

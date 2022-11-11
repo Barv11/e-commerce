@@ -1,6 +1,9 @@
 import {
   GET_ALL_PRODUCTS,
+  GET_DELETED_PRODUCTS,
   TOGGLE_PRODUCT_TYPE,
+  TOGGLE_DELETED_PRODUCT_TYPE,
+  RESTORE_PRODUCT,
   SEARCH_PRODUCT_BY_NAME,
   SEARCH_PRODUCT_BY_ID,
   CLEAR_PRODUCTS,
@@ -20,11 +23,25 @@ import {
   GET_ALL_USERS,
   CLEAR_CART_PRODUCTS,
   DELETE_CART_PRODUCT,
-  /*   POST_INFO_VENTA, */
+  CLEAR_REVIEWS,
+  CLEAR_SEARCH_REVIEW,
+  SEARCH_REVIEW,
+  CREATE_REVIEWS,
+  PRODUCT_REVIEWS,
+  REVIEWS_BY_USER,
+  UPDATE_REVIEW,
+  DELETE_REVIEW,
+  GET_ONE_USER,
+  GET_INTEL,
+  GET_AMD,
+  EDIT_DISCOUNT,
+  EDIT_STOCK,
+
 } from "../actions/actionsTypes";
 
 const initialState = {
   allProducts: [],
+  deletedProducts: [],
   searchByNameProduct: [],
   searchByIdProduct: {},
   user: {},
@@ -33,6 +50,12 @@ const initialState = {
   cartProducts: [],
   allUsers: [],
   url: "",
+  productReviews: [],
+  userReviews: [],
+  reviewSearched: {},
+  userProfile: {},
+  productsIntel: [],
+  productsAmd: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -42,10 +65,24 @@ function rootReducer(state = initialState, action) {
         ...state,
         allProducts: action.payload,
       };
+    case GET_DELETED_PRODUCTS:
+      return {
+        ...state,
+        deletedProducts: action.payload,
+      };
     case TOGGLE_PRODUCT_TYPE:
       return {
         ...state,
         allProducts: action.payload,
+      };
+    case TOGGLE_DELETED_PRODUCT_TYPE:
+      return {
+        ...state,
+        deletedProducts: action.payload,
+      };
+    case RESTORE_PRODUCT:
+      return {
+        ...state,
       };
     case SEARCH_PRODUCT_BY_NAME:
       return {
@@ -161,14 +198,75 @@ function rootReducer(state = initialState, action) {
         ...state,
         userFound: action.payload,
       };
-    default:
-      return {
-        ...state,
-      };
     case GET_ALL_USERS:
       return {
         ...state,
         allUsers: action.payload,
+      };
+    case CLEAR_REVIEWS:
+      return {
+        ...state,
+        productReviews: [],
+        userReviews: [],
+      };
+    case CLEAR_SEARCH_REVIEW:
+      return {
+        ...state,
+        reviewSearched: {},
+      };
+    case SEARCH_REVIEW:
+      return {
+        ...state,
+        reviewSearched: action.payload,
+      };
+    case CREATE_REVIEWS:
+      return {
+        ...state,
+      };
+    case PRODUCT_REVIEWS:
+      return {
+        ...state,
+        productReviews: action.payload,
+      };
+    case REVIEWS_BY_USER:
+      return {
+        ...state,
+        userReviews: action.payload,
+      };
+    case UPDATE_REVIEW:
+      return {
+        ...state,
+      };
+    case DELETE_REVIEW:
+      return {
+        ...state,
+      };
+    case GET_ONE_USER:
+      return {
+        ...state,
+        userProfile: action.payload,
+      };
+    case GET_INTEL:
+      return {
+        ...state,
+        productsIntel: action.payload,
+      };
+    case GET_AMD:
+      return {
+        ...state,
+        productsAmd: action.payload,
+      };
+    case EDIT_DISCOUNT:
+      return {
+        ...state,
+      };
+    case EDIT_STOCK:
+      return {
+        ...state,
+      };
+    default:
+      return {
+        ...state,
       };
     /*  case POST_INFO_VENTA:
       return {

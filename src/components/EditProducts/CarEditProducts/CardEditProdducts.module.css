@@ -52,3 +52,32 @@
 .delete:hover {
   filter: drop-shadow(0 0 5px black);
 }
+
+#inputDis{
+  width: 40px;
+}
+
+.discountContainer{
+  display: flex;
+  flex-direction: column;
+}
+
+.discountContainer button{
+  margin-left: 2px;
+}
+
+.modalTitle{
+  font-size: 35px;
+  font-family: Cocosharp;
+}
+
+.modalSubtitle{
+  font-family: Open Sans, sans-serif;
+}
+
+@font-face {
+  font-family: Cocosharp;
+  src: url('../../fonts/COCO-SHARP-BOLD-TRIAL.TTF');
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');

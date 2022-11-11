@@ -21,6 +21,9 @@ export default function AdminSideBar(){
                 <Link style={{ textDecoration: 'none' }} to={'/orden'}>
                     <h2 className={s.catTxt}>Ordenes</h2>
                 </Link>
+                <Link style={{ textDecoration: 'none' }} to={'/trash'}>
+                    <h2 className={s.catTxt}>Ver Papelera</h2>
+                </Link>
             </div>
         </div>
     )

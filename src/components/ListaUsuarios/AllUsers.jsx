@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { getAllUsers } from "../../redux/actions";
 import s from "../../page/Admin/AdminPage.module.css";
 import PeopleAltRoundedIcon from "@mui/icons-material/PeopleAltRounded";
+import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import Navbar from '../Navbar/Navbar'
 
 export default function AllUsers() {
@@ -138,7 +139,7 @@ console.log(result);
                   )}
                   <td>
                     <button onClick={() => handleRoleChange(u.id)}>
-                      Confirmar
+                      <CheckRoundedIcon/>
                     </button>
                   </td>
                 </tr>
