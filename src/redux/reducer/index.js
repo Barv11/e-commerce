@@ -1,6 +1,9 @@
 import {
   GET_ALL_PRODUCTS,
+  GET_DELETED_PRODUCTS,
   TOGGLE_PRODUCT_TYPE,
+  TOGGLE_DELETED_PRODUCT_TYPE,
+  RESTORE_PRODUCT,
   SEARCH_PRODUCT_BY_NAME,
   SEARCH_PRODUCT_BY_ID,
   CLEAR_PRODUCTS,
@@ -21,6 +24,8 @@ import {
   CLEAR_CART_PRODUCTS,
   DELETE_CART_PRODUCT,
   CLEAR_REVIEWS,
+  CLEAR_SEARCH_REVIEW,
+  SEARCH_REVIEW,
   CREATE_REVIEWS,
   PRODUCT_REVIEWS,
   REVIEWS_BY_USER,
@@ -35,6 +40,7 @@ import {
 
 const initialState = {
   allProducts: [],
+  deletedProducts: [],
   searchByNameProduct: [],
   searchByIdProduct: {},
   user: {},
@@ -45,6 +51,7 @@ const initialState = {
   url: "",
   productReviews: [],
   userReviews: [],
+  reviewSearched: {},
   userProfile: {},
   productsIntel: [],
   productsAmd: [],
@@ -57,10 +64,24 @@ function rootReducer(state = initialState, action) {
         ...state,
         allProducts: action.payload,
       };
+    case GET_DELETED_PRODUCTS:
+      return {
+        ...state,
+        deletedProducts: action.payload,
+      };
     case TOGGLE_PRODUCT_TYPE:
       return {
         ...state,
         allProducts: action.payload,
+      };
+    case TOGGLE_DELETED_PRODUCT_TYPE:
+      return {
+        ...state,
+        deletedProducts: action.payload,
+      };
+    case RESTORE_PRODUCT:
+      return {
+        ...state,
       };
     case SEARCH_PRODUCT_BY_NAME:
       return {
@@ -186,7 +207,17 @@ function rootReducer(state = initialState, action) {
         ...state,
         productReviews: [],
         userReviews: [],
-      }
+      };
+    case CLEAR_SEARCH_REVIEW:
+      return {
+        ...state,
+        reviewSearched: {},
+      };
+    case SEARCH_REVIEW:
+      return {
+        ...state,
+        reviewSearched: action.payload,
+      };
     case CREATE_REVIEWS:
       return {
         ...state,
@@ -209,33 +240,33 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
-    case GET_ONE_USER: 
-    return {
-      ...state,
-      userProfile: action.payload
-    };
-    case GET_INTEL: 
-    return {
-      ...state,
-      productsIntel: action.payload
-    };
-    case GET_AMD: 
-    return {
-      ...state,
-      productsAmd: action.payload
-    };
-    default:
+    case GET_ONE_USER:
       return {
         ...state,
+        userProfile: action.payload,
+      };
+    case GET_INTEL:
+      return {
+        ...state,
+        productsIntel: action.payload,
+      };
+    case GET_AMD:
+      return {
+        ...state,
+        productsAmd: action.payload,
       };
     case EDIT_DISCOUNT:
       return {
         ...state,
-      }
+      };
     case EDIT_STOCK:
       return {
         ...state,
-      }
+      };
+    default:
+      return {
+        ...state,
+      };
   }
 }
 
