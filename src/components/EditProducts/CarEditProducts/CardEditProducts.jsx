@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { clearProducts, deleteProduct } from "../../../redux/actions";
+import { clearProducts, deleteProduct, editDiscount, editStock } from "../../../redux/actions";
 import s from "./CardEditProdducts.module.css";
-import { editDiscount, editStock } from "../../../redux/actions";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
-import { useEffect } from "react";
+import { useModal } from '../../Modals/useModal';
+import Modal from '../../Modals/Modal';
+import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
+
 
 export default function CardEditProducts({
   id,
@@ -24,6 +26,8 @@ export default function CardEditProducts({
 
   const [descuento, setDescuento] = useState(discount);
   const [stockProd, setStockProd] = useState(stock);
+  const [isOpenModal1, openModal1, closeModal1] = useModal(false);
+  const [isOpenModal2, openModal2, closeModal2] = useModal(false);
 
   const handlerDelete = () => {
     dispatch(deleteProduct(id));
@@ -32,12 +36,12 @@ export default function CardEditProducts({
 
   const handleDiscountSubmit = (id) => {
     dispatch(editDiscount(id, descuento));
-    alert("Descuento Modificado con Exito.");
+    openModal1();
   };
 
   const handleStockSubmit = (id) => {
     dispatch(editStock(id, stockProd));
-    alert("Stock Modificado con Exito.");
+    openModal2();
   };
 
   const handleChange = (e) => {
@@ -75,10 +79,15 @@ export default function CardEditProducts({
         <button
           onClick={() => {
             handleDiscountSubmit(id, descuento);
-          }}
+          }
+        }
         >
           <CheckRoundedIcon />
         </button>
+        <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
+          <h1 className={s.modalTitle}>Descuento aplicado con éxito! <ThumbUpAltRoundedIcon/></h1>
+          <p className={s.modalSubtitle}>{name} ahora tiene un {descuento}% de descuento.</p>
+        </Modal>
       </div>
       <div>
         <input
@@ -96,6 +105,10 @@ export default function CardEditProducts({
         >
           <CheckRoundedIcon />
         </button>
+        <Modal isOpen={isOpenModal2} closeModal={closeModal2}>
+          <h1 className={s.modalTitle}>Stock modificado con éxito! <ThumbUpAltRoundedIcon/></h1>
+          <p className={s.modalSubtitle}>El stock de {name} es ahora de {stockProd} unidades.</p>
+        </Modal>
       </div>
     </div>
   );

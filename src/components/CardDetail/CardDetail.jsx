@@ -12,6 +12,9 @@ import {
 } from "../../redux/actions";
 import Navbar from "../Navbar/Navbar";
 import Loader from "../Loader/Loader";
+import Modal from '../Modals/Modal';
+import { useModal } from '../Modals/useModal';
+import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
 
 export default function CardDetail(props) {
   const { id } = useParams();
@@ -20,6 +23,8 @@ export default function CardDetail(props) {
   const searchByIdProduct = useSelector((state) => state.searchByIdProduct);
   const { name, brand, img, detail, cost, discount, quantity, stock } =
     searchByIdProduct;
+  const [isOpenModal, openModal, closeModal] = useModal(false);
+
 
   useEffect(() => {
     dispatch(getAllProductos());
@@ -51,7 +56,8 @@ export default function CardDetail(props) {
       setCart([...cart.filter((p) => p.id !== props.id), props]);
     } else {
       setCart([...cart.filter((p) => p.id !== props.id), props]);
-    }
+    };
+    openModal();
   };
 
   localStorage.setItem("products", JSON.stringify(cart));
@@ -114,6 +120,10 @@ export default function CardDetail(props) {
                 <span className={s.add}>Add to cart</span>
                 <i className="uil uil-shopping-cart"></i>
               </div>
+                <Modal isOpen={isOpenModal} closeModal={closeModal}>
+                    <h1 className={s.modalTitle}>Producto agregado a tu carrito <ThumbUpAltRoundedIcon/></h1>
+                    <p className={s.modalSubtitle}>Agregaste {name} a tu carrito exitosamente!</p>
+                </Modal>
             </div>
           </div>
           <div className={s.especificaciones}>
