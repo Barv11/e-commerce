@@ -36,6 +36,7 @@ import {
   GET_AMD,
   EDIT_DISCOUNT,
   EDIT_STOCK,
+
 } from "../actions/actionsTypes";
 
 const initialState = {
@@ -267,6 +268,10 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+    /*  case POST_INFO_VENTA:
+      return {
+        ...state,
+      }; */
   }
 }
 
