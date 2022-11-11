@@ -172,6 +172,8 @@ export default function EditProducts() {
                 details={el.details}
                 discount={el.discount}
                 stock={el.stock}
+                setType={setType}
+                setPage={setPage}
               />
             ))
         ) : (

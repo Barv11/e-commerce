@@ -461,7 +461,7 @@ function ProductFormAdmin() {
             <Loader />
           ) : (
             <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
-              <h2 className={styles.titleForm}>Crear producto</h2>
+              <h2 className={styles.titleForm}>{id ? 'Editar Producto' : 'Crear Producto'}</h2>
               <label htmlFor="name">Nombre</label>
               <input
                 className={styles.formInput}

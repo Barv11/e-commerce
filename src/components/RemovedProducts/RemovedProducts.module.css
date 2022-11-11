@@ -1,0 +1,144 @@
+.container {
+    margin: 3em 0;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    gap: 1em;
+  }
+  
+  .title {
+    margin-top: 1em;
+    font-size: 2.6rem;
+    text-align: center;
+  }
+  
+  .subtitle {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  
+  .searchContainer {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  
+  .searchContainer span {
+    margin-right: 1em;
+    font-size: 1rem;
+  }
+  
+  .input {
+    width: 40%;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    background-color: #ffffff;
+    height: 100%;
+    padding: 0.5em 1em;
+    font-family: "Montserrat", sans-serif;
+    box-shadow: 0 0 5px #000000;
+  }
+  
+  .containerPag {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    padding: 1em;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    user-select: none;
+  }
+  
+  .select {
+    width: 20%;
+    height: 100%;
+    /* appearance: none; */
+    border: 0;
+    outline: 0;
+    font: inherit;
+    padding: 0.5em 1em;
+    background-color: #ffffff;
+    color: rgb(50, 50, 50);
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgb(0, 0, 0);
+    cursor: pointer;
+  }
+  
+  .select option {
+    color: white;
+    background-color: #9c79a5;
+  }
+  
+  .select option:focus {
+    outline: none;
+  }
+  
+  .select option::-ms-expand {
+    display: none;
+  }
+  
+  .buttonPag {
+    cursor: pointer;
+    color: #000;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1px solid #ddd;
+    border: none;
+    background-color: #e657e6;
+    border: 1px solid #dc3cf1;
+  }
+  
+  .buttonPag:disabled {
+    background-color: transparent;
+    border: 1px solid #dc3cf1;
+    cursor: not-allowed;
+  }
+  
+  .buttonPag:hover:not(:disabled) {
+    background-color: rgb(226, 226, 226);
+    color: #e657da;
+  }
+  
+  .head {
+    width: 95%;
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 1.5em;
+    color: white;
+    background-color: #131313;
+    padding: 1em;
+  }
+  
+  .text {
+    font-size: 1rem;
+    filter: drop-shadow(0 0 3px purple) drop-shadow(0 0 3px purple) ;
+  }
+  
+  .text:first-child {
+    flex-basis: 10%;
+  }
+  
+  .text:nth-of-type(2) {
+    flex-basis: 45%;
+  }
+  
+  .text:nth-of-type(3) {
+    flex-basis: 12%;
+  }
+  
+  .text:nth-of-type(4) {
+    flex-basis: 13%;
+  }
+  
+  .text:nth-of-type(5) {
+    flex-basis: 10%;
+  }
