@@ -26,6 +26,23 @@ export default function CardDetail(props) {
   const [isOpenModal, openModal, closeModal] = useModal(false);
 
 
+  useEffect(() => {
+    dispatch(getAllProductos());
+    dispatch(searchProductById(id));
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (Object.entries(searchByIdProduct).length !== 0) {
+      console.log(image);
+      setImage(img[0]);
+      document.title = `Gamer Tech | ${searchByIdProduct.name}`;
+    }
+  }, [searchByIdProduct]);
+
+  useEffect(() => {
+    return dispatch(clearProducts());
+  }, []);
+
   // Funcion para que agregen al carrito
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("products") || "[]")
@@ -48,25 +65,6 @@ export default function CardDetail(props) {
   const handleOnClick = (e) => {
     setImage(e.target.src);
   };
-
-
-  const discountCost = (discount * cost) / 100;
-
-  useEffect(() => {
-    dispatch(searchProductById(id));
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (Object.entries(searchByIdProduct).length !== 0) {
-      setImage(img[0]);
-      document.title = `Gamer Tech | ${searchByIdProduct.name}`;
-    }
-  }, [searchByIdProduct]);
-
-  useEffect(() => {
-    return dispatch(clearProducts());
-  }, []);
-
   return (
     <React.Fragment>
       <Navbar />
@@ -97,13 +95,7 @@ export default function CardDetail(props) {
               >{`Productos > ${searchByIdProduct.type}`}</span>
               <span className={s.brand}>Marca: {brand}</span>
               <span className={s.route}>Stock: {stock}</span>
-
-              <span className={discount === 0 ? s.cost : s.disCost}>
-                ${cost}
-              </span>
-              {discount !== 0 && (
-                <span className={s.cost}>${cost - discountCost}</span>
-              )}
+              <span className={s.cost}>${cost}</span>
               <div className={s.icon}>
                 <i class="uil uil-shop"></i>
                 <span>Retiro en sucursal</span>
@@ -135,7 +127,7 @@ export default function CardDetail(props) {
             </div>
           </div>
           <div className={s.especificaciones}>
-            <Especificaciones product={searchByIdProduct} userFound={userFound}/>
+            <Especificaciones product={searchByIdProduct} />
           </div>
         </main>
       )}

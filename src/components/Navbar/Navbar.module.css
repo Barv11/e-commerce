@@ -24,15 +24,14 @@
 }
 
 .logo {
-  width: 70px;
-  height: 50px;
+  width: 15%;
 }
 
 .mainTitle {
   letter-spacing: .1em;
   display: inline-block;
   font-family: Heavitas;
-  font-size: 2.2rem;
+  font-size: 2.3rem;
   margin-top: 8px;
   color: #ffffff;
 }
@@ -70,29 +69,29 @@
 }
 
 .containerChild {
-  padding-right: 20px;
+  padding-right: 3rem;
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-end;
   align-items: center;
-  gap: 2.5em;
+  gap: 2.5rem;
 }
 
 .containerChild i {
   cursor: pointer;
   font-size: 1rem;
   color: #ffffff;
-  padding: .2em;
+
 }
 
-.user {
+/* .user {
   display: flex;
   align-items: center;
   gap: 1em;
-}
+} */
 
 .userimg {
-  width: 40px;
+  width: 40%;
   cursor: pointer;
 }
 
@@ -140,6 +139,29 @@
 
 .activeChild:hover {
   color: #a13793;
+}
+
+@media (max-width: 600px){
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .child{
+    font-size: 0.8rem;
+  }
+  
+  .activeChild{
+    font-size: 0.8rem;
+  }
+  .logo {
+    width: 20%;
+  }
+  .mainTitle{
+    font-size: 1.2rem;
+  }
+  .userTxt {
+    font-size: 0.7rem;
+  }
 }
 
 @font-face {

@@ -174,3 +174,25 @@
   color: white;
   transition: 0.3s;
 }
+
+.modalTitle{
+  font-size: 35px;
+  font-family: Cocosharp;
+}
+
+.modalSubtitle{
+  font-family: Open Sans, sans-serif;
+}
+
+@font-face {
+  font-family: Cocosharp;
+  src: url('../../components/fonts/COCO-SHARP-BOLD-TRIAL.TTF');
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+@media (max-width: 600px){
+  .container{
+    margin: 5px;
+  }
+}

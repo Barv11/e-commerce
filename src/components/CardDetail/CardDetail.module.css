@@ -116,16 +116,13 @@
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   color: #248b24;
 }
 
 .icon i {
   font-size: 2rem;
   margin-right: 0.2em;
-}
-
-.especificaciones {
 }
 
 .modalTitle{
@@ -137,6 +134,7 @@
   font-family: Open Sans, sans-serif;
 }
 
+
 @font-face {
   font-family: Cocosharp;
   src: url('../fonts/COCO-SHARP-BOLD-TRIAL.TTF');
@@ -144,4 +142,99 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 
+@media (max-width: 600px){
+  .carrousel{
+    flex-basis: 30%;
+    gap: 1.8em;
+  }
+  .carrousel1 img{
+    width: 280px;
+    height: 280px;
+  }
+  .carrousel2 img{
+    width: 80px;
+    height: 80px;
+  }
+  .details {
+    flex-basis: 30%;
+  }
+  .title {
+    font-size: 1.6rem;
+  }
+  .icon{
+    font-size: 1.1em;
+  }
+  .icon i{
+    font-size: 1.6rem;
+  }
+  .cart2{
+    font-size: 16px;
+    margin: 5px 0px;
+    gap: 0.3em;
+    margin-bottom: 0.5em;
+    width: 130px;
+    height: 45px;
+  }
+}
 
+@media (max-width: 520px){
+  .carrousel{
+    flex-basis: 30%;
+    gap: 1.5em;
+  }
+  .carrousel1 img{
+    width: 200px;
+    height: 200px;
+  }
+  .carrousel2 img{
+    width: 50px;
+    height: 50px;
+  }
+  .details {
+    flex-basis: 30%;
+  }
+  .title {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 400px){
+  .carrousel{
+    flex-basis: 30%;
+    gap: 1.3em;
+  }
+  .carrousel1 img{
+    width: 180px;
+    height: 180px;
+  }
+  .carrousel2 img{
+    width: 40px;
+    height: 40px;
+  }
+  .title {
+    font-size: 1rem;
+  }
+  .route {
+    font-size: 0.7rem;
+  }
+  .brand{
+    font-size: 1.1rem;
+  }
+  .cost{
+    font-size: 1.4rem;
+  }
+  .icon{
+    font-size: 0.9em;
+  }
+  .icon i{
+    font-size: 1.1rem;
+  }
+  .cart2{
+    font-size: 12px;
+    margin: 5px 0px;
+    gap: 0.3em;
+    margin-bottom: 0.5em;
+    width: 100px;
+    height: 35px;
+  }
+}
