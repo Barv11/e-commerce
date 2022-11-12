@@ -1,0 +1,91 @@
+.container {
+  height: auto;
+  min-height: 65vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.textContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+  width: 80vw;
+}
+
+.textContainer h4 {
+  font-size: 21px;
+  margin-left: 6px;
+}
+
+#p {
+  margin-top: 100px;
+}
+
+.textContainer .text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 450px;
+  margin-right: 100px;
+}
+
+.text h3 {
+  margin-right: 29%;
+  font-size: 21px;
+}
+
+.elseContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .clearCarritoContainer {
+    height: 80px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 80vw;
+  }
+  
+  .clearCarritoContainer button {
+    padding: 12px 40px;
+    border-radius: 10px;
+    background-color: blueviolet;
+    color: white;
+    border: none;
+    transition: 0.3s;
+    position: relative;
+  }
+  
+  .clearCarritoContainer i {
+    position: absolute;
+    left: 15px;
+    top: 8px;
+    font-size: 22px;
+  }
+  
+  .clearCarritoContainer button:hover {
+    background-color: rgb(121, 37, 199);
+    transition: 0.3s;
+  }
+  
+  .clearCarritoContainer button:active {
+    background-color: rgb(106, 33, 173);
+  }
+  
+  #borrarCarrito {
+    background-color: rgb(223, 0, 0);
+  }
+  
+  #borrarCarrito:hover {
+    background-color: rgb(184, 0, 0);
+  }
+  
+  #borrarCarrito:active {
+    background-color: rgb(155, 0, 0);
+  }

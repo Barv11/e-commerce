@@ -36,6 +36,9 @@ import {
   GET_AMD,
   EDIT_DISCOUNT,
   EDIT_STOCK,
+  ADD_FAVORITO_PRODUCT,
+  GET_ALL_FAVORITOS,
+  DELETE_ALL_FAVORITO,
 } from "../actions/actionsTypes";
 
 const initialState = {
@@ -55,6 +58,7 @@ const initialState = {
   userProfile: {},
   productsIntel: [],
   productsAmd: [],
+  favoritos: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -92,6 +96,20 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         searchByIdProduct: action.payload,
+      };
+    case ADD_FAVORITO_PRODUCT:
+      return {
+        ...state,
+      };
+    case GET_ALL_FAVORITOS:
+      return {
+        ...state,
+        favoritos: action.payload,
+      };
+    case DELETE_ALL_FAVORITO:
+      return {
+        ...state,
+        favoritos: [],
       };
     case CLEAR_PRODUCTS:
       return {
