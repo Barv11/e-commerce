@@ -5,7 +5,7 @@ import twitter from "./gorjeo.png";
 
 export default function Footer() {
   return (
-    <div className="container-all-footer">
+    <footer className="container-all-footer">
       <div>
         <ul className="div-footer">
           <li>
@@ -41,6 +41,6 @@ export default function Footer() {
           <li>Cookies Policy</li>
         </ul>
       </div>
-    </div>
+    </footer>
   );
 }
