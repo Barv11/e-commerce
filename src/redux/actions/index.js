@@ -35,6 +35,10 @@ import {
   GET_AMD,
   EDIT_DISCOUNT,
   EDIT_STOCK,
+  GET_ALL_FAVORITOS,
+  ADD_FAVORITO_PRODUCT,
+  DELETE_FAVORITO,
+  DELETE_ALL_FAVORITO
 } from "./actionsTypes";
 import axios from "axios";
 import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "./actionsTypes";
@@ -83,7 +87,7 @@ export const toggleDeletedProductType = (type) => async (dispatch) => {
 
 export const restoreProduct = (id) => async (dispatch) => {
   await axios.put(`${url}/productos/restore/` + id);
-  dispatch({ type: RESTORE_PRODUCT});
+  dispatch({ type: RESTORE_PRODUCT });
 };
 
 export const postImage = (file) => async (dispatch) => {
@@ -327,4 +331,36 @@ export const getIntel = (pcType) => async (dispatch) => {
 export const getAmd = (pcType) => async (dispatch) => {
   const allAmd = await axios.get(`${url}/productos/amd?pcType=${pcType}`);
   dispatch({ type: GET_AMD, payload: allAmd });
+};
+
+export const addFavoritoProduct = (productId, userId) => async (dispatch) => {
+  await axios.post(`${url}/favoritos`, {
+    productId,
+    userId,
+  });
+  dispatch({ type: ADD_FAVORITO_PRODUCT });
+};
+
+export const getAllFavoritos = (userId) => async (dispatch) => {
+  if (userId === "clear") {
+    dispatch({ type: GET_ALL_FAVORITOS, payload: [] });
+  } else {
+    const favsProducts = await axios.get(`${url}/favoritos?id=${userId}`);
+    dispatch({ type: GET_ALL_FAVORITOS, payload: favsProducts.data });
+  }
+};
+
+export const deleteFavorito = (productId, userId) => async (dispatch) => {
+  await axios.post(`${url}/favoritos/delete`, {
+    productId,
+    userId,
+  });
+  dispatch({ type: DELETE_FAVORITO });
+};
+
+export const deleteAllFavorito = (userId) => async (dispatch) => {
+  await axios.post(`${url}/favoritos/deleteAll`, {
+    userId,
+  });
+  dispatch({ type: DELETE_ALL_FAVORITO });
 };
