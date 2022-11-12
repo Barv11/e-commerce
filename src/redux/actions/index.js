@@ -43,7 +43,9 @@ import {
 import axios from "axios";
 import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "./actionsTypes";
 
-// let url = "https://gametech.up.railway.app";
+
+//let url = "https://gametech.up.railway.app";
+
 let url = "http://localhost:3001";
 
 let token = null;
