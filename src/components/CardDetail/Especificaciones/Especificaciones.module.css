@@ -61,7 +61,7 @@
 }
 
 .addReview {
-  background-color: yellow;
+  background-color: rgb(202, 69, 255);
   border: none;
   padding: 0.5em 1em;
   font-size: 1.2rem;
@@ -79,4 +79,13 @@
 .recuerda {
   font-weight: 600;
   color: #30688d;
+}
+
+@media (max-width: 480px){
+  .title{
+    font-size: 1.3rem;
+  }
+  .containerDetails{
+    font-size: 0.8rem;
+  }
 }

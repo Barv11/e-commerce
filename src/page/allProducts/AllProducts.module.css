@@ -85,3 +85,17 @@
   box-shadow: 0 0 3px 1px #511886;
 
 }
+
+@media (max-width: 600px){
+  .form{
+    height: 35px;
+    margin: 1.7em 0;
+    width: 80%;
+  }
+  .form input{
+    font-size: 0.8rem;
+  }
+  .form i{
+    font-size: 1.3rem;
+  }
+}

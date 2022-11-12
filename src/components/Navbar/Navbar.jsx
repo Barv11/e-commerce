@@ -42,10 +42,9 @@ export default function Navbar() {
           <h1 className={s.mainTitle}>Gamer Tech</h1>
         </Link>
         <div className={s.containerChild}>
-          <div className={s.user}>
             {user.logged ? (
               <Link className={s.link} to={"/profile"}>
-                <img src={usuarioLogo} alt="usuario" className={s.userimg} />
+                {/* <img src={usuarioLogo} alt="usuario" className={s.userimg} /> */}
                 <span className={s.userTxt}>{userFound?.userName}</span>
               </Link>
             ) : (
@@ -55,7 +54,6 @@ export default function Navbar() {
                 </span>
               </Link>
             )}
-          </div>
           {user.logged && (
             <span className={s.userTxt} onClick={() => signOut()}>
               Cerrar Sesión<i class="uil uil-sign-out-alt"></i>
