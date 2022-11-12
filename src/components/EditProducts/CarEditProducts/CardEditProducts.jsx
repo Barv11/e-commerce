@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { editDiscount, editStock } from "../../../redux/actions";
-import {
-  clearProducts,
-  deleteProduct,
-  getAllProductos,
-} from "../../../redux/actions";
+import { getAllProductos, clearProducts, deleteProduct, editDiscount, editStock } from "../../../redux/actions";
 import s from "./CardEditProdducts.module.css";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import { useModal } from '../../Modals/useModal';

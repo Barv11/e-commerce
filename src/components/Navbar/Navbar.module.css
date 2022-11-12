@@ -20,7 +20,7 @@
   display: flex;
   align-items: center;
   padding-left: 1.5em;
-  gap: .8em;
+  gap: 0.8em;
 }
 
 .logo {
@@ -28,7 +28,7 @@
 }
 
 .mainTitle {
-  letter-spacing: .1em;
+  letter-spacing: 0.1em;
   display: inline-block;
   font-family: Heavitas;
   font-size: 2.3rem;
@@ -81,6 +81,7 @@
   cursor: pointer;
   font-size: 1rem;
   color: #ffffff;
+  padding: 0.2em;
 
 }
 
@@ -95,10 +96,10 @@
   cursor: pointer;
 }
 
-.userTxt{
+.userTxt {
   cursor: pointer;
   font-size: 1rem;
-  color: #ffffff
+  color: #ffffff;
 }
 
 .userTxt:hover {
@@ -123,7 +124,7 @@
   color: #2c2c2c;
 }
 
-.child:hover{
+.child:hover {
   filter: drop-shadow(0 0 3px rgb(49, 49, 49));
   color: #a13793;
 }
@@ -140,6 +141,17 @@
 .activeChild:hover {
   color: #a13793;
 }
+
+.favoritesBtn {
+  /* position: absolute;
+  right: 25px; */
+}
+
+.favoritesBtn nav:hover {
+  background-color: #a13793;
+
+}
+
 
 @media (max-width: 600px){
   .links {
@@ -162,9 +174,9 @@
   .userTxt {
     font-size: 0.7rem;
   }
-}
+  }
 
 @font-face {
-  font-family: 'Heavitas';
-  src: url('.././fonts/HEAVITAS.TTF');
+  font-family: "Heavitas";
+  src: url(".././fonts/HEAVITAS.TTF");
 }

@@ -12,6 +12,7 @@ import {
   ordennames,
   orderprecio,
   searchProductByName,
+  getAllFavoritos,
 } from "../../redux/actions";
 import SideBar from "./SideBar";
 import { Pagination, Filtros } from "../../components";
@@ -23,6 +24,7 @@ export default function Products() {
   const [input, setInput] = useState("");
   const searchByNameProduct = useSelector((state) => state.searchByNameProduct);
   const userFound = useSelector((state) => state.userFound);
+  const favoritos = useSelector((state) => state.favoritos);
 
   const [user] = useState(JSON.parse(localStorage.getItem("user")));
 
@@ -75,6 +77,7 @@ export default function Products() {
   useEffect(() => {
     dispatch(clearProducts());
     dispatch(getAllProductos());
+    dispatch(getAllFavoritos(userFound?.id));
   }, [dispatch]);
 
   console.log(allProductsStockFilter);
@@ -156,6 +159,7 @@ export default function Products() {
                   cart={handleCart}
                   quantity={1}
                   discount={p.discount}
+                  favs={favoritos}
                 />
               );
             })
@@ -171,6 +175,7 @@ export default function Products() {
                   cart={handleCart}
                   quantity={1}
                   discount={p.discount}
+                  favs={favoritos}
                 />
               );
             })

@@ -6,6 +6,7 @@ import {
   Register,
   CreateProduct,
   Carrito,
+  Favoritos,
 } from "../components";
 import AdminPage from "../page/Admin/AdminPage";
 import Orden from "../components/Orden/Orden";
@@ -50,12 +51,13 @@ function App() {
       <Route path={"/detail/:id"} element={<CardDetail />} />
       <Route path={"/create"} element={<CreateProduct />} />
       <Route path={"/edit/:id"} element={<CreateProduct />} />
-      <Route path={"/edit/review/:id"} element={<CardEditReviewProfile />}/>
+      <Route path={"/edit/review/:id"} element={<CardEditReviewProfile />} />
       <Route path={"/edit"} element={<EditProducts />} />
       <Route path={"/trash"} element={<RemovedProducts />} />
       <Route path={"/admin"} element={<AdminPage />} />
       <Route path={"/orden"} element={<Orden />} />
       <Route path={"/carrito"} element={<Carrito />} />
+      <Route path={"/favoritos"} element={<Favoritos />} />
       <Route path={"/profile"} element={<Profile />} />
       <Route path={"/about"} element={<About />} />
       <Route path={"/armado"} element={<ArmadoPc />} />

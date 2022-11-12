@@ -13,7 +13,7 @@ export default function Navbar() {
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   localStorage.setItem("user", JSON.stringify(user));
-  console.log(user)
+  console.log(user);
   const userFound = useSelector((state) => state.userFound);
   const signOut = () => {
     dispatch(clearCartProduct());
@@ -92,6 +92,16 @@ export default function Navbar() {
         >
           nosotros
         </NavLink>
+        <div className={s.favoritesBtn}>
+          <NavLink
+            to={"/favoritos"}
+            className={(navData) =>
+              navData.isActive ? s.activeChild : s.child
+            }
+          >
+            ❤
+          </NavLink>
+        </div>
       </div>
     </nav>
   );
