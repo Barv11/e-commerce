@@ -146,3 +146,40 @@
 .text:nth-child(6) {
   flex-basis: 10%;
 }
+
+.text:nth-child(7){
+  flex-basis: 10%;
+}
+
+.text:nth-child(8){
+  flex-basis: 10%;
+}
+
+@media (max-width: 480px){
+  .title{
+    font-size: 1.9rem;
+  }
+  .subtitle{
+    font-size: 1rem;
+  }
+  .searchContainer span {
+    font-size: 0.8rem;
+    margin-right: 0.6em;
+    margin-left: 0.6em;
+  }
+  .searchContainer {
+    width: 85%;
+  }
+  .input{
+    font-size: 0.9rem;
+  }
+  .head{
+    width: 93%;
+  }
+  .text{
+    font-size: 0.55rem;
+  }
+  .containerPag{
+    width: 93%;
+  }
+}
