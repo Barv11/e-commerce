@@ -157,6 +157,8 @@
   .links {
     display: flex;
     flex-wrap: wrap;
+    gap: 1em;
+
   }
   .child{
     font-size: 0.8rem;
