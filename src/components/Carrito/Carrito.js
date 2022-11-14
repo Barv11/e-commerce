@@ -12,6 +12,7 @@ import {
   deleteCartProduct,
 } from "../../redux/actions";
 import Paybutton from "../PayButton/Paybutton";
+import PcChatBot from "../PcChatBot/PcChatBot";
 
 export default function Carrito() {
   const dispatch = useDispatch();
@@ -194,6 +195,7 @@ export default function Carrito() {
           )}
         </div>
       </div>
+      <PcChatBot />
       <Footer />
     </div>
   );

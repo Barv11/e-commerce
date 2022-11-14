@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import CardFavorito from "./CardFavorito";
 import { Link } from "react-router-dom";
+import PcChatBot from "../PcChatBot/PcChatBot";
 
 export default function Favoritos() {
   const dispatch = useDispatch();
@@ -44,6 +45,10 @@ export default function Favoritos() {
       setFavs([]);
     }
   };
+
+  useEffect(() => {
+    document.title = `Gamer Tech | Favoritos`;
+  }, []);
 
   return (
     <div className={s.mainContainer}>
@@ -100,6 +105,7 @@ export default function Favoritos() {
           )}
         </div> */}
       </div>
+      <PcChatBot />
       <Footer />
     </div>
   );

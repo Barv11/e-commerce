@@ -1,0 +1,79 @@
+.container {
+  display: block;
+}
+
+.cardChatOpen {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  transform: scale(1);
+  transform-origin: right bottom;
+  transition: transform 0.3s ease 0s;
+}
+
+.cardChatClosed {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  transform: scale(0);
+  transform-origin: right bottom;
+  transition: transform 0.3s ease 0s;
+}
+
+.closed {
+  position: absolute;
+  top: 3px;
+  right: 10px;
+  z-index: 1000;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  /* padding: .5em; */
+}
+
+.closed i {
+  font-size: 2rem;
+  color: #ffffff;
+}
+
+.open {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 700;
+  background-color: rgb(180, 177, 7);
+  box-shadow: 0 0 5px 3px rgba(189, 189, 189, 0.459);
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  padding: 0.5em 1em;
+  transform: scale(1);
+  transition: transform 0.3s ease 0s;
+}
+
+.open2 {
+  opacity: 0.5;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 20;
+  background-color: purple;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  padding: 0.5em 1em;
+  transform: scale(0);
+  transition: transform 0.3s ease 0s;
+}
+
+.open i {
+  font-size: 2rem;
+  color: #ffffff;
+}
+
+.open:hover {
+  opacity: 0.7;
+  
+}

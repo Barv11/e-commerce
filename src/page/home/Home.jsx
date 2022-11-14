@@ -5,7 +5,8 @@ import Footer from "../../components/Footer/Footer.jsx";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser, getCartProduct,saveToken } from "../../redux/actions";
+import { getUser, getCartProduct, saveToken } from "../../redux/actions";
+import PcChatBot from "../../components/PcChatBot/PcChatBot";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -25,15 +26,16 @@ export default function Home() {
     }
   }, []);
 
-  useEffect(() =>{
-    document.title = `Gamer Tech`
-  }, []); 
-  
+  useEffect(() => {
+    document.title = `Gamer Tech`;
+  }, []);
+
   return (
     <div>
       <Navbar />
       <Carrusel />
       <ProductSlider />
+      <PcChatBot />
       <Footer />
     </div>
   );

@@ -15,6 +15,7 @@ import Loader from "../Loader/Loader";
 import Modal from '../Modals/Modal';
 import { useModal } from '../Modals/useModal';
 import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
+import PcChatBot from "../PcChatBot/PcChatBot";
 
 export default function CardDetail(props) {
   const { id } = useParams();
@@ -66,7 +67,7 @@ export default function CardDetail(props) {
     setImage(e.target.src);
   };
   return (
-    <React.Fragment>
+    <>
       <Navbar />
       {Object.entries(searchByIdProduct).length === 0 ? (
         <Loader />
@@ -131,6 +132,7 @@ export default function CardDetail(props) {
           </div>
         </main>
       )}
-    </React.Fragment>
+      <PcChatBot />
+    </>
   );
 }

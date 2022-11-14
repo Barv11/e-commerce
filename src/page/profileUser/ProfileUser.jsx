@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { redirect } from "react-router-dom";
 import style from "./profileUser.module.css";
 import { Navbar, Footer, CardProfle } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,9 +12,11 @@ import CreditCardIcon from "@mui/icons-material/CreditCard";
 import CommentIcon from "@mui/icons-material/Comment";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import CardProfileReview from "../../components/cardProfile/CardProfileReview";
+import PcChatBot from "../../components/PcChatBot/PcChatBot";
 
 export default function ProfileUser() {
   const dispatch = useDispatch();
+  const [user] = useState(JSON.parse(localStorage.getItem("user")));
   // const userProfile = useSelector((state) => state.userProfile);
   const userFound = useSelector((state) => state.userFound);
   const userReviews = useSelector((state) => state.userReviews);
@@ -21,29 +24,16 @@ export default function ProfileUser() {
   // useEffect(() => {
   //   dispatch(getOneUser());
   // }, []);
-  
+
   useEffect(() => {
     if (Object.keys(userFound).length) dispatch(reviewsByUser(userFound.id));
-  }, [userFound])
+  }, [userFound]);
 
-  // const uploadImage = async (e) => {
-  //   const file = e.target.files[0];
-  //   // dispatch(postImage(file))
-  //   // console.log(url)
-  //   const data? = new Formdata?();
-  //   data?.append("file", file);
-  //   data?.append("upload_preset", "pc-images");
-  //   const res = await fetch(
-  //     "https://api.cloudinary.com/v1_1/dyodnn524/image/upload",
-  //     {
-  //       method: "POST",
-  //       body: data?,
-  //     }
-  //   );
-  //   const img = await res.json();
-  //   setImgPrev([img.secure_url]);
-  // };
-  console.log(userFound)
+  console.log(user);
+
+  useEffect(() => {
+    if(!user.logged) redirect('/login')
+  }, []);
 
   return (
     <div className={style.containerGlobal}>
@@ -173,6 +163,7 @@ export default function ProfileUser() {
           </Accordion>
         </div>
       </div>
+      <PcChatBot />
       <Footer />
     </div>
   );

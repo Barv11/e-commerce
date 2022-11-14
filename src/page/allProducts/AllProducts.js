@@ -16,6 +16,7 @@ import {
 } from "../../redux/actions";
 import SideBar from "./SideBar";
 import { Pagination, Filtros } from "../../components";
+import PcChatBot from "../../components/PcChatBot/PcChatBot";
 
 export default function Products() {
   const dispatch = useDispatch();
@@ -190,6 +191,7 @@ export default function Products() {
         productsFilter={pagProducts.length}
         pagina={pagina}
       />
+      <PcChatBot />
       <Footer />
     </div>
   );
