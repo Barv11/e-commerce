@@ -1,12 +1,13 @@
 .choice{
     display: flex;
     align-items: center;
-    height: 65vh;
+    justify-content:space-evenly;
+    height: calc(100vh - 117px);
 }
 
 .intel{
     border-style: none;
-    width: 50%;
+    width: 40%;
     height: 80%;
     margin: 5px;
     border-radius: 10px;
@@ -15,7 +16,7 @@
     background-position: center;
     filter: grayscale(100%);
     transition: filter 1s;
-    box-shadow:  0 -5px 10px #4c9fd5;
+    box-shadow:  0 -5px 10px #2677ad;
 }
 
 .intel:hover{
@@ -23,18 +24,18 @@
     filter: grayscale(0%)
 }
 @keyframes intel {
-    0% { box-shadow: 0 -5px 30px #09418b;}
-    17% { box-shadow: 5px -5px 30px #09418b;}
-    34% { box-shadow: 5px 5px 30px #09418b;}
-    50% { box-shadow: 0 5px 30px #09418b;}
-    67% { box-shadow: -5px 5px 30px #09418b;}
-    84% { box-shadow: -5px -5px 30px #09418b;}
-    100% { box-shadow: 0 -5px 30px #09418b;}
+    0% { box-shadow: 0 -5px 20px 10px #2677ad;}
+    17% { box-shadow: 5px -5px 20px 10px #2677ad;}
+    34% { box-shadow: 5px 5px 20px 10px #2677ad;}
+    50% { box-shadow: 0 5px 20px 10px #2677ad;}
+    67% { box-shadow: -5px 5px 20px 10px #2677ad;}
+    84% { box-shadow: -5px -5px 20px 10px #2677ad;}
+    100% { box-shadow: 0 -5px 20px 10px #2677ad;}
   }
 
 .amd{
      border-style:none;
-     width: 50%;
+     width: 40%;
      height: 80%;
      margin: 5px;
      border-radius: 10px;
@@ -43,7 +44,7 @@
      background-position: center;
      filter: grayscale(100%);
      transition: filter 1s;
-     box-shadow:  0 -5px 10px #f7b24b;
+     box-shadow:  0 -5px 10px #ebd937;
 }
 
 
@@ -52,14 +53,18 @@
     filter: grayscale(0%)
 }
 @keyframes amd {
-    0% { box-shadow: 0 -5px 30px #f7b24b;}
-    17% { box-shadow: 5px -5px 30px #f7b24b;}
-    34% { box-shadow: 5px 5px 30px #f7b24b;}
-    50% { box-shadow: 0 5px 30px #f7b24b;}
-    67% { box-shadow: -5px 5px 30px #f7b24b;}
-    84% { box-shadow: -5px -5px 30px #f7b24b;}
-    100% { box-shadow: 0 -5px 30px #f7b24b;}
+    0% { box-shadow: 0 -5px 20px 10px #ebd937;}
+    17% { box-shadow: 5px -5px 20px 10px #ebd937;}
+    34% { box-shadow: 5px 5px 20px 10px #ebd937;}
+    50% { box-shadow: 0 5px 20px 10px #ebd937;}
+    67% { box-shadow: -5px 5px 20px 10px #ebd937;}
+    84% { box-shadow: -5px -5px 20px 10px #ebd937;}
+    100% { box-shadow: 0 -5px 20px 10px #ebd937;}
   }
+
+.amd:hover .choice {
+    background-color: #09418b;
+}
 
 .cardContainer{
     display: flex;
