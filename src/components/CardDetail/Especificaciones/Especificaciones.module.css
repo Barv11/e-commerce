@@ -1,78 +1,91 @@
 .wrap {
-    margin: 4em 0
+  margin: 4em 0;
 }
 
 .line {
-    position: relative;
-    display: flex;
-    justify-content:space-evenly;
-    margin: 2em 0;
+  position: relative;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 2em 0;
 }
 
 .title {
-    position: relative;
-    display: inline;
-    text-align: center;
-    font-size: 2rem;
-    padding: 0 1em;
-    z-index: 10;
-    background-color: rgb(255, 255, 255);
-    border: none;
-    outline: none;
+  position: relative;
+  display: inline;
+  text-align: center;
+  font-size: 2rem;
+  padding: 0 1em;
+  z-index: 10;
+  background-color: rgb(255, 255, 255);
+  border: none;
+  outline: none;
 }
 
 .focus {
-    border-bottom: 3px solid rgb(180, 9, 172);
+  border-bottom: 3px solid rgb(180, 9, 172);
 }
 
 .line::before {
-    z-index: 5;
-    content: "";
-    position: absolute;
-    width: 80%;
-    height: 1px;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    /* background-color: black; */
-    border: 1px solid rgb(180, 9, 172);
+  z-index: 5;
+  content: "";
+  position: absolute;
+  width: 80%;
+  height: 1px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  /* background-color: black; */
+  border: 1px solid rgb(180, 9, 172);
 }
 
 .containerDetails {
-    padding: 0 20%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(10, auto);
-    grid-auto-flow: row;
-    gap: 1em;
-    font-family: 'Montserrat', sans-serif;
-    justify-items: start;
-    align-items:flex-start;
+  padding: 0 20%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(10, auto);
+  grid-auto-flow: row;
+  gap: 1em;
+  font-family: "Montserrat", sans-serif;
+  justify-items: start;
+  align-items: flex-start;
 }
 
 .containerReseñas {
-    display: flex;
-    gap: 2em;
-    flex-flow: column nowrap;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  gap: 2em;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
 }
 
-
 .addReview {
-    background-color: yellow;
-    border: none;
-    padding: .5em 1em;
-    font-size: 1.2rem;
-    -webkit-text-stroke: 1px rgb(17, 17, 17);
-    font-weight: 600;
-    font-family:'Heavitas';
-    color: #ffffff;
-    transition: all .1s linear
+  background-color: rgb(202, 69, 255);
+  border: none;
+  padding: 0.5em 1em;
+  font-size: 1.2rem;
+  -webkit-text-stroke: 1px rgb(17, 17, 17);
+  font-weight: 600;
+  font-family: "Heavitas";
+  color: #ffffff;
+  transition: all 0.1s linear;
 }
 
 .addReview:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.recuerda {
+  font-weight: 600;
+  color: #30688d;
+}
+
+@media (max-width: 480px){
+  .title{
+    font-size: 1.3rem;
+  }
+  .containerDetails{
+    font-size: 0.8rem;
+  }
 }

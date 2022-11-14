@@ -1,5 +1,5 @@
 .container {
-    padding-top: 2em;
+  padding-top: 2em;
   font-family: "Montserrat", sans-serif;
   display: flex;
   flex-flow: row nowrap;
@@ -36,7 +36,6 @@
   /* text-decoration: none; */
   transition: 0.3s;
   border: 2px solid #408612;
-
 }
 
 .carrousel {
@@ -47,16 +46,44 @@
 }
 
 .carrousel1 {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+  position: relative;
 }
 
 .carrousel1 img {
   width: 450px;
   height: 450px;
-  object-fit:contain;
+  object-fit: contain;
   /* box-shadow: 0 0 10px 5px #000000; */
-  filter: drop-shadow(0 0 10px #000000) ; 
+  filter: drop-shadow(0 0 10px #000000);
+}
+
+.favBtn {
+  position: absolute;
+  right: 5%;
+  top: 4%;
+  border-radius: 50%;
+  width: 35px;
+  height: 32px;
+  color: white;
+  background-color: rgba(137, 43, 226, 0.9);
+  border: none;
+  font-size: 22px;
+  transition: 0.3s;
+  opacity: 0;
+  border: 1px solid transparent;
+  z-index: 1;
+}
+
+.favBtn:hover {
+  color: rgba(137, 43, 226, 0.9);
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.carrousel1:hover .favBtn {
+  opacity: 1;
+  transition: 0.3s;
 }
 
 .carrousel2 {
@@ -67,10 +94,11 @@
 }
 
 .carrousel2 img {
+  cursor: pointer;
   object-fit: cover;
   width: 120px;
   height: 120px;
-  transition: transform .5s;
+  transition: transform 0.5s;
 }
 
 .border {
@@ -94,33 +122,147 @@
 }
 
 .brand {
-    margin: .7em 0;
-    font-weight: 600;
-    color: #c40202;
-    font-size: 1.4rem;
+  margin: 0.7em 0;
+  font-weight: 600;
+  color: #c40202;
+  font-size: 1.4rem;
 }
 
 .cost {
-    margin: .9em 0;
-    font-weight: 600;
+  margin: 0.6em 0;
+  font-weight: 600;
   font-size: 1.7rem;
-  color: #c78711
+  color: #c78711;
+}
+
+.disCost {
+  text-decoration: line-through;
+  margin-top: 10px;
 }
 
 .icon {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   color: #248b24;
 }
 
 .icon i {
-    font-size: 2rem;
-    margin-right: .2em;
+  font-size: 2rem;
+  margin-right: 0.2em;
 }
 
-.especificaciones {
-
+.modalTitle{
+  font-size: 35px;
+  font-family: Cocosharp;
 }
 
+.modalSubtitle{
+  font-family: Open Sans, sans-serif;
+}
+
+
+@font-face {
+  font-family: Cocosharp;
+  src: url('../fonts/COCO-SHARP-BOLD-TRIAL.TTF');
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+@media (max-width: 600px){
+  .carrousel{
+    flex-basis: 30%;
+    gap: 1.8em;
+  }
+  .carrousel1 img{
+    width: 280px;
+    height: 280px;
+  }
+  .carrousel2 img{
+    width: 80px;
+    height: 80px;
+  }
+  .details {
+    flex-basis: 30%;
+  }
+  .title {
+    font-size: 1.6rem;
+  }
+  .icon{
+    font-size: 1.1em;
+  }
+  .icon i{
+    font-size: 1.6rem;
+  }
+  .cart2{
+    font-size: 16px;
+    margin: 5px 0px;
+    gap: 0.3em;
+    margin-bottom: 0.5em;
+    width: 130px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 520px){
+  .carrousel{
+    flex-basis: 30%;
+    gap: 1.5em;
+  }
+  .carrousel1 img{
+    width: 200px;
+    height: 200px;
+  }
+  .carrousel2 img{
+    width: 50px;
+    height: 50px;
+  }
+  .details {
+    flex-basis: 30%;
+  }
+  .title {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 400px){
+  .carrousel{
+    flex-basis: 30%;
+    gap: 1.3em;
+  }
+  .carrousel1 img{
+    width: 180px;
+    height: 180px;
+  }
+  .carrousel2 img{
+    width: 40px;
+    height: 40px;
+  }
+  .title {
+    font-size: 1rem;
+  }
+  .route {
+    font-size: 0.7rem;
+  }
+  .brand{
+    font-size: 1.1rem;
+  }
+  .cost{
+    font-size: 1.4rem;
+  }
+  .icon{
+    font-size: 0.9em;
+  }
+  .icon i{
+    font-size: 1.1rem;
+  }
+  .cart2{
+    font-size: 12px;
+    margin: 5px 0px;
+    gap: 0.3em;
+    margin-bottom: 0.5em;
+    width: 100px;
+    height: 35px;
+  }
+}

@@ -3,6 +3,7 @@ import style from "./armadoPc.module.css";
 import { Navbar, Footer, ProductosArmado } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
 import { getIntel, getAmd } from "../../redux/actions";
+import PcChatBot from "../../components/PcChatBot/PcChatBot";
 
 function ArmadoPc() {
   const dispatch = useDispatch();
@@ -143,6 +144,7 @@ function ArmadoPc() {
             onClick={() => setChoice("AMD")}
           ></button>
         </div>
+        <PcChatBot/>
         <Footer />
       </div>
     );

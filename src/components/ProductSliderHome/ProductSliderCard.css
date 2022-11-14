@@ -1,6 +1,6 @@
 .containerProdCard {
     height: 310px;
-    width: 200px;
+    width: 100%;
     margin: 10px;
     display: flex;
     flex-direction: column;
@@ -17,11 +17,11 @@
   
   .imgProdCard {
     padding-top: 1em;
-    height: 135px;
+    max-width: 80%;
   }
 
   .sliderCardName {
-    font-size: 17px;
+    font-size: 1.2rem;
     color: #665873;
     margin-top: 10px;
     justify-content: center;
@@ -29,13 +29,13 @@
   }
 
 .sliderCardCost {
-    font-size: 28px;
+    font-size: 1.8rem;
     color: #51217d;
     font-weight: bold;
 }
 
 .destacadosTxt {
-    font-size: 28px;
+    font-size: 1.7rem;
     margin-top: 30px;
     margin-left: 15px;
     font-family: Franklin Gothic;
@@ -45,4 +45,20 @@
 @font-face {
     font-family: "Franklin Gothic";
     src: url('../fonts/FRAMD.TTF');
+}
+
+@media (max-width: 600px){
+  .sliderCardName{
+    font-size: 1,1rem;
+    max-width: 90%;
+  }
+  .sliderCardCost{
+    font-size: 1.5rem;
+  }
+  .imgProdCard{
+    max-height: 55%;
+  }
+  .destacadosTxt{
+    font-size: 1.4rem;
+  }
 }

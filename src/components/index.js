@@ -15,3 +15,5 @@ export {default as ContainerProductos} from '../components/productosArmado/Conta
 export {default as CardProductosArmado} from '../components/productosArmado/CardProductosArmado/CardProductosArmado.jsx';
 export {default as PcArmada} from '../components/productosArmado/PcArmada/PcArmada.jsx';
 export {default as Loader} from '../components/Loader/Loader.jsx';
+export { default as Favoritos } from "../components/Favoritos/Favoritos";
+

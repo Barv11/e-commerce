@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Table from 'react-bootstrap/Table';
 
 export default function Orden(){
     //pedido al back para traer los cart/pedidos 
 
     //un handle change
+    useEffect(() => {
+        document.title = `Gamer Tech | Ordenes`;
+      }, []);
     return(
         <div>
             <h1>Ordenes</h1>

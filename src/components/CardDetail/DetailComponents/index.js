@@ -1,0 +1,13 @@
+export { default as DetailPantalla } from "./DetailPantalla/DetailPantalla.jsx";
+export { default as DetailMouse } from "./DetailMouse/DetailMouse.jsx";
+export { default as DetailMother } from "./DetailMother/DetailMother.jsx";
+export { default as DetailProcesador } from "./DetailProcesador/DetailProcesador.jsx";
+export { default as DetailDisco } from "./DetailDisco/DetailDisco.jsx";
+export { default as DetailRam } from "./DetailRam/DetailRam.jsx";
+export { default as DetailSolido } from "./DetailSolido/DetailSolido.jsx";
+export { default as DetailTarjeta } from "./DetailTarjeta/DetailTarjeta.jsx";
+export { default as DetailFuente } from "./DetailFuente/DetailFuente.jsx";
+export { default as DetailTeclado } from "./DetailTeclado/DetailTeclado.jsx";
+export { default as DetailAuricular } from "./DetailAuricular/DetailAuricular.jsx";
+export { default as DetailGabinete } from "./DetailGabinete/DetailGabinete.jsx";
+export { default as DetailCooler } from "./DetailCooler/DetailCooler.jsx";

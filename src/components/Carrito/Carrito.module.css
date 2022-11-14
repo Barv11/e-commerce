@@ -101,7 +101,7 @@
 .checkOutContainer button {
   padding: 12px 40px;
   border-radius: 10px;
-  background-color: rgb(99, 221, 0);
+  background-color: rgb(82, 169, 11);
   color: white;
   border: none;
   transition: 0.3s;
@@ -116,4 +116,28 @@
 .checkOutContainer button:active {
   background-color: rgb(80, 177, 0);
   transition: 0.3s;
+}
+
+@media (max-width: 480px){
+  .textContainer{
+    width: 70vw;
+  }
+  .textContainer h4 {
+    font-size: 15px;
+    margin: 13px;
+  }
+  .cardContainer {
+    height: 90px;
+    width: 70vw;
+    margin: 8px;
+  }
+  .clearCarritoContainer {
+    height: 40px;
+    width: 70vw;
+    margin-left: 5px;
+  }
+  .clearCarritoContainer button {
+    padding: 10px 30px;
+  }
+
 }

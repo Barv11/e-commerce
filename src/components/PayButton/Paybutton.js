@@ -1,20 +1,22 @@
 import axios from "axios";
-/* import { useSelector } from "react-redux"; */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-export default function Paybutton(cartItem) {
+
+export default function Paybutton({ cartItem }) {
   const [user] = useState(JSON.parse(localStorage.getItem("user")));
   const navigate = useNavigate();
   let local = "http://localhost:3001/";
   let deployed = "https://gametech.up.railway.app/";
-
+  const userFound = useSelector((state) => state.userFound);
+  console.log(userFound);
   const handleCheckout = () => {
     if (user.logged) {
       axios
         .post(
-          `${deployed}create-checkout-session`,
-          cartItem
+          `${local}pago`,
+          { cartItem, userId: userFound.id }
           /* userId: user.id */
         )
         .then((res) => {

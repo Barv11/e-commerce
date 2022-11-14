@@ -53,8 +53,45 @@
   margin-right: 0px;
 }
 
+.costContainer h5{
+  font-size: 14px;
+  position: absolute;
+  top: -50%;
+  right: 10%;
+  text-decoration: line-through;
+}
+
+.costContainer{
+  text-align: center;  
+  position: relative;
+}
+
 .container img {
   width: 100px;
   height: 100px;
   margin: 10px;
+}
+
+@media (max-width: 480px){
+  .container{
+    width: 70vw;
+  }
+  .container h3 {
+    margin-left: 4px;
+    font-size: 16px;
+  }
+  .textContainer{
+    width: 480px;
+    margin-right: 22px;
+  }
+  .textContainer input{
+    width: 37px;
+    padding-left: 5px;
+  }
+  .textContainer i {
+    font-size: 20px;
+  }
+  .cartImgProd{
+    width: 400px;
+  }
 }

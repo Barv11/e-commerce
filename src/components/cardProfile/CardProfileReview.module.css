@@ -1,0 +1,18 @@
+.container {
+    position: relative;
+}
+
+.delete i:before{
+    cursor: pointer;
+    font-size: 2rem;
+    position: absolute;
+    color: #ff0000;
+    right: 25px;
+    bottom: 25px;
+}
+
+.edit i:before {
+    position: absolute;
+    color: #008000;
+    right: 80px;
+}

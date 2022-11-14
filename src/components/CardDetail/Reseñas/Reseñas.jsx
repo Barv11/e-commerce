@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import s from "./Reseñas.module.css";
 import Star from "./Star/Star";
 
-export default function Reseñas() {
-
-  const rating = 4;
+export default function Reseñas({ review }) {
+  const [usuario, setUsuario] = useState(
+    JSON.parse(localStorage.getItem("user"))
+  );
+  localStorage.setItem("user", JSON.stringify(usuario));
+  const { id, title, description, rating, user } = review;
 
   return (
     <div className={s.container}>
@@ -14,18 +17,15 @@ export default function Reseñas() {
           alt="name"
           className={s.avatar}
         />
-        <span className={s.name}>Bryan Ramos Vargas</span>
+        <span className={s.name}>{`${user.firstName} ${user.lastName}`}</span>
       </div>
       <div className={s.star}>
-        <Star filled={true} quantity={rating}/>
-        <Star filled={false} quantity={5-rating}/>
+        <Star filled={true} quantity={rating} />
+        <Star filled={false} quantity={5 - rating} />
       </div>
-      <p className={s.text}>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic asperiores
-        labore aspernatur omnis, itaque voluptas nemo vitae mollitia expedita
-        dicta rerum consectetur iusto deserunt nobis sint quae dignissimos
-        eligendi neque?
-      </p>
+      <p className={s.title}>{title}</p>
+      {/* <p className={s.text}>{description.replace(/\n/g, "<br />")}</p> */}
+      <p className={s.text}>{description}</p>
     </div>
   );
 }

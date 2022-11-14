@@ -64,7 +64,9 @@ export default function AllUsers() {
 
 console.log(result);
 
-
+useEffect(() => {
+  document.title = `Gamer Tech | Usuarios`;
+}, []);
   return (
     <div className={s.alluserscontainer}>
       <Navbar />

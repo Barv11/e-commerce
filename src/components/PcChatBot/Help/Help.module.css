@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.container > a {
+    font-size: 1.1rem;
+    text-decoration: none;
+    color: brown;
+}

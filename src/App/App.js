@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Router } from "react-router-dom";
 import { Products, Home, Profile, ArmadoPc } from "../page";
 import {
   CardDetail,
@@ -6,6 +6,8 @@ import {
   Register,
   CreateProduct,
   Carrito,
+  Favoritos,
+  Navbar,
 } from "../components";
 import AdminPage from "../page/Admin/AdminPage";
 import Orden from "../components/Orden/Orden";
@@ -16,6 +18,8 @@ import { saveToken, getUser } from "../redux/actions";
 import EditProducts from "../components/EditProducts/EditProducts";
 import About from "../components/About/About";
 import AllUsers from "../components/ListaUsuarios/AllUsers";
+import CardEditReviewProfile from "../components/cardProfile/CardEditReviewProfile";
+import RemovedProducts from "../components/RemovedProducts/RemovedProducts";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,22 +44,25 @@ function App() {
 
   return (
     <Routes>
-      <Route exact path={"/"} element={<Home />} />
-      <Route exact path={"/login"} element={<Login />} />
-      <Route exact path={"/register"} element={<Register />} />
-      <Route path={"/products"} element={<Products />} />
-      <Route path={"/detail/:id"} element={<CardDetail />} />
-      <Route path={"/create"} element={<CreateProduct />} />
-      <Route path={"/edit/:id"} element={<CreateProduct />} />
-      <Route path={"/edit"} element={<EditProducts />} />
-      <Route path={"/admin"} element={<AdminPage />} />
-      <Route path={"/orden"} element={<Orden />} />
-      <Route path={"/carrito"} element={<Carrito />} />
-      <Route path={"/profile"} element={<Profile />} />
-      <Route path={"/about"} element={<About />} />
-      <Route path={"/armado"} element={<ArmadoPc />} />
-      <Route path={"/users"} element={<AllUsers />} />
-    </Routes>
+        <Route exact path={"/"} element={<Home />} />
+        <Route path={"/login"} element={<Login />} />
+        <Route path={"/register"} element={<Register />} />
+        <Route path={"/products"} element={<Products />} />
+        <Route path={"/detail/:id"} element={<CardDetail />} />
+        <Route path={"/create"} element={<CreateProduct />} />
+        <Route path={"/edit/product/:id"} element={<CreateProduct />} />
+        <Route path={"/edit/review/:id"} element={<CardEditReviewProfile />} />
+        <Route path={"/inventory"} element={<EditProducts />} />
+        <Route path={"/trash"} element={<RemovedProducts />} />
+        <Route path={"/admin"} element={<AdminPage />} />
+        <Route path={"/orden"} element={<Orden />} />
+        <Route path={"/carrito"} element={<Carrito />} />
+        <Route path={"/favoritos"} element={<Favoritos />} />
+        <Route path={"/profile"} element={<Profile />} />
+        <Route path={"/about"} element={<About />} />
+        <Route path={"/armado"} element={<ArmadoPc />} />
+        <Route path={"/users"} element={<AllUsers />} />
+      </Routes>
   );
 }
 

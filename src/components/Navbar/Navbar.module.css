@@ -20,19 +20,18 @@
   display: flex;
   align-items: center;
   padding-left: 1.5em;
-  gap: .8em;
+  gap: 0.8em;
 }
 
 .logo {
-  width: 70px;
-  height: 50px;
+  width: 15%;
 }
 
 .mainTitle {
-  letter-spacing: .1em;
+  letter-spacing: 0.1em;
   display: inline-block;
   font-family: Heavitas;
-  font-size: 2.2rem;
+  font-size: 2.3rem;
   margin-top: 8px;
   color: #ffffff;
 }
@@ -70,36 +69,37 @@
 }
 
 .containerChild {
-  padding-right: 20px;
+  padding-right: 3rem;
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-end;
   align-items: center;
-  gap: 2.5em;
+  gap: 2.5rem;
 }
 
 .containerChild i {
   cursor: pointer;
   font-size: 1rem;
   color: #ffffff;
-  padding: .2em;
+  padding: 0.2em;
+
 }
 
-.user {
+/* .user {
   display: flex;
   align-items: center;
   gap: 1em;
-}
+} */
 
 .userimg {
-  width: 40px;
+  width: 40%;
   cursor: pointer;
 }
 
-.userTxt{
+.userTxt {
   cursor: pointer;
   font-size: 1rem;
-  color: #ffffff
+  color: #ffffff;
 }
 
 .userTxt:hover {
@@ -124,7 +124,7 @@
   color: #2c2c2c;
 }
 
-.child:hover{
+.child:hover {
   filter: drop-shadow(0 0 3px rgb(49, 49, 49));
   color: #a13793;
 }
@@ -142,7 +142,43 @@
   color: #a13793;
 }
 
+.favoritesBtn {
+  /* position: absolute;
+  right: 25px; */
+}
+
+.favoritesBtn nav:hover {
+  background-color: #a13793;
+
+}
+
+
+@media (max-width: 600px){
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+
+  }
+  .child{
+    font-size: 0.8rem;
+  }
+  
+  .activeChild{
+    font-size: 0.8rem;
+  }
+  .logo {
+    width: 20%;
+  }
+  .mainTitle{
+    font-size: 1.2rem;
+  }
+  .userTxt {
+    font-size: 0.7rem;
+  }
+  }
+
 @font-face {
-  font-family: 'Heavitas';
-  src: url('.././fonts/HEAVITAS.TTF');
+  font-family: "Heavitas";
+  src: url(".././fonts/HEAVITAS.TTF");
 }

@@ -1,6 +1,9 @@
 import {
   GET_ALL_PRODUCTS,
+  GET_DELETED_PRODUCTS,
   TOGGLE_PRODUCT_TYPE,
+  TOGGLE_DELETED_PRODUCT_TYPE,
+  RESTORE_PRODUCT,
   SEARCH_PRODUCT_BY_NAME,
   SEARCH_PRODUCT_BY_ID,
   CLEAR_PRODUCTS,
@@ -20,15 +23,27 @@ import {
   GET_ALL_USERS,
   CLEAR_CART_PRODUCTS,
   DELETE_CART_PRODUCT,
+  CLEAR_REVIEWS,
+  CLEAR_SEARCH_REVIEW,
+  SEARCH_REVIEW,
+  CREATE_REVIEWS,
+  PRODUCT_REVIEWS,
+  REVIEWS_BY_USER,
+  UPDATE_REVIEW,
+  DELETE_REVIEW,
   GET_ONE_USER,
   GET_INTEL,
   GET_AMD,
   EDIT_DISCOUNT,
   EDIT_STOCK,
+  ADD_FAVORITO_PRODUCT,
+  GET_ALL_FAVORITOS,
+  DELETE_ALL_FAVORITO,
 } from "../actions/actionsTypes";
 
 const initialState = {
   allProducts: [],
+  deletedProducts: [],
   searchByNameProduct: [],
   searchByIdProduct: {},
   user: {},
@@ -37,9 +52,13 @@ const initialState = {
   cartProducts: [],
   allUsers: [],
   url: "",
+  productReviews: [],
+  userReviews: [],
+  reviewSearched: {},
   userProfile: {},
   productsIntel: [],
   productsAmd: [],
+  favoritos: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -49,10 +68,24 @@ function rootReducer(state = initialState, action) {
         ...state,
         allProducts: action.payload,
       };
+    case GET_DELETED_PRODUCTS:
+      return {
+        ...state,
+        deletedProducts: action.payload,
+      };
     case TOGGLE_PRODUCT_TYPE:
       return {
         ...state,
         allProducts: action.payload,
+      };
+    case TOGGLE_DELETED_PRODUCT_TYPE:
+      return {
+        ...state,
+        deletedProducts: action.payload,
+      };
+    case RESTORE_PRODUCT:
+      return {
+        ...state,
       };
     case SEARCH_PRODUCT_BY_NAME:
       return {
@@ -63,6 +96,20 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         searchByIdProduct: action.payload,
+      };
+    case ADD_FAVORITO_PRODUCT:
+      return {
+        ...state,
+      };
+    case GET_ALL_FAVORITOS:
+      return {
+        ...state,
+        favoritos: action.payload,
+      };
+    case DELETE_ALL_FAVORITO:
+      return {
+        ...state,
+        favoritos: [],
       };
     case CLEAR_PRODUCTS:
       return {
@@ -75,8 +122,8 @@ function rootReducer(state = initialState, action) {
     case POST_IMAGE:
       return {
         ...state,
-        url: action.payload
-      }
+        url: action.payload,
+      };
     case POST_PRODUCT:
       return {
         ...state,
@@ -173,12 +220,50 @@ function rootReducer(state = initialState, action) {
         ...state,
         allUsers: action.payload,
       };
-    case GET_ONE_USER: 
-    return {
-      ...state,
-      userProfile: action.payload
-    };
-    case GET_INTEL: 
+    case CLEAR_REVIEWS:
+      return {
+        ...state,
+        productReviews: [],
+        userReviews: [],
+      };
+    case CLEAR_SEARCH_REVIEW:
+      return {
+        ...state,
+        reviewSearched: {},
+      };
+    case SEARCH_REVIEW:
+      return {
+        ...state,
+        reviewSearched: action.payload,
+      };
+    case CREATE_REVIEWS:
+      return {
+        ...state,
+      };
+    case PRODUCT_REVIEWS:
+      return {
+        ...state,
+        productReviews: action.payload,
+      };
+    case REVIEWS_BY_USER:
+      return {
+        ...state,
+        userReviews: action.payload,
+      };
+    case UPDATE_REVIEW:
+      return {
+        ...state,
+      };
+    case DELETE_REVIEW:
+      return {
+        ...state,
+      };
+    case GET_ONE_USER:
+      return {
+        ...state,
+        userProfile: action.payload,
+      };
+   case GET_INTEL: 
     return {
       ...state,
       productsAmd: [],
@@ -190,18 +275,22 @@ function rootReducer(state = initialState, action) {
       productsIntel: [],
       productsAmd: action.payload
     };
+    case EDIT_DISCOUNT:
+      return {
+        ...state,
+      };
+    case EDIT_STOCK:
+      return {
+        ...state,
+      };
     default:
       return {
         ...state,
       };
-    case EDIT_DISCOUNT:
+    /*  case POST_INFO_VENTA:
       return {
         ...state,
-      }
-    case EDIT_STOCK:
-      return {
-        ...state,
-      }
+      }; */
   }
 }
 

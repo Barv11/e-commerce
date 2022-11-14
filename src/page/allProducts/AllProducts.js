@@ -12,9 +12,11 @@ import {
   ordennames,
   orderprecio,
   searchProductByName,
+  getAllFavoritos,
 } from "../../redux/actions";
 import SideBar from "./SideBar";
 import { Pagination, Filtros } from "../../components";
+import PcChatBot from "../../components/PcChatBot/PcChatBot";
 
 export default function Products() {
   const dispatch = useDispatch();
@@ -23,6 +25,7 @@ export default function Products() {
   const [input, setInput] = useState("");
   const searchByNameProduct = useSelector((state) => state.searchByNameProduct);
   const userFound = useSelector((state) => state.userFound);
+  const favoritos = useSelector((state) => state.favoritos);
 
   const [user] = useState(JSON.parse(localStorage.getItem("user")));
 
@@ -31,7 +34,17 @@ export default function Products() {
   );
 
   // Filtra por los que no tienen Stock
+
   const allProductsStockFilter = allProducts.filter((p) => p.stock !== 0);
+  const finalAllProducts = allProductsStockFilter.sort((a, b) => {
+    if (a.discount - b.discount) {
+      return -1;
+    }
+    if (a.discount + b.discount) {
+      return 1;
+    }
+  });
+
   const allSearchProductsStockFilter = searchByNameProduct.filter(
     (p) => p.stock !== 0
   );
@@ -65,6 +78,7 @@ export default function Products() {
   useEffect(() => {
     dispatch(clearProducts());
     dispatch(getAllProductos());
+    dispatch(getAllFavoritos(userFound?.id));
   }, [dispatch]);
 
   console.log(allProductsStockFilter);
@@ -89,7 +103,7 @@ export default function Products() {
 
   const indiceUltimo = currentPage * productsPerPage;
   const indicePrimero = indiceUltimo - productsPerPage;
-  let pagProducts = allProductsStockFilter.slice(indicePrimero, indiceUltimo);
+  let pagProducts = finalAllProducts.slice(indicePrimero, indiceUltimo);
 
   //Cambio de pagina
   function pagina(pageNumber) {
@@ -146,6 +160,7 @@ export default function Products() {
                   cart={handleCart}
                   quantity={1}
                   discount={p.discount}
+                  favs={favoritos}
                 />
               );
             })
@@ -156,11 +171,12 @@ export default function Products() {
                   key={p.id}
                   id={p.id}
                   name={p.name}
-                  img={p.img[0]}
+                  img={Array.isArray(p.img) ? p.img[0] : p.img}
                   cost={p.cost}
                   cart={handleCart}
                   quantity={1}
                   discount={p.discount}
+                  favs={favoritos}
                 />
               );
             })
@@ -175,6 +191,7 @@ export default function Products() {
         productsFilter={pagProducts.length}
         pagina={pagina}
       />
+      <PcChatBot />
       <Footer />
     </div>
   );
