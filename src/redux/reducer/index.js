@@ -263,16 +263,18 @@ function rootReducer(state = initialState, action) {
         ...state,
         userProfile: action.payload,
       };
-    case GET_INTEL:
-      return {
-        ...state,
-        productsIntel: action.payload,
-      };
-    case GET_AMD:
-      return {
-        ...state,
-        productsAmd: action.payload,
-      };
+   case GET_INTEL: 
+    return {
+      ...state,
+      productsAmd: [],
+      productsIntel: action.payload
+    };
+    case GET_AMD: 
+    return {
+      ...state,
+      productsIntel: [],
+      productsAmd: action.payload
+    };
     case EDIT_DISCOUNT:
       return {
         ...state,
