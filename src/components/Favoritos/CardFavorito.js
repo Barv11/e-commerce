@@ -10,6 +10,7 @@ export default function CardFavorito({
   name,
   cost,
   brand,
+  cart,
 }) {
   const discountCost = (discount * cost) / 100;
 
@@ -31,6 +32,14 @@ export default function CardFavorito({
           </div>
         )}
         <h3>{brand}</h3>
+        <div
+          className={s.cart}
+          onClick={() =>
+            cart({ deleteFav, discount, img: img[0], id, name, cost, brand, cart })
+          }
+        >
+          <i className="uil uil-shopping-cart"></i>
+        </div>
         <div className={s.trashCan} onClick={() => deleteFav(id)}>
           <i class="uil uil-trash-alt"></i>
         </div>
