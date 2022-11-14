@@ -48,6 +48,7 @@
 .carrousel1 {
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
 .carrousel1 img {
@@ -56,6 +57,33 @@
   object-fit: contain;
   /* box-shadow: 0 0 10px 5px #000000; */
   filter: drop-shadow(0 0 10px #000000);
+}
+
+.favBtn {
+  position: absolute;
+  right: 5%;
+  top: 4%;
+  border-radius: 50%;
+  width: 35px;
+  height: 32px;
+  color: white;
+  background-color: rgba(137, 43, 226, 0.9);
+  border: none;
+  font-size: 22px;
+  transition: 0.3s;
+  opacity: 0;
+  border: 1px solid transparent;
+  z-index: 1;
+}
+
+.favBtn:hover {
+  color: rgba(137, 43, 226, 0.9);
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.carrousel1:hover .favBtn {
+  opacity: 1;
+  transition: 0.3s;
 }
 
 .carrousel2 {

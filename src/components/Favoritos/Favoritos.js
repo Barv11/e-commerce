@@ -7,6 +7,7 @@ import {
   getAllFavoritos,
   deleteFavorito,
   deleteAllFavorito,
+  addCartProduct,
 } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
@@ -36,6 +37,12 @@ export default function Favoritos() {
     if (user.logged) {
       dispatch(deleteFavorito(productId, userFound?.id));
       setFavs((oldProducts) => oldProducts.filter((p) => p.id !== productId));
+    }
+  };
+
+  const handleCart = (props) => {
+    if (user.logged) {
+      dispatch(addCartProduct(userFound.id, [props]));
     }
   };
 
@@ -71,6 +78,7 @@ export default function Favoritos() {
                 brand={el.brand}
                 img={el.img}
                 discount={el.discount}
+                cart={handleCart}
                 deleteFav={deleteFavProd}
               />
             ))
@@ -92,18 +100,6 @@ export default function Favoritos() {
             Borrar Favoritos
           </button>
         </div>
-        {/* <div className={s.checkOutContainer}>
-          <h3>
-            {user.logged
-              ? `$${totalDbProductsValue}`
-              : `$${totalProductsValue}`}
-          </h3>
-          {user.logged ? (
-            <Paybutton cartItem={dbProducts} />
-          ) : (
-            <Paybutton cartItem={products} />
-          )}
-        </div> */}
       </div>
       <PcChatBot />
       <Footer />
