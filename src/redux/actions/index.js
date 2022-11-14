@@ -28,8 +28,8 @@ import {
 import axios from "axios";
 import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "./actionsTypes";
 
-let url = "https://gametech.up.railway.app";
-// let url = "http://localhost:3001"
+// let url = "https://gametech.up.railway.app";
+let url = "http://localhost:3001"
 
 let token = null;
 export const saveToken = (newToken) => {
@@ -120,6 +120,9 @@ export const searchProductByName = (name) => async (dispatch) => {
 };
 
 export const searchProductById = (id) => async (dispatch) => {
+  if(id === 'clear') {
+    return dispatch({ type: SEARCH_PRODUCT_BY_ID, payload: [] });  
+  }
   const producto = await axios.get(`${url}/productos/` + id);
   const productosbyId = producto.data;
   dispatch({ type: SEARCH_PRODUCT_BY_ID, payload: productosbyId });
@@ -227,10 +230,10 @@ export const editStock = (id, stockProd) => async (dispatch) => {
 export const getIntel = (pcType) => async (dispatch) => {
   console.log(pcType)
   const allIntel = await axios.get(`${url}/productos/intel?pcType=${pcType}`)
-  dispatch({type: GET_INTEL, payload: allIntel})
+  dispatch({type: GET_INTEL, payload: allIntel.data})
 }
 
 export const getAmd = (pcType) => async (dispatch) => {
   const allAmd = await axios.get(`${url}/productos/amd?pcType=${pcType}`)
-  dispatch({type: GET_AMD, payload: allAmd})
+  dispatch({type: GET_AMD, payload: allAmd.data})
   }

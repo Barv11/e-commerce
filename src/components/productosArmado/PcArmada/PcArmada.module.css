@@ -1,0 +1,30 @@
+.card {
+    width:15vw;
+    height: 30vh; 
+    margin: 20px;
+    padding: 15px;
+    border-radius: 5px;   
+    border: 1px solid black;
+    font-size: 13px;
+}
+
+.container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card img {
+    width: 50%;
+    margin: 5px;
+}
+
+.containerNoItems{
+    font-size: 2rem;
+    margin: 25% 15px 0 15px;
+    text-align: center;
+}
+
+.image{
+    width: 15vw; 
+    filter: opacity(0.5)
+}

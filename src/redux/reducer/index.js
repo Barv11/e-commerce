@@ -181,11 +181,13 @@ function rootReducer(state = initialState, action) {
     case GET_INTEL: 
     return {
       ...state,
+      productsAmd: [],
       productsIntel: action.payload
     };
     case GET_AMD: 
     return {
       ...state,
+      productsIntel: [],
       productsAmd: action.payload
     };
     default:

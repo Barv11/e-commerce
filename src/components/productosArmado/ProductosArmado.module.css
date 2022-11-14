@@ -1,0 +1,16 @@
+.allItems{
+    display: flex;
+}
+
+.pcArmada{
+    margin: 15px 0;
+    width: 20vw;
+    height: 80vh;
+    box-shadow: 5px 5px 15px #AAA;
+    overflow: auto;
+    position: fixed;
+    right: 2%;
+    top: 18%;
+    border-radius: 5px;
+
+}
