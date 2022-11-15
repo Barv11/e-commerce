@@ -121,6 +121,8 @@ export default function Carrito() {
     return acc + p.cost * p.quantity;
   }, 0);
 
+  // console.log(cartProducts)
+
   return (
     <div className={s.mainContainer}>
       <Navbar />

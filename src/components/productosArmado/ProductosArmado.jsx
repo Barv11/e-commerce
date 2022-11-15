@@ -47,6 +47,8 @@ function ProductosArmado({ products }) {
     dispatch(searchProductById(e.target.value)) 
 
   }
+
+  
   
 
   // console.log(pcArmada)
@@ -69,7 +71,7 @@ function ProductosArmado({ products }) {
           <ContainerProductos items={gabinete && gabinete} name="coogabineteler" title="Gabinete" handleAdded={handleAdded}/>
         </div>
         <div className={style.pcArmada}>
-          <PcArmada item={searchByIdProduct && searchByIdProduct}/>
+          <PcArmada item={searchByIdProduct && searchByIdProduct} />
         </div>
       </div>
       <Footer/>
