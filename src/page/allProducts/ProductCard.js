@@ -9,7 +9,6 @@ import { addFavoritoProduct } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function ProductCard(props) {
-  // const [cartState, setCartState] = useState(false);
   const [user] = useState(JSON.parse(localStorage.getItem("user")));
 
   const dis = props.discount;
@@ -43,9 +42,6 @@ export default function ProductCard(props) {
           <div className={s.disNum}>{`${dis}% OFF!`}</div>
         </span>
       ) : null}
-      {/* <div className={s.cart} onClick={() => props.cart(props)}>
-        <i class="uil uil-shopping-cart"></i>
-      </div> */}
       <div className={s.imgContainer}>
         <img src={props.img} alt={props.name} />
       </div>

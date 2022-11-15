@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import s from "./SideBar.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   clearProducts,
   getAllProductos,
@@ -28,7 +28,6 @@ export default function SideBar({ setCurrentPage, setOrden }) {
   const dispatch = useDispatch();
   const handleClick = (type) => {
     dispatch(clearProducts());
-    dispatch(getAllProductos());
     dispatch(toggleProductType(type));
     setCurrentPage(1);
     setOrden("");
@@ -38,7 +37,7 @@ export default function SideBar({ setCurrentPage, setOrden }) {
     dispatch(getAllProductos());
     setCurrentPage(1);
     setOrden("");
-  }
+  };
 
   // const OrderName = (event) =>{
   //   event.preventDefault();

@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, getCartProduct, saveToken } from "../../redux/actions";
 import PcChatBot from "../../components/PcChatBot/PcChatBot";
+import Anuncio from "../../components/Anuncio/Anuncio";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -31,12 +32,13 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
+    <>
       <Navbar />
       <Carrusel />
+      <Anuncio />
       <ProductSlider />
       <PcChatBot />
       <Footer />
-    </div>
+    </>
   );
 }

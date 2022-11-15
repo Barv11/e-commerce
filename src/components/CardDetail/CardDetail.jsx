@@ -124,7 +124,7 @@ export default function CardDetail(props) {
               <h1 className={s.title}>{name}</h1>
               <span
                 className={s.route}
-              >{`Productos > ${searchByIdProduct.type}`}</span>
+              >{`Productos ❯ ${searchByIdProduct.type}`}</span>
               <span className={s.brand}>Marca: {brand}</span>
               <span className={s.route}>Stock: {stock}</span>
 
