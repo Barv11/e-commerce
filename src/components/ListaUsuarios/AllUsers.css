@@ -1,0 +1,98 @@
+.alluserscontainer {
+    height: 100vh;
+    width: 100vw;
+    
+}
+
+.userListTxt {
+    font-size: 2.6rem;
+    color: #69329c;
+    margin: 28px;
+    text-shadow: rgb(255, 255, 255) 3px 0 3px;
+    font-family: Heavitas;
+}
+  
+.UserListTitleIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.usersListIcon {
+    font-size: 2.6rem;
+}
+  
+
+.buscarTxt {
+    font-size: 18px;
+    margin: 15px;
+    color: rgb(45, 26, 64);
+    font-family: Open Sans;
+    font-weight: 600;
+}
+
+.searchContainer {
+    width: 100%;
+    font-family: 'Montserrat';
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    margin: 1em 0;
+}
+
+.searchContainer > span {
+    margin-right: 1em;
+    font-size: 1rem;
+}
+  
+.input {
+    width: 40%;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    background-color: #ffffff;
+    padding: 0.5em 1em;
+    font-family: "Montserrat", sans-serif;
+    box-shadow: 0 0 5px #000000;
+}
+
+.modalTitle{
+    font-size: 35px;
+    font-family: Cocosharp;
+}
+  
+.modalSubtitle{
+    font-family: Open Sans, sans-serif;
+}
+  
+@font-face {
+    font-family: "Heavitas";
+    src: url("../../components/fonts/HEAVITAS.TTF");
+  }
+  
+  @font-face {
+    font-family: "Open Sans", "sans-serif";
+    src: url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
+  }
+  
+  @font-face{
+    font-family: 'Cocosharp';
+    src: url('../../components/fonts/COCO-SHARP-BOLD-TRIAL.TTF');
+  }
+
+@media (max-width: 480px){
+    .userListTxt{
+        font-size: 1.5rem;
+    }
+    .usersListIcon{
+        font-size: 1.5rem;
+    }
+    .buscarTxt{
+        font-size: 10px;
+    }
+    .input{
+        font-size: 0.8rem;
+    }
+}
