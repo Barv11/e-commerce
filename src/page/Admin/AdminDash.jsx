@@ -15,7 +15,7 @@ export default function AdminDash() {
         <div>
             <Navbar />
             <div className='containerDash'>
-                <h1 className='dashTitle'>Dashboard <AutoAwesomeIcon color="secondary"/></h1>
+                <h1 className='dashTitle'>Dashboard <AutoAwesomeIcon color="secondary" sx={{ fontSize: 37 }}/></h1>
                 <h2 className='dashSubTitle'>¡Bienvenido a tu dashboard! <EditIcon color="secondary"/></h2>
                 <div>
                     <Link style={{ textDecoration: 'none' }} to={'/users'}>

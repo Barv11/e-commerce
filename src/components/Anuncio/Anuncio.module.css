@@ -16,3 +16,9 @@
 .anuncio > img:hover {
     filter: brightness(1.2);
 }
+
+@media (max-width: 480px){
+    .anuncio > img {
+        width: 95%;
+    }
+}
