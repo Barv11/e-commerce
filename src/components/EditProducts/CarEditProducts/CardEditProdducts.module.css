@@ -81,3 +81,16 @@
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+@media (max-width: 480px){
+  .text,
+.edit,
+.detail {
+  font-size: 0.65rem;
+}
+.discountContainer{
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+}

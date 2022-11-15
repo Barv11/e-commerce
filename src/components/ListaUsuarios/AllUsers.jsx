@@ -7,7 +7,9 @@ import { getAllUsers } from "../../redux/actions";
 import s from "../../page/Admin/AdminPage.module.css";
 import PeopleAltRoundedIcon from "@mui/icons-material/PeopleAltRounded";
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
-import Navbar from '../Navbar/Navbar'
+import Navbar from '../Navbar/Navbar';
+import { useModal } from '../Modals/useModal';
+import Modal from '../Modals/Modal';
 
 export default function AllUsers() {
   let dispatch = useDispatch();
@@ -21,7 +23,7 @@ export default function AllUsers() {
   const allUsers = useSelector((state) => state.allUsers);
   console.log(allUsers);
   const [search, setSearch] = useState("");
-
+  const [isOpenModal, openModal, closeModal] = useModal(false);
   
   async function handleButtonBanned(userId) {
     await axios.put(`https://gametech.up.railway.app/user/create/edit`, {
@@ -45,11 +47,11 @@ export default function AllUsers() {
   console.log(input.role);
 
   async function handleRoleChange(id) {
-    await axios.put(`https://gametech.up.railway.app/user/create/edit`, {
+    await axios.put(`http://localhost:3001/user/create/edit`, {
       id: id,
       role: input.role,
     });
-    alert("Rol cambiado con exito!");
+    openModal();
   }
 
   const handleSearch = (e) => {
@@ -143,6 +145,10 @@ useEffect(() => {
                     <button onClick={() => handleRoleChange(u.id)}>
                       <CheckRoundedIcon/>
                     </button>
+                      <Modal isOpen={isOpenModal} closeModal={closeModal}>
+                        <h1 className={s.modalTitle}>Rol asignado con éxito</h1>
+                        <p className={s.modalSubtitle}>Has signado el rol de {u.role} correctamente.</p>
+                      </Modal>
                   </td>
                 </tr>
               );
