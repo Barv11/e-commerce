@@ -75,7 +75,7 @@ export default function EditProducts() {
   }, [allProducts]);
 
   useEffect(() => {
-    document.title = `Gamer Tech | Productos`;
+    document.title = `Gamer Tech | Inventario`;
   }, []);
   return (
     <div>

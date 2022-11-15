@@ -24,11 +24,12 @@ export default function CardCarrito({
     setCantidad(e.target.value);
   };
 
+  console.log(img)
   return (
     <div className={s.container}>
       <Link id={s.link} to={"/detail/" + id}>
         <div className={s.imgContainer}>
-          <img src={img} />
+          <img src={img} alt={name} />
           <h3>{name}</h3>
         </div>
       </Link>

@@ -44,9 +44,9 @@ import axios from "axios";
 import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "./actionsTypes";
 
 
-//let url = "https://gametech.up.railway.app";
+// let url = "https://gametech.up.railway.app";
+let url = "http://localhost:3001"
 
-let url = "http://localhost:3001";
 
 let token = null;
 export const saveToken = (newToken) => {
@@ -157,6 +157,9 @@ export const searchProductByName = (name) => async (dispatch) => {
 };
 
 export const searchProductById = (id) => async (dispatch) => {
+  if(id === 'clear') {
+    return dispatch({ type: SEARCH_PRODUCT_BY_ID, payload: [] });  
+  }
   const producto = await axios.get(`${url}/productos/` + id);
   const productosbyId = producto.data;
   dispatch({ type: SEARCH_PRODUCT_BY_ID, payload: productosbyId });
@@ -214,6 +217,7 @@ export const getCartProduct = (id) => async (dispatch) => {
   const obj = { id: id };
 
   const productos = await axios.post(`${url}/cart/get`, obj);
+  console.log(productos)
   dispatch({ type: GET_CART_PRODUCTS, payload: productos });
 };
 
@@ -223,8 +227,8 @@ export const clearCartProduct = () => (dispatch) => {
 
 export const addCartProduct = (id, array) => async (dispatch) => {
   const obj = { id: id, productosCarrito: array };
-
-  const a = await axios.post(`${url}/cart/create`, obj);
+  console.log(obj)
+  await axios.post(`${url}/cart/create`, obj);
   dispatch({ type: ADD_CART_PRODUCTS });
 };
 
@@ -323,16 +327,16 @@ export const editStock = (id, stockProd) => async (dispatch) => {
 };
 
 export const getIntel = (pcType) => async (dispatch) => {
-  console.log(pcType);
-  const allIntel = await axios.get(`${url}/productos/intel?pcType=${pcType}`);
-  dispatch({ type: GET_INTEL, payload: allIntel });
-};
+  console.log(pcType)
+  const allIntel = await axios.get(`${url}/productos/intel?pcType=${pcType}`)
+  dispatch({type: GET_INTEL, payload: allIntel.data})
+}
 
 export const getAmd = (pcType) => async (dispatch) => {
-  const allAmd = await axios.get(`${url}/productos/amd?pcType=${pcType}`);
-  dispatch({ type: GET_AMD, payload: allAmd });
-};
-
+  const allAmd = await axios.get(`${url}/productos/amd?pcType=${pcType}`)
+  dispatch({type: GET_AMD, payload: allAmd.data})
+  }
+  
 export const addFavoritoProduct = (productId, userId) => async (dispatch) => {
   await axios.post(`${url}/favoritos`, {
     productId,

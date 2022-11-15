@@ -2,15 +2,13 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import s from "./ProductCard.module.css";
 
-import { useModal } from '../../components/Modals/useModal';
-import Modal from '../../components/Modals/Modal';
-import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
+import { useModal } from "../../components/Modals/useModal";
+import Modal from "../../components/Modals/Modal";
+import ThumbUpAltRoundedIcon from "@mui/icons-material/ThumbUpAltRounded";
 import { addFavoritoProduct } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 
-
 export default function ProductCard(props) {
-  // const [cartState, setCartState] = useState(false);
   const [user] = useState(JSON.parse(localStorage.getItem("user")));
 
   const dis = props.discount;
@@ -30,20 +28,20 @@ export default function ProductCard(props) {
 
   return (
     <div className={s.container}>
-      <button
-        className={s.favBtn}
-        onClick={() => handleFavorito(props.id, userFound.id)}
-      >
-        ❤
-      </button>
+      {user.logged && (
+        <button
+          className={s.favBtn}
+          onClick={() => handleFavorito(props.id, userFound.id)}
+        >
+          ❤
+        </button>
+      )}
+
       {dis > 0 ? (
         <span className={s.discount}>
           <div className={s.disNum}>{`${dis}% OFF!`}</div>
         </span>
       ) : null}
-      {/* <div className={s.cart} onClick={() => props.cart(props)}>
-        <i class="uil uil-shopping-cart"></i>
-      </div> */}
       <div className={s.imgContainer}>
         <img src={props.img} alt={props.name} />
       </div>
@@ -56,10 +54,14 @@ export default function ProductCard(props) {
       <div className={s.cart2} onClick={() => props.cart(props)}>
         <span className={s.add}>Add to cart</span>
         <i className="uil uil-shopping-cart"></i>
-          <Modal isOpen={isOpenModal} closeModal={closeModal}>
-              <h1 className={s.modalTitle}>Producto agregado a tu carrito <ThumbUpAltRoundedIcon/></h1>
-              <p className={s.modalSubtitle}>Agregaste el producto a tu carrito exitosamente!</p>
-          </Modal>
+        <Modal isOpen={isOpenModal} closeModal={closeModal}>
+          <h1 className={s.modalTitle}>
+            Producto agregado a tu carrito <ThumbUpAltRoundedIcon />
+          </h1>
+          <p className={s.modalSubtitle}>
+            Agregaste el producto a tu carrito exitosamente!
+          </p>
+        </Modal>
       </div>
     </div>
   );

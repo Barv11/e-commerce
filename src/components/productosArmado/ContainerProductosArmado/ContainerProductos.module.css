@@ -1,0 +1,13 @@
+.globalContainer{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 15px;
+    width: 50vw;
+    height: 70vh;  
+    display: flex;
+    align-items: center;   
+    box-shadow: 5px 5px 10px #444;
+    border-radius: 10px;   
+    overflow: scroll;
+    overflow-x: hidden;
+}

@@ -65,7 +65,7 @@ export default function CardEditProducts({
       <span className={s.text}>{brand}</span>
       <span className={s.text}>{cost}</span>
 
-      <NavLink to={"/edit/" + id} className={s.link}>
+      <NavLink to={"/edit/product/" + id} className={s.link}>
         <span className={s.edit}>
           Editar <i className="uil uil-edit"></i>
         </span>
@@ -95,7 +95,7 @@ export default function CardEditProducts({
           <p className={s.modalSubtitle}>{name} ahora tiene un {descuento}% de descuento.</p>
         </Modal>
       </div>
-      <div>
+      <div className={s.stock}>
         <input
           id={s.inputDis}
           type="number"

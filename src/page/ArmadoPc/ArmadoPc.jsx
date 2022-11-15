@@ -1,44 +1,53 @@
 import React, { useState, useEffect } from "react";
 import style from "./armadoPc.module.css";
-import { Navbar, Footer } from "../../components";
-import { useDispatch } from "react-redux";
+import { Navbar, Footer, ProductosArmado } from "../../components";
+import { useDispatch, useSelector } from "react-redux";
 import { getIntel, getAmd } from "../../redux/actions";
 import PcChatBot from "../../components/PcChatBot/PcChatBot";
 
 function ArmadoPc() {
   const dispatch = useDispatch();
-  const [choice, setChoice] = useState({
-    procesador: "",
-    pcType: "",
-  });
+  const [choice, setChoice] = useState("");
+  const [pcChoice, setPcChoice] = useState(false);
+  
 
+  const productsIntel = useSelector((state) => state.productsIntel);
+  const productsAmd = useSelector((state) => state.productsAmd);
 
-  useEffect(() => {
-    document.title = `Gamer Tech | Arma tu PC`;
-  }, []);
-
-  useEffect(() => {
-    if (choice.procesador === "AMD" && choice.pcType !== "") {
-      dispatch(getAmd(choice.pcType));
+  const handleChoice = (type) => {
+    setPcChoice(true);
+    if (choice === "Intel") {
+      console.log("entre");
+      dispatch(getIntel(type));
       return;
+    } else {
+      dispatch(getAmd(type));
     }
-    if (choice.procesador === "Intel" && choice.pcType !== "") {
-      dispatch(getIntel(choice.pcType));
-      return;
-    }
-  }, [dispatch, choice]);
-
-  const handleChoice = (e) => {
-    console.log("Entre a handleChoice");
-    e.preventDefault();
-    setChoice({ ...choice, pcType: e.target.value });
-    console.log(choice);
   };
-  // console.log(choice)
-  if (choice.procesador !== "" && choice.pcType !== "") {
-    return <div>Componentes Filtrados</div>;
+
+
+  console.log(productsIntel);
+
+  
+  if (choice !== "" && pcChoice === true) {
+    // AMD Y GAMA
+    return (
+      <div>
+        <div>
+        {productsIntel?.length === 0 ? (
+          <ProductosArmado products={productsAmd} />
+        ) : (
+          <ProductosArmado products={productsIntel} />
+        )}
+        </div>
+        <div>
+
+        </div>
+      </div>
+    );
   }
-  if (choice.procesador !== "") {
+  if (choice !== "") {
+    // AMD O INTEL
     return (
       <div>
         <Navbar />
@@ -61,9 +70,7 @@ function ArmadoPc() {
               </ul>
             </div>
             <div>
-              <button onClick={handleChoice} value="baja">
-                Comenzar
-              </button>
+              <button onClick={() => handleChoice("baja")}>Comenzar</button>
             </div>
           </div>
 
@@ -81,9 +88,7 @@ function ArmadoPc() {
               </ul>
             </div>
             <div>
-              <button onClick={handleChoice} value="media">
-                Comenzar
-              </button>
+              <button onClick={() => handleChoice("media")}>Comenzar</button>
             </div>
           </div>
 
@@ -100,9 +105,7 @@ function ArmadoPc() {
               </ul>
             </div>
             <div>
-              <button onClick={handleChoice} value="alta">
-                Comenzar
-              </button>
+              <button onClick={() => handleChoice("alta")}>Comenzar</button>
             </div>
           </div>
 
@@ -120,9 +123,7 @@ function ArmadoPc() {
               </ul>
             </div>
             <div>
-              <button onClick={handleChoice} value="superAlta">
-                Comenzar
-              </button>
+              <button onClick={() => handleChoice("muy alta")}>Comenzar</button>
             </div>
           </div>
         </div>
@@ -136,14 +137,14 @@ function ArmadoPc() {
         <div className={style.choice}>
           <button
             className={style.intel}
-            onClick={() => setChoice({ ...choice, procesador: "Intel" })}
+            onClick={() => setChoice("Intel")}
           ></button>
           <button
             className={style.amd}
-            onClick={() => setChoice({ ...choice, procesador: "AMD" })}
+            onClick={() => setChoice("AMD")}
           ></button>
         </div>
-        <PcChatBot />
+        <PcChatBot/>
         <Footer />
       </div>
     );
