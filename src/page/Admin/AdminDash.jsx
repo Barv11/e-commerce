@@ -4,8 +4,6 @@ import './AdminDash.css';
 import { Link } from 'react-router-dom';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import EditIcon from '@mui/icons-material/Edit';
-
-import s from './AdminPage.module.css'
 import { useEffect } from 'react';
 
 export default function AdminDash() {
