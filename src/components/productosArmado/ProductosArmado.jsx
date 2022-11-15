@@ -56,7 +56,7 @@ function ProductosArmado({ products }) {
   
   if(procesador.length && mother.length){
     return (
-    <div>
+    <div className={style.container}>
       <Navbar/>
       <div className={style.allItems}>
         <div>

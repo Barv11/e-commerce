@@ -1,23 +1,23 @@
 import React from 'react'
-import style from './CardProductosArmado.module.css';
+import s from './CardProductosArmado.module.css';
 function CardProductosArmado({id, name, brand, img, details, type, cost, handleAdded}) {
   return (
-    <div>
-        <div className={style.containerData}>
+    <div className={s.container}>
+        <div className={s.containerData}>
         <div >
-            <img src={img} alt="name" className={style.image} />
+            <img src={img} alt="name" className={s.image} />
         </div>
-        <div className={style.name}>
+        <div className={s.name}>
             {name}
         </div>
-        <div className={style.brand}>
+        <div className={s.brand}>
             {brand}
         </div>
-        <div className={style.brand}>
-            ${cost} ARG
+        <div className={s.brand}>
+            ${cost}
         </div>
         <div>
-          <button onClick={handleAdded} value={id}>Add</button>
+          <button id={s.addBtn} onClick={handleAdded} value={id}>Add</button>
         </div>
         </div>
     </div>

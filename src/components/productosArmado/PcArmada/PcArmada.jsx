@@ -31,6 +31,12 @@ function PcArmada({ item }) {
 
   const [user] = useState(JSON.parse(localStorage.getItem("user")));
 
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem("products") || "[]")
+  );
+
+  localStorage.setItem("products", JSON.stringify(cart));
+
   const handleCheckout = () => {
     const procesador = myPc.filter((e) => e.type === "procesador");
     const mother = myPc.filter((e) => e.type === "mother");
@@ -42,11 +48,18 @@ function PcArmada({ item }) {
           dispatch(addCartProduct(userFound.id, myPc));
           navigate("/carrito");
         } else {
-          alert("Elementos no compatibles");
+          alert(
+            `El Procesador ${procesador[0].name} no es Compatible con la Mother ${mother[0].name}`
+          );
           setCompatibilidad(false);
         }
       } else {
-        alert("Che a donde vas, loggeate");
+        myPc.forEach((e) => {
+          e.img = e.img[0];
+          e.quantity = 1;
+        });
+        setCart([...cart.concat(myPc)]);
+        alert("Productos Agregados con Exito Al Carrito")
       }
     } else {
       alert("Selecciona un procesador y una tarjeta madre como minimo");
@@ -54,38 +67,46 @@ function PcArmada({ item }) {
   };
 
   const deleteItems = (event) => {
-    setMyPc([...myPc.filter(e => e.id !== event.target.value)])
-  }
+    setMyPc([...myPc.filter((e) => e.id !== event.target.value)]);
+  };
 
   if (myPc.length) {
     return (
       <div className={s.container}>
         {/* <div>PcArmada</div> */}
         <div>
-          <button onClick={() => setMyPc([])}>Clear</button>
-        </div>
-        <div>
           {myPc &&
             myPc?.map((e) => {
               return (
                 <div key={e.id} className={s.card}>
                   <div>
-                    <button onClick={deleteItems} value={e.id}>X</button>
+                    <button id={s.x} onClick={deleteItems} value={e.id}>
+                      ✖
+                    </button>
                   </div>
-                  <div>{e.name}</div>
                   <div>
                     <img
                       src={Array.isArray(e.img) ? e.img[0] : e.img}
                       alt={e.name}
                     />
                   </div>
-                  <div>{e.cost}</div>
+                  <h2>{e.name}</h2>
+                  <h3>{`$${e.cost}`}</h3>
                 </div>
               );
             })}
         </div>
-        <div>
-          <button onClick={handleCheckout}>Checkout</button>
+        <div className={s.btnContainer}>
+          <div>
+            <button id={s.clear} onClick={() => setMyPc([])}>
+              Clear
+            </button>
+          </div>
+          <div>
+            <button id={s.check} onClick={handleCheckout}>
+              Agregar al Carrito
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -93,7 +114,7 @@ function PcArmada({ item }) {
     return (
       <div className={s.containerNoItems}>
         <div>
-          <div>Empieza a armar tu pc</div>
+          <h2>Empieza a armar tu pc</h2>
           <div>
             <img src={gabinete} alt="gabinete" className={s.image} />
           </div>
