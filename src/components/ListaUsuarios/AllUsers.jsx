@@ -66,7 +66,7 @@ export default function AllUsers() {
   useEffect(() => {
     dispatch(getAllUsers());
   }, [dispatch]);
-
+ 
   useEffect(() => {
     document.title = `Gamer Tech | Usuarios`;
   }, []);

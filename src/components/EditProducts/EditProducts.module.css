@@ -79,7 +79,7 @@
 
 .select option:focus {
   outline: none;
-}
+} 
 
 .select option::-ms-expand {
   display: none;
