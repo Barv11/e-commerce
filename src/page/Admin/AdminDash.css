@@ -1,0 +1,58 @@
+.containerDash{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashTitle{
+    font-family: Heavitas;
+    color: #69329c; 
+    font-size: 3rem; 
+    padding-top: 1em;
+    text-shadow: 0px 3px 2px rgba(70,20,111,0.54);
+
+}
+
+.dashSubTitle{
+    font-family: sans-serif;
+    color: #543273; 
+    font-size: 1.5rem;
+    padding-bottom: 30px;
+    padding-top: 9px;
+}
+
+.categoriasTxt{
+    color: #3b0f64;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1.7rem;
+    text-shadow: 0px 3px 2px rgba(255,255,255,0.6);
+}
+
+.categoriasContainer{
+    height: 55px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 65vw;
+    background: rgb(195,157,252);
+    background: linear-gradient(347deg, rgba(195,157,252,1) 22%, rgba(237,216,250,1) 100%);
+    box-shadow: 10px 10px 5px -2px rgba(75,46,120,0.7);
+    -webkit-box-shadow: 10px 10px 5px -2px rgba(75,46,120,0.7);
+    -moz-box-shadow: 10px 10px 5px -2px rgba(75,46,120,0.7);
+}
+
+@font-face {
+    font-family: 'Heavitas';
+    src: url('../../components/fonts/HEAVITAS.TTF');
+}
+
+@font-face {
+    font-family: 'Cocosharp';
+    src: url('../../components/fonts/COCO-SHARP-BOLD-TRIAL.TTF');
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
