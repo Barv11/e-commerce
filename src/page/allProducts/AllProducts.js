@@ -17,6 +17,9 @@ import {
 import SideBar from "./SideBar";
 import { Pagination, Filtros } from "../../components";
 import PcChatBot from "../../components/PcChatBot/PcChatBot";
+import { useModal } from '../../components/Modals/useModal';
+import Modal from '../../components/Modals/Modal';
+import ThumbUpAltRoundedIcon from "@mui/icons-material/ThumbUpAltRounded";
 
 export default function Products() {
   const dispatch = useDispatch();
@@ -26,6 +29,7 @@ export default function Products() {
   const searchByNameProduct = useSelector((state) => state.searchByNameProduct);
   const userFound = useSelector((state) => state.userFound);
   const favoritos = useSelector((state) => state.favoritos);
+  const [isOpenModal, openModal, closeModal] = useModal(false);
 
   const [user] = useState(JSON.parse(localStorage.getItem("user")));
 
@@ -64,6 +68,7 @@ export default function Products() {
       dispatch(addCartProduct(userFound.id, [props]));
       console.log([props]);
       setCart([...cart.filter((p) => p.id !== props.id), props]);
+      openModal();
     } else {
       setCart([...cart.filter((p) => p.id !== props.id), props]);
     }
@@ -151,6 +156,7 @@ export default function Products() {
           {allSearchProductsStockFilter.length ? (
             allSearchProductsStockFilter.map((p) => {
               return (
+                <>
                 <ProductCard
                   key={p.id}
                   id={p.id}
@@ -162,7 +168,16 @@ export default function Products() {
                   discount={p.discount}
                   favs={favoritos}
                 />
-              );
+                <Modal isOpen={isOpenModal} closeModal={closeModal}>
+                  <h1 className='modalTitle'>
+                    Producto agregado a tu carrito <ThumbUpAltRoundedIcon />
+                  </h1>
+                  <p className='modalSubtitle'>
+                    Agregaste {p.name} a tu carrito exitosamente!
+                  </p>
+                </Modal>
+                </>
+                );
             })
           ) : pagProducts.length ? (
             pagProducts.map((p) => {
@@ -185,6 +200,7 @@ export default function Products() {
           )}
         </div>
       </div>
+
       <Pagination
         productsPerPage={productsPerPage}
         totalProducts={allProducts.length}

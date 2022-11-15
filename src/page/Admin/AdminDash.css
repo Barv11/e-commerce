@@ -27,8 +27,11 @@
     color: #3b0f64;
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
-    font-size: 1.7rem;
+    font-size: 1.6rem;
     text-shadow: 0px 3px 2px rgba(255,255,255,0.6);
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 8px;
 }
 
 .categoriasContainer{
@@ -37,12 +40,29 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 65vw;
+    width: 70vw;
     background: rgb(195,157,252);
     background: linear-gradient(347deg, rgba(195,157,252,1) 22%, rgba(237,216,250,1) 100%);
     box-shadow: 10px 10px 5px -2px rgba(75,46,120,0.7);
     -webkit-box-shadow: 10px 10px 5px -2px rgba(75,46,120,0.7);
     -moz-box-shadow: 10px 10px 5px -2px rgba(75,46,120,0.7);
+    border-radius: 10px;
+
+}
+
+@media (max-width: 480px){
+    .dashTitle{
+        font-size: 2.3rem;
+    }
+    .dashSubTitle{
+        font-size: 1.15rem;
+    }
+    .categoriasTxt{
+        font-size: 1.45rem;
+    }
+    .categoriasContainer{
+        width: 60vw;
+    }
 }
 
 @font-face {

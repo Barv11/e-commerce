@@ -195,7 +195,14 @@
   .userTxt {
     font-size: 0.7rem;
   }
+  .carrito::before {
+    top: -4px;
+    right: -35px;
+    width: 18px;
+    height: 18px;
+    font-size: 0.65rem;
   }
+}
 
 @font-face {
   font-family: "Heavitas";
