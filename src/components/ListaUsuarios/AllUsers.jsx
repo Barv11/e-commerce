@@ -6,14 +6,12 @@ import { useDispatch } from "react-redux";
 import { getAllUsers } from "../../redux/actions";
 import s from "../../page/Admin/AdminPage.module.css";
 import PeopleAltRoundedIcon from "@mui/icons-material/PeopleAltRounded";
-import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
-import Navbar from '../Navbar/Navbar'
+import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
+import Navbar from "../Navbar/Navbar";
 
 export default function AllUsers() {
   let dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getAllUsers());
-  }, [dispatch]);
+ 
   const [input, setInput] = useState({
     role: "",
   });
@@ -22,9 +20,11 @@ export default function AllUsers() {
   console.log(allUsers);
   const [search, setSearch] = useState("");
 
-  
+  const deploy = "https://gametech.up.railway.app";
+  const local = "http://localhost:3001";
+
   async function handleButtonBanned(userId) {
-    await axios.put(`https://gametech.up.railway.app/user/create/edit`, {
+    await axios.put(`${local}/user/create/edit`, {
       show: false,
       id: userId,
     });
@@ -32,7 +32,7 @@ export default function AllUsers() {
   }
 
   async function handleButtonUnbanned(userId) {
-    await axios.put(`https://gametech.up.railway.app/user/create/edit`, {
+    await axios.put(`${local}/user/create/edit`, {
       show: true,
       id: userId,
     });
@@ -45,7 +45,7 @@ export default function AllUsers() {
   console.log(input.role);
 
   async function handleRoleChange(id) {
-    await axios.put(`https://gametech.up.railway.app/user/create/edit`, {
+    await axios.put(`${local}/user/create/edit`, {
       id: id,
       role: input.role,
     });
@@ -57,32 +57,38 @@ export default function AllUsers() {
   };
 
   let result = !search
-  ? allUsers
-  : allUsers.filter((el) =>
-    el.userName.toLowerCase().includes(search.toLocaleLowerCase())
-  );
+    ? allUsers
+    : allUsers.filter((el) =>
+        el.userName.toLowerCase().includes(search.toLocaleLowerCase())
+      );
 
-console.log(result);
 
-useEffect(() => {
-  document.title = `Gamer Tech | Usuarios`;
-}, []);
+  useEffect(() => {
+    dispatch(getAllUsers());
+  }, [dispatch]);
+
+  useEffect(() => {
+    document.title = `Gamer Tech | Usuarios`;
+  }, []);
   return (
     <div className={s.alluserscontainer}>
       <Navbar />
       <div className={s.UserListTitleIcon}>
-        <h1 className={s.userListTxt}>User List</h1>
+        <h1 className={s.userListTxt}>Lista de Usuarios</h1>
         <div className={s.usersListIcon}>
-          <PeopleAltRoundedIcon />
+          <PeopleAltRoundedIcon fontSize={"inherit"}/>
         </div>
       </div>
-      <span className={s.buscarTxt}>Buscar Username: </span>
-          <input
-            value={search}
-            onChange={handleSearch}
-            type="text"
-            placeholder="Inserte un username..."
-          />
+      <div className={s.searchContainer}>
+        <span className={s.buscarTxt}>Buscar por Username: </span>
+        <input
+          value={search}
+          onChange={handleSearch}
+          type="text"
+          placeholder="Inserte un username..."
+          className={s.input}
+        />
+      </div>
       <Table striped bordered hover variant="light">
         <thead>
           <tr>
@@ -97,9 +103,8 @@ useEffect(() => {
           </tr>
         </thead>
         <tbody>
-          
-          {result.length > 0 ?
-            result?.map((u) => { 
+          {result.length > 0 ? (
+            result?.map((u) => {
               return (
                 <tr key={u.id}>
                   <td>{u.id}</td>
@@ -141,12 +146,15 @@ useEffect(() => {
                   )}
                   <td>
                     <button onClick={() => handleRoleChange(u.id)}>
-                      <CheckRoundedIcon/>
+                      <CheckRoundedIcon />
                     </button>
                   </td>
                 </tr>
               );
-            }): <div></div>}
+            })
+          ) : (
+            <div></div>
+          )}
         </tbody>
       </Table>
     </div>
