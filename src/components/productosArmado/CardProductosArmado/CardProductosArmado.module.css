@@ -1,31 +1,56 @@
-.containerData{
-    width: 20vw;
-    height: 40vh;
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid blueviolet;
-    border-radius: 10px;
+.container {
+  margin: 15px;
+  text-align: center;
 }
 
-.name{
-    font-size: 14px;
-    margin: 10px 0;
-
+.containerData {
+  width: 8vw;
+  height: 27vh;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  transition: 0.3s;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.containerData:hover{
-    background-color: blueviolet;
-    border: 1px solid white;
+.name {
+  font-size: 12px;
+  margin: 5px;
 }
 
-.image{
-    width: 10vw;   
-    height: 15vh;
-    margin: 0 25%;
+.containerData:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
 }
 
-.brand{
-    font-size: 1rem;
-    font-weight: 700;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+.image {
+  width: 100px;
+  height: 100px;
+}
+
+.brand {
+  font-size: 18px;
+}
+
+#addBtn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 8px;
+  border-radius: 20px;
+  transition: 0.3s;
+  border: 1px solid transparent;
+  background-color: rgba(137, 43, 226, 0.9);
+  color: white;
+}
+
+#addBtn:hover {
+  background-color: transparent;
+  transition: 0.3s;
+  border: 1px solid rgba(137, 43, 226, 0.9);
+  color: rgba(137, 43, 226, 0.9);
 }

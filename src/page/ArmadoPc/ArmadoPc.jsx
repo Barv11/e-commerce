@@ -9,7 +9,6 @@ function ArmadoPc() {
   const dispatch = useDispatch();
   const [choice, setChoice] = useState("");
   const [pcChoice, setPcChoice] = useState(false);
-  
 
   const productsIntel = useSelector((state) => state.productsIntel);
   const productsAmd = useSelector((state) => state.productsAmd);
@@ -25,24 +24,20 @@ function ArmadoPc() {
     }
   };
 
-
   console.log(productsIntel);
 
-  
   if (choice !== "" && pcChoice === true) {
     // AMD Y GAMA
     return (
       <div>
         <div>
-        {productsIntel?.length === 0 ? (
-          <ProductosArmado products={productsAmd} />
-        ) : (
-          <ProductosArmado products={productsIntel} />
-        )}
+          {productsIntel?.length === 0 ? (
+            <ProductosArmado products={productsAmd} />
+          ) : (
+            <ProductosArmado products={productsIntel} />
+          )}
         </div>
-        <div>
-
-        </div>
+        <div></div>
       </div>
     );
   }
@@ -57,74 +52,71 @@ function ArmadoPc() {
               <h2>Elije tu tipo de PC</h2>
             </>
           </div>
-          <div className={style.cardChoice}>
-            <div>
-              <h3>Work Office</h3>
+
+          <div id={style.workOffice} className={style.cardChoice}>
+            <h3>Work Office</h3>
+            <div className={style.elseContainer}>
+              <div className={style.textContainer}>
+                <li>● Tareas basicas</li>
+                <li>● Programas basicos</li>
+                <li>● Navegar en la web</li>
+              </div>
+              <div>
+                <button onClick={() => handleChoice("baja")}>Comenzar</button>
+              </div>
             </div>
-            <div>
-              Ideal para:
-              <ul>
-                <li>Tareas basicas</li>
-                <li>Programas basicos</li>
-                <li>Navegar en la web</li>
-              </ul>
-            </div>
-            <div>
-              <button onClick={() => handleChoice("baja")}>Comenzar</button>
-            </div>
+            <div className={style.filter}></div>
           </div>
 
-          <div className={style.cardChoice}>
-            <div>
-              <h3>Gaming</h3>
+          <div id={style.Gaming} className={style.cardChoice}>
+            <h3>Gaming</h3>
+            <div className={style.elseContainer}>
+              <div className={style.textContainer}>
+                <li>● Edicion de video</li>
+                <li>● Videojuegos en calidad baja</li>
+                <li>● Recursos para un estudiante</li>
+                <li>● Trabajo remotos</li>
+              </div>
+              <div>
+                <button onClick={() => handleChoice("media")}>Comenzar</button>
+              </div>
             </div>
-            <div>
-              Ideal para:
-              <ul>
-                <li>Edicion de video</li>
-                <li>Videojuegos en calidad baja</li>
-                <li>Recursos para un estudiante</li>
-                <li>Trabajo remotos</li>
-              </ul>
-            </div>
-            <div>
-              <button onClick={() => handleChoice("media")}>Comenzar</button>
-            </div>
+            <div className={style.filter}></div>
           </div>
 
-          <div className={style.cardChoice}>
-            <div>
-              <h3>Professional - Gaming</h3>
+          <div id={style.ProfAndGaming} className={style.cardChoice}>
+            <h3>Professional - Gaming</h3>
+
+            <div className={style.elseContainer}>
+              <div className={style.textContainer}>
+                <li>● Alta calidad de graficos</li>
+                <li>● Edicion de video</li>
+                <li>● Altas prestaciones</li>
+              </div>
+              <div>
+                <button onClick={() => handleChoice("alta")}>Comenzar</button>
+              </div>
             </div>
-            <div>
-              Ideal para:
-              <ul>
-                <li>Alta calidad de graficos</li>
-                <li>Edicion de video</li>
-                <li>Altas prestaciones</li>
-              </ul>
-            </div>
-            <div>
-              <button onClick={() => handleChoice("alta")}>Comenzar</button>
-            </div>
+            <div className={style.filter}></div>
           </div>
 
-          <div className={style.cardChoice}>
-            <div>
-              <h3>Gaming & Streaming</h3>
+          <div id={style.GamingAndStreaming} className={style.cardChoice}>
+            <h3>Gaming & Streaming</h3>
+
+            <div className={style.elseContainer}>
+              <div className={style.textContainer}>
+                <li>● Transmision straming</li>
+                <li>● Videojuegos en la mas alta calidad</li>
+                <li>● Edicion de video profesional</li>
+                <li>● Renderizado 3D</li>
+              </div>
+              <div>
+                <button onClick={() => handleChoice("muy alta")}>
+                  Comenzar
+                </button>
+              </div>
             </div>
-            <div>
-              Ideal para:
-              <ul>
-                <li>Transmision straming</li>
-                <li>Videojuegos en la mas alta calidad</li>
-                <li>Edicion de video profesional</li>
-                <li>Renderizado 3D</li>
-              </ul>
-            </div>
-            <div>
-              <button onClick={() => handleChoice("muy alta")}>Comenzar</button>
-            </div>
+            <div className={style.filter}></div>
           </div>
         </div>
         <Footer />
@@ -144,7 +136,7 @@ function ArmadoPc() {
             onClick={() => setChoice("AMD")}
           ></button>
         </div>
-        <PcChatBot/>
+        <PcChatBot />
         <Footer />
       </div>
     );
