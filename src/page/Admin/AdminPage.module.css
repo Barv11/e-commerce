@@ -96,6 +96,7 @@
   );
 }
 
+
 .buscarTxt {
   font-size: 18px;
   margin: 15px;
@@ -143,6 +144,17 @@
   box-shadow: 0 0 5px #000000;
 }
 
+/* MODAL ALL USERS */
+
+.modalTitle{
+  font-size: 35px;
+  font-family: Cocosharp;
+}
+
+.modalSubtitle{
+  font-family: Open Sans, sans-serif;
+}
+
 @font-face {
   font-family: "Heavitas";
   src: url("../../components/fonts/HEAVITAS.TTF");
@@ -151,4 +163,13 @@
 @font-face {
   font-family: "Open Sans", "sans-serif";
   src: url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
+}
+
+@font-face{
+  font-family: 'Cocosharp';
+  src: url('../../components/fonts/COCO-SHARP-BOLD-TRIAL.TTF');
+}
+
+@media (max-width: 480px){
+
 }

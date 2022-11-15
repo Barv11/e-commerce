@@ -8,6 +8,8 @@ import s from "../../page/Admin/AdminPage.module.css";
 import PeopleAltRoundedIcon from "@mui/icons-material/PeopleAltRounded";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import Navbar from "../Navbar/Navbar";
+import Modal from '../Modals/Modal';
+import { useModal } from '../Modals/useModal';
 
 export default function AllUsers() {
   let dispatch = useDispatch();
@@ -19,8 +21,10 @@ export default function AllUsers() {
   const allUsers = useSelector((state) => state.allUsers);
   console.log(allUsers);
   const [search, setSearch] = useState("");
+  const [isOpenModal, openModal, closeModal] = useModal(false);
 
-  const deploy = "https://gametech.up.railway.app";
+
+  // const deploy = "https://gametech.up.railway.app";
   const local = "http://localhost:3001";
 
   async function handleButtonBanned(userId) {
@@ -49,8 +53,8 @@ export default function AllUsers() {
       id: id,
       role: input.role,
     });
-    alert("Rol cambiado con exito!");
-  }
+    openModal();
+   }
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
@@ -148,6 +152,10 @@ export default function AllUsers() {
                     <button onClick={() => handleRoleChange(u.id)}>
                       <CheckRoundedIcon />
                     </button>
+                    <Modal isOpen={isOpenModal} closeModal={closeModal}>
+                      <h1 className={s.modalTitle}>Rol asinado con éxito</h1>
+                      <p className={s.modalSubtitle}>Has asignado el rol {u.role} exitosamente.</p>
+                    </Modal>
                   </td>
                 </tr>
               );
