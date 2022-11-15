@@ -1,6 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import { CardProductosArmado } from '../../../components'
 import style from '../ContainerProductosArmado/ContainerProductos.module.css';
+
 function ContainerProductos({items, title, handleAdded}) {
 
 
@@ -10,6 +12,7 @@ function ContainerProductos({items, title, handleAdded}) {
     <div className={style.globalContainer}>
       {items?.map(e => {
         return (
+          <Link to={"/detail/" + e.id}>
           <CardProductosArmado 
           key={e.id}
           id={e.id}
@@ -17,10 +20,10 @@ function ContainerProductos({items, title, handleAdded}) {
           name={e.name} 
           brand={e.brand}
           cost={e.cost}
-          details={e.details}
           type={e.type}
           handleAdded={handleAdded}
           />
+          </Link>
         )
 
       })}

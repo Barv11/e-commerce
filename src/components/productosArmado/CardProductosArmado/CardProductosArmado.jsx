@@ -13,14 +13,6 @@ function CardProductosArmado({id, name, brand, img, details, type, cost, handleA
         <div className={style.brand}>
             {brand}
         </div>
-        { type === 'mother' 
-        ?  
-        <div>
-            {details ? details.Socket[0] : details.Socket}
-        </div> 
-        : 'No details'
-        }
-        
         <div className={style.brand}>
             ${cost} ARG
         </div>

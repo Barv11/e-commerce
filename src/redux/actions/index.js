@@ -217,6 +217,7 @@ export const getCartProduct = (id) => async (dispatch) => {
   const obj = { id: id };
 
   const productos = await axios.post(`${url}/cart/get`, obj);
+  console.log(productos)
   dispatch({ type: GET_CART_PRODUCTS, payload: productos });
 };
 
@@ -226,8 +227,8 @@ export const clearCartProduct = () => (dispatch) => {
 
 export const addCartProduct = (id, array) => async (dispatch) => {
   const obj = { id: id, productosCarrito: array };
-
-  const a = await axios.post(`${url}/cart/create`, obj);
+  console.log(obj)
+  await axios.post(`${url}/cart/create`, obj);
   dispatch({ type: ADD_CART_PRODUCTS });
 };
 
