@@ -46,7 +46,6 @@ export default function CardDetail(props) {
   const handleCart = (props) => {
     if (user.logged) {
       dispatch(addCartProduct(userFound.id, [props]));
-      console.log([props]);
       setCart([...cart.filter((p) => p.id !== props.id), props]);
     } else {
       setCart([...cart.filter((p) => p.id !== props.id), props]);
@@ -70,7 +69,6 @@ export default function CardDetail(props) {
       }
     }
   };
-  console.log('detail', userFound)
 
   useEffect(() => {
     // dispatch(getAllProductos());
@@ -80,7 +78,6 @@ export default function CardDetail(props) {
 
   useEffect(() => {
     if (Object.entries(searchByIdProduct).length !== 0) {
-      console.log(image);
       setImage(img[0]);
       document.title = `Gamer Tech | ${searchByIdProduct.name}`;
     }

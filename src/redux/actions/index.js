@@ -51,7 +51,6 @@ let url = "http://localhost:3001";
 
 let token = null;
 export const saveToken = (newToken) => {
-  console.log(newToken);
   token = `Bearer ${newToken}`;
 };
 
@@ -150,7 +149,6 @@ export const updateProduct = (product) => async (dispatch) => {
     };
     const { id, name, brand, img, details, cost, type } = product;
     const mio = { id, name, brand, img, details, cost, type };
-    console.log(mio);
     const response = await axios.put(
       `${url}/productos/update/${id}`,
       {
@@ -165,7 +163,6 @@ export const updateProduct = (product) => async (dispatch) => {
     );
     dispatch({ type: UPDATE_PRODUCT, payload: response.data.message });
   } catch (error) {
-    console.log(error);
   }
 };
 
@@ -275,7 +272,6 @@ export const getCartProduct = (id) => async (dispatch) => {
   const obj = { id: id };
 
   const productos = await axios.post(`${url}/cart/get`, obj);
-  console.log(productos);
   dispatch({ type: GET_CART_PRODUCTS, payload: productos });
 };
 
@@ -285,7 +281,6 @@ export const clearCartProduct = () => (dispatch) => {
 
 export const addCartProduct = (id, array) => async (dispatch) => {
   const obj = { id: id, productosCarrito: array };
-  console.log(obj);
   await axios.post(`${url}/cart/create`, obj);
   dispatch({ type: ADD_CART_PRODUCTS });
 };
@@ -378,8 +373,6 @@ export const getOneUser = () => async (dispatch) => {
 
 export const editDiscount = (id, descuento) => async (dispatch) => {
   axios.post(`${url}/discount`, { productId: id, discount: descuento });
-  console.log(descuento);
-  console.log(id);
   dispatch({ type: EDIT_DISCOUNT });
 };
 
@@ -389,7 +382,6 @@ export const editStock = (id, stockProd) => async (dispatch) => {
 };
 
 export const getIntel = (pcType) => async (dispatch) => {
-  console.log(pcType);
   const allIntel = await axios.get(`${url}/productos/intel?pcType=${pcType}`);
   dispatch({ type: GET_INTEL, payload: allIntel.data });
 };
@@ -432,15 +424,12 @@ export const deleteAllFavorito = (userId) => async (dispatch) => {
 };
 
 export const userUpdate = (userImage) => async (dispatch) => {
-  // console.log(userImage)
   const obj = { picture: userImage };
-  console.log(obj);
   const config = {
     headers: {
       authorization: token,
     },
   };
-  console.log(config);
   const userEdit = await axios.put(`${url}/user/create/edit`, obj, config);
   dispatch({ type: UPDATE_USER, payload: userEdit });
 };

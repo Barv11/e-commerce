@@ -63,7 +63,6 @@ export default function Register() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!Object.keys(error).length && input.username !== "") {
-      console.log("register");
       dispatch(userRegister(input));
       setInput({
         username: "",

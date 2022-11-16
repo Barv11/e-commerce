@@ -12,7 +12,6 @@ import { clearMessage } from "../../redux/actions";
 export default function AdminDash() {
   const userFound = useSelector((state) => state.userFound);
   const dispatch = useDispatch()
-  console.log("admindash user", userFound);
 
   useEffect(() => {
     document.title = `Gamer Tech | Admin`;

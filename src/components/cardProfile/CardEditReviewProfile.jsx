@@ -79,7 +79,6 @@ export default function CardEditReviewProfile() {
   useEffect(() => {
     dispatch(searchReview(id));
   }, []);
-  console.log("estaddo review", review);
   return (
     <>
       <Navbar />
@@ -118,7 +117,6 @@ export default function CardEditReviewProfile() {
               value={review.rating}
               size="large"
               onChange={(event, newValue) => {
-                console.log(event);
                 if (newValue < 1)
                   setError({
                     ...error,

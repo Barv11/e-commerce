@@ -6,10 +6,8 @@ import Help from "./Help/Help";
 
 export default function PcChatBot() {
   const navigate = useNavigate();
-  const [chat, setChat] = useState(false);
 
   const handlerTrigger = ({ value, steps }) => {
-    console.log({ steps, value });
     navigate(`/${value}`);
     return "end-chat";
   };
@@ -107,33 +105,7 @@ export default function PcChatBot() {
       end: true,
     },
   ];
-
-  // const handleEnd = ({ steps, values }) => {
-  //   console.log({ steps, values });
-  //   navigate(`/${values[1]}`)
-  // };
-
   return (
-    // <div className={s.container}>
-    //   <div className={chat ? s.cardChatOpen : s.cardChatClosed}>
-    //     <ChatBot
-    //     headerTitle={'Gamer Tech - Chat'}
-    //       bubbleOptionStyle={{ padding: "12px 16px" }}
-    //       // bubbleStyle={{ background: "red" }}
-    //       steps={steps}
-    //       enableMobileAutoFocus={true}
-    //       enableSmoothScroll={true}
-    //     />
-    //     <button onClick={() => setChat(false)} className={s.closed}>
-    //       <i class="uil uil-times"></i>
-    //     </button>
-    //   </div>
-
-    //   <button onClick={() => setChat(true)} className={chat ? s.open2 : s.open}>
-    //     <i class="uil uil-comment-alt"></i>
-    //   </button>
-    // </div>
-
     <ChatBot
       headerTitle={"Gamer Tech - Chat"}
       bubbleOptionStyle={{ padding: "12px 16px" }}

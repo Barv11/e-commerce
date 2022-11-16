@@ -9,10 +9,8 @@ export default function Paybutton({ cartItem }) {
   let local = "http://localhost:3001/";
   let deployed = "https://gametech.up.railway.app/";
   const userFound = useSelector((state) => state.userFound);
-  console.log(userFound);
   const handleCheckout = () => {
     if (user.logged) {
-      console.log(cartItem);
       axios
         .post(
           `${local}pago`,

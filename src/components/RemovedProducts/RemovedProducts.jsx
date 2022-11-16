@@ -65,7 +65,6 @@ export default function RemovedProducts() {
           el.name.toLowerCase().includes(search.toLocaleLowerCase())
         );
   
-    console.log(result);
   
     useEffect(() => {
       dispatch(getDeleteProducts());

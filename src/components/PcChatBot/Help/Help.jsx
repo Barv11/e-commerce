@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import s from "./Help.module.css";
 
 export default function Help(props) {
-  console.log(props);
 
   return (
     <div className={s.container} style={{ width: "100%" }}>

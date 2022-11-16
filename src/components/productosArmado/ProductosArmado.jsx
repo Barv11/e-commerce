@@ -40,7 +40,6 @@ function ProductosArmado({ products }) {
     dispatch(searchProductById('clear'))
   },[dispatch])
   
-  console.log(searchByIdProduct)
 
   const handleAdded = (e) => {
     
@@ -51,7 +50,6 @@ function ProductosArmado({ products }) {
   
   
 
-  // console.log(pcArmada)
 
   
   if(procesador.length && mother.length){

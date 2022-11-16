@@ -68,7 +68,6 @@ export default function Products() {
   const handleCart = (props) => {
     if (user.logged) {
       dispatch(addCartProduct(userFound.id, [props]));
-      console.log([props]);
       setCart([...cart.filter((p) => p.id !== props.id), props]);
       openModal();
     } else {
@@ -88,7 +87,6 @@ export default function Products() {
     dispatch(getAllFavoritos(userFound?.id));
   }, [dispatch]);
 
-  console.log(allProductsStockFilter);
 
   //ORDENAMIENTO
   const OrderName = (event) => {
