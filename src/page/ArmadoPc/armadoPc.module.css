@@ -1,121 +1,200 @@
-.choice{
-    display: flex;
-    align-items: center;
-    justify-content:space-evenly;
-    height: calc(100vh - 117px);
+.choice {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: calc(100vh - 117px);
 }
 
-.intel{
-    border-style: none;
-    width: 40%;
-    height: 80%;
-    margin: 5px;
-    border-radius: 10px;
-    background-image: url('https://res.cloudinary.com/dhadvdeca/image/upload/v1668048204/intelImage_or4qfu.jpg');
-    background-size: cover;
-    background-position: center;
-    filter: grayscale(100%);
-    transition: filter 1s;
-    box-shadow:  0 -5px 10px #2677ad;
+.intel {
+  border-style: none;
+  width: 40%;
+  height: 80%;
+  margin: 5px;
+  border-radius: 10px;
+  background-image: url("https://res.cloudinary.com/dhadvdeca/image/upload/v1668048204/intelImage_or4qfu.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(100%);
+  transition: filter 1s;
+  box-shadow: 0 -5px 10px #2677ad;
 }
 
-.intel:hover{
-    animation: intel 2s linear infinite ;
-    filter: grayscale(0%)
+.intel:hover {
+  animation: intel 2s linear infinite;
+  filter: grayscale(0%);
 }
 @keyframes intel {
-    0% { box-shadow: 0 -5px 20px 10px #2677ad;}
-    17% { box-shadow: 5px -5px 20px 10px #2677ad;}
-    34% { box-shadow: 5px 5px 20px 10px #2677ad;}
-    50% { box-shadow: 0 5px 20px 10px #2677ad;}
-    67% { box-shadow: -5px 5px 20px 10px #2677ad;}
-    84% { box-shadow: -5px -5px 20px 10px #2677ad;}
-    100% { box-shadow: 0 -5px 20px 10px #2677ad;}
+  0% {
+    box-shadow: 0 -5px 20px 10px #2677ad;
   }
-
-.amd{
-     border-style:none;
-     width: 40%;
-     height: 80%;
-     margin: 5px;
-     border-radius: 10px;
-     background-image: url('https://res.cloudinary.com/dhadvdeca/image/upload/v1668048209/amdimage_epxhcq.jpg');
-     background-size: cover;
-     background-position: center;
-     filter: grayscale(100%);
-     transition: filter 1s;
-     box-shadow:  0 -5px 10px #ebd937;
+  17% {
+    box-shadow: 5px -5px 20px 10px #2677ad;
+  }
+  34% {
+    box-shadow: 5px 5px 20px 10px #2677ad;
+  }
+  50% {
+    box-shadow: 0 5px 20px 10px #2677ad;
+  }
+  67% {
+    box-shadow: -5px 5px 20px 10px #2677ad;
+  }
+  84% {
+    box-shadow: -5px -5px 20px 10px #2677ad;
+  }
+  100% {
+    box-shadow: 0 -5px 20px 10px #2677ad;
+  }
 }
 
+.amd {
+  border-style: none;
+  width: 40%;
+  height: 80%;
+  margin: 5px;
+  border-radius: 10px;
+  background-image: url("https://res.cloudinary.com/dhadvdeca/image/upload/v1668048209/amdimage_epxhcq.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(100%);
+  transition: filter 1s;
+  box-shadow: 0 -5px 10px #ebd937;
+}
 
 .amd:hover {
-    animation: amd 2s linear infinite ;
-    filter: grayscale(0%)
+  animation: amd 2s linear infinite;
+  filter: grayscale(0%);
 }
 @keyframes amd {
-    0% { box-shadow: 0 -5px 20px 10px #ebd937;}
-    17% { box-shadow: 5px -5px 20px 10px #ebd937;}
-    34% { box-shadow: 5px 5px 20px 10px #ebd937;}
-    50% { box-shadow: 0 5px 20px 10px #ebd937;}
-    67% { box-shadow: -5px 5px 20px 10px #ebd937;}
-    84% { box-shadow: -5px -5px 20px 10px #ebd937;}
-    100% { box-shadow: 0 -5px 20px 10px #ebd937;}
+  0% {
+    box-shadow: 0 -5px 20px 10px #ebd937;
   }
+  17% {
+    box-shadow: 5px -5px 20px 10px #ebd937;
+  }
+  34% {
+    box-shadow: 5px 5px 20px 10px #ebd937;
+  }
+  50% {
+    box-shadow: 0 5px 20px 10px #ebd937;
+  }
+  67% {
+    box-shadow: -5px 5px 20px 10px #ebd937;
+  }
+  84% {
+    box-shadow: -5px -5px 20px 10px #ebd937;
+  }
+  100% {
+    box-shadow: 0 -5px 20px 10px #ebd937;
+  }
+}
 
 .amd:hover .choice {
-    background-color: #09418b;
+  background-color: #09418b;
 }
 
-.cardContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    border-radius: 15px;
-    margin: 15px;
-    padding: 10px;
-    background: #ebebeb;
+.cardContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 15px;
+  margin: 15px;
+  padding: 10px;
+  background: #ebebeb;
 }
 
-.titleChoice{
-    text-align: end;
+.titleChoice {
+  text-align: end;
 }
 
-.cardChoice{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 70vw;
-    height: 30vh;
-    border: 2px solid #69329c;
-    margin: 5px;
-    padding: 25px;
-    overflow: hidden;
-    
+.cardChoice {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 70vw;
+  height: 35vh;
+  position: relative;
+  margin: 20px;
 }
 
-.cardChoice:hover{
-    border: 2px dotted #57308B;
-}
-.cardChoice button{
-    padding: 10px;
-    border-radius: 5px;
-    border-style: none;
-    transition: background 0.5s;
-    
+.cardChoice h3 {
+  z-index: 1;
+  font-size: 33px;
 }
 
-.cardChoice button:hover{
-    background: #69329c;
-    color: white;
+.cardChoice button {
+  padding: 10px 40px;
+  border-radius: 5px;
+  background-color: #69329c;
+  color: white;
+  border: 1px solid transparent;
+  transition: 0.3s;
 }
 
-.cardChoice:hover{
-    border-radius: 20px;
-    animation: rounded 0.5s linear 1;
+.cardChoice button:hover {
+  background: white;
+  color: #69329c;
+  transition: 0.3s;
 }
 
+.cardChoice:hover .filter {
+  /* animation: rounded 0.5s linear 1; */
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: 0.3s;
+}
+/* 
 @keyframes rounded {
-    from{ border-radius: 0}
-    to{ border-radius: 20px}
+  from {
+    border-radius: 0;
+  }
+  to {
+    border-radius: 20px;
+  }
+} */
+
+#workOffice {
+  background-image: url("https://www.smartservice.com/wp-content/uploads/2021/03/office-dispatch-computer.png");
+  background-size: 100% auto;
+}
+
+#Gaming {
+  background-image: url("https://i.pinimg.com/736x/13/81/e8/1381e8dcbecf48b1ca6890871a289100.jpg");
+  background-size: 100% auto;
+}
+
+#ProfAndGaming {
+  background-image: url("https://dlcdnrog.asus.com/rog/media/1644549597584.webp");
+  background-size: 100% auto;
+}
+
+#GamingAndStreaming {
+  background-image: url("https://cdn.autonomous.ai/static/upload/images/common/upload/20220128/The-Ultimate-Guide-to-a-Pro-Gaming-Setup-for-2022_31e44bcfa06.jpg");
+  background-size: 100% auto;
+}
+
+.filter {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  transition: 0.3s;
+}
+
+.elseContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  z-index: 1;
+}
+
+.textContainer {
+  margin: 20px;
+  width: 500px;
+  font-size: 19px;
 }

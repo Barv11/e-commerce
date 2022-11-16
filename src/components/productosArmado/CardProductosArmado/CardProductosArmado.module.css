@@ -1,0 +1,56 @@
+.container {
+  margin: 15px;
+  text-align: center;
+}
+
+.containerData {
+  width: 8vw;
+  height: 27vh;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  transition: 0.3s;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.name {
+  font-size: 12px;
+  margin: 5px;
+}
+
+.containerData:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.image {
+  width: 100px;
+  height: 100px;
+}
+
+.brand {
+  font-size: 18px;
+}
+
+#addBtn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 8px;
+  border-radius: 20px;
+  transition: 0.3s;
+  border: 1px solid transparent;
+  background-color: rgba(137, 43, 226, 0.9);
+  color: white;
+}
+
+#addBtn:hover {
+  background-color: transparent;
+  transition: 0.3s;
+  border: 1px solid rgba(137, 43, 226, 0.9);
+  color: rgba(137, 43, 226, 0.9);
+}

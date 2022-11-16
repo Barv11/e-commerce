@@ -8,6 +8,7 @@
   border-bottom: 1px solid black;
 }
 .container img {
+  object-fit: cover;
   width: 100px;
   height: 100px;
   margin: 10px;
@@ -29,45 +30,54 @@
 }
 
 .textContainer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 520px;
-    margin-right: 30px;
-  }
-  
-  .textContainer input {
-    width: 60px;
-    padding-left: 15px;
-  }
-  
-  .trashCan {
-    transition: 0.2s;
-  }
-  
-  .trashCan:hover {
-    color: red;
-    cursor: pointer;
-    transition: 0.2s;
-  }
-  
-  .textContainer i {
-    font-size: 28px;
-  }
-  
-  .textContainer h3 {
-    margin-right: 0px;
-  }
-  
-  .costContainer h5{
-    font-size: 14px;
-    position: absolute;
-    top: -50%;
-    right: 10%;
-    text-decoration: line-through;
-  }
-  
-  .costContainer{
-    text-align: center;  
-    position: relative;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 520px;
+  margin-right: 30px;
+}
+
+.textContainer input {
+  width: 60px;
+  padding-left: 15px;
+}
+
+.cart {
+  transition: 0.2s;
+}
+
+.cart:hover {
+  color: rgb(121, 202, 0);
+  cursor: pointer;
+  transition: 0.2s;
+}
+.trashCan {
+  transition: 0.2s;
+}
+
+.trashCan:hover {
+  color: red;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.textContainer i {
+  font-size: 28px;
+}
+
+.textContainer h3 {
+  margin-right: 0px;
+}
+
+.costContainer h5 {
+  font-size: 14px;
+  position: absolute;
+  top: -50%;
+  right: 10%;
+  text-decoration: line-through;
+}
+
+.costContainer {
+  text-align: center;
+  position: relative;
+}

@@ -1,29 +1,50 @@
 .container {
+  width: 100%;
   height: 100%;
   display: flex;
+  flex-flow: row nowrap;
 }
 
 .sideBar {
-  width: 20%;
+  flex-basis: 20%;
+  padding-top: 1em;
+  width: auto;
+  height: auto;
   margin: 10px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: 1em;
 }
 
 .productsContainer {
+  flex-basis: 80%;
   margin: 10px;
   width: 80%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
   align-content: flex-start;
   align-items: center;
 }
 
 .AZbutton {
+  width: 90%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 1em;
-  gap: 1em;
+  justify-content: space-between;
+  flex-flow: row nowrap;
+  padding: 0.5em 1em;
+  /* background-color: #888888; */
+
+  border-radius: 10px;
+  border: 2px solid #8a2be2;
+}
+
+.AZbutton > span {
+  flex-basis: 20%;
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 .AZbutton button {
@@ -32,7 +53,7 @@
   font-weight: 600;
   border: none;
   border: 2px solid blueviolet;
-  background-color: rgb(255, 255, 255);
+  background-color: #ebebeb;
   color: rgb(32, 32, 32);
   transition: 0.3s;
 }
@@ -43,12 +64,18 @@
   transition: 0.3s;
 }
 
+.order {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1em;
+}
+
 .filtros {
   margin: 15px;
 }
 
 .form {
-  width: 100%;
+  width: 90%;
   height: 40px;
   margin: 2em 0;
   position: relative;
@@ -57,13 +84,33 @@
   justify-content: center;
 }
 
+.render {
+  width: 10%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.render > span {
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+}
+
+.renderselec {
+  background-color: #d6d6d6;
+  border-radius: 5px;
+}
+
+
 .form input {
   width: 100%;
   font-size: 1rem;
   border: none;
   outline: 1.5px solid #7e45b4;
   border-radius: 10px;
-  background-color: #ffffff;
+  background-color: #ebebeb;
   height: 100%;
   padding-left: 10px;
   padding-right: 45px;
@@ -83,19 +130,40 @@
 
 .form input:focus {
   box-shadow: 0 0 3px 1px #511886;
-
 }
 
-@media (max-width: 600px){
-  .form{
+.modalTitle {
+  font-size: 35px;
+  font-family: "Cocosharp";
+}
+
+.modalSubtitle {
+  font-family: "Open Sans", sans-serif;
+}
+
+@font-face {
+  font-family: Cocosharp;
+  src: url("../../components/fonts/COCO-SHARP-BOLD-TRIAL.TTF");
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
+}
+
+@media (max-width: 600px) {
+  .container {
+    flex-direction: column;
+  }
+  .form {
     height: 35px;
     margin: 1.7em 0;
     width: 80%;
   }
-  .form input{
+  .form input {
     font-size: 0.8rem;
   }
-  .form i{
+  .form i {
     font-size: 1.3rem;
   }
 }

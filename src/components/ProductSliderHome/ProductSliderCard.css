@@ -1,64 +1,75 @@
 .containerProdCard {
-    height: 310px;
-    width: 100%;
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    text-align: center;
-    background: linear-gradient(
-      0deg,
-      rgb(240, 212, 240) 25%,
-      rgba(70, 151, 236, 0) 100%
-    );
-  }
-  
-  .imgProdCard {
-    padding-top: 1em;
-    max-width: 80%;
-  }
-
-  .sliderCardName {
-    font-size: 1.2rem;
-    color: #665873;
-    margin-top: 10px;
-    justify-content: center;
-    align-items: center;
-  }
-
-.sliderCardCost {
-    font-size: 1.8rem;
-    color: #51217d;
-    font-weight: bold;
+  width: 100%;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 10px;
+  text-align: center;
+  background: linear-gradient(
+    0deg,
+    #3038d000 0%,
+    #eba100d7 100%
+  );
 }
 
+.imgProdCard {
+  width: 80%;
+}
+
+.sliderCardName {
+  font-size: 1.2rem;
+  color: #665873;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.sliderCardCost {
+  font-size: 1.8rem;
+  color: #51217d;
+  font-weight: 600;
+}
+
+.swiperslider {
+  background-color: #e0bb6a;
+
+}
+
+.sliderProd {
+  background-color: #e0bb6a;
+}
+
+
 .destacadosTxt {
-    font-size: 1.7rem;
-    margin-top: 30px;
-    margin-left: 15px;
-    font-family: Franklin Gothic;
-    color: #5f516c;
+  background-color: #d1d1d1;
+  font-size: 1.7rem;
+  text-align: center;
+  margin-top: 30px;
+  margin-left: 15px;
+  padding: 0.6em 0;
+  font-family: "Montserrat";
+  font-weight: 600;
+  color: #5f516c;
 }
 
 @font-face {
-    font-family: "Franklin Gothic";
-    src: url('../fonts/FRAMD.TTF');
+  font-family: "Franklin Gothic";
+  src: url("../fonts/FRAMD.TTF");
 }
 
-@media (max-width: 600px){
-  .sliderCardName{
-    font-size: 1,1rem;
+@media (max-width: 600px) {
+  .sliderCardName {
+    font-size: 1, 1rem;
     max-width: 90%;
   }
-  .sliderCardCost{
+  .sliderCardCost {
     font-size: 1.5rem;
   }
-  .imgProdCard{
+  .imgProdCard {
     max-height: 55%;
   }
-  .destacadosTxt{
+  .destacadosTxt {
     font-size: 1.4rem;
   }
 }

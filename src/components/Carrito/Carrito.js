@@ -118,8 +118,15 @@ export default function Carrito() {
   }, 0);
 
   const totalDbProductsValue = dbProducts?.reduce((acc, p) => {
-    return acc + p.cost * p.quantity;
+    const discountCost = (p.discount * p.cost) / 100;
+    if (p.discount === 0) {
+      return acc + p.cost * p.quantity;
+    } else {
+      return acc + (p.cost - discountCost) * p.quantity;
+    }
   }, 0);
+
+  // console.log(cartProducts)
 
   return (
     <div className={s.mainContainer}>

@@ -15,7 +15,7 @@ export default function AdminSideBar(){
                 <Link style={{ textDecoration: 'none' }} to={'/create'}>
                     <h2 className={s.catTxt}>Crear Producto</h2>
                 </Link>
-                <Link style={{ textDecoration: 'none' }} to={'/edit'}>
+                <Link style={{ textDecoration: 'none' }} to={'/inventory'}>
                     <h2 className={s.catTxt}>Ver Productos</h2>
                 </Link>
                 <Link style={{ textDecoration: 'none' }} to={'/orden'}>

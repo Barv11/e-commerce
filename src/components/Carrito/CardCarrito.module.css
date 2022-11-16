@@ -60,13 +60,14 @@
   right: 10%;
   text-decoration: line-through;
 }
-
+ 
 .costContainer{
   text-align: center;  
   position: relative;
 }
 
 .container img {
+  object-fit: cover;
   width: 100px;
   height: 100px;
   margin: 10px;
@@ -78,7 +79,12 @@
   }
   .container h3 {
     margin-left: 4px;
-    font-size: 16px;
+    font-size: 14px;
+  }
+  .container img{
+    width: 70px;
+    height: 70px;
+    margin: 6px;
   }
   .textContainer{
     width: 480px;

@@ -49,6 +49,10 @@
   flex-direction: column;
   align-items: center;
 }
+.name{
+  color: white;
+  font-size: 2rem;
+}
 /* .insideItem{
     display: flex;
     flex-direction: column; 
@@ -57,3 +61,12 @@
     width: 50%;
         
     } */
+.imgContainer{
+  width: 13vw;
+}
+.inputImg{
+  width: 80%;
+  font-size: 13px;
+  padding: 5px;
+  margin: 0 10px;
+}

@@ -20,6 +20,7 @@ import About from "../components/About/About";
 import AllUsers from "../components/ListaUsuarios/AllUsers";
 import CardEditReviewProfile from "../components/cardProfile/CardEditReviewProfile";
 import RemovedProducts from "../components/RemovedProducts/RemovedProducts";
+import AdminDash from "../page/Admin/AdminDash";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +43,8 @@ function App() {
     }
   }, []);
 
+  console.log(user.logged)
+
   return (
     <Routes>
         <Route exact path={"/"} element={<Home />} />
@@ -54,7 +57,7 @@ function App() {
         <Route path={"/edit/review/:id"} element={<CardEditReviewProfile />} />
         <Route path={"/inventory"} element={<EditProducts />} />
         <Route path={"/trash"} element={<RemovedProducts />} />
-        <Route path={"/admin"} element={<AdminPage />} />
+        <Route path={"/admin"} element={<AdminDash />} />
         <Route path={"/orden"} element={<Orden />} />
         <Route path={"/carrito"} element={<Carrito />} />
         <Route path={"/favoritos"} element={<Favoritos />} />
