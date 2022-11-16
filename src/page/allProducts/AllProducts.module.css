@@ -4,8 +4,11 @@
 }
 
 .sideBar {
-  width: 20%;
+  width: auto;
+  height: auto;
   margin: 10px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .productsContainer {
@@ -107,6 +110,9 @@
 }
 
 @media (max-width: 600px){
+  .container{
+    flex-direction: column;
+  }
   .form{
     height: 35px;
     margin: 1.7em 0;
