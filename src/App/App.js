@@ -1,5 +1,5 @@
 import { Route, Routes, Router } from "react-router-dom";
-import { Products, Home, Profile, ArmadoPc } from "../page";
+import { Products, Home, Profile, ArmadoPc, Faq } from "../page";
 import {
   CardDetail,
   Login,
@@ -65,6 +65,7 @@ function App() {
         <Route path={"/about"} element={<About />} />
         <Route path={"/armado"} element={<ArmadoPc />} />
         <Route path={"/users"} element={<AllUsers />} />
+        <Route path={"/faq"} element={<Faq />} />
       </Routes>
   );
 }
