@@ -141,7 +141,7 @@ function rootReducer(state = initialState, action) {
     case CLEAR_MESSAGE:
       return {
         ...state,
-        message: action.payload,
+        message: "",
       };
     case DELETE_PRODUCT:
       return {

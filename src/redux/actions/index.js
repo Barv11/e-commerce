@@ -118,7 +118,7 @@ export const postImage = (file) => async (dispatch) => {
 };
 
 export const clearMessage = () => (dispatch) => {
-  return { type: CLEAR_MESSAGE, payload: '' };
+  dispatch({ type: CLEAR_MESSAGE });
 };
 
 export function postProduct(payload) {
