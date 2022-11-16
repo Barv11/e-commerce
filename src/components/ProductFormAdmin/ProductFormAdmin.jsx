@@ -600,7 +600,6 @@ function ProductFormAdmin() {
                         placeholder=""
                         type="number"
                         min="0"
-                        max="5"
                         name="connectivity"
                         data-subname="Cantidad De Slot Pci-e 16X"
                         onChange={handlerOnObj}
@@ -618,7 +617,6 @@ function ProductFormAdmin() {
                         placeholder=""
                         type="number"
                         min="0"
-                        max="5"
                         name="connectivity"
                         data-subname="Cantidad De Slot Pci-e 1X"
                         onChange={handlerOnObj}
@@ -636,7 +634,6 @@ function ProductFormAdmin() {
                         placeholder=""
                         type="number"
                         min="0"
-                        max="5"
                         name="connectivity"
                         data-subname="Tecnologia Multi Gpu"
                         onChange={handlerOnObj}
@@ -654,7 +651,6 @@ function ProductFormAdmin() {
                         placeholder=""
                         type="number"
                         min="0"
-                        max="6"
                         name="connectivity"
                         data-subname="Puertos Sata"
                         onChange={handlerOnObj}
@@ -668,7 +664,6 @@ function ProductFormAdmin() {
                         placeholder=""
                         type="number"
                         min="0"
-                        max="3"
                         name="connectivity"
                         data-subname="Salida Vga"
                         onChange={handlerOnObj}
@@ -682,7 +677,6 @@ function ProductFormAdmin() {
                         placeholder=""
                         type="number"
                         min="0"
-                        max="3"
                         name="connectivity"
                         data-subname="Salida HDMI"
                         onChange={handlerOnObj}
@@ -696,7 +690,6 @@ function ProductFormAdmin() {
                         placeholder=""
                         type="number"
                         min="0"
-                        max="3"
                         name="connectivity"
                         data-subname="Salida Dvi"
                         onChange={handlerOnObj}
@@ -710,7 +703,6 @@ function ProductFormAdmin() {
                         placeholder=""
                         type="number"
                         min="0"
-                        max="3"
                         name="connectivity"
                         data-subname="Salidas Display Ports"
                         onChange={handlerOnObj}
@@ -728,7 +720,6 @@ function ProductFormAdmin() {
                         placeholder=""
                         type="number"
                         min="0"
-                        max="4"
                         name="connectivity"
                         data-subname="Cantidad de Slot M.2 Totales"
                         onChange={handlerOnObj}
@@ -786,7 +777,6 @@ function ProductFormAdmin() {
                         placeholder=""
                         type="number"
                         min="0"
-                        max="8"
                         name="connectivity"
                         data-subname="Puertos Usb 2.0 Traseros"
                         onChange={handlerOnObj}
@@ -804,7 +794,6 @@ function ProductFormAdmin() {
                         placeholder=""
                         type="number"
                         min="0"
-                        max="8"
                         name="connectivity"
                         data-subname="Puertos Usb 3.0 Traseros"
                         onChange={handlerOnObj}
@@ -822,7 +811,6 @@ function ProductFormAdmin() {
                         placeholder=""
                         type="number"
                         min="0"
-                        max="8"
                         name="connectivity"
                         data-subname="Puertos Usb 3.1 Traseros"
                         onChange={handlerOnObj}
@@ -840,7 +828,6 @@ function ProductFormAdmin() {
                         placeholder=""
                         type="number"
                         min="0"
-                        max="8"
                         name="connectivity"
                         data-subname="Puertos Usb 3.2 Traseros"
                         onChange={handlerOnObj}
@@ -858,7 +845,6 @@ function ProductFormAdmin() {
                         placeholder=""
                         type="number"
                         min="0"
-                        max="8"
                         name="connectivity"
                         data-subname="Puertos Usb Type-c"
                         onChange={handlerOnObj}
@@ -874,7 +860,6 @@ function ProductFormAdmin() {
                         placeholder=""
                         type="number"
                         min="0"
-                        max="5"
                         name="connectivity"
                         data-subname="Cantidad De Slot Pci-e 4X"
                         onChange={handlerOnObj}
@@ -892,7 +877,6 @@ function ProductFormAdmin() {
                         placeholder=""
                         type="number"
                         min="0"
-                        max="5"
                         name="connectivity"
                         data-subname="Cantidad De Slot M.2 Sata"
                         onChange={handlerOnObj}
@@ -910,7 +894,6 @@ function ProductFormAdmin() {
                         placeholder=""
                         type="number"
                         min="0"
-                        max="5"
                         name="connectivity"
                         data-subname="Cantidad De Slot M.2 Nvme"
                         onChange={handlerOnObj}
@@ -992,7 +975,6 @@ function ProductFormAdmin() {
                         placeholder=""
                         type="number"
                         min="0"
-                        max="4"
                         name="energy"
                         data-subname="Conectos Cpu 4Pines"
                         onChange={handlerOnObj}
@@ -1006,7 +988,6 @@ function ProductFormAdmin() {
                         placeholder=""
                         type="number"
                         min="0"
-                        max="4"
                         name="energy"
                         data-subname="Conector Cpu 4Pines Plus"
                         onChange={handlerOnObj}
@@ -1022,7 +1003,6 @@ function ProductFormAdmin() {
                         placeholder=""
                         type="number"
                         min="0"
-                        max="4"
                         name="energy"
                         data-subname="Conector 24Pines"
                         onChange={handlerOnObj}
@@ -1074,7 +1054,6 @@ function ProductFormAdmin() {
                       placeholder=""
                       type="number"
                       min="0"
-                      max="8"
                       name="Memory"
                       data-subname="Ddr4"
                       onChange={handlerOnObj}
@@ -1116,7 +1095,6 @@ function ProductFormAdmin() {
                       placeholder=""
                       type="number"
                       min="0"
-                      max="12"
                       name="Núcleos"
                       onChange={handleDetailsInput}
                       value={product.details?.["Núcleos"]}
@@ -1154,7 +1132,6 @@ function ProductFormAdmin() {
                       placeholder=""
                       type="number"
                       min="0"
-                      max="24"
                       name="Hilos"
                       onChange={handleDetailsInput}
                       value={product.details?.Hilos}
