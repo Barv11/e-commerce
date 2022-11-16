@@ -1,28 +1,53 @@
 .container {
-  width: 200px;
-  height: 350px;
-  /* padding: 1em 0; */
+  width: 90%;
+  height: 150px;
   margin: 20px;
   display: flex;
-  flex-direction: column;
+  flex-flow: row wrap;
   align-items: center;
   justify-content: flex-start;
+  gap: 1.5em;
   border-radius: 10px;
-  text-align: center;
-  /* background: linear-gradient(
-    0deg,
-    #f0d4f0 30%,
+  background: linear-gradient(
+    270deg,
+    rgb(240, 212, 240) 30%,
     rgba(70, 151, 236, 0) 65%
-  ); */
-  background-color: #fdedfd;
+  );
   box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
   position: relative;
+}
+
+.imgContainer > img {
+  height: 150px;
+  width: 250px;
+  object-fit: contain;
+  border-radius: 10px 0 0 10px;
+  transition: object-fit 1s;
+}
+
+.text {
+  width: 480px;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+}
+
+.text #nombre {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+#precio {
+  font-size: 28px;
+  margin: 0;
+  color: rgb(214, 83, 83);
 }
 
 .favBtn {
   position: absolute;
   top: 10px;
-  right: 15px;
+  left: 210px;
   border-radius: 50%;
   width: 31px;
   height: 30px;
@@ -51,46 +76,16 @@
   transition: 0.3s;
 }
 
-#precio {
-  font-size: 28px;
-  margin: 0;
-  color: rgb(214, 83, 83);
-}
-
 .cart2 {
   cursor: pointer;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   align-items: center;
-  gap: 0.5em;
-  text-decoration: none;
-  /* background-color: #7bbd50; */
-  background-color: transparent;
-  color: rgb(100, 100, 100);
-  padding: 2px 15px;
-  margin-bottom: 1em;
-  border-radius: 10px;
-  border: none;
-  transition: 0.3s;
-  text-decoration: underline;
-  position: absolute;
-  justify-content: center;
-  bottom: 0px;
-  left: 0;
-  right: 0;
-  margin: 15px 20px;
-}
-
-.cart2:hover {
-  background-color: #408612;
-  color: white;
-  text-decoration: none;
-  transition: 0.3s;
 }
 
 .discount {
   position: absolute;
-  top: -10px;
+  top: -7px;
   left: -10px;
   font-size: 18px;
   width: 130px;
@@ -143,57 +138,26 @@
 }
 
 .add {
+  padding: 2px 15px;
   font-size: 1rem;
+}
+
+.add:hover {
+  background-color: #408612;
+  padding: 2px 15px;
+  border-radius: 10px;
+  color: white;
+  text-decoration: none;
+  transition: 0.3s;
 }
 
 .cart2 i {
   font-size: 1.2rem;
 }
 
-.cart {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 15px;
-  font-size: 20px;
-  transition: 0.2s;
-  color: transparent;
-}
-
-.container:hover .cart {
-  color: black;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.cart i {
-  font-size: 25px;
-}
-
-.cart i:hover {
-  color: blueviolet;
-}
-
-.cart i:active {
-  color: black;
-}
-
-.container img {
-  padding-top: 1em;
-  height: 100px;
-}
-
-.container #nombre {
-  font-size: 15px;
-}
-
-.container #precio {
-  font-size: 28px;
-}
-
 .container #disPrice {
   margin: 0;
-  font-size: 16px;
+  font-size: 1rem;
   text-decoration: line-through;
   color: #b92f2ffb;
 }
@@ -216,24 +180,24 @@
   transition: 0.3s;
 }
 
-.modalTitle{
+.modalTitle {
   font-size: 35px;
   font-family: Cocosharp;
 }
 
-.modalSubtitle{
+.modalSubtitle {
   font-family: Open Sans, sans-serif;
 }
 
 @font-face {
   font-family: Cocosharp;
-  src: url('../../components/fonts/COCO-SHARP-BOLD-TRIAL.TTF');
+  src: url("../../components/fonts/COCO-SHARP-BOLD-TRIAL.TTF");
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
 
-@media (max-width: 600px){
-  .container{
+@media (max-width: 600px) {
+  .container {
     margin: 5px;
   }
 }
