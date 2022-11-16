@@ -409,3 +409,4 @@ export const userUpdate = (userImage) => async (dispatch) => {
   const userEdit = await axios.put(`${url}/user/create/edit`, obj, config);
   dispatch({ type: UPDATE_USER, payload: userEdit });
 };
+
