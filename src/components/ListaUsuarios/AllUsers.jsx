@@ -19,40 +19,61 @@ export default function AllUsers() {
   });
 
   const allUsers = useSelector((state) => state.allUsers);
-  console.log(allUsers);
+  // console.log(allUsers);
   const [search, setSearch] = useState("");
   const [isOpenModal, openModal, closeModal] = useModal(false);
+
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("user") || "[]")
+  );
 
 
   // const deploy = "https://gametech.up.railway.app";
   const local = "http://localhost:3001";
 
+  console.log(user.token)
   async function handleButtonBanned(userId) {
+    const config = {
+      headers: {
+        authorization: `Bearer ${user.token}`,
+      },
+    };
+
     await axios.put(`${local}/user/create/edit`, {
       show: false,
       id: userId,
-    });
+    }, config);
     dispatch(getAllUsers());
   }
 
   async function handleButtonUnbanned(userId) {
+    const config = {
+      headers: {
+        authorization: `Bearer ${user.token}`,
+      },
+    };
     await axios.put(`${local}/user/create/edit`, {
       show: true,
       id: userId,
-    });
+    }, config);
     dispatch(getAllUsers());
   }
 
   const setRole = async (e) => {
     setInput({ ...input, role: e.target.value });
   };
-  console.log(input.role);
+  // console.log(input.role);
 
   async function handleRoleChange(id) {
+    const config = {
+      headers: {
+        authorization: `Bearer ${user.token}`,
+      },
+    };
     await axios.put(`${local}/user/create/edit`, {
       id: id,
       role: input.role,
-    });
+    }, config);
     openModal();
    }
 
