@@ -25,7 +25,12 @@ export default function CardProfileReview({ review }) {
       <Star filled={true} quantity={rating} />
       <Star filled={false} quantity={5 - rating} />
       <span className={s.delete}>
-        <Link to={'/edit/review/'+id} className={s.edit}><i className="uil uil-edit-alt"></i></Link>
+        <Link to={"/edit/review/" + id} className={s.edit}>
+          <i className="uil uil-edit-alt"></i>
+        </Link>
+        <Link to={"/detail/" + producto.id} className={s.go}>
+        <i class="uil uil-arrow-circle-right"></i>
+        </Link>
         <i className="uil uil-trash-alt" onClick={handlerDelete}></i>
       </span>
       <hr />
