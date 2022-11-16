@@ -1,17 +1,24 @@
 .container {
+  width: 100%;
   height: 100%;
   display: flex;
+  flex-flow: row nowrap;
 }
 
 .sideBar {
+  flex-basis: 20%;
+  padding-top: 1em;
   width: auto;
   height: auto;
   margin: 10px;
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: 1em;
 }
 
 .productsContainer {
+  flex-basis: 80%;
   margin: 10px;
   width: 80%;
   display: flex;
@@ -22,11 +29,22 @@
 }
 
 .AZbutton {
+  width: 90%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 1em;
-  gap: 1em;
+  justify-content: space-between;
+  flex-flow: row nowrap;
+  padding: 0.5em 1em;
+  /* background-color: #888888; */
+
+  border-radius: 10px;
+  border: 2px solid #8a2be2;
+}
+
+.AZbutton > span {
+  flex-basis: 20%;
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 .AZbutton button {
@@ -46,12 +64,18 @@
   transition: 0.3s;
 }
 
+.order {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1em;
+}
+
 .filtros {
   margin: 15px;
 }
 
 .form {
-  width: 100%;
+  width: 90%;
   height: 40px;
   margin: 2em 0;
   position: relative;
@@ -59,6 +83,26 @@
   align-items: center;
   justify-content: center;
 }
+
+.render {
+  width: 10%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.render > span {
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+}
+
+.renderselec {
+  background-color: #d6d6d6;
+  border-radius: 5px;
+}
+
 
 .form input {
   width: 100%;
@@ -86,42 +130,40 @@
 
 .form input:focus {
   box-shadow: 0 0 3px 1px #511886;
-
 }
 
-.modalTitle{
+.modalTitle {
   font-size: 35px;
-  font-family: 'Cocosharp';
+  font-family: "Cocosharp";
 }
 
-.modalSubtitle{
-  font-family: 'Open Sans', sans-serif;
+.modalSubtitle {
+  font-family: "Open Sans", sans-serif;
 }
-
 
 @font-face {
   font-family: Cocosharp;
-  src: url('../../components/fonts/COCO-SHARP-BOLD-TRIAL.TTF');
+  src: url("../../components/fonts/COCO-SHARP-BOLD-TRIAL.TTF");
 }
 
 @font-face {
-  font-family: 'Open Sans';
-  src: url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+  font-family: "Open Sans";
+  src: url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
 }
 
-@media (max-width: 600px){
-  .container{
+@media (max-width: 600px) {
+  .container {
     flex-direction: column;
   }
-  .form{
+  .form {
     height: 35px;
     margin: 1.7em 0;
     width: 80%;
   }
-  .form input{
+  .form input {
     font-size: 0.8rem;
   }
-  .form i{
+  .form i {
     font-size: 1.3rem;
   }
 }
