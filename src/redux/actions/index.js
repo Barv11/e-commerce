@@ -10,6 +10,7 @@ import {
   ORDER_PRECIO,
   SEARCH_PRODUCT_BY_ID,
   POST_IMAGE,
+  CLEAR_MESSAGE,
   POST_PRODUCT,
   DELETE_PRODUCT,
   UPDATE_PRODUCT,
@@ -116,49 +117,83 @@ export const postImage = (file) => async (dispatch) => {
   });
 };
 
-export function postProduct(payload) {
-  const config = {
-    headers: {
-      Authorization: token,
-    },
-  };
+export const clearMessage = () => (dispatch) => {
+  return { type: CLEAR_MESSAGE, payload: '' };
+};
 
+export function postProduct(payload) {
   return async function(dispatch) {
-    const product = await axios.post(
+    const config = {
+      headers: {
+        Authorization: token,
+      },
+    };
+
+    const response = await axios.post(
       `${url}/productos/create`,
       payload,
       config
     );
     return dispatch({
       type: POST_PRODUCT,
-      payload: product,
+      payload: response.data.message,
     });
   };
 }
 
 export const updateProduct = (product) => async (dispatch) => {
-  const config = {
-    headers: {
-      Authorization: token,
-    },
-  };
-
-  const { id, name, brand, img, details, cost, type } = product;
-  const response = await axios.put(
-    `${url}/productos/update/${id}`,
-    {
-      name,
-      brand,
-      img,
-      details,
-      cost,
-      type,
-    },
-    config
-  );
-
-  dispatch({ type: UPDATE_PRODUCT, payload: response.data });
+  try {
+    const config = {
+      headers: {
+        Authorization: token,
+      },
+    };
+    const { id, name, brand, img, details, cost, type } = product;
+    const mio = { id, name, brand, img, details, cost, type };
+    console.log(mio);
+    const response = await axios.put(
+      `${url}/productos/update/${id}`,
+      {
+        name,
+        brand,
+        img,
+        details,
+        cost,
+        type,
+      },
+      config
+    );
+    dispatch({ type: UPDATE_PRODUCT, payload: response.data.message });
+  } catch (error) {
+    console.log(error);
+  }
 };
+
+// export const updateProduct = (product) => async (dispatch) => {
+//   const config = {
+//     headers: {
+//       Authorization: token,
+//     },
+//   };
+//   const { id, name, brand, img, details, cost, type } = product;
+//   try {
+//     const response = await axios.put(
+//       `${url}/productos/update/${id}`,
+//       {
+//         name,
+//         brand,
+//         img,
+//         details,
+//         cost,
+//         type,
+//       },
+//       config
+//     );
+//     dispatch({ type: UPDATE_PRODUCT, payload: response.data.message });
+//   } catch (error) {
+//     console.error(error)
+//   }
+// };
 
 export const deleteProduct = (id) => async (dispatch) => {
   const config = {
@@ -409,4 +444,3 @@ export const userUpdate = (userImage) => async (dispatch) => {
   const userEdit = await axios.put(`${url}/user/create/edit`, obj, config);
   dispatch({ type: UPDATE_USER, payload: userEdit });
 };
-

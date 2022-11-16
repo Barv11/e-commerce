@@ -158,7 +158,7 @@ export default function Products() {
             />
             <i
               className="uil uil-search"
-              onClick={() => handleSearch(input)}
+              onClick={handleSearch}
             ></i>
           </form>
           <div className={s.render}>

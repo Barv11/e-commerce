@@ -155,3 +155,10 @@
   width: 200px;
   height: 200px;
 }
+
+.messageReturn {
+  font-size: 1.3rem;
+  color: #e60000;
+  font-weight: 600;
+  margin: 1em 0;
+}

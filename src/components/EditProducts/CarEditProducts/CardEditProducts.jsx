@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { getAllProductos, clearProducts, deleteProduct, editDiscount, editStock } from "../../../redux/actions";
+import {
+  getAllProductos,
+  clearProducts,
+  deleteProduct,
+  editDiscount,
+  editStock,
+} from "../../../redux/actions";
 import s from "./CardEditProdducts.module.css";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
-import { useModal } from '../../Modals/useModal';
-import Modal from '../../Modals/Modal';
-import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
-
+import { useModal } from "../../Modals/useModal";
+import Modal from "../../Modals/Modal";
+import ThumbUpAltRoundedIcon from "@mui/icons-material/ThumbUpAltRounded";
 
 export default function CardEditProducts({
   id,
@@ -23,6 +28,7 @@ export default function CardEditProducts({
   setPage,
 }) {
   const dispatch = useDispatch();
+  const userFound = useSelector((state) => state.userFound);
 
   const capType = type[0].toUpperCase() + type.slice(1);
 
@@ -30,6 +36,7 @@ export default function CardEditProducts({
   const [stockProd, setStockProd] = useState(stock);
   const [isOpenModal1, openModal1, closeModal1] = useModal(false);
   const [isOpenModal2, openModal2, closeModal2] = useModal(false);
+  const [isOpenModal3, openModal3, closeModal3] = useModal(false);
 
   const handlerDelete = () => {
     dispatch(deleteProduct(id));
@@ -38,6 +45,7 @@ export default function CardEditProducts({
     setTimeout(() => {
       dispatch(getAllProductos());
     }, 1000);
+    openModal3();
   };
 
   const handleDiscountSubmit = (id) => {
@@ -73,6 +81,24 @@ export default function CardEditProducts({
       <span className={s.delete} onClick={handlerDelete}>
         <i class="uil uil-trash-alt"></i>
       </span>
+      <Modal isOpen={isOpenModal3} closeModal={closeModal3}>
+        {userFound.role === "admin" ? (
+          <>
+            <h1 className={s.modalTitle}>
+              No tienes los permisos suficientes <ThumbUpAltRoundedIcon />
+            </h1>
+          </>
+        ) : (
+          <>
+            <h1 className={s.modalTitle}>
+              ¡Producto Eliminado! <ThumbUpAltRoundedIcon />
+            </h1>
+            <p className={s.modalSubtitle}>
+              El producto ha sido eliminado, puedes restaurarlo desde la papelera.
+            </p>
+          </>
+        )}
+      </Modal>
       <div key={id} className={s.discountContainer}>
         <input
           id={s.inputDis}
@@ -85,14 +111,17 @@ export default function CardEditProducts({
         <button
           onClick={() => {
             handleDiscountSubmit(id, descuento);
-          }
-        }
+          }}
         >
           <CheckRoundedIcon />
         </button>
         <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
-          <h1 className={s.modalTitle}>Descuento aplicado con éxito! <ThumbUpAltRoundedIcon/></h1>
-          <p className={s.modalSubtitle}>{name} ahora tiene un {descuento}% de descuento.</p>
+          <h1 className={s.modalTitle}>
+            Descuento aplicado con éxito! <ThumbUpAltRoundedIcon />
+          </h1>
+          <p className={s.modalSubtitle}>
+            {name} ahora tiene un {descuento}% de descuento.
+          </p>
         </Modal>
       </div>
       <div className={s.stock}>
@@ -112,8 +141,12 @@ export default function CardEditProducts({
           <CheckRoundedIcon />
         </button>
         <Modal isOpen={isOpenModal2} closeModal={closeModal2}>
-          <h1 className={s.modalTitle}>Stock modificado con éxito! <ThumbUpAltRoundedIcon/></h1>
-          <p className={s.modalSubtitle}>El stock de {name} es ahora de {stockProd} unidades.</p>
+          <h1 className={s.modalTitle}>
+            Stock modificado con éxito! <ThumbUpAltRoundedIcon />
+          </h1>
+          <p className={s.modalSubtitle}>
+            El stock de {name} es ahora de {stockProd} unidades.
+          </p>
         </Modal>
       </div>
     </div>

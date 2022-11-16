@@ -13,6 +13,7 @@ import {
   ORDER_NAME,
   ORDER_PRECIO,
   POST_IMAGE,
+  CLEAR_MESSAGE,
   POST_PRODUCT,
   UPDATE_PRODUCT,
   DELETE_PRODUCT,
@@ -53,6 +54,7 @@ const initialState = {
   cartProducts: [],
   allUsers: [],
   url: "",
+  message: "",
   productReviews: [],
   userReviews: [],
   reviewSearched: {},
@@ -119,6 +121,7 @@ function rootReducer(state = initialState, action) {
         searchByNameProduct: [],
         searchByIdProduct: {},
         url: "",
+        message: "",
       };
     case POST_IMAGE:
       return {
@@ -128,11 +131,17 @@ function rootReducer(state = initialState, action) {
     case POST_PRODUCT:
       return {
         ...state,
-        allProducts: [...state.allProducts, action.payload],
+        message: action.payload,
       };
     case UPDATE_PRODUCT:
       return {
         ...state,
+        message: action.payload,
+      };
+    case CLEAR_MESSAGE:
+      return {
+        ...state,
+        message: action.payload,
       };
     case DELETE_PRODUCT:
       return {
@@ -175,12 +184,12 @@ function rootReducer(state = initialState, action) {
     case ORDER_NAME:
       let order =
         action.payload === "AZ"
-          ? state.allProducts.sort(function (a, b) {
+          ? state.allProducts.sort(function(a, b) {
               if (a.name > b.name) return 1;
               if (b.name > a.name) return -1;
               return 0;
             })
-          : state.allProducts.sort(function (a, b) {
+          : state.allProducts.sort(function(a, b) {
               if (a.name > b.name) return -1;
               if (b.name > a.name) return 1;
               return 0;
@@ -192,12 +201,12 @@ function rootReducer(state = initialState, action) {
     case ORDER_PRECIO:
       let order2 =
         action.payload === "ascendente"
-          ? state.allProducts.sort(function (a, b) {
+          ? state.allProducts.sort(function(a, b) {
               if (a.cost > b.cost) return 1;
               if (b.cost > a.cost) return -1;
               return 0;
             })
-          : state.allProducts.sort(function (a, b) {
+          : state.allProducts.sort(function(a, b) {
               if (a.cost > b.cost) return -1;
               if (b.cost > a.cost) return 1;
               return 0;
@@ -219,8 +228,8 @@ function rootReducer(state = initialState, action) {
     case CLEAR_USER:
       return {
         ...state,
-        userFound: {}
-      }
+        userFound: {},
+      };
     case GET_ALL_USERS:
       return {
         ...state,
@@ -269,18 +278,18 @@ function rootReducer(state = initialState, action) {
         ...state,
         userProfile: action.payload,
       };
-   case GET_INTEL: 
-    return {
-      ...state,
-      productsAmd: [],
-      productsIntel: action.payload
-    };
-    case GET_AMD: 
-    return {
-      ...state,
-      productsIntel: [],
-      productsAmd: action.payload
-    };
+    case GET_INTEL:
+      return {
+        ...state,
+        productsAmd: [],
+        productsIntel: action.payload,
+      };
+    case GET_AMD:
+      return {
+        ...state,
+        productsIntel: [],
+        productsAmd: action.payload,
+      };
     case EDIT_DISCOUNT:
       return {
         ...state,

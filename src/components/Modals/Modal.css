@@ -17,13 +17,13 @@
     position: relative;
     padding: 1rem;
     width: 60%;
-    height: 20%;
+    height: 30%;
     display: flex;justify-content: center;align-items: center;flex-flow: column nowrap;
     overflow-y: auto;
-    background-color: #69329c;
+    background-color: #69329cb7;
     color: white;
     font-size: 18px;
-    box-shadow: rgba(100,100,111, 0.2) 0px 7px 29px 0px;
+    box-shadow: rgba(100, 100, 111, 0.788) 0px 7px 29px 0px;
     border-radius: 5px;
     font-family: 'Montserrat';
   }
