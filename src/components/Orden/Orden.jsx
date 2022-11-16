@@ -9,7 +9,8 @@ import { useState } from "react";
 export default function Orden() {
   //pedido al back para traer los cart/pedidos
 
-  const url = "http://localhost:3001/ordenes";
+  //const url = "http://localhost:3001/ordenes";
+  let url = "https://gametech.up.railway.app/ordenes";
   const [ordenes, setOrdenes] = useState({});
   async function AllOrdenes() {
     const Ordenes = await axios.get(url);
