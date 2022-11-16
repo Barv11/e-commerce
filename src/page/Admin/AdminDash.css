@@ -1,6 +1,6 @@
 .containerDash{
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -9,23 +9,24 @@
 .dashTitle{
     font-family: Heavitas;
     color: #69329c; 
+    margin: 0;
+    margin: .5em 0;
     font-size: 3rem; 
-    padding-top: 1em;
     text-shadow: 0px 3px 2px rgba(70,20,111,0.54);
 
 }
 
 .dashSubTitle{
-    font-family: sans-serif;
+    font-family: 'Montserrat';
     color: #543273; 
+    margin: 0;
+    margin: .7em 0;
     font-size: 1.5rem;
-    padding-bottom: 30px;
-    padding-top: 9px;
 }
 
 .categoriasTxt{
     color: #3b0f64;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Montserrat';
     font-weight: 600;
     font-size: 1.6rem;
     text-shadow: 0px 3px 2px rgba(255,255,255,0.6);
