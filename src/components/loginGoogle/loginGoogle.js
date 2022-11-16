@@ -28,9 +28,7 @@ export default function LoginGoogle(props) {
 
     const userFilter = allUsers.filter((u) => u.userName === obj.username);
 
-    console.log(allUsers)
     const fn = async () => {
-      console.log(userFilter);
       if (userFilter.length === 0) {
         await dispatch(userRegister(obj));
         await dispatch(

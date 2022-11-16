@@ -57,7 +57,6 @@ export default function Navbar() {
       dispatch(getUser(user.token));
     }
   }, [dispatch]);
-  console.log('found',userFound);
   return (
     <nav className={s.navbar}>
       <div className={s.container}>

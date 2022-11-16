@@ -33,7 +33,6 @@ function ProductFormAdmin() {
     details: {},
   });
 
-  console.log(product);
 
   function validate(input) {
     const errors = {};
@@ -393,7 +392,6 @@ function ProductFormAdmin() {
   const uploadImage = async (e) => {
     const file = e.target.files[0];
     // dispatch(postImage(file))
-    // console.log(url)
     const data = new FormData();
     data.append("file", file);
     data.append("upload_preset", "pc-images");
@@ -418,10 +416,8 @@ function ProductFormAdmin() {
           cost: parseInt(product.cost),
         })
       );
-      console.log({ ...product, img: imgPrev, cost: parseInt(product.cost) });
     } else {
       dispatch(postProduct({ ...product, img: imgPrev }));
-      console.log({ ...product, img: imgPrev });
       setProduct({
         name: "",
         cost: "",
@@ -442,7 +438,6 @@ function ProductFormAdmin() {
 
   useEffect(() => {
     if (id) {
-      console.log(searchByIdProduct);
       setProduct(searchByIdProduct);
       setImgPrev([searchByIdProduct?.img?.[0]]);
     }

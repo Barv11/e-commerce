@@ -126,7 +126,6 @@ export default function Carrito() {
     }
   }, 0);
 
-  // console.log(cartProducts)
 
   return (
     <div className={s.mainContainer}>

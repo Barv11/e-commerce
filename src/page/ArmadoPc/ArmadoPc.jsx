@@ -16,7 +16,6 @@ function ArmadoPc() {
   const handleChoice = (type) => {
     setPcChoice(true);
     if (choice === "Intel") {
-      console.log("entre");
       dispatch(getIntel(type));
       return;
     } else {
@@ -24,7 +23,6 @@ function ArmadoPc() {
     }
   };
 
-  console.log(productsIntel);
 
   if (choice !== "" && pcChoice === true) {
     // AMD Y GAMA

@@ -19,7 +19,6 @@ export default function AllUsers() {
   });
 
   const allUsers = useSelector((state) => state.allUsers);
-  // console.log(allUsers);
   const [search, setSearch] = useState("");
   const [isOpenModal, openModal, closeModal] = useModal(false);
 
@@ -32,7 +31,9 @@ export default function AllUsers() {
   );
 
 
-  console.log(user.token)
+  // const deploy = "https://gametech.up.railway.app";
+  const local = "http://localhost:3001";
+
   async function handleButtonBanned(userId) {
     const config = {
       headers: {
@@ -63,7 +64,6 @@ export default function AllUsers() {
   const setRole = async (e) => {
     setInput({ ...input, role: e.target.value });
   };
-  // console.log(input.role);
 
   async function handleRoleChange(id) {
     const config = {

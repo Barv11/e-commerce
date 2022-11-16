@@ -64,7 +64,6 @@ export default function EditProducts() {
         el.name.toLowerCase().includes(search.toLocaleLowerCase())
       );
 
-  console.log(result);
 
   useEffect(() => {
     dispatch(getAllProductos());

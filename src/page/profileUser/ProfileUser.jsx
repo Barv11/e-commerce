@@ -67,7 +67,6 @@ export default function ProfileUser() {
    
   };
 
-  console.log(userFound)
 
   return (
     <div className={style.containerGlobal}>

@@ -15,7 +15,6 @@ export default function CardCarrito({
 }) {
   const [cantidad, setCantidad] = useState(quantity);
 
-  console.log(discount);
 
   const discountCost = (discount * cost) / 100;
 
@@ -24,7 +23,6 @@ export default function CardCarrito({
     setCantidad(e.target.value);
   };
 
-  console.log(img)
   return (
     <div className={s.container}>
       <Link id={s.link} to={"/detail/" + id}>

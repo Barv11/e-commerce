@@ -42,7 +42,6 @@ export default function ReseñaForm({ setAddReview, id, userFound }) {
   };
 
   const handlerSubmit = (e) => {
-    console.log(review);
     dispatch(createReview(review));
     // dispatch(clearReviews());
     setTimeout(() => {
@@ -87,7 +86,6 @@ export default function ReseñaForm({ setAddReview, id, userFound }) {
         value={review.rating}
         size="large"
         onChange={(event, newValue) => {
-          console.log(event)
           if (newValue < 1) setError({...error, rating: "La calificación es requerida"})
           setReview({
             ...review,
