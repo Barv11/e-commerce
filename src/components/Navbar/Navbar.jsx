@@ -42,7 +42,7 @@ export default function Navbar() {
     dispatch(clearUser())
     setTimeout(() => {
       navigate("/")
-    }, 1000);
+    }, 500);
   };
 
 
@@ -126,7 +126,7 @@ export default function Navbar() {
             ❤
           </NavLink>
         </div>
-        { userFound?.role && userFound?.role === "admin" ? (
+        { userFound?.role && (userFound?.role === "admin" || userFound?.role === 'superAdmin') ? (
           <NavLink
             to={"/admin"}
             className={(navData) =>

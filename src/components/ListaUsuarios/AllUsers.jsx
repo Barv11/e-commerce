@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { getAllUsers } from "../../redux/actions";
+import { getAllUsers, getUser } from "../../redux/actions";
 import PeopleAltRoundedIcon from "@mui/icons-material/PeopleAltRounded";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import Navbar from "../Navbar/Navbar";
@@ -75,6 +75,11 @@ export default function AllUsers() {
       id: id,
       role: input.role,
     }, config);
+
+    if (user.logged) {
+      dispatch(getUser(user.token));
+    }
+    dispatch(getAllUsers());
     openModal();
   }
 
@@ -117,14 +122,16 @@ export default function AllUsers() {
       <Table responsive striped bordered hover variant="dark">
         <thead>
           <tr>
-            <th>#</th>
+            {/* <th>#</th> */}
             <th>Username</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
-            <th>Rol</th>
-            <th></th>
-            <th></th>
+            <th>Rol Actual</th>
+            <th>Cambiar Rol</th>
+            <th>Estado</th>
+            <th>Cambiar Estado</th>
+            <th>Enviar</th>
           </tr>
         </thead>
         <tbody>
@@ -132,30 +139,33 @@ export default function AllUsers() {
             result?.map((u) => {
               return (
                 <tr key={u.id}>
-                  <td>{u.id}</td>
+                  {/* <td>{u.id}</td> */}
                   <td>{u.firstName}</td>
                   <td>{u.lastName}</td>
                   <td>{u.userName}</td>
                   <td>{u.email}</td>
+                  {/* <td>{u.role}</td> */}
+                  <td>{u.role === 'user' ? 'Usuario' : u.role === 'admin' ? 'Administrador' : u.role === 'superAdmin' ? 'Super admin' : null}</td>
                   <td>
                     <label>
                       <select
                         onChange={(e) => setRole(e)}
                         defaultValue="default"
                       >
-                        <option value="default">{u.role}</option>
+                        <option value="default">Elija</option>
                         <option name="role" value="admin">
-                          Admin
+                          Administrador
                         </option>
                         <option name="role" value="superAdmin">
-                          Super Admin
+                        Super admin 
                         </option>
                         <option name="role" value="user">
-                          User
+                          Usuario
                         </option>
                       </select>
                     </label>
                   </td>
+                  <td>{u.show ? 'Activo' : 'Baneado'}</td>
                   {u.show ? (
                     <td>
                       <button onClick={() => handleButtonBanned(u.id)}>

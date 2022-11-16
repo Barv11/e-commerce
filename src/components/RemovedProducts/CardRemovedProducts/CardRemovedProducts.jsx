@@ -1,17 +1,24 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useModal } from "../../Modals/useModal";
+import Modal from "../../Modals/Modal";
+import ThumbUpAltRoundedIcon from "@mui/icons-material/ThumbUpAltRounded";
 import s from "./CardRemovedProducts.module.css";
 import { getDeleteProducts, restoreProduct } from "../../../redux/actions";
 
 export default function CardRemovedProducts({ id, name, type, brand, cost }) {
   const dispatch = useDispatch();
+  const [isOpenModal1, openModal1, closeModal1] = useModal(false);
   const capType = type[0].toUpperCase() + type.slice(1);
+
+
 
   const handlerRestore = () => {
     dispatch(restoreProduct(id));
     setTimeout(() => {
       dispatch(getDeleteProducts());
     }, 1000);
+    openModal1();
   };
 
   return (
@@ -23,6 +30,11 @@ export default function CardRemovedProducts({ id, name, type, brand, cost }) {
       <span className={s.restore} onClick={handlerRestore}>
         Restablecer <i class="uil uil-history"></i>
       </span>
+      <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
+        <h1 className={s.modalTitle}>
+          Producto Restaurado <ThumbUpAltRoundedIcon />
+        </h1>
+      </Modal>
     </div>
   );
 }

@@ -6,6 +6,8 @@ import {
   getAllProductos,
   searchProductById,
   updateProduct,
+  clearMessage,
+  clearProducts,
   // postImage,
 } from "../../redux/actions/index";
 import Navbar from "../Navbar/Navbar";
@@ -19,6 +21,7 @@ function ProductFormAdmin() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.loginAccess);
   const searchByIdProduct = useSelector((state) => state.searchByIdProduct);
+  const message = useSelector((state) => state.message);
   // const url = useSelector((state) => state.url);
   const [errors, setErrors] = useState({});
   const [product, setProduct] = useState({
@@ -406,19 +409,16 @@ function ProductFormAdmin() {
   };
 
   const handleSubmit = (e) => {
-    const { token } = user;
     e.preventDefault();
     if (id) {
-      dispatch(updateProduct({ ...product, img: imgPrev }));
-      navigate("/admin");
-      setProduct({
-        name: "",
-        cost: "",
-        brand: "",
-        img: [""],
-        type: "defect",
-        details: {},
-      });
+      dispatch(
+        updateProduct({
+          ...product,
+          img: imgPrev,
+          cost: parseInt(product.cost),
+        })
+      );
+      console.log({ ...product, img: imgPrev, cost: parseInt(product.cost) });
     } else {
       dispatch(postProduct({ ...product, img: imgPrev }));
       console.log({ ...product, img: imgPrev });
@@ -430,8 +430,10 @@ function ProductFormAdmin() {
         type: "defect",
         details: {},
       });
+      setImgPrev("");
     }
   };
+
   useEffect(() => {
     if (id) {
       dispatch(searchProductById(id));
@@ -448,9 +450,8 @@ function ProductFormAdmin() {
 
   useEffect(() => {
     document.title = `Gamer Tech | ${id ? "Edit" : "Create"}`;
-    return dispatch(getAllProductos());
+    return dispatch(clearMessage());
   }, []);
-
   return (
     <>
       <Navbar />
@@ -461,7 +462,9 @@ function ProductFormAdmin() {
             <Loader />
           ) : (
             <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
-              <h2 className={styles.titleForm}>{id ? 'Editar Producto' : 'Crear Producto'}</h2>
+              <h2 className={styles.titleForm}>
+                {id ? "Editar Producto" : "Crear Producto"}
+              </h2>
               <label htmlFor="name">Nombre</label>
               <input
                 className={styles.formInput}
@@ -519,11 +522,7 @@ function ProductFormAdmin() {
                   onChange={uploadImage}
                 />
                 {imgPrev.length ? (
-                  <img
-                    src={imgPrev.length ? imgPrev : null}
-                    alt="img"
-                    className={styles.imgprev}
-                  />
+                  <img src={imgPrev} alt="img" className={styles.imgprev} />
                 ) : (
                   <div className={styles.block}></div>
                 )}
@@ -2345,10 +2344,12 @@ function ProductFormAdmin() {
                   </>
                 ) : null}
               </div>
-
+              <span className={styles.messageReturn}>
+                {message.length ? message : null}
+              </span>
               <div className={styles.containerBtn}>
                 <button className={styles.btn} type="submit">
-                  Crear
+                  Enviar Producto
                 </button>
               </div>
             </form>
