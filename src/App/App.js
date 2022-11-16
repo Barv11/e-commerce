@@ -43,6 +43,8 @@ function App() {
     }
   }, []);
 
+  console.log(user.logged)
+
   return (
     <Routes>
         <Route exact path={"/"} element={<Home />} />

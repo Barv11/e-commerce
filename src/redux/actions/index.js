@@ -38,7 +38,8 @@ import {
   GET_ALL_FAVORITOS,
   ADD_FAVORITO_PRODUCT,
   DELETE_FAVORITO,
-  DELETE_ALL_FAVORITO
+  DELETE_ALL_FAVORITO,
+  UPDATE_USER
 } from "./actionsTypes";
 import axios from "axios";
 import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "./actionsTypes";
@@ -50,6 +51,7 @@ let url = "http://localhost:3001"
 
 let token = null;
 export const saveToken = (newToken) => {
+  console.log(newToken)
   token = `Bearer ${newToken}`;
 };
 
@@ -367,4 +369,19 @@ export const deleteAllFavorito = (userId) => async (dispatch) => {
     userId,
   });
   dispatch({ type: DELETE_ALL_FAVORITO });
+};
+
+
+export const userUpdate = (userImage) => async (dispatch) => {
+  // console.log(userImage)
+  const obj = {picture: userImage}
+  console.log(obj)
+  const config = {
+    headers: {
+      authorization: token,
+    },
+  };
+  console.log(config)
+  const userEdit = await axios.put(`${url}/user/create/edit`, obj, config);
+  dispatch({ type: UPDATE_USER, payload: userEdit });
 };
