@@ -19,6 +19,7 @@ import {
   ADD_CART_PRODUCTS,
   REGISTER_USER,
   GET_USER,
+  CLEAR_USER,
   GET_CART_PRODUCTS,
   GET_ALL_USERS,
   CLEAR_CART_PRODUCTS,
@@ -215,6 +216,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         userFound: action.payload,
       };
+    case CLEAR_USER:
+      return {
+        ...state,
+        userFound: {}
+      }
     case GET_ALL_USERS:
       return {
         ...state,
