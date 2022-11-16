@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import s from "./Orden.module.css";
 import Table from "react-bootstrap/Table";
 import Navbar from "../Navbar/Navbar";
-import Footer from "../Footer/Footer";
 import { getOneUser } from "../../redux/actions";
 import axios from "axios";
 import { useState } from "react";
@@ -77,7 +76,6 @@ export default function Orden() {
           </tbody>
         </Table>
       </main>
-      <Footer />
     </>
   );
 }
