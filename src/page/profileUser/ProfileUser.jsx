@@ -13,6 +13,7 @@ import CommentIcon from "@mui/icons-material/Comment";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import CardProfileReview from "../../components/cardProfile/CardProfileReview";
 import PcChatBot from "../../components/PcChatBot/PcChatBot";
+import { userUpdate } from '../../redux/actions'
 
 export default function ProfileUser() {
   const dispatch = useDispatch();
@@ -29,11 +30,44 @@ export default function ProfileUser() {
     if (Object.keys(userFound).length) dispatch(reviewsByUser(userFound.id));
   }, [userFound]);
 
-  console.log(user);
 
   useEffect(() => {
-    if(!user.logged) redirect('/login')
+    if (!user.logged) redirect("/login");
   }, []);
+
+
+
+  // UPLOAD PERFIL IMAGE
+
+  const [image, setImage] = useState("")
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    if(image.length > 1){
+      dispatch(userUpdate(image))
+    }
+  }, [dispatch,image])
+
+  const uploadImage = async (e) => {
+    const file = e.target.files;
+    const data = new FormData();
+    data.append("file", file[0]);
+    data.append("upload_preset", "zpayvklx");
+    setLoading(true)
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/dhadvdeca/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+    const img = await res.json();
+    setImage(img.secure_url);
+    setLoading(false)
+   
+  };
+
+  console.log(userFound)
 
   return (
     <div className={style.containerGlobal}>
@@ -65,16 +99,34 @@ export default function ProfileUser() {
 
       <div className={style.cardUser}>
         <div className={style.headProfile}>
-          <img
-            src={fakePeople1}
-            alt="fakePeople1"
-            className={style.imgProfile}
-          />
+          <div className={style.imgContainer}>
+       <div>
+                { loading 
+                ? 
+                (<h3>Loading...</h3>) 
+                : <img
+                src={userFound?.picture ? userFound.picture : image}
+                alt="perfilPhoto"
+                className={style.imgProfile}
+              />}
+              </div>
+              <div>
+               <input
+                  id="inputTag"
+                  className={style.inputImg}
+                  name={"uploads"}
+                  accept="image/png, image/jpg, image/jpeg"
+                  type={"file"}
+                  placeholder='Subir imagen'
+                  onChange={uploadImage}
+                />
+                </div>
+                </div>
+          
           <div>
-            <h3>
+            <h3 className={style.name}>
               Hola! <strong>{userFound?.userName}</strong>
             </h3>
-            <p>{userFound?.role}</p>
           </div>
         </div>
 
@@ -119,15 +171,8 @@ export default function ProfileUser() {
                 </div>
               </Accordion.Body>
             </Accordion.Item>
+
             <Accordion.Item eventKey="1">
-              <Accordion.Header>
-                <CreditCardIcon /> Mis Tarjetas{" "}
-              </Accordion.Header>
-              <Accordion.Body>
-                <CardProfle name={"************** 3479"} />
-              </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="2">
               <Accordion.Header>
                 <HomeIcon /> Direcciones{" "}
               </Accordion.Header>
@@ -141,7 +186,7 @@ export default function ProfileUser() {
                 />
               </Accordion.Body>
             </Accordion.Item>
-            <Accordion.Item eventKey="3">
+            <Accordion.Item eventKey="2">
               <Accordion.Header>
                 <CommentIcon /> Reviews{" "}
               </Accordion.Header>
@@ -152,13 +197,11 @@ export default function ProfileUser() {
               </Accordion.Body>
             </Accordion.Item>
 
-            <Accordion.Item eventKey="4">
+            <Accordion.Item eventKey="3">
               <Accordion.Header>
                 <ShoppingBagIcon /> Compras{" "}
               </Accordion.Header>
-              <Accordion.Body>
-                <CardProfle name={"Mother ASUS "} />
-              </Accordion.Body>
+              <Accordion.Body></Accordion.Body>
             </Accordion.Item>
           </Accordion>
         </div>
