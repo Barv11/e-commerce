@@ -126,7 +126,7 @@ export default function Navbar() {
             ❤
           </NavLink>
         </div>
-        { userFound.role && userFound?.role === "admin" ? (
+        { userFound?.role && userFound?.role === "admin" ? (
           <NavLink
             to={"/admin"}
             className={(navData) =>
