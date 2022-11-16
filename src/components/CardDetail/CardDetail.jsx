@@ -10,7 +10,7 @@ import {
   addCartProduct,
   getAllProductos,
   addFavoritoProduct,
-  getAllFavoritos
+  getAllFavoritos,
 } from "../../redux/actions";
 import Navbar from "../Navbar/Navbar";
 import Loader from "../Loader/Loader";
@@ -36,24 +36,6 @@ export default function CardDetail(props) {
     stock,
   } = searchByIdProduct;
   const [isOpenModal, openModal, closeModal] = useModal(false);
-
-  useEffect(() => {
-    dispatch(getAllProductos());
-    dispatch(searchProductById(id));
-    dispatch(getAllFavoritos(userFound?.id));
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (Object.entries(searchByIdProduct).length !== 0) {
-      console.log(image);
-      setImage(img[0]);
-      document.title = `Gamer Tech | ${searchByIdProduct.name}`;
-    }
-  }, [searchByIdProduct]);
-
-  useEffect(() => {
-    return dispatch(clearProducts());
-  }, []);
 
   // Funcion para que agregen al carrito
   const [cart, setCart] = useState(
@@ -88,6 +70,25 @@ export default function CardDetail(props) {
       }
     }
   };
+  console.log('detail', userFound)
+
+  useEffect(() => {
+    // dispatch(getAllProductos());
+    dispatch(searchProductById(id));
+    dispatch(getAllFavoritos(userFound?.id));
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (Object.entries(searchByIdProduct).length !== 0) {
+      console.log(image);
+      setImage(img[0]);
+      document.title = `Gamer Tech | ${searchByIdProduct.name}`;
+    }
+  }, [searchByIdProduct]);
+
+  useEffect(() => {
+    return dispatch(clearProducts());
+  }, []);
 
   return (
     <>
@@ -169,7 +170,7 @@ export default function CardDetail(props) {
             </div>
           </div>
           <div className={s.especificaciones}>
-            <Especificaciones product={searchByIdProduct} />
+            <Especificaciones product={searchByIdProduct} userFound={userFound}/>
           </div>
         </main>
       )}
