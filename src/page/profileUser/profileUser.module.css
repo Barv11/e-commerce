@@ -53,6 +53,16 @@
   color: white;
   font-size: 2rem;
 }
+
+.name strong::first-letter {
+  text-transform: uppercase;
+}
+
+.role {
+  color: white;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
 /* .insideItem{
     display: flex;
     flex-direction: column; 

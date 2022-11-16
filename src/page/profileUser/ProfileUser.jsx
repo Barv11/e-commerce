@@ -127,6 +127,7 @@ export default function ProfileUser() {
             <h3 className={style.name}>
               Hola! <strong>{userFound?.userName}</strong>
             </h3>
+            <span className={style.role}>{userFound.role}</span>
           </div>
         </div>
 

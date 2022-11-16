@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 // import MenuProducts from "../MenuProducts";
-import { Link, NavLink, redirect } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import s from "./Navbar.module.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,6 +16,7 @@ import pcLogo from "../../assets/pc-logo.png";
 import usuarioLogo from "../../assets/user-login-icon.png";
 
 export default function Navbar() {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const [number, setNumber] = useState(0);
   const cartProducts = useSelector((state) => state.cartProducts.data?.carts);
@@ -39,7 +40,9 @@ export default function Navbar() {
       )
     );
     dispatch(clearUser())
-    redirect('/')
+    setTimeout(() => {
+      navigate("/")
+    }, 1000);
   };
 
 
@@ -76,7 +79,7 @@ export default function Navbar() {
             </Link>
           )}
           {user.logged && (
-            <span className={s.userTxt} onClick={() => signOut()}>
+            <span className={s.userTxt} onClick={signOut}>
               Cerrar Sesión<i class="uil uil-sign-out-alt"></i>
             </span>
           )}
