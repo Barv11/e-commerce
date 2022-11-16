@@ -12,6 +12,7 @@ export default function Paybutton({ cartItem }) {
   console.log(userFound);
   const handleCheckout = () => {
     if (user.logged) {
+      consoloe.log(cartItem);
       axios
         .post(
           `${local}pago`,
