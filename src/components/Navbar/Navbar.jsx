@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 // import MenuProducts from "../MenuProducts";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, redirect } from "react-router-dom";
 import s from "./Navbar.module.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +10,7 @@ import {
   saveToken,
   getCartProduct,
   addCartProduct,
+  clearUser,
 } from "../../redux/actions";
 import pcLogo from "../../assets/pc-logo.png";
 import usuarioLogo from "../../assets/user-login-icon.png";
@@ -24,7 +25,7 @@ export default function Navbar() {
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   localStorage.setItem("user", JSON.stringify(user));
-  console.log(user);
+
   const userFound = useSelector((state) => state.userFound);
   const signOut = () => {
     dispatch(clearCartProduct());
@@ -37,7 +38,10 @@ export default function Navbar() {
         })
       )
     );
+    dispatch(clearUser())
+    redirect('/')
   };
+
 
   useEffect(() => {
     setNumber(
@@ -50,7 +54,7 @@ export default function Navbar() {
       dispatch(getUser(user.token));
     }
   }, [dispatch]);
-
+  console.log('found',userFound);
   return (
     <nav className={s.navbar}>
       <div className={s.container}>
@@ -77,10 +81,7 @@ export default function Navbar() {
             </span>
           )}
           <Link style={{ textDecoration: "none" }} to="/carrito">
-            <span
-              data-foo={number}
-              className={`${s.userTxt} ${s.carrito}`}
-            >
+            <span data-foo={number} className={`${s.userTxt} ${s.carrito}`}>
               Carrito<i class="uil uil-shopping-cart"></i>
             </span>
           </Link>
@@ -122,6 +123,16 @@ export default function Navbar() {
             ❤
           </NavLink>
         </div>
+        { userFound.role && userFound?.role === "admin" ? (
+          <NavLink
+            to={"/admin"}
+            className={(navData) =>
+              navData.isActive ? s.activeChild : s.child
+            }
+          >
+            administración
+          </NavLink>
+        ) : null}
       </div>
     </nav>
   );
