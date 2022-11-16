@@ -8,6 +8,7 @@
   flex-direction: column;
   align-items: stretch;
   justify-content: center;
+  
 }
 
 .typesContainer button {
@@ -56,6 +57,10 @@
 @media (max-width: 600px){
   .image{
     width: 32px;
+  }
+  .typesContainer{
+    flex-direction: row;
+    flex-wrap: wrap;
   }
   .typesContainer button {
     margin: 7px;
