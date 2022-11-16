@@ -197,13 +197,6 @@ export default function ProfileUser() {
                 ))}
               </Accordion.Body>
             </Accordion.Item>
-
-            <Accordion.Item eventKey="3">
-              <Accordion.Header>
-                <ShoppingBagIcon /> Compras{" "}
-              </Accordion.Header>
-              <Accordion.Body></Accordion.Body>
-            </Accordion.Item>
           </Accordion>
         </div>
       </div>
