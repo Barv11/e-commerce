@@ -31,16 +31,17 @@ export default function Home() {
     }
   }, [dispatch]);
 
-  useEffect(() => {
-    if (user.logged) {
-      saveToken(user.token);
-    }
-  }, []);
-
+  // useEffect(() => {
+  //   if (user.logged) {
+  //     saveToken(user.token);
+  //   }
+  // }, []);
+  
   useEffect(() => {
     document.title = `Gamer Tech`;
   }, []);
-
+  
+  console.log(userFound)
   return (
     <>
       <Navbar />
