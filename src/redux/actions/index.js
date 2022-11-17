@@ -46,8 +46,8 @@ import {
 import axios from "axios";
 import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "./actionsTypes";
 
-// let url = "https://gametech.up.railway.app";
-let url = "http://localhost:3001";
+let url = "https://gametech.up.railway.app";
+// let url = "http://localhost:3001";
 
 let token = null;
 export const saveToken = (newToken) => {
@@ -148,7 +148,6 @@ export const updateProduct = (product) => async (dispatch) => {
       },
     };
     const { id, name, brand, img, details, cost, type } = product;
-    const mio = { id, name, brand, img, details, cost, type };
     const response = await axios.put(
       `${url}/productos/update/${id}`,
       {
@@ -163,6 +162,7 @@ export const updateProduct = (product) => async (dispatch) => {
     );
     dispatch({ type: UPDATE_PRODUCT, payload: response.data.message });
   } catch (error) {
+    console.error(error)
   }
 };
 

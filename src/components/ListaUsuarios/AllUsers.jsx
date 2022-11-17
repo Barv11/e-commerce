@@ -27,8 +27,8 @@ export default function AllUsers() {
   );
 
 
-  // const deploy = "https://gametech.up.railway.app";
-  const local = "http://localhost:3001";
+  const deploy = "https://gametech.up.railway.app";
+  // const deploy = "http://localhost:3001";
 
   async function handleButtonBanned(userId) {
     const config = {
@@ -37,7 +37,7 @@ export default function AllUsers() {
       },
     };
 
-    await axios.put(`${local}/user/create/edit`, {
+    await axios.put(`${deploy}/user/create/edit`, {
       show: false,
       id: userId,
     }, config);
@@ -50,7 +50,7 @@ export default function AllUsers() {
         authorization: `Bearer ${user.token}`,
       },
     };
-    await axios.put(`${local}/user/create/edit`, {
+    await axios.put(`${deploy}/user/create/edit`, {
       show: true,
       id: userId,
     }, config);
@@ -67,7 +67,7 @@ export default function AllUsers() {
         authorization: `Bearer ${user.token}`,
       },
     };
-    await axios.put(`${local}/user/create/edit`, {
+    await axios.put(`${deploy}/user/create/edit`, {
       id: id,
       role: input.role,
     }, config);
