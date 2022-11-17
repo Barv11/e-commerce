@@ -48,7 +48,7 @@ import axios from "axios";
 import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "./actionsTypes";
 
 let url = "https://gametech.up.railway.app";
-// let url = "http://localhost:3001";
+//let url = "http://localhost:3001";
 
 let token = null;
 export const saveToken = (newToken) => {
@@ -429,121 +429,120 @@ export const getOneUser = () => async (dispatch) => {
 };
 
 export const editDiscount = (id, descuento) => async (dispatch) => {
-try {
-  const config = {
-    headers: {
-      Authorization: token,
-    },
-  };
-	  await axios.post(`${url}/discount`, { productId: id, discount: descuento }, config);
-	  dispatch({ type: EDIT_DISCOUNT });
-} catch (error) {
-  console.error(error)
-
-}
+  try {
+    const config = {
+      headers: {
+        Authorization: token,
+      },
+    };
+    await axios.post(
+      `${url}/discount`,
+      { productId: id, discount: descuento },
+      config
+    );
+    dispatch({ type: EDIT_DISCOUNT });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const editStock = (id, stockProd) => async (dispatch) => {
-try {
-  const config = {
-    headers: {
-      Authorization: token,
-    },
-  };
-	  await axios.post(`${url}/stock`, { productId: id, stock: stockProd }, config);
-	  dispatch({ type: EDIT_STOCK });
-} catch (error) {
-  console.error(error)
-
-}
+  try {
+    const config = {
+      headers: {
+        Authorization: token,
+      },
+    };
+    await axios.post(
+      `${url}/stock`,
+      { productId: id, stock: stockProd },
+      config
+    );
+    dispatch({ type: EDIT_STOCK });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const getIntel = (pcType) => async (dispatch) => {
-try {
-	  const allIntel = await axios.get(`${url}/productos/intel?pcType=${pcType}`);
-	  dispatch({ type: GET_INTEL, payload: allIntel.data });
-} catch (error) {
-  console.error(error)
-
-}
+  try {
+    const allIntel = await axios.get(`${url}/productos/intel?pcType=${pcType}`);
+    dispatch({ type: GET_INTEL, payload: allIntel.data });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const getAmd = (pcType) => async (dispatch) => {
-try {
-	  const allAmd = await axios.get(`${url}/productos/amd?pcType=${pcType}`);
-	  dispatch({ type: GET_AMD, payload: allAmd.data });
-} catch (error) {
-  console.error(error)
-
-}
+  try {
+    const allAmd = await axios.get(`${url}/productos/amd?pcType=${pcType}`);
+    dispatch({ type: GET_AMD, payload: allAmd.data });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const addFavoritoProduct = (productId, userId) => async (dispatch) => {
-try {
-	  await axios.post(`${url}/favoritos`, {
-	    productId,
-	    userId,
-	  });
-	  dispatch({ type: ADD_FAVORITO_PRODUCT });
-} catch (error) {
-  console.error(error)
-
-}
+  try {
+    await axios.post(`${url}/favoritos`, {
+      productId,
+      userId,
+    });
+    dispatch({ type: ADD_FAVORITO_PRODUCT });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const getAllFavoritos = (userId) => async (dispatch) => {
-try {
-	  if (userId === "clear") {
-	    dispatch({ type: GET_ALL_FAVORITOS, payload: [] });
-	  } else {
-	    const favsProducts = await axios.get(`${url}/favoritos?id=${userId}`);
-	    dispatch({ type: GET_ALL_FAVORITOS, payload: favsProducts.data });
-	  }
-} catch (error) {
-  console.error(error)
-
-}
+  try {
+    if (userId === "clear") {
+      dispatch({ type: GET_ALL_FAVORITOS, payload: [] });
+    } else {
+      const favsProducts = await axios.get(`${url}/favoritos?id=${userId}`);
+      dispatch({ type: GET_ALL_FAVORITOS, payload: favsProducts.data });
+    }
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const deleteFavorito = (productId, userId) => async (dispatch) => {
-try {
-	  await axios.post(`${url}/favoritos/delete`, {
-	    productId,
-	    userId,
-	  });
-	  dispatch({ type: DELETE_FAVORITO });
-} catch (error) {
-  console.error(error)
-
-}
+  try {
+    await axios.post(`${url}/favoritos/delete`, {
+      productId,
+      userId,
+    });
+    dispatch({ type: DELETE_FAVORITO });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const deleteAllFavorito = (userId) => async (dispatch) => {
-try {
-	  await axios.post(`${url}/favoritos/deleteAll`, {
-	    userId,
-	  });
-	  dispatch({ type: DELETE_ALL_FAVORITO });
-} catch (error) {
-  console.error(error)
-
-}
+  try {
+    await axios.post(`${url}/favoritos/deleteAll`, {
+      userId,
+    });
+    dispatch({ type: DELETE_ALL_FAVORITO });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const userUpdate = (userImage) => async (dispatch) => {
-try {
-	  const obj = { picture: userImage };
-	  const config = {
-	    headers: {
-	      authorization: token,
-	    },
-	  };
-	  const userEdit = await axios.put(`${url}/user/create/edit`, obj, config);
-	  dispatch({ type: UPDATE_USER, payload: userEdit });
-} catch (error) {
-  console.error(error)
-
-}
+  try {
+    const obj = { picture: userImage };
+    const config = {
+      headers: {
+        authorization: token,
+      },
+    };
+    const userEdit = await axios.put(`${url}/user/create/edit`, obj, config);
+    dispatch({ type: UPDATE_USER, payload: userEdit });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const setWelcome = (bool) => (dispatch) => {

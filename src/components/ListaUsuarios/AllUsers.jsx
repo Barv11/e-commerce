@@ -27,7 +27,7 @@ export default function AllUsers() {
   );
 
   const deploy = "https://gametech.up.railway.app";
-  // const deploy = "http://localhost:3001";
+  //const deploy = "http://localhost:3001";
 
   async function handleButtonBanned(userId) {
     const config = {
@@ -87,7 +87,7 @@ export default function AllUsers() {
       dispatch(getUser(user.token));
     }
     dispatch(getAllUsers());
-    openModal()
+    openModal();
   }
 
   const handleSearch = (e) => {
