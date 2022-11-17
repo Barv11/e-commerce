@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import "./AdminDash.css";
 import { Link } from "react-router-dom";
@@ -7,16 +7,20 @@ import EditIcon from "@mui/icons-material/Edit";
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearMessage } from "../../redux/actions";
+import { clearMessage, getUser } from "../../redux/actions";
 
 export default function AdminDash() {
   const userFound = useSelector((state) => state.userFound);
   const dispatch = useDispatch()
 
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+
   useEffect(() => {
     document.title = `Gamer Tech | Admin`;
     dispatch(clearMessage())
+    dispatch(getUser(user.token))
   }, []);
+  console.log(userFound)
   return (
     <div>
       <Navbar />
