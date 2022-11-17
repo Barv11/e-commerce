@@ -59,7 +59,7 @@ function PcArmada({ item }) {
           e.quantity = 1;
         });
         setCart([...cart.concat(myPc)]);
-        alert("Productos Agregados con Exito Al Carrito")
+        alert("Productos Agregados con Exito Al Carrito");
       }
     } else {
       alert("Selecciona un procesador y una tarjeta madre como minimo");
@@ -73,8 +73,7 @@ function PcArmada({ item }) {
   if (myPc.length) {
     return (
       <div className={s.container}>
-        {/* <div>PcArmada</div> */}
-        <div>
+        <div className={s.cardGroup}>
           {myPc &&
             myPc?.map((e) => {
               return (
@@ -86,12 +85,13 @@ function PcArmada({ item }) {
                   </div>
                   <div>
                     <img
+                      className={s.cardImage}
                       src={Array.isArray(e.img) ? e.img[0] : e.img}
                       alt={e.name}
                     />
                   </div>
-                  <h2>{e.name}</h2>
-                  <h3>{`$${e.cost}`}</h3>
+                  <h2 className={s.name}>{e.name}</h2>
+                  <h3 className={s.cost}>{`$${e.cost}`}</h3>
                 </div>
               );
             })}
@@ -113,11 +113,9 @@ function PcArmada({ item }) {
   } else {
     return (
       <div className={s.containerNoItems}>
+        <h2>Empieza a armar tu pc</h2>
         <div>
-          <h2>Empieza a armar tu pc</h2>
-          <div>
-            <img src={gabinete} alt="gabinete" className={s.image} />
-          </div>
+          <img src={gabinete} alt="gabinete" className={s.image} />
         </div>
       </div>
     );
