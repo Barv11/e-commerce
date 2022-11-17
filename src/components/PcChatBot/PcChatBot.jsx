@@ -28,7 +28,7 @@ export default function PcChatBot() {
     {
       id: "message",
       message:
-        "CompuTech es una empresa que se dedica a vender componentes de computadoras.",
+        "GamerTech es una empresa que se dedica a vender componentes de computadoras.",
       trigger: "message-2",
     },
     {
