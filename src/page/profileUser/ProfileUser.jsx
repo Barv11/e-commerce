@@ -14,6 +14,8 @@ import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import CardProfileReview from "../../components/cardProfile/CardProfileReview";
 import PcChatBot from "../../components/PcChatBot/PcChatBot";
 import { userUpdate } from "../../redux/actions";
+import axios from "axios";
+import Table from "react-bootstrap/Table";
 
 export default function ProfileUser() {
   const dispatch = useDispatch();
@@ -25,6 +27,16 @@ export default function ProfileUser() {
   // useEffect(() => {
   //   dispatch(getOneUser());
   // }, []);
+  const url = "http://localhost:3001/ordenes";
+
+  async function AllOrdenes() {
+    const Ordenes = await axios.get(url);
+    setOrdenes(Ordenes);
+  }
+  useEffect(() => {
+    AllOrdenes();
+    document.title = `Gamer Tech | Ordenes`;
+  }, []);
 
   useEffect(() => {
     if (Object.keys(userFound).length) dispatch(reviewsByUser(userFound.id));
@@ -35,6 +47,7 @@ export default function ProfileUser() {
   }, []);
 
   // UPLOAD PERFIL IMAGE
+  const [ordenes, setOrdenes] = useState({});
 
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(true);
@@ -84,7 +97,7 @@ export default function ProfileUser() {
                 </label>
               )}
             </div>
-            <div style={{display : 'none'}}>
+            <div style={{ display: "none" }}>
               <input
                 id="inputTag"
                 className={style.inputImg}
@@ -169,6 +182,62 @@ export default function ProfileUser() {
                 {userReviews?.map((el) => (
                   <CardProfileReview review={el} />
                 ))}
+              </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="3">
+              <Accordion.Header>
+                <CommentIcon /> Compras{" "}
+              </Accordion.Header>
+              <Accordion.Body>
+                <Table striped bordered hover>
+                  <thead>
+                    <tr>
+                      <th>Compra</th>
+                      <th>Cantidad</th>
+                      <th>Precio</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {/* estado con las ordenes y mapeado del estado con las ordenes */}
+                    {ordenes?.data?.map((e) => {
+                      if (e.email === userFound.email) {
+                        return (
+                          <tr>
+                            <td>
+                              {e?.data?.map((el) => {
+                                return (
+                                  <tr>
+                                    <td>
+                                      {el?.description} <br></br>
+                                    </td>
+                                  </tr>
+                                );
+                              })}
+                            </td>
+                            <td>
+                              {e?.data?.map((el) => {
+                                return (
+                                  <tr>
+                                    <td>{el?.quantity}</td>
+                                  </tr>
+                                );
+                              })}
+                            </td>
+                            <td>
+                              {e?.data?.map((el) => {
+                                return (
+                                  <tr>
+                                    <td>{"$" + el?.amount_total / 100}</td>
+                                  </tr>
+                                );
+                              })}
+                            </td>
+                          </tr>
+                        );
+                      }
+                    })}
+                  </tbody>
+                </Table>
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>

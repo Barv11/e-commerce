@@ -20,7 +20,6 @@ export default function Orden() {
     AllOrdenes();
     document.title = `Gamer Tech | Ordenes`;
   }, []);
-  console.log(ordenes);
   return (
     <>
       <Navbar />
