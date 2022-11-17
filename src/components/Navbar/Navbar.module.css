@@ -9,7 +9,7 @@
   padding: 5px 0;
   width: 100%;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
   color: #ffffff;
@@ -71,7 +71,7 @@
 .containerChild {
   padding-right: 3rem;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: flex-end;
   align-items: center;
   gap: 2.5rem;
@@ -82,7 +82,6 @@
   font-size: 1rem;
   color: #ffffff;
   padding: 0.2em;
-
 }
 
 /* .user {
@@ -111,7 +110,33 @@
   z-index: 50;
 }
 
-.carrito::before  {
+.welcome {
+  font-size: 1.5rem;
+  color: #ffffff;
+}
+.welcome:hover{
+  color: inherit;
+}
+
+.user {
+  box-shadow: 6px 6px 15px -2px #b351d1be, -6px -6px 15px -2px #7b00a0a8;
+  border-radius: 1em;
+  background-color: #69329c;
+  padding: .2em 1em;
+  text-align: center;
+  font-size: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  color: #ffffff;
+  transition: box-shadow .5s;
+}
+
+.user:hover {
+  box-shadow: 6px 6px 15px -2px #7b00a0a8, -6px -6px 15px -2px #b351d1b7;
+
+}
+
+/* .carrito::before  {
   content: attr(data-foo);
   position: absolute;
   z-index: 10;
@@ -123,7 +148,7 @@
   font-size: .9rem;
   background-color: #ff0000;
   border-radius: 50%;
-}
+} */
 
 .links {
   background-color: #ebebeb;
@@ -168,28 +193,25 @@
 
 .favoritesBtn nav:hover {
   background-color: #a13793;
-
 }
 
-
-@media (max-width: 600px){
+@media (max-width: 600px) {
   .links {
     display: flex;
     flex-wrap: wrap;
     gap: 1em;
-
   }
-  .child{
+  .child {
     font-size: 0.8rem;
   }
-  
-  .activeChild{
+
+  .activeChild {
     font-size: 0.8rem;
   }
   .logo {
     width: 20%;
   }
-  .mainTitle{
+  .mainTitle {
     font-size: 1.2rem;
   }
   .userTxt {

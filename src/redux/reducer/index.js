@@ -41,6 +41,7 @@ import {
   ADD_FAVORITO_PRODUCT,
   GET_ALL_FAVORITOS,
   DELETE_ALL_FAVORITO,
+  WELCOME,
 } from "../actions/actionsTypes";
 
 const initialState = {
@@ -62,6 +63,7 @@ const initialState = {
   productsIntel: [],
   productsAmd: [],
   favoritos: [],
+  welcome: false,
 };
 
 function rootReducer(state = initialState, action) {
@@ -297,6 +299,11 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+    case WELCOME:
+      return {
+        ...state,
+        welcome: action.payload
+      }
     default:
       return {
         ...state,

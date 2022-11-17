@@ -38,6 +38,11 @@
   border: 2px solid #408612;
 }
 
+.cart2:disabled {
+  cursor: no-drop;
+  filter: grayscale(1);
+}
+
 .carrousel {
   flex-basis: 40%;
   display: flex;

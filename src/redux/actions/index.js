@@ -42,12 +42,13 @@ import {
   DELETE_FAVORITO,
   DELETE_ALL_FAVORITO,
   UPDATE_USER,
+  WELCOME,
 } from "./actionsTypes";
 import axios from "axios";
 import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "./actionsTypes";
 
-let url = "https://gametech.up.railway.app";
-// let url = "http://localhost:3001";
+// let url = "https://gametech.up.railway.app";
+let url = "http://localhost:3001";
 
 let token = null;
 export const saveToken = (newToken) => {
@@ -55,20 +56,28 @@ export const saveToken = (newToken) => {
 };
 
 export const toggleProductType = (type) => async (dispatch) => {
-  const productos = await axios.get(`${url}/productos`);
-  const filterProduct = productos.data.filter((p) => p.type === type);
-  dispatch({ type: TOGGLE_PRODUCT_TYPE, payload: filterProduct });
+  try {
+    const productos = await axios.get(`${url}/productos`);
+    const filterProduct = productos.data.filter((p) => p.type === type);
+    dispatch({ type: TOGGLE_PRODUCT_TYPE, payload: filterProduct });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const getAllProductos = () => async (dispatch) => {
-  const config = {
-    headers: {
-      authorization: token,
-    },
-  };
+  try {
+    const config = {
+      headers: {
+        authorization: token,
+      },
+    };
 
-  const productos = await axios.get(`${url}/productos`, config);
-  dispatch({ type: GET_ALL_PRODUCTS, payload: productos.data });
+    const productos = await axios.get(`${url}/productos`, config);
+    dispatch({ type: GET_ALL_PRODUCTS, payload: productos.data });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const getDeleteProducts = () => async (dispatch) => {
@@ -81,20 +90,28 @@ export const getDeleteProducts = () => async (dispatch) => {
 };
 
 export const toggleDeletedProductType = (type) => async (dispatch) => {
-  const productos = await axios.get(`${url}/productos/enabled`);
-  const filterProduct = productos.data.filter((p) => p.type === type);
-  dispatch({ type: TOGGLE_DELETED_PRODUCT_TYPE, payload: filterProduct });
+  try {
+    const productos = await axios.get(`${url}/productos/enabled`);
+    const filterProduct = productos.data.filter((p) => p.type === type);
+    dispatch({ type: TOGGLE_DELETED_PRODUCT_TYPE, payload: filterProduct });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const restoreProduct = (id) => async (dispatch) => {
-  const config = {
-    headers: {
-      Authorization: token,
-    },
-  };
+  try {
+    const config = {
+      headers: {
+        Authorization: token,
+      },
+    };
 
-  await axios.put(`${url}/productos/restore/${id}`, {}, config);
-  dispatch({ type: RESTORE_PRODUCT });
+    await axios.put(`${url}/productos/restore/${id}`, {}, config);
+    dispatch({ type: RESTORE_PRODUCT });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const postImage = (file) => async (dispatch) => {
@@ -110,7 +127,7 @@ export const postImage = (file) => async (dispatch) => {
   );
   const img = await response.json();
 
-  return dispatch({
+  dispatch({
     type: POST_IMAGE,
     payload: img.url,
   });
@@ -120,8 +137,8 @@ export const clearMessage = () => (dispatch) => {
   dispatch({ type: CLEAR_MESSAGE });
 };
 
-export function postProduct(payload) {
-  return async function(dispatch) {
+export const postProduct = (payload) => async (dispatch) => {
+  try {
     const config = {
       headers: {
         Authorization: token,
@@ -133,12 +150,14 @@ export function postProduct(payload) {
       payload,
       config
     );
-    return dispatch({
+    dispatch({
       type: POST_PRODUCT,
       payload: response.data.message,
     });
-  };
-}
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 export const updateProduct = (product) => async (dispatch) => {
   try {
@@ -162,7 +181,7 @@ export const updateProduct = (product) => async (dispatch) => {
     );
     dispatch({ type: UPDATE_PRODUCT, payload: response.data.message });
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 };
 
@@ -193,31 +212,47 @@ export const updateProduct = (product) => async (dispatch) => {
 // };
 
 export const deleteProduct = (id) => async (dispatch) => {
-  const config = {
-    headers: {
-      Authorization: token,
-    },
-  };
+  try {
+    const config = {
+      headers: {
+        Authorization: token,
+      },
+    };
 
-  const response = await axios.put(`${url}/productos/delete/${id}`, {}, config);
-  dispatch({ type: DELETE_PRODUCT, payload: response.data });
+    const response = await axios.put(
+      `${url}/productos/delete/${id}`,
+      {},
+      config
+    );
+    dispatch({ type: DELETE_PRODUCT, payload: response.data });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const searchProductByName = (name) => async (dispatch) => {
-  const productos = await axios.get(`${url}/productos`);
-  const productosbyName = productos.data.filter((p) =>
-    p.name.toLowerCase().includes(name.toLowerCase())
-  );
-  dispatch({ type: SEARCH_PRODUCT_BY_NAME, payload: productosbyName });
+  try {
+    const productos = await axios.get(`${url}/productos`);
+    const productosbyName = productos.data.filter((p) =>
+      p.name.toLowerCase().includes(name.toLowerCase())
+    );
+    dispatch({ type: SEARCH_PRODUCT_BY_NAME, payload: productosbyName });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const searchProductById = (id) => async (dispatch) => {
-  if (id === "clear") {
-    return dispatch({ type: SEARCH_PRODUCT_BY_ID, payload: [] });
+  try {
+    if (id === "clear") {
+      return dispatch({ type: SEARCH_PRODUCT_BY_ID, payload: [] });
+    }
+    const producto = await axios.get(`${url}/productos/` + id);
+    const productosbyId = producto.data;
+    dispatch({ type: SEARCH_PRODUCT_BY_ID, payload: productosbyId });
+  } catch (error) {
+    console.error(error);
   }
-  const producto = await axios.get(`${url}/productos/` + id);
-  const productosbyId = producto.data;
-  dispatch({ type: SEARCH_PRODUCT_BY_ID, payload: productosbyId });
 };
 
 export const clearProducts = () => (dispatch) => {
@@ -228,51 +263,57 @@ export const getCurrentUser = (obj) => (dispatch) => {
   return dispatch({ type: GET_CURRENT_USER, payload: obj });
 };
 export const userLogin = (obj) => async (dispatch) => {
-  if (obj === "clear") {
-    dispatch({ type: USER_LOGIN, payload: {} });
-  } else {
-    const login = await axios.post(`${url}/user/login`, obj);
-    dispatch({ type: USER_LOGIN, payload: login });
+  try {
+    if (obj === "clear") {
+      dispatch({ type: USER_LOGIN, payload: {} });
+    } else {
+      const login = await axios.post(`${url}/user/login`, obj);
+      dispatch({ type: USER_LOGIN, payload: login });
+    }
+  } catch (error) {
+    console.error(error);
   }
 };
 
 export const userRegister = (user) => async (dispatch) => {
-  const register = await axios.post(`${url}/user/create/signup`, user);
-  dispatch({ type: REGISTER_USER, payload: register });
+  try {
+    const register = await axios.post(`${url}/user/create/signup`, user);
+    dispatch({ type: REGISTER_USER, payload: register });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const userLogout = () => (dispatch) => {
   dispatch({ type: USER_LOGOUT });
 };
 
-export function ordennames(payload) {
-  return function(dispatch) {
-    return dispatch({
-      type: ORDER_NAME,
-      payload,
-    });
-  };
-}
+export const ordennames = (payload) => (dispatch) => {
+  dispatch({ type: ORDER_NAME, payload });
+};
 
-export function orderprecio(payload) {
-  return function(dispatch) {
-    return dispatch({
-      type: ORDER_PRECIO,
-      payload,
-    });
-  };
-}
+export const orderprecio = (payload) => (dispatch) => {
+  dispatch({ type: ORDER_PRECIO, payload });
+};
 
 export const getAllUsers = () => async (dispatch) => {
-  const users = await axios.get(`${url}/user/create`);
-  dispatch({ type: GET_ALL_USERS, payload: users.data });
+  try {
+    const users = await axios.get(`${url}/user/create`);
+    dispatch({ type: GET_ALL_USERS, payload: users.data });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const getCartProduct = (id) => async (dispatch) => {
-  const obj = { id: id };
+  try {
+    const obj = { id: id };
 
-  const productos = await axios.post(`${url}/cart/get`, obj);
-  dispatch({ type: GET_CART_PRODUCTS, payload: productos });
+    const productos = await axios.post(`${url}/cart/get`, obj);
+    dispatch({ type: GET_CART_PRODUCTS, payload: productos });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const clearCartProduct = () => (dispatch) => {
@@ -280,15 +321,23 @@ export const clearCartProduct = () => (dispatch) => {
 };
 
 export const addCartProduct = (id, array) => async (dispatch) => {
-  const obj = { id: id, productosCarrito: array };
-  await axios.post(`${url}/cart/create`, obj);
-  dispatch({ type: ADD_CART_PRODUCTS });
+  try {
+    const obj = { id: id, productosCarrito: array };
+    await axios.post(`${url}/cart/create`, obj);
+    dispatch({ type: ADD_CART_PRODUCTS });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const getUser = (stringToken) => async (dispatch) => {
-  const myUser = { token: stringToken.toString() };
-  const userFound = await axios.post(`${url}/user/login/find`, myUser);
-  dispatch({ type: GET_USER, payload: userFound.data });
+  try {
+    const myUser = { token: stringToken.toString() };
+    const userFound = await axios.post(`${url}/user/login/find`, myUser);
+    dispatch({ type: GET_USER, payload: userFound.data });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const clearUser = () => (dispatch) => {
@@ -296,8 +345,12 @@ export const clearUser = () => (dispatch) => {
 };
 
 export const deleteCartProduct = (id) => async (dispatch) => {
-  axios.post(`${url}/cart/delete`, { id: id });
-  dispatch({ type: DELETE_CART_PRODUCT });
+  try {
+    await axios.post(`${url}/cart/delete`, { id: id });
+    dispatch({ type: DELETE_CART_PRODUCT });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const clearReviews = () => (dispatch) => {
@@ -362,74 +415,137 @@ export const deleteReview = (id) => async (dispatch) => {
   }
 };
 export const getOneUser = () => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        Authorization: token,
+      },
+    };
+    const myUser = await axios.get(`${url}/user/login/name`, config);
+    dispatch({ type: GET_ONE_USER, payload: myUser });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const editDiscount = (id, descuento) => async (dispatch) => {
+try {
   const config = {
     headers: {
       Authorization: token,
     },
   };
-  const myUser = await axios.get(`${url}/user/login/name`, config);
-  dispatch({ type: GET_ONE_USER, payload: myUser });
-};
+	  await axios.post(`${url}/discount`, { productId: id, discount: descuento }, config);
+	  dispatch({ type: EDIT_DISCOUNT });
+} catch (error) {
+  console.error(error)
 
-export const editDiscount = (id, descuento) => async (dispatch) => {
-  axios.post(`${url}/discount`, { productId: id, discount: descuento });
-  dispatch({ type: EDIT_DISCOUNT });
+}
 };
 
 export const editStock = (id, stockProd) => async (dispatch) => {
-  axios.post(`${url}/stock`, { productId: id, stock: stockProd });
-  dispatch({ type: EDIT_STOCK });
+try {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+	  await axios.post(`${url}/stock`, { productId: id, stock: stockProd }, config);
+	  dispatch({ type: EDIT_STOCK });
+} catch (error) {
+  console.error(error)
+
+}
 };
 
 export const getIntel = (pcType) => async (dispatch) => {
-  const allIntel = await axios.get(`${url}/productos/intel?pcType=${pcType}`);
-  dispatch({ type: GET_INTEL, payload: allIntel.data });
+try {
+	  const allIntel = await axios.get(`${url}/productos/intel?pcType=${pcType}`);
+	  dispatch({ type: GET_INTEL, payload: allIntel.data });
+} catch (error) {
+  console.error(error)
+
+}
 };
 
 export const getAmd = (pcType) => async (dispatch) => {
-  const allAmd = await axios.get(`${url}/productos/amd?pcType=${pcType}`);
-  dispatch({ type: GET_AMD, payload: allAmd.data });
+try {
+	  const allAmd = await axios.get(`${url}/productos/amd?pcType=${pcType}`);
+	  dispatch({ type: GET_AMD, payload: allAmd.data });
+} catch (error) {
+  console.error(error)
+
+}
 };
 
 export const addFavoritoProduct = (productId, userId) => async (dispatch) => {
-  await axios.post(`${url}/favoritos`, {
-    productId,
-    userId,
-  });
-  dispatch({ type: ADD_FAVORITO_PRODUCT });
+try {
+	  await axios.post(`${url}/favoritos`, {
+	    productId,
+	    userId,
+	  });
+	  dispatch({ type: ADD_FAVORITO_PRODUCT });
+} catch (error) {
+  console.error(error)
+
+}
 };
 
 export const getAllFavoritos = (userId) => async (dispatch) => {
-  if (userId === "clear") {
-    dispatch({ type: GET_ALL_FAVORITOS, payload: [] });
-  } else {
-    const favsProducts = await axios.get(`${url}/favoritos?id=${userId}`);
-    dispatch({ type: GET_ALL_FAVORITOS, payload: favsProducts.data });
-  }
+try {
+	  if (userId === "clear") {
+	    dispatch({ type: GET_ALL_FAVORITOS, payload: [] });
+	  } else {
+	    const favsProducts = await axios.get(`${url}/favoritos?id=${userId}`);
+	    dispatch({ type: GET_ALL_FAVORITOS, payload: favsProducts.data });
+	  }
+} catch (error) {
+  console.error(error)
+
+}
 };
 
 export const deleteFavorito = (productId, userId) => async (dispatch) => {
-  await axios.post(`${url}/favoritos/delete`, {
-    productId,
-    userId,
-  });
-  dispatch({ type: DELETE_FAVORITO });
+try {
+	  await axios.post(`${url}/favoritos/delete`, {
+	    productId,
+	    userId,
+	  });
+	  dispatch({ type: DELETE_FAVORITO });
+} catch (error) {
+  console.error(error)
+
+}
 };
 
 export const deleteAllFavorito = (userId) => async (dispatch) => {
-  await axios.post(`${url}/favoritos/deleteAll`, {
-    userId,
-  });
-  dispatch({ type: DELETE_ALL_FAVORITO });
+try {
+	  await axios.post(`${url}/favoritos/deleteAll`, {
+	    userId,
+	  });
+	  dispatch({ type: DELETE_ALL_FAVORITO });
+} catch (error) {
+  console.error(error)
+
+}
 };
 
 export const userUpdate = (userImage) => async (dispatch) => {
-  const obj = { picture: userImage };
-  const config = {
-    headers: {
-      authorization: token,
-    },
-  };
-  const userEdit = await axios.put(`${url}/user/create/edit`, obj, config);
-  dispatch({ type: UPDATE_USER, payload: userEdit });
+try {
+	  const obj = { picture: userImage };
+	  const config = {
+	    headers: {
+	      authorization: token,
+	    },
+	  };
+	  const userEdit = await axios.put(`${url}/user/create/edit`, obj, config);
+	  dispatch({ type: UPDATE_USER, payload: userEdit });
+} catch (error) {
+  console.error(error)
+
+}
+};
+
+export const setWelcome = (bool) => (dispatch) => {
+  dispatch({ type: WELCOME, payload: bool });
 };

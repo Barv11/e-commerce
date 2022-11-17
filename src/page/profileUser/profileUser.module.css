@@ -14,20 +14,21 @@
 }
 
 .imgProfile {
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
-  margin: 15px;
-  background-color: blueviolet;
+  object-fit: cover;
 }
 
 .headProfile {
     width: 90%;
   display: flex;
   align-items: center;
+  padding: 1em;
+  gap: 2em;
   background-color: blueviolet;
   border-radius: 15px;
-  margin: 15px 0;
+  margin: 1.5em  0;
 }
 .subtitle {
   margin: 15px 0;
@@ -72,11 +73,29 @@
         
     } */
 .imgContainer{
-  width: 13vw;
+
 }
-.inputImg{
-  width: 80%;
-  font-size: 13px;
-  padding: 5px;
-  margin: 0 10px;
+
+.upload {
+  cursor: pointer;
+  position: relative;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background-color: rgba(110, 110, 110, 0.329);
+  border: 1px solid rgb(54, 54, 54);
+  width: 200px;
+  height: 200px;
+  color: #ffffff;
+  font-size: 2rem;
+  padding-bottom: 1.2em;
 }
+.upload > i {
+  position: absolute;
+  font-size: 5rem;
+  color: #ffffff;
+  top: 10px;
+  right: 55px;
+}
+

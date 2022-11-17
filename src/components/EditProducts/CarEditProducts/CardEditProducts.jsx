@@ -32,12 +32,12 @@ export default function CardEditProducts({
 
   const capType = type[0].toUpperCase() + type.slice(1);
 
-  const [descuento, setDescuento] = useState(discount);
+  const [descuentoProd, setDescuentoProd] = useState(discount);
   const [stockProd, setStockProd] = useState(stock);
   const [isOpenModal1, openModal1, closeModal1] = useModal(false);
   const [isOpenModal2, openModal2, closeModal2] = useModal(false);
   const [isOpenModal3, openModal3, closeModal3] = useModal(false);
-
+console.log(descuentoProd, stockProd)
   const handlerDelete = () => {
     dispatch(deleteProduct(id));
     setType("defect");
@@ -48,18 +48,18 @@ export default function CardEditProducts({
     openModal3();
   };
 
-  const handleDiscountSubmit = (id) => {
-    dispatch(editDiscount(id, descuento));
+  const handleDiscountSubmit = () => {
+    dispatch(editDiscount(id, descuentoProd));
     openModal1();
   };
 
-  const handleStockSubmit = (id) => {
+  const handleStockSubmit = () => {
     dispatch(editStock(id, stockProd));
     openModal2();
   };
 
   const handleChange = (e) => {
-    setDescuento(e.target.value);
+    setDescuentoProd(e.target.value);
   };
 
   const handleChangeStock = (e) => {
@@ -69,7 +69,9 @@ export default function CardEditProducts({
   return (
     <div key={id} className={s.container}>
       <span className={s.text}>{capType}</span>
-      <span className={s.text}>{name}</span>
+      <NavLink to={"/detail/" + id} className={s.text}>
+        {name}
+      </NavLink>
       <span className={s.text}>{brand}</span>
       <span className={s.text}>{cost}</span>
 
@@ -82,7 +84,7 @@ export default function CardEditProducts({
         <i class="uil uil-trash-alt"></i>
       </span>
       <Modal isOpen={isOpenModal3} closeModal={closeModal3}>
-        {userFound.role === "admin" ? (
+        {userFound.role !== "superAdmin" ? (
           <>
             <h1 className={s.modalTitle}>
               No tienes los permisos suficientes <ThumbUpAltRoundedIcon />
@@ -94,59 +96,74 @@ export default function CardEditProducts({
               ¡Producto Eliminado! <ThumbUpAltRoundedIcon />
             </h1>
             <p className={s.modalSubtitle}>
-              El producto ha sido eliminado, puedes restaurarlo desde la papelera.
+              El producto ha sido eliminado, puedes restaurarlo desde la
+              papelera.
             </p>
           </>
         )}
       </Modal>
       <div key={id} className={s.discountContainer}>
+        %{" "}
         <input
           id={s.inputDis}
           type="number"
-          onChange={(e) => {
-            handleChange(e);
-          }}
-          value={descuento}
+          onChange={handleChange}
+          value={descuentoProd}
         />
         <button
-          onClick={() => {
-            handleDiscountSubmit(id, descuento);
-          }}
+          onClick={handleDiscountSubmit}
         >
           <CheckRoundedIcon />
         </button>
         <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
-          <h1 className={s.modalTitle}>
-            Descuento aplicado con éxito! <ThumbUpAltRoundedIcon />
-          </h1>
-          <p className={s.modalSubtitle}>
-            {name} ahora tiene un {descuento}% de descuento.
-          </p>
+          {userFound.role !== "superAdmin" ? (
+            <>
+              <h1 className={s.modalTitle}>
+                No tienes los permisos suficientes <ThumbUpAltRoundedIcon />
+              </h1>
+            </>
+          ) : (
+            <>
+              <h1 className={s.modalTitle}>
+                Descuento aplicado con éxito! <ThumbUpAltRoundedIcon />
+              </h1>
+              <p className={s.modalSubtitle}>
+                {name} ahora tiene un {descuentoProd}% de descuento.
+              </p>
+            </>
+          )}
         </Modal>
       </div>
       <div className={s.stock}>
         <input
           id={s.inputDis}
           type="number"
-          onChange={(e) => {
-            handleChangeStock(e);
-          }}
+          onChange={handleChangeStock}
           value={stockProd}
-        />
+        />{" "}
+        uds.
         <button
-          onClick={() => {
-            handleStockSubmit(id, stockProd);
-          }}
+          onClick={handleStockSubmit}
         >
           <CheckRoundedIcon />
         </button>
         <Modal isOpen={isOpenModal2} closeModal={closeModal2}>
-          <h1 className={s.modalTitle}>
-            Stock modificado con éxito! <ThumbUpAltRoundedIcon />
-          </h1>
-          <p className={s.modalSubtitle}>
-            El stock de {name} es ahora de {stockProd} unidades.
-          </p>
+          {userFound.role !== "superAdmin" && userFound.role !== "admin" ? (
+            <>
+              <h1 className={s.modalTitle}>
+                No tienes los permisos suficientes <ThumbUpAltRoundedIcon />
+              </h1>
+            </>
+          ) : (
+            <>
+              <h1 className={s.modalTitle}>
+                Stock modificado con éxito! <ThumbUpAltRoundedIcon />
+              </h1>
+              <p className={s.modalSubtitle}>
+                El stock de {name} es ahora de {stockProd} unidades.
+              </p>
+            </>
+          )}
         </Modal>
       </div>
     </div>

@@ -11,9 +11,11 @@ import {
   getCartProduct,
   addCartProduct,
   clearUser,
+  setWelcome,
 } from "../../redux/actions";
 import pcLogo from "../../assets/pc-logo.png";
 import usuarioLogo from "../../assets/user-login-icon.png";
+import Welcome from "../Welcome/Welcome";
 
 export default function Navbar() {
   const navigate = useNavigate()
@@ -39,12 +41,12 @@ export default function Navbar() {
         })
       )
     );
-    dispatch(clearUser())
+    dispatch(clearUser());
+    dispatch(setWelcome(false));
     setTimeout(() => {
       navigate("/")
     }, 500);
   };
-
 
   useEffect(() => {
     setNumber(
@@ -52,11 +54,12 @@ export default function Navbar() {
     );
   }, [cartProducts, products]);
 
-  useEffect(() => {
-    if (user.logged) {
-      dispatch(getUser(user.token));
-    }
-  }, [dispatch]);
+  // useEffect(() => {
+  //   if (user.logged) {
+  //     dispatch(getUser(user.token));
+  //   }
+  // }, [dispatch]);
+
   return (
     <nav className={s.navbar}>
       <div className={s.container}>
@@ -66,9 +69,9 @@ export default function Navbar() {
         </Link>
         <div className={s.containerChild}>
           {user.logged ? (
-            <Link className={s.link} to={"/profile"}>
+            <Link className={`${s.link}`} to={"/profile"}>
               {/* <img src={usuarioLogo} alt="usuario" className={s.userimg} /> */}
-              <span className={s.userTxt}>{userFound?.userName}</span>
+              <span className={` ${s.user}`}>{userFound?.firstName} {userFound?.lastName}</span>
             </Link>
           ) : (
             <Link style={{ textDecoration: "none" }} to={"/login"}>
