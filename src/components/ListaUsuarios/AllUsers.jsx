@@ -72,6 +72,7 @@ export default function AllUsers() {
         authorization: `Bearer ${user.token}`,
       },
     };
+    openModal();
     await axios.put(`${deploy}/user/create/edit`, {
       id: id,
       role: input.role,
@@ -81,7 +82,6 @@ export default function AllUsers() {
       dispatch(getUser(user.token));
     }
     dispatch(getAllUsers());
-    openModal();
   }
 
   const handleSearch = (e) => {
@@ -185,7 +185,7 @@ export default function AllUsers() {
                       <CheckRoundedIcon />
                     </button>
                     <Modal isOpen={isOpenModal} closeModal={closeModal}>
-                      <h1 className="modalTitle">Rol asinado con éxito</h1>
+                      <h1 className="modalTitle">Rol asignado con éxito</h1>
                       <p className="modalSubtitle">
                         Has asignado el rol {u.role} exitosamente.
                       </p>
