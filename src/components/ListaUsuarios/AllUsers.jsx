@@ -87,7 +87,6 @@ export default function AllUsers() {
       dispatch(getUser(user.token));
     }
     dispatch(getAllUsers());
-    openModal();
   }
 
   const handleSearch = (e) => {
