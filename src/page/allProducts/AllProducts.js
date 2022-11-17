@@ -84,9 +84,8 @@ export default function Products() {
   useEffect(() => {
     dispatch(clearProducts());
     dispatch(getAllProductos());
-    dispatch(getAllFavoritos(userFound?.id));
+    // dispatch(getAllFavoritos(userFound?.id));
   }, [dispatch]);
-
 
   //ORDENAMIENTO
   const OrderName = (event) => {
@@ -154,10 +153,7 @@ export default function Products() {
               type="text"
               placeholder="Buscar producto..."
             />
-            <i
-              className="uil uil-search"
-              onClick={handleSearch}
-            ></i>
+            <i className="uil uil-search" onClick={handleSearch}></i>
           </form>
           <div className={s.render}>
             <span

@@ -22,18 +22,12 @@ export default function AllUsers() {
   const [search, setSearch] = useState("");
   const [isOpenModal, openModal, closeModal] = useModal(false);
 
-
-  const local = "https://gametech.up.railway.app";
-  //const local = "http://localhost:3001";
-
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user") || "[]")
   );
 
-
-  const deploy = "https://gametech.up.railway.app";
-  // const url = "http://localhost:3001";
-
+  // const deploy = "https://gametech.up.railway.app";
+  const deploy = "http://localhost:3001";
 
   async function handleButtonBanned(userId) {
     const config = {
@@ -42,10 +36,14 @@ export default function AllUsers() {
       },
     };
 
-    await axios.put(`${deploy}/user/create/edit`, {
-      show: false,
-      id: userId,
-    }, config);
+    await axios.put(
+      `${deploy}/user/create/edit`,
+      {
+        show: false,
+        id: userId,
+      },
+      config
+    );
     dispatch(getAllUsers());
   }
 
@@ -55,10 +53,14 @@ export default function AllUsers() {
         authorization: `Bearer ${user.token}`,
       },
     };
-    await axios.put(`${deploy}/user/create/edit`, {
-      show: true,
-      id: userId,
-    }, config);
+    await axios.put(
+      `${deploy}/user/create/edit`,
+      {
+        show: true,
+        id: userId,
+      },
+      config
+    );
     dispatch(getAllUsers());
   }
 
@@ -72,10 +74,14 @@ export default function AllUsers() {
         authorization: `Bearer ${user.token}`,
       },
     };
-    await axios.put(`${deploy}/user/create/edit`, {
-      id: id,
-      role: input.role,
-    }, config);
+    await axios.put(
+      `${deploy}/user/create/edit`,
+      {
+        id: id,
+        role: input.role,
+      },
+      config
+    );
 
     if (user.logged) {
       dispatch(getUser(user.token));
@@ -141,12 +147,20 @@ export default function AllUsers() {
               return (
                 <tr key={u.id}>
                   {/* <td>{u.id}</td> */}
+                  <td>{u.userName}</td>
                   <td>{u.firstName}</td>
                   <td>{u.lastName}</td>
-                  <td>{u.userName}</td>
                   <td>{u.email}</td>
                   {/* <td>{u.role}</td> */}
-                  <td>{u.role === 'user' ? 'Usuario' : u.role === 'admin' ? 'Administrador' : u.role === 'superAdmin' ? 'Super admin' : null}</td>
+                  <td>
+                    {u.role === "user"
+                      ? "Usuario"
+                      : u.role === "admin"
+                      ? "Administrador"
+                      : u.role === "superAdmin"
+                      ? "Super admin"
+                      : null}
+                  </td>
                   <td>
                     <label>
                       <select
@@ -158,7 +172,7 @@ export default function AllUsers() {
                           Administrador
                         </option>
                         <option name="role" value="superAdmin">
-                        Super admin 
+                          Super admin
                         </option>
                         <option name="role" value="user">
                           Usuario
@@ -166,7 +180,7 @@ export default function AllUsers() {
                       </select>
                     </label>
                   </td>
-                  <td>{u.show ? 'Activo' : 'Baneado'}</td>
+                  <td>{u.show ? "Activo" : "Baneado"}</td>
                   {u.show ? (
                     <td>
                       <button onClick={() => handleButtonBanned(u.id)}>
@@ -185,9 +199,16 @@ export default function AllUsers() {
                       <CheckRoundedIcon />
                     </button>
                     <Modal isOpen={isOpenModal} closeModal={closeModal}>
-                      <h1 className="modalTitle">Rol asinado con éxito</h1>
+                      <h1 className="modalTitle">Rol asignado con éxito</h1>
                       <p className="modalSubtitle">
-                        Has asignado el rol {u.role} exitosamente.
+                        Al usuario {u.userName} se le asignó el rol{" "}
+                        {u.role === "user"
+                          ? "Usuario"
+                          : u.role === "admin"
+                          ? "Administrador"
+                          : u.role === "superAdmin"
+                          ? "Super admin"
+                          : null}
                       </p>
                     </Modal>
                   </td>

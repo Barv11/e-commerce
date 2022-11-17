@@ -73,7 +73,7 @@ export default function CardDetail(props) {
   useEffect(() => {
     // dispatch(getAllProductos());
     dispatch(searchProductById(id));
-    dispatch(getAllFavoritos(userFound?.id));
+    // dispatch(getAllFavoritos(userFound?.id));
   }, [dispatch]);
 
   useEffect(() => {
@@ -86,7 +86,6 @@ export default function CardDetail(props) {
   useEffect(() => {
     return dispatch(clearProducts());
   }, []);
-
   return (
     <>
       <Navbar />
@@ -124,13 +123,13 @@ export default function CardDetail(props) {
                 className={s.route}
               >{`Productos ❯ ${searchByIdProduct.type}`}</span>
               <span className={s.brand}>Marca: {brand}</span>
-              <span className={s.route}>Stock: {stock}</span>
+              <span className={s.route}>{stock} unidades disponibles.</span>
 
               <span className={discount === 0 ? s.cost : s.disCost}>
                 ${cost}
               </span>
               {discount !== 0 && (
-                <span className={s.cost}>${cost - discountCost}</span>
+                <span className={s.cost}>${cost - discountCost} - {discount}%<i class="uil uil-pricetag-alt"></i></span>
               )}
               <div className={s.icon}>
                 <i class="uil uil-shop"></i>
@@ -140,7 +139,8 @@ export default function CardDetail(props) {
                 <i class="uil uil-box"></i>
                 <span>Envíos a todo el país</span>
               </div>
-              <div
+              <button
+                disabled={!stock}
                 className={s.cart2}
                 onClick={() =>
                   handleCart({
@@ -155,19 +155,24 @@ export default function CardDetail(props) {
               >
                 <span className={s.add}>Add to cart</span>
                 <i className="uil uil-shopping-cart"></i>
-              </div>
-              <Modal isOpen={isOpenModal} closeModal={closeModal}>
-                <h1 className={s.modalTitle}>
-                  Producto agregado a tu carrito <ThumbUpAltRoundedIcon />
-                </h1>
-                <p className={s.modalSubtitle}>
-                  Agregaste {name} a tu carrito exitosamente!
-                </p>
-              </Modal>
+              </button>
+              {stock ? (
+                <Modal isOpen={isOpenModal} closeModal={closeModal}>
+                  <h1 className={s.modalTitle}>
+                    Producto agregado a tu carrito <ThumbUpAltRoundedIcon />
+                  </h1>
+                  <p className={s.modalSubtitle}>
+                    Agregaste {name} a tu carrito exitosamente!
+                  </p>
+                </Modal>
+              ) : null}
             </div>
           </div>
           <div className={s.especificaciones}>
-            <Especificaciones product={searchByIdProduct} userFound={userFound}/>
+            <Especificaciones
+              product={searchByIdProduct}
+              userFound={userFound}
+            />
           </div>
         </main>
       )}

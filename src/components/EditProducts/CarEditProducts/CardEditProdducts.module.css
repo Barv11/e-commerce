@@ -10,6 +10,7 @@
 .text,
 .edit,
 .detail {
+  text-decoration: none;
   font-size: 1rem;
   color: #000000;
 }
@@ -59,40 +60,58 @@
   filter: drop-shadow(0 0 5px black);
 }
 
-#inputDis{
+#inputDis {
   width: 40px;
+  outline: none;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #808080;
+  text-align: center;
 }
 
-.discountContainer{
+.discountContainer {
   flex-basis: 10%;
   display: flex;
-  flex-direction: row;
+  flex-flow: row nowrap;
   align-items: center;
   justify-content: center;
-  flex-wrap: nowrap;
 }
 
-.discountContainer button{
+.discountContainer button {
   margin-left: 2px;
+  border-radius: 50%;
+  border: none;
+  outline: 1px solid rgb(68, 68, 68);
 }
 
-.modalTitle{
+.modalTitle {
   font-size: 35px;
   font-family: Cocosharp;
 }
 
-.modalSubtitle{
+.modalSubtitle {
   font-family: Open Sans, sans-serif;
 }
 
 .stock {
   flex-basis: 10%;
   text-align: center;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.stock > button {
+  margin-left: 2px;
+  border-radius: 50%;
+  border: none;
+  outline: 1px solid rgb(68, 68, 68);
 }
 
 @font-face {
   font-family: Cocosharp;
-  src: url('../../fonts/COCO-SHARP-BOLD-TRIAL.TTF');
+  src: url("../../fonts/COCO-SHARP-BOLD-TRIAL.TTF");
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");

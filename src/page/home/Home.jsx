@@ -5,13 +5,15 @@ import Footer from "../../components/Footer/Footer.jsx";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser, getCartProduct, saveToken } from "../../redux/actions";
+import { getUser, getCartProduct, saveToken, setWelcome } from "../../redux/actions";
 import PcChatBot from "../../components/PcChatBot/PcChatBot";
 import Anuncio from "../../components/Anuncio/Anuncio";
+import Welcome from "../../components/Welcome/Welcome";
 
 export default function Home() {
   const dispatch = useDispatch();
-  // const userFound = useSelector((state) => state.userFound);
+  const welcome = useSelector((state) => state.welcome);
+
 
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user") || "[]")
@@ -20,6 +22,13 @@ export default function Home() {
   // const [products, setProducts] = useState(
   //   JSON.parse(localStorage.getItem("products") || "[]")
   // );
+
+  useEffect(() => {
+    if (user.logged) {
+      dispatch(getUser(user.token));
+      dispatch(setWelcome(true));
+    }
+  }, [dispatch]);
 
   useEffect(() => {
     if (user.logged) {
@@ -34,6 +43,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
+      {welcome ? <Welcome/> : null}
       <Carrusel />
       <Anuncio />
       <ProductSlider />

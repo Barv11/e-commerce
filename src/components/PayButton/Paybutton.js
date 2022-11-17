@@ -9,8 +9,8 @@ export default function Paybutton({ cartItem }) {
   const userFound = useSelector((state) => state.userFound);
 
 
-  // let deployed = "http://localhost:3001/";
-  let deployed = "https://gametech.up.railway.app/";
+  let deployed = "http://localhost:3001/";
+  // let deployed = "https://gametech.up.railway.app/";
   
   
   const handleCheckout = () => {
