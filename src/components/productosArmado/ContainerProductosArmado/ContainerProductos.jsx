@@ -6,11 +6,10 @@ import s from "../ContainerProductosArmado/ContainerProductos.module.css";
 function ContainerProductos({ items, title, handleAdded }) {
   return (
     <div className={s.container}>
-      <h2>{`${title} :`}</h2>
+      <h2>{title}</h2>
       <div className={s.globalContainer}>
         {items?.map((e) => {
           return (
-            // <Link to={"/detail/" + e.id}>
             <CardProductosArmado
               key={e.id}
               id={e.id}

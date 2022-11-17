@@ -1,38 +1,33 @@
 .container {
-  margin: 15px;
   text-align: center;
-}
-
-.containerData {
-  width: 8vw;
-  height: 27vh;
-  padding: 10px;
+  padding-top: .4em;
+  width: 150px;
+  height: 300px;
   border-radius: 10px;
   display: flex;
-  flex-direction: column;
+  flex-flow: column nowrap;
   align-items: center;
+  gap: .4em;
   position: relative;
-  transition: 0.3s;
+  transition: background-color .5s;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.name {
-  font-size: 12px;
-  margin: 5px;
-}
-
-.containerData:hover {
-  background-color: rgba(0, 0, 0, 0.1);
-  transition: 0.3s;
+.container:hover {
+  background-color: rgba(0, 0, 0, 0.199);
 }
 
 .image {
-  width: 100px;
-  height: 100px;
-}
+  width: 100px;height: 100px;
+  object-fit: contain;
+}  
+
+.name {
+  font-size: .8rem;
+}  
 
 .brand {
-  font-size: 18px;
+  font-size: 1rem;
 }
 
 #addBtn {

@@ -57,7 +57,8 @@ function ProductosArmado({ products }) {
     <div className={style.container}>
       <Navbar/>
       <div className={style.allItems}>
-        <div>
+        <h1>Elige tus componentes</h1>
+        <div className={style.groups}>
           <ContainerProductos items={procesador && procesador} name="procesador" title="Procesador" handleAdded={handleAdded}/>
           <ContainerProductos items={mother && mother} name="mother" title="MotherBoard" handleAdded={handleAdded}/>
           <ContainerProductos items={tarjeta && tarjeta} name="tarjeta" title="Tarjeta" handleAdded={handleAdded}/>

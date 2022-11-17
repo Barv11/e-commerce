@@ -1,44 +1,37 @@
-.card {
-  width: 14vw;
-  height: 27vh;
-  margin: 20px;
-  padding: 15px;
-  border-radius: 5px;
-  font-size: 14px;
+.container {
   display: flex;
-  flex-direction: column;
+  flex-flow: column nowrap;
   align-items: center;
-  justify-content: center;
+}
+
+.cardGroup {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  padding: 1em 0;
+  gap: 1.5em;
+}
+
+.card {
+  width: 240px;
+  height: 220px;
+  border-radius: 8px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: 0.5em;
   position: relative;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  overflow: hidden;
-  align-items: center;
-  justify-content: center;
-}
-
-.container h2 {
-  font-size: 13px;
-  width: 200px;
-  text-align: center;
-  margin: 10px 0px;
-}
-
-.container h3 {
-  font-size: 23px;
-}
-
 #x {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 26px;
-  height: 26px;
+  top: 5px;
+  right: 5px;
+  /* width: 26px;
+  height: 26px; */
+  padding: 0.05em 0.3em;
+  font-size: 1rem;
   background-color: rgb(223, 0, 0);
   color: white;
   border-radius: 5px;
@@ -53,24 +46,20 @@
   background-color: rgb(155, 0, 0);
 }
 
-.card img {
-  width: 130px;
-  height: 130px;
+.cardImage {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
 }
 
-.containerNoItems {
-  font-size: 2rem;
-  margin: 25% 15px 0 15px;
-  text-align: center;
+.name {
+  margin: 0;
+  padding: 0;
+  font-size: 0.8rem;
 }
 
-.containerNoItems h2 {
-  margin: 20px 0px;
-}
-
-.image {
-  width: 12vw;
-  filter: opacity(0.5);
+.cost {
+  font-size: 23px;
 }
 
 .btnContainer {
@@ -81,8 +70,8 @@
 .btnContainer button {
   padding: 12px 30px;
   border-radius: 10px;
-  background-color: rgb(82, 169, 11);
-  color: white;
+  background-color: #52a90b;
+  color: #ffffff;
   border: none;
   transition: 0.3s;
   position: relative;
@@ -111,6 +100,27 @@
   transition: 0.3s;
 }
 
+.containerNoItems {
+  width: 80%; 
+  display: flex;
+  background-color: rgba(0, 255, 255, 0.199);
+  background-color: transparent;
+  box-shadow: 5px 5px 15px #aaa;
+  border-radius: 5px;
+
+}
+
+.containerNoItems > h2 {
+  margin: 0;
+  padding: 0;
+  font-size: 2rem;
+  margin: 20px 0px;
+}
+
+.image {
+  width: 200px;
+  filter: opacity(0.5);
+}
 .modalTitle{
   font-size: 35px;
   font-family: Cocosharp;

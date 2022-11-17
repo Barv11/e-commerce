@@ -1,17 +1,32 @@
+
 .allItems {
+  position: relative;
+  padding: 2em;
   display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.allItems > h1 {
+  padding: .5em 0;
+  width: 100%;
+  text-align: center;
+}
+
+.groups {
+  flex-basis: 70%;
   display: flex;
-  justify-content: space-around;
-  padding: 30px;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: 2em;
 }
 
 .pcArmada {
-  width: 20vw;
-  height: 80vh;
-  box-shadow: 5px 5px 15px #aaa;
-  overflow: auto;
-  position: fixed;
-  right: 40px;
-  top: 135px;
-  border-radius: 5px;
+  flex-basis: 30%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  position: sticky;
+  top: 0;
 }
