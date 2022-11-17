@@ -13,6 +13,7 @@ import Welcome from "../../components/Welcome/Welcome";
 export default function Home() {
   const dispatch = useDispatch();
   const welcome = useSelector((state) => state.welcome);
+  const userFound = useSelector((state) => state.userFound);
 
 
   const [user, setUser] = useState(
@@ -43,7 +44,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      {welcome ? <Welcome/> : null}
+      {Object.entries(userFound).length ? welcome ? <Welcome/> : null : null}
       <Carrusel />
       <Anuncio />
       <ProductSlider />
