@@ -2,15 +2,25 @@ import React, { useEffect } from "react";
 import s from "./Orden.module.css";
 import Table from "react-bootstrap/Table";
 import Navbar from "../Navbar/Navbar";
-import Footer from "../Footer/Footer";
-
+import { getOneUser } from "../../redux/actions";
+import axios from "axios";
+import { useState } from "react";
 export default function Orden() {
   //pedido al back para traer los cart/pedidos
 
+  //const url = "http://localhost:3001/ordenes";
+  let url = "https://gametech.up.railway.app/ordenes";
+  const [ordenes, setOrdenes] = useState({});
+  async function AllOrdenes() {
+    const Ordenes = await axios.get(url);
+    setOrdenes(Ordenes);
+  }
   //un handle change
   useEffect(() => {
+    AllOrdenes();
     document.title = `Gamer Tech | Ordenes`;
   }, []);
+  console.log(ordenes);
   return (
     <>
       <Navbar />
@@ -19,36 +29,53 @@ export default function Orden() {
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th>#</th>
-              <th>Orden N°</th>
-              <th>Usuario</th>
-              <th>Total Compra</th>
-              <th>Cantidad Items</th>
+              <th>Email</th>
+              <th>Compra</th>
+              <th>Cantidad</th>
+              <th>Precio</th>
             </tr>
           </thead>
           <tbody>
             {/* estado con las ordenes y mapeado del estado con las ordenes */}
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td colSpan={2}>Larry the Bird</td>
-              <td>@twitter</td>
-            </tr>
+            {ordenes?.data?.map((e) => {
+              return (
+                <tr>
+                  <td>{e.email}</td>
+                  <td>
+                    {e?.data?.map((el) => {
+                      return (
+                        <tr>
+                          <td>
+                            {el?.description} <br></br>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </td>
+                  <td>
+                    {e?.data?.map((el) => {
+                      return (
+                        <tr>
+                          <td>{el?.quantity}</td>
+                        </tr>
+                      );
+                    })}
+                  </td>
+                  <td>
+                    {e?.data?.map((el) => {
+                      return (
+                        <tr>
+                          <td>{"$" + el?.amount_total / 100}</td>
+                        </tr>
+                      );
+                    })}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </Table>
       </main>
-      <Footer />
     </>
   );
 }

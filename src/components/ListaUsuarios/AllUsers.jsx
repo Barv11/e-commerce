@@ -7,13 +7,13 @@ import { getAllUsers, getUser } from "../../redux/actions";
 import PeopleAltRoundedIcon from "@mui/icons-material/PeopleAltRounded";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import Navbar from "../Navbar/Navbar";
-import Modal from '../Modals/Modal';
-import { useModal } from '../Modals/useModal';
-import './AllUsers.css';
+import Modal from "../Modals/Modal";
+import { useModal } from "../Modals/useModal";
+import "./AllUsers.css";
 
 export default function AllUsers() {
   let dispatch = useDispatch();
- 
+
   const [input, setInput] = useState({
     role: "",
   });
@@ -21,6 +21,10 @@ export default function AllUsers() {
   const allUsers = useSelector((state) => state.allUsers);
   const [search, setSearch] = useState("");
   const [isOpenModal, openModal, closeModal] = useModal(false);
+
+
+  const local = "https://gametech.up.railway.app";
+  //const local = "http://localhost:3001";
 
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user") || "[]")
@@ -78,7 +82,7 @@ export default function AllUsers() {
     }
     dispatch(getAllUsers());
     openModal();
-   }
+  }
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
@@ -90,31 +94,30 @@ export default function AllUsers() {
         el.userName.toLowerCase().includes(search.toLocaleLowerCase())
       );
 
-
   useEffect(() => {
     dispatch(getAllUsers());
   }, [dispatch]);
- 
+
   useEffect(() => {
     document.title = `Gamer Tech | Usuarios`;
   }, []);
   return (
-    <div className='alluserscontainer'>
+    <div className="alluserscontainer">
       <Navbar />
-      <div className='UserListTitleIcon'>
-        <h1 className='userListTxt'>Lista de Usuarios</h1>
-        <div className='usersListIcon'>
-          <PeopleAltRoundedIcon fontSize={"inherit"}/>
+      <div className="UserListTitleIcon">
+        <h1 className="userListTxt">Lista de Usuarios</h1>
+        <div className="usersListIcon">
+          <PeopleAltRoundedIcon fontSize={"inherit"} />
         </div>
       </div>
-      <div className='searchContainer'>
-        <span className='buscarTxt'>Buscar por Username: </span>
+      <div className="searchContainer">
+        <span className="buscarTxt">Buscar por Username: </span>
         <input
           value={search}
           onChange={handleSearch}
           type="text"
           placeholder="Inserte un username..."
-          className='input'
+          className="input"
         />
       </div>
       <Table responsive striped bordered hover variant="dark">
@@ -182,8 +185,10 @@ export default function AllUsers() {
                       <CheckRoundedIcon />
                     </button>
                     <Modal isOpen={isOpenModal} closeModal={closeModal}>
-                      <h1 className='modalTitle'>Rol asinado con éxito</h1>
-                      <p className='modalSubtitle'>Has asignado el rol {u.role} exitosamente.</p>
+                      <h1 className="modalTitle">Rol asinado con éxito</h1>
+                      <p className="modalSubtitle">
+                        Has asignado el rol {u.role} exitosamente.
+                      </p>
                     </Modal>
                   </td>
                 </tr>
