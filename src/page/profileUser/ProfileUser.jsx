@@ -27,7 +27,8 @@ export default function ProfileUser() {
   // useEffect(() => {
   //   dispatch(getOneUser());
   // }, []);
-  const url = "http://localhost:3001/ordenes";
+  //const url = "http://localhost:3001/ordenes";
+  const url = "https://gametech.up.railway.app/ordenes";
 
   async function AllOrdenes() {
     const Ordenes = await axios.get(url);
