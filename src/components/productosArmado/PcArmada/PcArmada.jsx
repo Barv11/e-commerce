@@ -5,6 +5,8 @@ import s from "./PcArmada.module.css";
 import { gabinete } from "../../../assets/icons";
 import { addCartProduct } from "../../../redux/actions";
 import { useNavigate } from "react-router-dom";
+import Modal from "../../Modals/Modal";
+import { useModal } from "../../Modals/useModal";
 
 function PcArmada({ item }) {
   const [myPc, setMyPc] = useState([]);
@@ -12,6 +14,7 @@ function PcArmada({ item }) {
   const [compatibilidad, setCompatibilidad] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isOpenModal, openModal, closeModal] = useModal(false);
 
   const userFound = useSelector((state) => state.userFound);
 
@@ -48,9 +51,10 @@ function PcArmada({ item }) {
           dispatch(addCartProduct(userFound.id, myPc));
           navigate("/carrito");
         } else {
-          alert(
-            `El Procesador ${procesador[0].name} no es Compatible con la Mother ${mother[0].name}`
-          );
+          // alert(
+          //   `El Procesador ${procesador[0].name} no es Compatible con la Mother ${mother[0].name}`
+          // );
+          openModal();
           setCompatibilidad(false);
         }
       } else {
@@ -106,6 +110,10 @@ function PcArmada({ item }) {
             <button id={s.check} onClick={handleCheckout}>
               Agregar al Carrito
             </button>
+            <Modal isOpen={isOpenModal} closeModal={closeModal}>
+              <h1 className="modalTitle">Error de compatibilidad</h1>
+              <p className="modalSubtitle">El Procesador no es Compatible con la Mother</p>
+            </Modal>
           </div>
         </div>
       </div>
